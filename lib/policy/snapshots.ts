@@ -68,6 +68,8 @@ export const NULL_POLICY: PolicySnapshot = {
   version: 'none-in-force',
   effective_at: '',
   fee_tolerance_paise: 0,
+  fee_rate_bps: 0,
+  gst_rate_bps: 0,
   max_settlement_lag_days: 0,
   evidence_freshness_max_hours: 0,
   closeable_statuses: [],

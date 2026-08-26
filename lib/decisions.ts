@@ -28,7 +28,7 @@
 import { existsSync, readFileSync } from 'node:fs'
 import path from 'node:path'
 import { buildEvidencePack, evidenceHashMap, AGENT_VERSION } from '@/lib/evidence/pack'
-import { verify, VERIFIER_VERSION } from '@/lib/verifier/deterministic'
+import { verifyClaim, VERIFIER_VERSION } from '@/lib/verifier/deterministic'
 import { MODEL_VERSION } from '@/lib/ai/provider'
 import { loadCases, type Suite } from '@/lib/data/ledger'
 import type {
@@ -142,11 +142,12 @@ export function materializeDecision(
       }
     : placeholderProposal(c, pack.evidence.map((e) => e.evidence_id))
 
-  const result = verify({
-    claim: proposal.claim,
+  const result = verifyClaim(
+    proposal.claim,
     pack,
-    as_of: opts.asOf ?? pack.decision_time,
-  })
+    pack.policy_snapshot,
+    opts.asOf ?? pack.decision_time,
+  )
 
   return {
     case_id: c.case_id,

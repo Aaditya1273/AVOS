@@ -21,7 +21,7 @@
       "UNCERTAIN": 10,
       "VERIFIED": 80
     },
-    "total_value_paise": 1086653696
+    "total_value_paise": 1093126078
   },
   "adversarial_30": {
     "cases": 30,
@@ -39,9 +39,9 @@
     }
   },
   "evidence_rows": {
-    "razorpay_payments": 1120,
+    "razorpay_payments": 1077,
     "razorpay_settlements": 175,
-    "bank_statement": 147,
+    "bank_statement": 148,
     "refunds": 19,
     "holds": 8,
     "webhook_events": 155

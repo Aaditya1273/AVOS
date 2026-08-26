@@ -13,7 +13,8 @@
     "eval": "tsx evals/eval.ts",
     "check:isolation": "tsx evals/isolation.ts",
     "test:adversarial": "tsx evals/adversarial.ts",
-    "test:ingest": "tsx evals/ingest.ts"
+    "test:ingest": "tsx evals/ingest.ts",
+    "test:verifier": "tsx evals/verifier.ts"
   },
   "dependencies": {
     "@ai-sdk/openai": "^1.3.24",

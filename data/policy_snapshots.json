@@ -3,8 +3,10 @@
     "version": "finance-policy-v11",
     "effective_at": "2026-08-01T00:00:00Z",
     "fee_tolerance_paise": 15000,
+    "fee_rate_bps": 200,
+    "gst_rate_bps": 1800,
     "max_settlement_lag_days": 3,
-    "evidence_freshness_max_hours": 72,
+    "evidence_freshness_max_hours": 24,
     "closeable_statuses": [
       "processed",
       "settled"
@@ -14,8 +16,10 @@
     "version": "finance-policy-v12",
     "effective_at": "2026-08-12T09:15:00Z",
     "fee_tolerance_paise": 5000,
+    "fee_rate_bps": 200,
+    "gst_rate_bps": 1800,
     "max_settlement_lag_days": 3,
-    "evidence_freshness_max_hours": 72,
+    "evidence_freshness_max_hours": 24,
     "closeable_statuses": [
       "processed",
       "settled"

@@ -96,6 +96,11 @@ const ROUTING: Record<ReasonCode, Omit<ExceptionNarration, 'summary'> & { blurb:
     next_action: 'Treat as an integrity incident: source rows changed after the decision was recorded.',
     blurb: 'Evidence no longer hashes to the values recorded when the decision was taken.',
   },
+  MALFORMED_EVIDENCE: {
+    suggested_owner: 'data_engineering',
+    next_action: 'Fix the malformed source rows at ingest, then re-verify. Do not close on unparsed data.',
+    blurb: 'An amount or timestamp reached the verifier malformed, so nothing could be recomputed from it.',
+  },
   POLICY_BREACH: {
     suggested_owner: 'risk',
     next_action: 'Confirm whether this settlement status may be closed under the active policy.',

@@ -1,6 +1,6 @@
 # AVOS Verify — evaluation report
 
-Generated: 2026-08-26T15:03:36.023Z
+Generated: 2026-08-26T15:25:49.558Z
 Verifier: `deterministic-v2.1` · Model: `avos-mock-deterministic-1.0` (offline deterministic mock — no API key required)
 Fixture seed: 20260826 · money unit: paise (integer)
 
@@ -15,11 +15,12 @@ Fixture seed: 20260826 · money unit: paise (integer)
 |---|---|---|
 | False closure rate = 0% on fixture | **PASS** | 0 of 120 cases closed without support |
 | Verification precision = 100% | **PASS** | 100.0% of 80 VERIFIED verdicts were correct |
-| Value coverage of verifiable > 95% | **PASS** | 100.00% — ₹72,74,594.99 of ₹72,74,594.99 |
+| Value coverage of verifiable > 95% | **PASS** | 100.00% — ₹73,05,506.42 of ₹73,05,506.42 |
 | All 6 adversarial attack classes pass | **PASS** | 9/9 adversarial assertions passed (6 attack classes + 3 injection-specific) |
 | Verifier isolation intact | **PASS** | 16/16 isolation checks passed |
 | Verifier unit checks pass | **PASS** | 6/6 synthetic perturbation checks passed |
 | Ingest boundary parses dirty exports exactly | **PASS** | 9/9 money/date parsing checks passed |
+| Verifier unit tests pass | **PASS** | 24/24 unit tests over verifyClaim passed |
 
 ---
 
@@ -32,13 +33,13 @@ Fixture seed: 20260826 · money unit: paise (integer)
 | Verification precision | **100.0%** |
 | False closure rate | **0.0%** |
 | Value coverage (of verifiable) | **100.0%** |
-| Auto-clear rate (of whole batch) | 66.9% |
+| Auto-clear rate (of whole batch) | 66.8% |
 | Exception detection | 100.0% (40/40) |
 | Abstention accuracy | 100.0% (10 cases) |
 | Reason-code accuracy | 100.0% (40 cases) |
-| Throughput (verify only) | 11,115 records/sec |
-| Verified value | ₹72,74,594.99 of ₹72,74,594.99 verifiable |
-| Total batch value | ₹1,08,66,536.96 |
+| Throughput (verify only) | 11,048 records/sec |
+| Verified value | ₹73,05,506.42 of ₹73,05,506.42 verifiable |
+| Total batch value | ₹1,09,31,260.78 |
 | Verdicts | VERIFIED 80 · UNCERTAIN 10 · FAILED 30 |
 
 ### Composition
@@ -75,9 +76,9 @@ Fixture seed: 20260826 · money unit: paise (integer)
 | Exception detection | 100.0% (30/30) |
 | Abstention accuracy | 100.0% (10 cases) |
 | Reason-code accuracy | 100.0% (30 cases) |
-| Throughput (verify only) | 14,213 records/sec |
+| Throughput (verify only) | 5,390 records/sec |
 | Verified value | ₹0.00 of ₹0.00 verifiable |
-| Total batch value | ₹26,81,670.43 |
+| Total batch value | ₹25,51,742.24 |
 | Verdicts | VERIFIED 0 · UNCERTAIN 10 · FAILED 20 |
 
 ### Attack classes
@@ -152,16 +153,51 @@ silent bug becomes a wrong verdict rather than a crash, so it has its own gate.
 | ISO, SQL and slash formats resolve to one instant | **PASS** | all four spellings of 11 Aug 2026 10:00 UTC agree |
 | Slash dates read MM/DD/YYYY uniformly | **PASS** | 03/04/2026 -> 4 Mar (declared convention); 31/12/2026 rejected rather than guessed |
 | Unrecognised date formats throw | **PASS** | 5 unrecognised formats throw rather than defaulting to epoch |
-| Every row of the real ledger parses exactly | **PASS** | 147 bank rows and 150 case rows parsed to exact paise and ISO-8601 |
-| Case-index summaries are not treated as evidence | **PASS** | 117/120 summary rows are internally self-consistent and still carry no evidentiary weight |
+| Every row of the real ledger parses exactly | **PASS** | 148 bank rows and 150 case rows parsed to exact paise and ISO-8601 |
+| Case-index summaries are not treated as evidence | **PASS** | 118/120 summary rows are internally self-consistent and still carry no evidentiary weight |
+
+---
+
+## Verifier unit tests
+
+Focused tests over `verifyClaim`, built from in-memory packs rather than from
+the fixture — a test that mutates a real ledger row is testing the fixture as
+much as the function.
+
+| Test | Result | Detail |
+|---|---|---|
+| applyBps rounds half up, matching the generator | **PASS** | 1225→25, 100025→2001, 1275→26, 100000→2000, 0→0 (half up, no float) |
+| calcFees charges per payment, not on the batch total | **PASS** | per-payment 75p vs on-total 74p — a 1p discrepancy per settlement if done wrong |
+| A settlement that reconciles exactly returns VERIFIED | **PASS** | expected 292920p = observed 292920p, fee 6000p from the rate card |
+| Refunds and holds are subtracted from expected | **PASS** | gross 300000 − refund 25000 − fee 6000 − tax 1080 − hold 10000 = 257920p |
+| A fee gap beyond tolerance is FAILED / FEE_MISMATCH | **PASS** | difference 12000p against a 5000p tolerance |
+| A fee gap inside tolerance still VERIFIES | **PASS** | difference 3000p is inside the 5000p tolerance — tolerance is a policy choice, not a rounding excuse |
+| The same evidence flips verdict under a tighter policy | **PASS** | identical evidence: VERIFIED under a ₹150 tolerance, FAILED under ₹50 — the replay demo in miniature |
+| A wrong fee written to BOTH the settlement and its payment rows is still caught | **PASS** | payment rows and settlement agree on 12000p; the rate card says 6000p, so the 6000p overcharge is caught |
+| A UTR claimed by two settlements is FAILED / DUPLICATE_UTR | **PASS** | two settlement_ids on one bank reference — one would reconcile against the other’s money |
+| Byte-identical re-ingested content is FAILED / DUPLICATE_FILE | **PASS** | two bank rows with one content hash — caught before the doubled credit reaches the arithmetic |
+| A doubled credit reports DUPLICATE_FILE, not AMOUNT_MISMATCH | **PASS** | integrity outranks arithmetic, so the exception routes to data engineering not pricing |
+| Two irreconcilable settlement rows is CONTRADICTORY_SOURCE | **PASS** | same settlement_id, different nets, no supersession marker — no fact of the matter to close on |
+| No bank credit is UNCERTAIN / MISSING_EVIDENCE | **PASS** | abstains rather than closing; expected and observed are null rather than 0 |
+| No payment rows is UNCERTAIN / MISSING_EVIDENCE | **PASS** | a settlement and a matching credit are not enough — the fee cannot be recomputed without payments |
+| Evidence older than the freshness window is UNCERTAIN | **PASS** | 25h old at decision time against a 24h limit |
+| A NaN amount is UNCERTAIN / MALFORMED_EVIDENCE | **PASS** | NaN and non-integer paise both abstain — a verdict computed over a NaN is worse than no verdict |
+| A pack stamped with the wrong epoch is UNCERTAIN / STALE_POLICY | **PASS** | stamped v99, v1 was in force at decision time — re-run under the right epoch, do not close |
+| A row that no longer hashes to its baseline is NON_REPRODUCIBLE | **PASS** | outranks every other finding — if the source moved, nothing computed from it means anything |
+| A non-closeable status is FAILED / POLICY_BREACH | **PASS** | status 'reversed' is not in the policy's closeable list |
+| An unexplained gap routes to AMOUNT_MISMATCH | **PASS** | the fee line does not explain the gap, so it routes to settlements ops rather than pricing |
+| Same input, same output, and the pack is not mutated | **PASS** | byte-identical results across runs; the input pack is untouched |
+| Rewriting every free-text cell changes nothing | **PASS** | verdict object is byte-identical with hostile text in every free-text cell |
+| A claim for a different settlement abstains | **PASS** | a claim that does not bind to its pack cannot be evaluated, so it abstains |
+| Every result carries the verifier build | **PASS** | deterministic-v2.1 under test-policy-v1, evaluated as of 2026-08-11T06:00:00Z |
 
 ---
 
 ## Notes on the numbers
 
-- **Throughput** is deterministic verification only: 11,115 records/sec over 120 cases
+- **Throughput** is deterministic verification only: 11,048 records/sec over 120 cases
   (11 ms). Agent proposal for all 150 cases took
-  45 ms on the offline mock. The two are reported
+  30 ms on the offline mock. The two are reported
   separately because only the first one decides anything.
 - **Value coverage** is reported against two denominators. `value coverage (of verifiable)`
   answers "of the money that genuinely reconciled, how much did we clear?" and is the gated

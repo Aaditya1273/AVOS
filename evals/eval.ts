@@ -27,7 +27,7 @@
 import { mkdirSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
 import { buildEvidencePack, evidenceHashMap } from '@/lib/evidence/pack'
-import { verify, VERIFIER_VERSION } from '@/lib/verifier/deterministic'
+import { verifyClaim, VERIFIER_VERSION } from '@/lib/verifier/deterministic'
 import { proposeClaim } from '@/lib/ai/agent'
 import { MODEL_VERSION, USING_MOCK } from '@/lib/ai/provider'
 import { loadCases, loadGroundTruth, loadManifest, type Suite } from '@/lib/data/ledger'
@@ -37,6 +37,7 @@ import { formatPaise, formatPct } from '@/lib/money'
 import { runIsolationChecks } from '@/evals/isolation'
 import { runAdversarialTests, type AdversarialTest } from '@/evals/adversarial'
 import { runIngestChecks, type IngestCheck } from '@/evals/ingest'
+import { runVerifierTests, type VerifierTest } from '@/evals/verifier'
 import type { Decision } from '@/lib/types'
 
 const ROOT = process.cwd()
@@ -61,7 +62,7 @@ async function recordDecisions(): Promise<{ log: DecisionLog; agentElapsedMs: nu
     for (const c of cases) {
       const pack = buildEvidencePack(c, { modelVersion: MODEL_VERSION })
       const proposal = await proposeClaim(pack)
-      const result = verify({ claim: proposal.claim, pack, as_of: pack.decision_time })
+      const result = verifyClaim(proposal.claim, pack, pack.policy_snapshot)
 
       entries[c.case_id] = {
         case_id: c.case_id,
@@ -189,6 +190,7 @@ function buildReport(
   tests: AdversarialTest[],
   isolation: ReturnType<typeof runIsolationChecks>,
   ingest: IngestCheck[],
+  verifierUnits: VerifierTest[],
   gates: Gate[],
   agentElapsedMs: number,
 ): string {
@@ -286,6 +288,18 @@ function buildReport(
     '',
     '---',
     '',
+    '## Verifier unit tests',
+    '',
+    'Focused tests over `verifyClaim`, built from in-memory packs rather than from',
+    'the fixture — a test that mutates a real ledger row is testing the fixture as',
+    'much as the function.',
+    '',
+    '| Test | Result | Detail |',
+    '|---|---|---|',
+    ...verifierUnits.map((t) => `| ${t.name} | ${t.passed ? '**PASS**' : '**FAIL**'} | ${t.detail} |`),
+    '',
+    '---',
+    '',
     '## Notes on the numbers',
     '',
     `- **Throughput** is deterministic verification only: ${batch.throughput_records_per_sec.toLocaleString()} records/sec over ${batch.n} cases`,
@@ -339,6 +353,7 @@ async function main(): Promise<void> {
 
   console.log('Ingest boundary + isolation + adversarial suite ...')
   const ingest = runIngestChecks()
+  const verifierUnits = runVerifierTests()
   const isolation = runIsolationChecks()
   const tests = await runAdversarialTests()
   const attackTests = tests.filter((t) => t.group === 'attack_suite')
@@ -384,6 +399,11 @@ async function main(): Promise<void> {
       passed: ingest.every((c) => c.passed),
       detail: `${ingest.filter((c) => c.passed).length}/${ingest.length} money/date parsing checks passed`,
     },
+    {
+      name: 'Verifier unit tests pass',
+      passed: verifierUnits.every((t) => t.passed),
+      detail: `${verifierUnits.filter((t) => t.passed).length}/${verifierUnits.length} unit tests over verifyClaim passed`,
+    },
   ]
 
   const report = buildReport(
@@ -392,6 +412,7 @@ async function main(): Promise<void> {
     tests,
     isolation,
     ingest,
+    verifierUnits,
     gates,
     agentElapsedMs,
   )
@@ -408,6 +429,7 @@ async function main(): Promise<void> {
         adversarial_30: adversarial.metrics,
         adversarial_tests: tests,
         ingest: ingest,
+        verifier_units: verifierUnits,
         isolation: isolation.findings,
         gates,
       },

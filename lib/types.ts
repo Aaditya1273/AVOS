@@ -136,6 +136,17 @@ export interface PolicySnapshot {
   version: string
   effective_at: string
   fee_tolerance_paise: Paise
+  /**
+   * The rate card, in basis points.
+   *
+   * The verifier recomputes what the fee *should* have been from these, rather
+   * than trusting the fee recorded on the settlement or on its payment rows.
+   * That matters: if a mispricing bug wrote the same wrong fee to both, a
+   * verifier that compares them against each other sees perfect agreement and
+   * passes. Deriving from the rate card is the only way to catch it.
+   */
+  fee_rate_bps: number
+  gst_rate_bps: number
   max_settlement_lag_days: number
   evidence_freshness_max_hours: number
   closeable_statuses: string[]
@@ -206,6 +217,8 @@ export type ReasonCode =
   | 'STALE_EVIDENCE'
   | 'NON_REPRODUCIBLE'
   | 'POLICY_BREACH'
+  /** An amount or timestamp reached the verifier malformed. Never a verdict input. */
+  | 'MALFORMED_EVIDENCE'
 
 export type Pillar = 'guard' | 'prove' | 'verify'
 
@@ -237,8 +250,12 @@ export interface VerificationResult {
   observed_paise: Paise | null
   /** expected - observed. Positive means the bank paid less than the ledger says. */
   difference_paise: Paise | null
-  /** settlement-declared fees - sum(payment-level fees). Explains a FEE_MISMATCH. */
+  /** What the rate card in force says the fee should have been. */
+  policy_fee_paise: Paise | null
+  /** settlement-declared fee − policy-derived fee. The settlement over/undercharged. */
   fee_delta_paise: Paise | null
+  /** sum(payment-level fees) − policy-derived fee. The payment rows themselves are off. */
+  recorded_fee_delta_paise: Paise | null
   tolerance_paise: Paise | null
   policy_version: string
   policy_effective_at: string

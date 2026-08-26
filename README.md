@@ -62,9 +62,14 @@ rather than by discipline:
 │  ZERO runtime imports. No model, no network, no filesystem,      │
 │  no clock, no randomness. A pure function of its arguments.      │
 │                                                                  │
-│    expected = gross − refunds − fees − tax − holds               │
+│    expected = gross − refunds − calcFees(policy) − holds         │
 │    observed = bank credit                                        │
 │    difference = expected − observed                              │
+│                                                                  │
+│  Fees come from the POLICY RATE CARD, not from any recorded fee.  │
+│  A mispricing bug that wrote the same wrong fee to the settlement │
+│  AND its payment rows makes them agree perfectly — and a verifier │
+│  comparing them to each other passes it.                         │
 │                                                                  │
 │  Checks: reproducibility · policy epoch · completeness ·          │
 │  freshness · webhook idempotency · file re-ingestion ·           │
@@ -83,7 +88,7 @@ The verifier never reads `agent_reason`. It only recomputes.
 |---|---|---|
 | **Guard** | Is closure permissible under the policy in force **at decision time** — not today's policy? Catches anachronistic judgement, freshness breaches, impermissible settlement states. | `lib/policy/snapshots.ts`, guard checks in `deterministic.ts` |
 | **Prove** | Every row carries source file, row id, timestamp, content hash and freshness. Re-hashed on replay, so a mutated source is caught rather than silently re-verified. | `lib/evidence/pack.ts`, `lib/evidence/hash.ts` |
-| **Verify** | Recomputes the financial claim from payment-level evidence. Integer paise. No LLM anywhere on the path. | `lib/verifier/deterministic.ts` |
+| **Verify** | Recomputes the financial claim. Fees derived from the policy rate card, never from a recorded fee. Integer paise. No LLM anywhere on the path. | `lib/verifier/deterministic.ts` |
 | **Measure** | Precision, false closure, value coverage, exception detection, abstention accuracy, throughput — over two labelled fixtures. | `lib/metrics.ts`, `evals/eval.ts` |
 
 ### Verdict semantics
@@ -311,6 +316,17 @@ abstained on 10.
 
 **All 6 attack classes pass**, plus 3 injection-specific assertions and 6
 verifier unit checks — 15/15. Verifier isolation: 16/16. Ingest boundary: 9/9.
+Verifier unit tests: 24/24.
+
+### One test worth reading
+
+`systemic_mispricing_is_caught` is why fees are derived from the rate card. A
+mispricing bug charges 4% instead of 2% and records that everywhere — the
+settlement's declared fee, every payment row's fee column, and the bank credit
+all agree with each other perfectly. A verifier that checks the settlement
+against its payment rows sees no discrepancy and closes it. Deriving the fee
+independently from the policy in force catches the ₹60 overcharge that every
+recorded number in the pack agrees about.
 
 | # | Attack | Result |
 |---|---|---|
@@ -449,6 +465,7 @@ evals/eval.ts                  120 + 30, metrics, gates
 evals/adversarial.ts           6 attack classes + 6 unit checks
 evals/isolation.ts             asserts the verifier's isolation, every run
 evals/ingest.ts                money/date parsing, incl. the whole real ledger
+evals/verifier.ts              24 unit tests over verifyClaim, in-memory packs
 evals/report.md                generated write-up
 evals/raw/                     raw per-case output
 
@@ -471,9 +488,10 @@ data/                          the CSV ledger + policy snapshots + decision log
 | Verifier isolation intact | **PASS** — 16/16 |
 | Verifier unit checks | **PASS** — 6/6 |
 | Ingest boundary parses dirty exports exactly | **PASS** — 9/9 |
+| Verifier unit tests | **PASS** — 24/24 |
 
 Plus `npm run build` with no TypeScript errors, and `npm run check:isolation`
-and `npm run test:ingest` as standalone gates.
+`npm run test:ingest` and `npm run test:verifier` as standalone gates.
 
 ---
 

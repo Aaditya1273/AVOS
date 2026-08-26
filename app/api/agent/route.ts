@@ -23,7 +23,7 @@
 
 import { NextResponse } from 'next/server'
 import { buildEvidencePack } from '@/lib/evidence/pack'
-import { verify } from '@/lib/verifier/deterministic'
+import { verifyClaim } from '@/lib/verifier/deterministic'
 import { proposeClaim } from '@/lib/ai/agent'
 import { narrateException } from '@/lib/ai/classify'
 import { MODEL_VERSION, USING_MOCK } from '@/lib/ai/provider'
@@ -62,11 +62,7 @@ export async function POST(request: Request) {
 
   // Deterministic code disposes. `proposal.agent_reason` is not in scope here —
   // only `proposal.claim` crosses the boundary.
-  const result = verify({
-    claim: proposal.claim,
-    pack,
-    as_of: pack.decision_time,
-  })
+  const result = verifyClaim(proposal.claim, pack, pack.policy_snapshot)
 
   // AI is allowed back in only after the verdict exists, to describe it.
   const narration = await narrateException(result)

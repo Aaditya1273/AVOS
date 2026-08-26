@@ -42,6 +42,7 @@ import type {
   EvidenceItem,
   EvidencePack,
   Paise,
+  PolicySnapshot,
   ReasonCode,
   StructuredClaim,
   VerificationResult,
@@ -60,11 +61,53 @@ export const VERIFIER_VERSION = 'deterministic-v2.1'
 export interface VerifierInput {
   claim: StructuredClaim
   pack: EvidencePack
+  policy: PolicySnapshot
   /**
    * The instant policy was resolved against. Equal to `pack.decision_time` for a
    * live verdict; a different instant when replaying history.
    */
   as_of: string
+}
+
+/**
+ * Integer half-up. Must match `apply_bps` in scripts/generate_data.py, exactly.
+ *
+ * Not `Math.round(paise * rate)`. Python's round() is banker's rounding and
+ * JavaScript's Math.round() rounds half away from zero, so `1225 * 2%` is 24 in
+ * the generator and 25 here. A one-paisa phantom fee gap on every amount landing
+ * on an exact half is precisely the class of defect AVOS exists to catch — and
+ * it would be arriving from our own toolchain. Integer arithmetic with an
+ * explicit tie-break has no language-dependent behaviour to disagree about.
+ */
+export function applyBps(paise: Paise, bps: number): Paise {
+  return Math.floor((paise * bps + 5000) / 10000)
+}
+
+/**
+ * What the fee and GST *should* have been, from the rate card in force.
+ *
+ * Charged per payment, not on the batch total, because that is how the fee is
+ * actually levied — and because `sum(round(x_i))` and `round(sum(x_i))` differ
+ * by a few paise across a dozen payments. Computing it the wrong way would
+ * manufacture a discrepancy on every settlement in the ledger.
+ *
+ * Deriving from policy rather than from a recorded fee is the point. A verifier
+ * that checks the settlement's declared fee against its payment rows' fees sees
+ * two numbers that agree — and passes — when a mispricing bug wrote the same
+ * wrong value to both. The rate card is the only independent source.
+ */
+export function calcFees(
+  payments: EvidenceItem[],
+  policy: PolicySnapshot,
+): { fee: Paise; tax: Paise } {
+  let fee = 0
+  let tax = 0
+  for (const p of payments) {
+    const f = applyBps(p.amount_paise, policy.fee_rate_bps)
+    fee += f
+    tax += applyBps(f, policy.gst_rate_bps)
+  }
+  return { fee, tax }
 }
 
 /**
@@ -84,6 +127,7 @@ export interface VerifierInput {
  *  - Arithmetic is last: it is only meaningful once the evidence set is sound.
  */
 const PRECEDENCE: ReasonCode[] = [
+  'MALFORMED_EVIDENCE',
   'NON_REPRODUCIBLE',
   'STALE_POLICY',
   'MISSING_EVIDENCE',
@@ -113,15 +157,32 @@ const VERDICT_FOR: Record<ReasonCode, Verdict> = {
   STALE_POLICY: 'UNCERTAIN',
   MISSING_EVIDENCE: 'UNCERTAIN',
   STALE_EVIDENCE: 'UNCERTAIN',
+  MALFORMED_EVIDENCE: 'UNCERTAIN',
 }
 
 const DAY_MS = 86_400_000
 
 // ---------------------------------------------------------------------------
 
+/**
+ * Verify a structured claim against an evidence pack under a policy snapshot.
+ *
+ * Policy is a parameter rather than something read off the pack, so the caller
+ * must state which epoch it is asking about. That makes the replay question
+ * — "was this right at the time?" versus "would we take it today?" — impossible
+ * to ask by accident.
+ */
+export function verifyClaim(
+  claim: StructuredClaim,
+  pack: EvidencePack,
+  policy: PolicySnapshot,
+  asOf: string = pack.decision_time,
+): VerificationResult {
+  return verify({ claim, pack, policy, as_of: asOf })
+}
+
 export function verify(input: VerifierInput): VerificationResult {
-  const { claim, pack, as_of } = input
-  const policy = pack.policy_snapshot
+  const { claim, pack, policy, as_of } = input
   const checks: CheckResult[] = []
   const findings = new Set<ReasonCode>()
 
@@ -148,6 +209,36 @@ export function verify(input: VerifierInput): VerificationResult {
       ? `claim references ${claim.settlement_id}, which is the subject of this pack`
       : `claim references ${claim.settlement_id} but the pack is for ${pack.settlement_id}`,
     'MISSING_EVIDENCE',
+  )
+
+  // -------------------------------------------------------------------------
+  // 0b. PROVE — preconditions.
+  //
+  // The verifier does not parse money or dates; `lib/csv.ts` does that at the
+  // ingest boundary and throws on anything malformed. But a verifier that
+  // silently computes over a NaN is worse than one that crashes, so it checks
+  // its own preconditions and abstains rather than trusting a caller.
+  //
+  // Note it abstains rather than failing. Malformed input means we do not know
+  // the financial state — not that the claim is false.
+  // -------------------------------------------------------------------------
+  const malformed = pack.evidence.filter(
+    (e) =>
+      !Number.isSafeInteger(e.amount_paise) ||
+      (e.fee_paise !== undefined && !Number.isSafeInteger(e.fee_paise)) ||
+      (e.tax_paise !== undefined && !Number.isSafeInteger(e.tax_paise)) ||
+      !Number.isFinite(Date.parse(e.timestamp)),
+  )
+  add(
+    'evidence_well_formed',
+    'prove',
+    malformed.length === 0 ? 'pass' : 'fail',
+    malformed.length === 0
+      ? `all ${pack.evidence.length} rows carry integer paise and a parseable timestamp`
+      : `${malformed.length} row(s) reached the verifier malformed: ${malformed
+          .map((e) => e.evidence_id)
+          .join(', ')}`,
+    'MALFORMED_EVIDENCE',
   )
 
   // -------------------------------------------------------------------------
@@ -476,48 +567,76 @@ export function verify(input: VerifierInput): VerificationResult {
   let observed: Paise | null = null
   let difference: Paise | null = null
   let feeDelta: Paise | null = null
+  let recordedFeeDelta: Paise | null = null
+  let policyFee: Paise | null = null
 
   const canCompute = payments.length > 0 && bankCredits.length > 0
-  if (canCompute) {
+  if (canCompute && hasPolicy) {
     const gross = sum(payments, (e) => e.amount_paise)
-    const paymentFees = sum(payments, (e) => e.fee_paise ?? 0)
-    const paymentTax = sum(payments, (e) => e.tax_paise ?? 0)
     const refundTotal = sum(refunds, (e) => e.amount_paise)
     const holdTotal = sum(holds, (e) => e.amount_paise)
 
-    expected = gross - refundTotal - paymentFees - paymentTax - holdTotal
+    // The fee comes from the RATE CARD, not from any recorded fee. Neither the
+    // settlement's declared total nor the payment rows' own fee columns are
+    // trusted here — both are the thing under audit, and a mispricing bug that
+    // wrote the same wrong value to both would sail through a check that only
+    // compared them to each other.
+    const { fee: policyFees, tax: policyTax } = calcFees(payments, policy)
+    policyFee = policyFees
+
+    expected = gross - refundTotal - policyFees - policyTax - holdTotal
     observed = sum(bankCredits, (e) => e.amount_paise)
     difference = expected - observed
-    if (settlement) feeDelta = (settlement.fee_paise ?? 0) - paymentFees
+
+    // Two independent fee comparisons, because they route to different owners.
+    const paymentFees = sum(payments, (e) => e.fee_paise ?? 0)
+    recordedFeeDelta = paymentFees - policyFees
+    if (settlement) feeDelta = (settlement.fee_paise ?? 0) - policyFees
   }
 
   if (canCompute && hasPolicy && expected !== null && observed !== null && difference !== null) {
     const tolerance = policy.fee_tolerance_paise
     const within = Math.abs(difference) <= tolerance
 
-    // A discrepancy the fee delta accounts for exactly is a fee problem and
-    // routes to the pricing owner. Anything else is an amount problem and routes
-    // to settlements ops. Collapsing the two would misdirect every exception.
+    // A discrepancy the fee line accounts for exactly is a pricing problem.
+    // Anything else is a settlements-ops problem. Same verdict, same amount,
+    // different owner — collapsing them would misdirect every exception.
     const explainedByFees = feeDelta !== null && difference - feeDelta === 0 && feeDelta !== 0
     const reason: ReasonCode = explainedByFees ? 'FEE_MISMATCH' : 'AMOUNT_MISMATCH'
 
+    const { fee: pf, tax: pt } = calcFees(payments, policy)
     add(
       'arithmetic_reconciles',
       'verify',
       within ? 'pass' : 'fail',
       `expected ${expected}p = gross ${sum(payments, (e) => e.amount_paise)}p ` +
         `- refunds ${sum(refunds, (e) => e.amount_paise)}p ` +
-        `- fees ${sum(payments, (e) => e.fee_paise ?? 0)}p ` +
-        `- tax ${sum(payments, (e) => e.tax_paise ?? 0)}p ` +
+        `- fees ${pf}p - tax ${pt}p ` +
+        `(recomputed from ${policy.version} rate card at ${policy.fee_rate_bps}bps + ${policy.gst_rate_bps}bps GST) ` +
         `- holds ${sum(holds, (e) => e.amount_paise)}p; ` +
         `observed ${observed}p; difference ${difference}p; ` +
-        `tolerance ${tolerance}p under ${policy.version}` +
+        `tolerance ${tolerance}p` +
         (within
           ? ''
           : explainedByFees
-            ? `; the settlement declared ${feeDelta}p more in fees than its payments account for`
+            ? `; the settlement declared ${feeDelta}p more in fees than the rate card allows`
             : `; the difference is not accounted for by the fee line`),
       reason,
+    )
+
+    // The check the rate card makes possible: the payment rows' own fee columns
+    // disagreeing with policy. Reported separately, and it does not gate the
+    // verdict on its own — a settlement whose bank credit reconciles exactly is
+    // still correct money, even if a recorded fee column drifted.
+    const recDelta = recordedFeeDelta ?? 0
+    add(
+      'recorded_fees_match_rate_card',
+      'verify',
+      recDelta === 0 ? 'pass' : 'fail',
+      recDelta === 0
+        ? `payment-level fee columns agree with the ${policy.version} rate card to the paisa`
+        : `payment rows record ${recDelta}p ${recDelta > 0 ? 'more' : 'less'} in fees than the rate card derives; the recorded fee is not evidence of the correct fee`,
+      'FEE_MISMATCH',
     )
   } else {
     add(
@@ -543,7 +662,9 @@ export function verify(input: VerifierInput): VerificationResult {
     expected_paise: expected,
     observed_paise: observed,
     difference_paise: difference,
+    policy_fee_paise: policyFee,
     fee_delta_paise: feeDelta,
+    recorded_fee_delta_paise: recordedFeeDelta,
     tolerance_paise: hasPolicy ? policy.fee_tolerance_paise : null,
     policy_version: policy.version,
     policy_effective_at: policy.effective_at,

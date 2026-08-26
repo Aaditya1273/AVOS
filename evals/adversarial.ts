@@ -21,7 +21,7 @@
 import { materializeSuite, materializeDecision, findCase } from '@/lib/decisions'
 import { replayDecision } from '@/lib/replay'
 import { loadGroundTruth, loadCases } from '@/lib/data/ledger'
-import { verify } from '@/lib/verifier/deterministic'
+import { verifyClaim } from '@/lib/verifier/deterministic'
 import { answerQuestion, detectInjection } from '@/lib/ai/qa'
 import type { Decision, EvidencePack, ReasonCode, Verdict } from '@/lib/types'
 
@@ -140,7 +140,7 @@ export async function runAdversarialTests(): Promise<AdversarialTest[]> {
     for (const e of sanitised.evidence) e.display = {}
     const withText = JSON.stringify(d.result)
     const withoutText = JSON.stringify(
-      verify({ claim: d.proposal.claim, pack: sanitised, as_of: d.pack.decision_time }),
+      verifyClaim(d.proposal.claim, sanitised, sanitised.policy_snapshot),
     )
     if (withText === withoutText) identical.push(d.case_id)
     else divergent.push(d.case_id)
@@ -215,7 +215,7 @@ export async function runAdversarialTests(): Promise<AdversarialTest[]> {
   ) => {
     const pack = clonePack(clean.pack)
     mutate(pack)
-    const r = verify({ claim: clean.proposal.claim, pack, as_of: pack.decision_time })
+    const r = verifyClaim(clean.proposal.claim, pack, pack.policy_snapshot)
     tests.push({
       id,
       name,

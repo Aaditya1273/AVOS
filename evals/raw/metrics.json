@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-26T15:03:36.023Z",
+  "generated_at": "2026-08-26T15:25:49.558Z",
   "verifier_version": "deterministic-v2.1",
   "model_version": "avos-mock-deterministic-1.0",
   "using_mock": true,
@@ -16,10 +16,10 @@
     "false_closure_rate": 0,
     "false_closure_cases": [],
     "value_coverage_of_verifiable": 1,
-    "auto_clear_rate": 0.6694492474261091,
-    "total_value_paise": 1086653696,
-    "verifiable_value_paise": 727459499,
-    "verified_value_paise": 727459499,
+    "auto_clear_rate": 0.6683132501391116,
+    "total_value_paise": 1093126078,
+    "verifiable_value_paise": 730550642,
+    "verified_value_paise": 730550642,
     "exception_detection_rate": 1,
     "exceptions_injected": 40,
     "exceptions_caught": 40,
@@ -28,7 +28,7 @@
     "abstention_n": 10,
     "reason_code_accuracy": 1,
     "reason_code_n": 40,
-    "throughput_records_per_sec": 11115,
+    "throughput_records_per_sec": 11048,
     "verify_elapsed_ms": 11,
     "confusion": {},
     "mismatches": []
@@ -47,7 +47,7 @@
     "false_closure_cases": [],
     "value_coverage_of_verifiable": 1,
     "auto_clear_rate": 0,
-    "total_value_paise": 268167043,
+    "total_value_paise": 255174224,
     "verifiable_value_paise": 0,
     "verified_value_paise": 0,
     "exception_detection_rate": 1,
@@ -58,8 +58,8 @@
     "abstention_n": 10,
     "reason_code_accuracy": 1,
     "reason_code_n": 30,
-    "throughput_records_per_sec": 14213,
-    "verify_elapsed_ms": 2,
+    "throughput_records_per_sec": 5390,
+    "verify_elapsed_ms": 6,
     "confusion": {},
     "mismatches": []
   },
@@ -217,13 +217,159 @@
       "id": "ledger_parses_without_loss",
       "name": "Every row of the real ledger parses exactly",
       "passed": true,
-      "detail": "147 bank rows and 150 case rows parsed to exact paise and ISO-8601"
+      "detail": "148 bank rows and 150 case rows parsed to exact paise and ISO-8601"
     },
     {
       "id": "summary_disagrees_where_it_should",
       "name": "Case-index summaries are not treated as evidence",
       "passed": true,
-      "detail": "117/120 summary rows are internally self-consistent and still carry no evidentiary weight"
+      "detail": "118/120 summary rows are internally self-consistent and still carry no evidentiary weight"
+    }
+  ],
+  "verifier_units": [
+    {
+      "id": "applyBps_is_half_up",
+      "name": "applyBps rounds half up, matching the generator",
+      "passed": true,
+      "detail": "1225→25, 100025→2001, 1275→26, 100000→2000, 0→0 (half up, no float)"
+    },
+    {
+      "id": "calcFees_is_per_payment",
+      "name": "calcFees charges per payment, not on the batch total",
+      "passed": true,
+      "detail": "per-payment 75p vs on-total 74p — a 1p discrepancy per settlement if done wrong"
+    },
+    {
+      "id": "clean_settlement_verifies",
+      "name": "A settlement that reconciles exactly returns VERIFIED",
+      "passed": true,
+      "detail": "expected 292920p = observed 292920p, fee 6000p from the rate card"
+    },
+    {
+      "id": "refunds_and_holds_net_out",
+      "name": "Refunds and holds are subtracted from expected",
+      "passed": true,
+      "detail": "gross 300000 − refund 25000 − fee 6000 − tax 1080 − hold 10000 = 257920p"
+    },
+    {
+      "id": "fee_diff_over_tolerance_fails",
+      "name": "A fee gap beyond tolerance is FAILED / FEE_MISMATCH",
+      "passed": true,
+      "detail": "difference 12000p against a 5000p tolerance"
+    },
+    {
+      "id": "fee_diff_within_tolerance_verifies",
+      "name": "A fee gap inside tolerance still VERIFIES",
+      "passed": true,
+      "detail": "difference 3000p is inside the 5000p tolerance — tolerance is a policy choice, not a rounding excuse"
+    },
+    {
+      "id": "tolerance_is_policy_dependent",
+      "name": "The same evidence flips verdict under a tighter policy",
+      "passed": true,
+      "detail": "identical evidence: VERIFIED under a ₹150 tolerance, FAILED under ₹50 — the replay demo in miniature"
+    },
+    {
+      "id": "systemic_mispricing_is_caught",
+      "name": "A wrong fee written to BOTH the settlement and its payment rows is still caught",
+      "passed": true,
+      "detail": "payment rows and settlement agree on 12000p; the rate card says 6000p, so the 6000p overcharge is caught"
+    },
+    {
+      "id": "duplicate_utr_fails",
+      "name": "A UTR claimed by two settlements is FAILED / DUPLICATE_UTR",
+      "passed": true,
+      "detail": "two settlement_ids on one bank reference — one would reconcile against the other’s money"
+    },
+    {
+      "id": "duplicate_file_fails",
+      "name": "Byte-identical re-ingested content is FAILED / DUPLICATE_FILE",
+      "passed": true,
+      "detail": "two bank rows with one content hash — caught before the doubled credit reaches the arithmetic"
+    },
+    {
+      "id": "duplicate_file_outranks_arithmetic",
+      "name": "A doubled credit reports DUPLICATE_FILE, not AMOUNT_MISMATCH",
+      "passed": true,
+      "detail": "integrity outranks arithmetic, so the exception routes to data engineering not pricing"
+    },
+    {
+      "id": "contradictory_sources_fails",
+      "name": "Two irreconcilable settlement rows is CONTRADICTORY_SOURCE",
+      "passed": true,
+      "detail": "same settlement_id, different nets, no supersession marker — no fact of the matter to close on"
+    },
+    {
+      "id": "missing_bank_leg_abstains",
+      "name": "No bank credit is UNCERTAIN / MISSING_EVIDENCE",
+      "passed": true,
+      "detail": "abstains rather than closing; expected and observed are null rather than 0"
+    },
+    {
+      "id": "missing_payment_leg_abstains",
+      "name": "No payment rows is UNCERTAIN / MISSING_EVIDENCE",
+      "passed": true,
+      "detail": "a settlement and a matching credit are not enough — the fee cannot be recomputed without payments"
+    },
+    {
+      "id": "stale_evidence_abstains",
+      "name": "Evidence older than the freshness window is UNCERTAIN",
+      "passed": true,
+      "detail": "25h old at decision time against a 24h limit"
+    },
+    {
+      "id": "malformed_evidence_abstains",
+      "name": "A NaN amount is UNCERTAIN / MALFORMED_EVIDENCE",
+      "passed": true,
+      "detail": "NaN and non-integer paise both abstain — a verdict computed over a NaN is worse than no verdict"
+    },
+    {
+      "id": "stale_policy_abstains",
+      "name": "A pack stamped with the wrong epoch is UNCERTAIN / STALE_POLICY",
+      "passed": true,
+      "detail": "stamped v99, v1 was in force at decision time — re-run under the right epoch, do not close"
+    },
+    {
+      "id": "tampered_evidence_fails",
+      "name": "A row that no longer hashes to its baseline is NON_REPRODUCIBLE",
+      "passed": true,
+      "detail": "outranks every other finding — if the source moved, nothing computed from it means anything"
+    },
+    {
+      "id": "policy_breach_fails",
+      "name": "A non-closeable status is FAILED / POLICY_BREACH",
+      "passed": true,
+      "detail": "status 'reversed' is not in the policy's closeable list"
+    },
+    {
+      "id": "amount_mismatch_not_fee_mismatch",
+      "name": "An unexplained gap routes to AMOUNT_MISMATCH",
+      "passed": true,
+      "detail": "the fee line does not explain the gap, so it routes to settlements ops rather than pricing"
+    },
+    {
+      "id": "verifier_is_pure",
+      "name": "Same input, same output, and the pack is not mutated",
+      "passed": true,
+      "detail": "byte-identical results across runs; the input pack is untouched"
+    },
+    {
+      "id": "free_text_has_no_effect",
+      "name": "Rewriting every free-text cell changes nothing",
+      "passed": true,
+      "detail": "verdict object is byte-identical with hostile text in every free-text cell"
+    },
+    {
+      "id": "claim_must_bind_to_pack",
+      "name": "A claim for a different settlement abstains",
+      "passed": true,
+      "detail": "a claim that does not bind to its pack cannot be evaluated, so it abstains"
+    },
+    {
+      "id": "verifier_version_is_stamped",
+      "name": "Every result carries the verifier build",
+      "passed": true,
+      "detail": "deterministic-v2.1 under test-policy-v1, evaluated as of 2026-08-11T06:00:00Z"
     }
   ],
   "isolation": [
@@ -322,7 +468,7 @@
     {
       "name": "Value coverage of verifiable > 95%",
       "passed": true,
-      "detail": "100.00% — ₹72,74,594.99 of ₹72,74,594.99"
+      "detail": "100.00% — ₹73,05,506.42 of ₹73,05,506.42"
     },
     {
       "name": "All 6 adversarial attack classes pass",
@@ -343,6 +489,11 @@
       "name": "Ingest boundary parses dirty exports exactly",
       "passed": true,
       "detail": "9/9 money/date parsing checks passed"
+    },
+    {
+      "name": "Verifier unit tests pass",
+      "passed": true,
+      "detail": "24/24 unit tests over verifyClaim passed"
     }
   ]
 }
