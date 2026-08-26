@@ -12,7 +12,7 @@
     "data": "python3 scripts/generate_data.py",
     "eval": "tsx evals/eval.ts",
     "check:isolation": "tsx evals/isolation.ts",
-    "test:adversarial": "tsx evals/adversarial.ts",
+    "test:adversarial": "tsx evals/adversarial.test.ts",
     "test:ingest": "tsx evals/ingest.ts",
     "test:verifier": "tsx evals/verifier.ts"
   },

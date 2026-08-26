@@ -35,7 +35,7 @@ import { materializeSuite, resetDecisionLogCache, type DecisionLog } from '@/lib
 import { computeMetrics, type SuiteMetrics } from '@/lib/metrics'
 import { formatPaise, formatPct } from '@/lib/money'
 import { runIsolationChecks } from '@/evals/isolation'
-import { runAdversarialTests, type AdversarialTest } from '@/evals/adversarial'
+import { runAdversarialTests, type AdversarialTest } from '@/evals/adversarial.test'
 import { runIngestChecks, type IngestCheck } from '@/evals/ingest'
 import { runVerifierTests, type VerifierTest } from '@/evals/verifier'
 import type { Decision } from '@/lib/types'

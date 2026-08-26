@@ -138,7 +138,7 @@ generates fixtures locally and is not part of the deployment.
 One card carries the entire argument.
 
 ```
-Settlement: S-10092                                    MERCH-DYNE · ₹1,46,816.21
+Settlement: S-10092                                     MERCH-BOLT · ₹94,385.56
 Agent claim: RECONCILED   confidence 0.77
   "Refunds and the rolling reserve fully explain the gap between gross
    and the deposit. Closing."              ← SEVERED: prose AND confidence
@@ -146,16 +146,17 @@ Agent claim: RECONCILED   confidence 0.77
 AVOS Verdict: ✕ FAILED
 Reason: FEE_MISMATCH
 
-  Expected    ₹1,46,936.21     gross − refunds − fees − tax − holds
-  Observed    ₹1,46,816.21     bank credit
-  Difference     +₹120.00      tolerance ₹50.00
-  Fee delta      +₹120.00      declared − payment-level
+  Expected      ₹94,505.56     gross − refunds − calcFees(policy) − holds
+  Observed      ₹94,385.56     bank credit
+  Difference      +₹120.00     tolerance ₹50.00
+  Policy fee     ₹1,935.80     recomputed from the v13 rate card, 200bps
+  Fee delta       +₹120.00     declared − rate card
 
-Evidence (15 rows, pack 65d29b034ddd…):
-  razorpay_settlements  row stl-000103   ₹1,46,816.21   780cd8fd1e77
-  bank_statement        row bnk-000093   ₹1,46,816.21   87574347ab4f
-  webhook_events        row whk-000092   ₹1,46,816.21   677e2a728ce6
-  razorpay_payments     rows pay-000688…000699 (12 rows)
+Evidence (13 rows, pack f549e9c2bc87…):
+  razorpay_settlements  row stl-000103   ₹94,385.56   5d37b99895e1
+  bank_statement        row bnk-000094   ₹94,385.56   837b47fe29a9
+  webhook_events        row whk-000092   ₹94,385.56   2d4de5a2760f
+  razorpay_payments     rows pay-000656…000665 (10 rows)
 
 Policy applied:    finance-policy-v13, effective 12 Aug 2026, 09:15 UTC (tolerance ₹50)
 Stamped on pack:   finance-policy-v13  ✓ matches decision epoch
@@ -302,11 +303,11 @@ Full write-up in [`evals/report.md`](evals/report.md); raw per-case output in
 | Verification precision | **100%** (80/80 VERIFIED were correct) |
 | **False closure rate** | **0%** |
 | Reason-code accuracy | **100%** — right verdict *and* right routing |
-| Value coverage (of verifiable value) | **100%** — ₹72,74,594.99 of ₹72,74,594.99 |
-| Auto-clear rate (of whole batch) | 66.9% — ₹72,74,594.99 of ₹1,08,66,536.96 |
+| Value coverage (of verifiable value) | **100%** — ₹73,05,506.42 of ₹73,05,506.42 |
+| Auto-clear rate (of whole batch) | 66.8% |
 | Exception detection | **100%** (40/40 injected) |
 | Abstention accuracy | **100%** (10/10) |
-| Throughput (deterministic verify) | ~13,000 records/sec (120 cases in 9 ms) |
+| Throughput (deterministic verify) | ~11,000 records/sec (120 cases in ~11 ms) |
 | Verdicts | 80 VERIFIED · 10 UNCERTAIN · 30 FAILED |
 
 The agent proposed `RECONCILED` on **all 120**. AVOS cleared 80, refused 30 and
@@ -346,7 +347,7 @@ numbers are reported and named for what they measure:
 - **Value coverage (of verifiable value) — 100%.** *Of the money that genuinely
   reconciled, how much did we clear?* This is the honest test of the verifier:
   anything below 100% means we abstained on good money. This is the gated number.
-- **Auto-clear rate (of whole batch) — 66.9%.** *What share of the batch closed
+- **Auto-clear rate (of whole batch) — 66.8%.** *What share of the batch closed
   without a human?* On a fixture that is one-third deliberately broken, near
   two-thirds is the **correct** answer. A batch containing 40 real exceptions
   *should* route 40 cases to a human.
@@ -387,10 +388,10 @@ prose was simply *in scope*.
 **The fix, and why it is architectural.** Deleting the field from the prompt
 would have worked until the next person added it back. Instead:
 
-1. `VerifierInput` was narrowed to `{ claim, pack, as_of }`, where
+1. `VerifierInput` was narrowed to `{ claim, pack, policy, as_of }`, where
    `StructuredClaim` is `{ settlement_id, proposed_status, evidence_ids }`.
-   There is now no field the rationale can occupy — a compile error, not a
-   review comment.
+   There is now no field the rationale — or the confidence score — can occupy.
+   A compile error, not a review comment.
 2. All free text in evidence was segregated into a `display` field, and
    `lib/verifier/deterministic.ts` is forbidden to name it.
 3. `evals/isolation.ts` was added, and runs on every `npm run eval`: the verifier
@@ -398,9 +399,13 @@ would have worked until the next person added it back. Instead:
    time), must not reference free text, and must not touch a clock, randomness,
    the network or the filesystem.
 
-**After.** `S-10092` returns `FAILED · FEE_MISMATCH`, expected ₹1,46,936.21,
-observed ₹1,46,816.21, difference ₹120.00 against a ₹50.00 tolerance under
-`finance-policy-v12`.
+**After.** `S-10092` returns `FAILED · FEE_MISMATCH`, expected ₹94,505.56,
+observed ₹94,385.56, difference ₹120.00 against a ₹50.00 tolerance under
+`finance-policy-v13`. The agent had proposed closure at 0.77 confidence.
+
+**In one line, for the deck:** *we intentionally injected a fee mismatch; the
+first verifier trusted the prose and passed it, the current one recomputes from
+source and returns FAILED · FEE_MISMATCH · ₹120.*
 
 **The generalisation.** Once prose was off the verdict path, prompt injection
 stopped being a separate problem. The adversarial test does not check that the
@@ -462,7 +467,7 @@ app/api/{decision,replay,qa}/  proof card · replay · Q&A
 components/proof-card.tsx      the hero UI
 
 evals/eval.ts                  120 + 30, metrics, gates
-evals/adversarial.ts           6 attack classes + 6 unit checks
+evals/adversarial.test.ts      6 attack classes + 6 unit checks
 evals/isolation.ts             asserts the verifier's isolation, every run
 evals/ingest.ts                money/date parsing, incl. the whole real ledger
 evals/verifier.ts              24 unit tests over verifyClaim, in-memory packs

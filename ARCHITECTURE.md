@@ -37,7 +37,7 @@ Everything else is downstream of this diagram.
    ┌──────────────────────────────────────────────────────────────────┐
    │                        DETERMINISTIC                             │
    │                                                                  │
-   │   VerifierInput = { claim, pack, as_of }                         │
+   │   VerifierInput = { claim, pack, policy, as_of }                         │
    │     claim : { settlement_id, proposed_status, evidence_ids }     │
    │                                                                  │
    │   lib/verifier/deterministic.ts                                  │

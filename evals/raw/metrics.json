@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-26T15:59:20.102Z",
+  "generated_at": "2026-08-26T16:03:51.924Z",
   "verifier_version": "deterministic-v2.1",
   "model_version": "avos-mock-deterministic-1.0",
   "using_mock": true,
@@ -33,8 +33,8 @@
     "confidence_discrimination": 0.002,
     "high_confidence_refusals": 17,
     "confidence_threshold": 0.85,
-    "throughput_records_per_sec": 4370,
-    "verify_elapsed_ms": 27,
+    "throughput_records_per_sec": 11764,
+    "verify_elapsed_ms": 10,
     "confusion": {},
     "mismatches": []
   },
@@ -68,8 +68,8 @@
     "confidence_discrimination": -0.837,
     "high_confidence_refusals": 13,
     "confidence_threshold": 0.85,
-    "throughput_records_per_sec": 6493,
-    "verify_elapsed_ms": 5,
+    "throughput_records_per_sec": 15427,
+    "verify_elapsed_ms": 2,
     "confusion": {},
     "mismatches": []
   },
