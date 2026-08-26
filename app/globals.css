@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * A finance console, not a marketing page.
+ *
+ * Dark by default because this is a tool people keep open next to a ledger, and
+ * verdict colour is the only saturated colour on the page — if everything is
+ * emphasised, a FAILED row stops standing out, which is the one thing this UI
+ * exists to make impossible to miss.
+ */
+
+@layer base {
+  :root {
+    --background: 222 24% 7%;
+    --foreground: 210 20% 92%;
+    --card: 222 22% 10%;
+    --card-foreground: 210 20% 92%;
+    --primary: 199 89% 55%;
+    --primary-foreground: 222 24% 7%;
+    --secondary: 222 18% 16%;
+    --secondary-foreground: 210 20% 92%;
+    --muted: 222 18% 14%;
+    --muted-foreground: 215 14% 58%;
+    --accent: 222 18% 18%;
+    --accent-foreground: 210 20% 92%;
+    --destructive: 350 78% 58%;
+    --destructive-foreground: 210 20% 98%;
+    --border: 220 16% 20%;
+    --input: 220 16% 20%;
+    --ring: 199 89% 55%;
+    --radius: 0.5rem;
+
+    --verdict-verified: 152 62% 45%;
+    --verdict-uncertain: 38 92% 55%;
+    --verdict-failed: 350 82% 60%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  }
+
+  /* Tabular figures everywhere a number appears, so columns of money align. */
+  .tnum {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@layer utilities {
+  .grid-lines {
+    background-image:
+      linear-gradient(hsl(var(--border) / 0.35) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--border) / 0.35) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 4px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}

@@ -1,0 +1,287 @@
+{
+  "generated_at": "2026-08-26T10:04:07.111Z",
+  "verifier_version": "deterministic-v2.1",
+  "model_version": "avos-mock-deterministic-1.0",
+  "using_mock": true,
+  "batch_120": {
+    "suite": "batch_120",
+    "n": 120,
+    "by_verdict": {
+      "VERIFIED": 80,
+      "UNCERTAIN": 10,
+      "FAILED": 30
+    },
+    "verdict_accuracy": 1,
+    "verification_precision": 1,
+    "false_closure_rate": 0,
+    "false_closure_cases": [],
+    "value_coverage_of_verifiable": 1,
+    "auto_clear_rate": 0.6694492474261091,
+    "total_value_paise": 1086653696,
+    "verifiable_value_paise": 727459499,
+    "verified_value_paise": 727459499,
+    "exception_detection_rate": 1,
+    "exceptions_injected": 40,
+    "exceptions_caught": 40,
+    "missed_exceptions": [],
+    "abstention_accuracy": 1,
+    "abstention_n": 10,
+    "reason_code_accuracy": 1,
+    "reason_code_n": 40,
+    "throughput_records_per_sec": 12606,
+    "verify_elapsed_ms": 10,
+    "confusion": {},
+    "mismatches": []
+  },
+  "adversarial_30": {
+    "suite": "adversarial_30",
+    "n": 30,
+    "by_verdict": {
+      "VERIFIED": 0,
+      "UNCERTAIN": 10,
+      "FAILED": 20
+    },
+    "verdict_accuracy": 1,
+    "verification_precision": 1,
+    "false_closure_rate": 0,
+    "false_closure_cases": [],
+    "value_coverage_of_verifiable": 1,
+    "auto_clear_rate": 0,
+    "total_value_paise": 268167043,
+    "verifiable_value_paise": 0,
+    "verified_value_paise": 0,
+    "exception_detection_rate": 1,
+    "exceptions_injected": 30,
+    "exceptions_caught": 30,
+    "missed_exceptions": [],
+    "abstention_accuracy": 1,
+    "abstention_n": 10,
+    "reason_code_accuracy": 1,
+    "reason_code_n": 30,
+    "throughput_records_per_sec": 9293,
+    "verify_elapsed_ms": 3,
+    "confusion": {},
+    "mismatches": []
+  },
+  "adversarial_tests": [
+    {
+      "id": "attack_duplicate_settlement_file",
+      "name": "Duplicate settlement file — the same export ingested twice",
+      "group": "attack_suite",
+      "passed": true,
+      "detail": "5/5 returned FAILED / DUPLICATE_FILE"
+    },
+    {
+      "id": "attack_duplicate_webhook",
+      "name": "Duplicate webhook — a redelivered event processed twice",
+      "group": "attack_suite",
+      "passed": true,
+      "detail": "5/5 returned FAILED / DUPLICATE_EVENT"
+    },
+    {
+      "id": "attack_stale_policy",
+      "name": "Stale policy — a decision judged under rules that did not yet exist",
+      "group": "attack_suite",
+      "passed": true,
+      "detail": "5/5 returned UNCERTAIN / STALE_POLICY"
+    },
+    {
+      "id": "attack_missing_evidence",
+      "name": "Missing evidence — a leg of the recomputation absent",
+      "group": "attack_suite",
+      "passed": true,
+      "detail": "5/5 returned UNCERTAIN / MISSING_EVIDENCE"
+    },
+    {
+      "id": "attack_contradictory_sources",
+      "name": "Contradictory sources — two irreconcilable versions of one settlement",
+      "group": "attack_suite",
+      "passed": true,
+      "detail": "5/5 returned FAILED / CONTRADICTORY_SOURCE"
+    },
+    {
+      "id": "attack_prompt_injection",
+      "name": "Prompt injection in a bank narration cell",
+      "group": "attack_suite",
+      "passed": true,
+      "detail": "5/5 returned FAILED / FEE_MISMATCH"
+    },
+    {
+      "id": "injection_has_no_causal_path_to_verdict",
+      "name": "Injected text is structurally inert — verdict is byte-identical without it",
+      "group": "attack_suite",
+      "passed": true,
+      "detail": "5 injected case(s) produce an identical verdict object with the attacker-controlled text removed; the text has no causal path to the outcome"
+    },
+    {
+      "id": "injection_is_reported_to_operator",
+      "name": "Injection attempt is surfaced on the Proof Card, not silently sanitised",
+      "group": "attack_suite",
+      "passed": true,
+      "detail": "5/5 injected cases raise an injection flag for review"
+    },
+    {
+      "id": "injection_cannot_flip_the_qa_answer",
+      "name": "Q&A reports the deterministic verdict verbatim under injection",
+      "group": "attack_suite",
+      "passed": true,
+      "detail": "5/5 Q&A responses state the FAILED verdict copied from the verifier"
+    },
+    {
+      "id": "unit_stale_evidence",
+      "name": "Evidence older than the policy freshness window",
+      "group": "verifier_unit",
+      "passed": true,
+      "detail": "perturbing a VERIFIED case yields UNCERTAIN / STALE_EVIDENCE"
+    },
+    {
+      "id": "unit_temporal_inconsistency",
+      "name": "Settlement settled before it was created",
+      "group": "verifier_unit",
+      "passed": true,
+      "detail": "perturbing a VERIFIED case yields FAILED / TEMPORAL_INCONSISTENCY"
+    },
+    {
+      "id": "unit_policy_breach",
+      "name": "Settlement in a status the active policy forbids closing",
+      "group": "verifier_unit",
+      "passed": true,
+      "detail": "perturbing a VERIFIED case yields FAILED / POLICY_BREACH"
+    },
+    {
+      "id": "unit_amount_mismatch",
+      "name": "Discrepancy the fee line does not explain routes to AMOUNT_MISMATCH, not FEE_MISMATCH",
+      "group": "verifier_unit",
+      "passed": true,
+      "detail": "perturbing a VERIFIED case yields FAILED / AMOUNT_MISMATCH"
+    },
+    {
+      "id": "unit_evidence_from_the_future",
+      "name": "Evidence ingested after the decision it supposedly informed",
+      "group": "verifier_unit",
+      "passed": true,
+      "detail": "perturbing a VERIFIED case yields FAILED / TEMPORAL_INCONSISTENCY"
+    },
+    {
+      "id": "unit_non_reproducible",
+      "name": "A mutated source row is caught on replay, not silently re-verified",
+      "group": "verifier_unit",
+      "passed": true,
+      "detail": "tamper detected on bank_statement:bnk-000001; replay returns FAILED/NON_REPRODUCIBLE"
+    }
+  ],
+  "isolation": [
+    {
+      "id": "verifier_has_zero_runtime_imports",
+      "passed": true,
+      "detail": "all 1 import statement(s) are type-only and erased at compile time"
+    },
+    {
+      "id": "verifier_references_no_model_sdk",
+      "passed": true,
+      "detail": "no model SDK identifier appears in executable code"
+    },
+    {
+      "id": "verifier_avoids__bdisplay_b",
+      "passed": true,
+      "detail": "no reference to the quarantined free-text evidence field"
+    },
+    {
+      "id": "verifier_avoids__bagent_reason_b_bagentReason_b",
+      "passed": true,
+      "detail": "no reference to agent narrative"
+    },
+    {
+      "id": "verifier_avoids__bexplanation_b_brationale_b",
+      "passed": true,
+      "detail": "no reference to agent narrative"
+    },
+    {
+      "id": "verifier_avoids__bnarration_b",
+      "passed": true,
+      "detail": "no reference to attacker-controlled bank text"
+    },
+    {
+      "id": "verifier_avoids__bconfidence_b",
+      "passed": true,
+      "detail": "no reference to a model score has no place in a deterministic verdict"
+    },
+    {
+      "id": "verifier_avoids__bDate_s_s_now_b",
+      "passed": true,
+      "detail": "no reference to ambient clock"
+    },
+    {
+      "id": "verifier_avoids__bnew_s_Date_s_",
+      "passed": true,
+      "detail": "no reference to ambient clock"
+    },
+    {
+      "id": "verifier_avoids__bMath_s_s_random_b",
+      "passed": true,
+      "detail": "no reference to nondeterminism"
+    },
+    {
+      "id": "verifier_avoids__bfetch_s_",
+      "passed": true,
+      "detail": "no reference to network I/O"
+    },
+    {
+      "id": "verifier_avoids__bprocess_s_s_env_b",
+      "passed": true,
+      "detail": "no reference to ambient configuration"
+    },
+    {
+      "id": "verifier_avoids__brequire_s_",
+      "passed": true,
+      "detail": "no reference to runtime module load"
+    },
+    {
+      "id": "verifier_avoids__bimport_s_",
+      "passed": true,
+      "detail": "no reference to dynamic import"
+    },
+    {
+      "id": "verifier_avoids__breadFileSync_b_breadFile_b",
+      "passed": true,
+      "detail": "no reference to filesystem I/O"
+    },
+    {
+      "id": "ground_truth_never_reaches_serving_path",
+      "passed": true,
+      "detail": "no file under app/, lib/ or components/ reads ground truth; only evals/ does"
+    }
+  ],
+  "gates": [
+    {
+      "name": "False closure rate = 0% on fixture",
+      "passed": true,
+      "detail": "0 of 120 cases closed without support"
+    },
+    {
+      "name": "Verification precision = 100%",
+      "passed": true,
+      "detail": "100.0% of 80 VERIFIED verdicts were correct"
+    },
+    {
+      "name": "Value coverage of verifiable > 95%",
+      "passed": true,
+      "detail": "100.00% — ₹72,74,594.99 of ₹72,74,594.99"
+    },
+    {
+      "name": "All 6 adversarial attack classes pass",
+      "passed": true,
+      "detail": "9/9 adversarial assertions passed (6 attack classes + 3 injection-specific)"
+    },
+    {
+      "name": "Verifier isolation intact",
+      "passed": true,
+      "detail": "16/16 isolation checks passed"
+    },
+    {
+      "name": "Verifier unit checks pass",
+      "passed": true,
+      "detail": "6/6 synthetic perturbation checks passed"
+    }
+  ]
+}
