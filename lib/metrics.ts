@@ -67,6 +67,20 @@ export interface SuiteMetrics {
   reason_code_accuracy: number
   reason_code_n: number
 
+  /**
+   * Agent calibration: does the self-reported confidence predict anything?
+   *
+   * `confidence_discrimination` is mean confidence on closures AVOS accepted
+   * minus mean confidence on the ones it refused. A value near zero means the
+   * score separates nothing, and any system routing on it was routing on noise.
+   */
+  mean_confidence_accepted: number
+  mean_confidence_refused: number
+  confidence_discrimination: number
+  /** The dangerous quadrant: high self-confidence on a closure AVOS refused. */
+  high_confidence_refusals: number
+  confidence_threshold: number
+
   /** Deterministic verification only. Model latency is reported separately. */
   throughput_records_per_sec: number
   verify_elapsed_ms: number
@@ -116,6 +130,12 @@ export function computeMetrics(
   let abstentionCorrect = 0
   let reasonN = 0
   let reasonCorrect = 0
+  let confAcceptedSum = 0
+  let confAcceptedN = 0
+  let confRefusedSum = 0
+  let confRefusedN = 0
+  let highConfidenceRefusals = 0
+  const CONFIDENCE_THRESHOLD = 0.85
 
   for (const d of decisions) {
     const gt = truth.get(d.case_id)
@@ -169,9 +189,25 @@ export function computeMetrics(
       reasonN += 1
       if (got === want && d.result.reason_code === gt.expected_reason) reasonCorrect += 1
     }
+
+    // Calibration is only meaningful where the agent actually proposed a
+    // closure — a confidence score attached to "I don't know" measures nothing.
+    if (d.proposal.claim.proposed_status === 'RECONCILED') {
+      const conf = d.proposal.confidence
+      if (got === 'VERIFIED') {
+        confAcceptedSum += conf
+        confAcceptedN += 1
+      } else {
+        confRefusedSum += conf
+        confRefusedN += 1
+        if (conf >= CONFIDENCE_THRESHOLD) highConfidenceRefusals += 1
+      }
+    }
   }
 
   const n = decisions.length
+  const meanAccepted = confAcceptedN === 0 ? 0 : confAcceptedSum / confAcceptedN
+  const meanRefused = confRefusedN === 0 ? 0 : confRefusedSum / confRefusedN
 
   return {
     suite,
@@ -194,6 +230,11 @@ export function computeMetrics(
     abstention_n: abstentionN,
     reason_code_accuracy: ratio(reasonCorrect, reasonN),
     reason_code_n: reasonN,
+    mean_confidence_accepted: Math.round(meanAccepted * 1000) / 1000,
+    mean_confidence_refused: Math.round(meanRefused * 1000) / 1000,
+    confidence_discrimination: Math.round((meanAccepted - meanRefused) * 1000) / 1000,
+    high_confidence_refusals: highConfidenceRefusals,
+    confidence_threshold: CONFIDENCE_THRESHOLD,
     throughput_records_per_sec:
       verifyElapsedMs > 0 ? Math.round((n / verifyElapsedMs) * 1000) : 0,
     verify_elapsed_ms: Math.round(verifyElapsedMs),

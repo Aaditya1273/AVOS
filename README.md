@@ -139,9 +139,9 @@ One card carries the entire argument.
 
 ```
 Settlement: S-10092                                    MERCH-DYNE · ₹1,46,816.21
-Agent claim: RECONCILED
+Agent claim: RECONCILED   confidence 0.77
   "Refunds and the rolling reserve fully explain the gap between gross
-   and the deposit. Closing."                       ← NOT AN INPUT TO THE VERDICT
+   and the deposit. Closing."              ← SEVERED: prose AND confidence
 
 AVOS Verdict: ✕ FAILED
 Reason: FEE_MISMATCH
@@ -157,8 +157,8 @@ Evidence (15 rows, pack 65d29b034ddd…):
   webhook_events        row whk-000092   ₹1,46,816.21   677e2a728ce6
   razorpay_payments     rows pay-000688…000699 (12 rows)
 
-Policy applied:    finance-policy-v12, effective 12 Aug 2026, 09:15 UTC
-Stamped on pack:   finance-policy-v12  ✓ matches decision epoch
+Policy applied:    finance-policy-v13, effective 12 Aug 2026, 09:15 UTC (tolerance ₹50)
+Stamped on pack:   finance-policy-v13  ✓ matches decision epoch
 Event time:        11 Aug 2026, 10:00 UTC
 Decision time:     12 Aug 2026, 09:15 UTC
 Verifier:          deterministic-v2.1
@@ -178,7 +178,7 @@ conclusion without reading a word of it.
 
 | Replayed as of | Policy in force | Fee tolerance | Verdict |
 |---|---|---|---|
-| 11 Aug 2026 | `finance-policy-v11` | ₹150.00 | **VERIFIED** |
+| 11 Aug 2026 | `finance-policy-v12` | ₹150.00 | **VERIFIED** |
 | 12 Aug 2026 09:15 *(actual decision time)* | `finance-policy-v12` | ₹50.00 | **FAILED** · FEE_MISMATCH |
 | 15 Aug 2026 | `finance-policy-v12` | ₹50.00 | **FAILED** · FEE_MISMATCH |
 
@@ -489,6 +489,23 @@ data/                          the CSV ledger + policy snapshots + decision log
 | Verifier unit checks | **PASS** — 6/6 |
 | Ingest boundary parses dirty exports exactly | **PASS** — 9/9 |
 | Verifier unit tests | **PASS** — 24/24 |
+
+### Does the agent's confidence mean anything?
+
+The agent emits a self-reported `confidence` alongside its claim. It is severed
+at the same boundary as the prose — `StructuredClaim` has three fields and
+neither is one of them — which makes it measurable rather than load-bearing:
+
+| | |
+|---|---|
+| Mean confidence, closures AVOS **accepted** | 0.840 |
+| Mean confidence, closures AVOS **refused** | 0.838 |
+| **Discrimination** | **+0.002** |
+| Closures refused at ≥0.85 confidence | **17** |
+
+The score separates nothing. Any system that routed on it was routing on noise —
+which is the argument for making closure conditional on evidence, stated as a
+number instead of an opinion.
 
 Plus `npm run build` with no TypeScript errors, and `npm run check:isolation`
 `npm run test:ingest` and `npm run test:verifier` as standalone gates.

@@ -6,6 +6,7 @@
     "ground_truth": "FAILED/DUPLICATE_FILE",
     "agent_claim": "RECONCILED",
     "agent_reason_ignored_by_verifier": "Fees were adjusted at settlement, so the small variance against gross is expected. Reconciled.",
+    "agent_confidence_ignored_by_verifier": 0.95,
     "avos_verdict": "FAILED",
     "reason_code": "DUPLICATE_FILE",
     "correct": true,
@@ -14,9 +15,9 @@
     "difference_paise": 0,
     "fee_delta_paise": 0,
     "tolerance_paise": 15000,
-    "policy_version": "finance-policy-v11",
-    "recorded_policy_version": "finance-policy-v11",
-    "decision_policy_version": "finance-policy-v11",
+    "policy_version": "finance-policy-v12",
+    "recorded_policy_version": "finance-policy-v12",
+    "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-02T02:25:00Z",
     "decision_time": "2026-08-02T22:25:00Z",
     "pack_hash": "bd280f6c062b8551da349ecbee1163f52a7b9e58955786279eeb60257b9600dc",
@@ -44,13 +45,13 @@
         "id": "policy_in_force",
         "pillar": "guard",
         "status": "pass",
-        "detail": "finance-policy-v11 in force as of 2026-08-02T22:25:00Z (effective 2026-08-01T00:00:00Z)"
+        "detail": "finance-policy-v12 in force as of 2026-08-02T22:25:00Z (effective 2026-08-01T00:00:00Z)"
       },
       {
         "id": "policy_epoch_matches_decision",
         "pillar": "guard",
         "status": "pass",
-        "detail": "pack stamped finance-policy-v11, which is the version in force at decision_time 2026-08-02T22:25:00Z"
+        "detail": "pack stamped finance-policy-v12, which is the version in force at decision_time 2026-08-02T22:25:00Z"
       },
       {
         "id": "evidence_complete",
@@ -104,7 +105,7 @@
         "id": "closure_permitted_by_policy",
         "pillar": "guard",
         "status": "pass",
-        "detail": "status 'processed' is closeable under finance-policy-v11"
+        "detail": "status 'processed' is closeable under finance-policy-v12"
       },
       {
         "id": "temporal_consistency",
@@ -116,13 +117,13 @@
         "id": "arithmetic_reconciles",
         "pillar": "verify",
         "status": "pass",
-        "detail": "expected 5831740p = gross 5972696p - refunds 0p - fees 119454p - tax 21502p (recomputed from finance-policy-v11 rate card at 200bps + 1800bps GST) - holds 0p; observed 5831740p; difference 0p; tolerance 15000p"
+        "detail": "expected 5831740p = gross 5972696p - refunds 0p - fees 119454p - tax 21502p (recomputed from finance-policy-v12 rate card at 200bps + 1800bps GST) - holds 0p; observed 5831740p; difference 0p; tolerance 15000p"
       },
       {
         "id": "recorded_fees_match_rate_card",
         "pillar": "verify",
         "status": "pass",
-        "detail": "payment-level fee columns agree with the finance-policy-v11 rate card to the paisa"
+        "detail": "payment-level fee columns agree with the finance-policy-v12 rate card to the paisa"
       }
     ],
     "evidence": [
@@ -212,6 +213,7 @@
     "ground_truth": "UNCERTAIN/MISSING_EVIDENCE",
     "agent_claim": "RECONCILED",
     "agent_reason_ignored_by_verifier": "All captured payments net down to the credited amount and the UTR traces to the bank statement.",
+    "agent_confidence_ignored_by_verifier": 0.93,
     "avos_verdict": "UNCERTAIN",
     "reason_code": "MISSING_EVIDENCE",
     "correct": true,
@@ -220,9 +222,9 @@
     "difference_paise": null,
     "fee_delta_paise": null,
     "tolerance_paise": 15000,
-    "policy_version": "finance-policy-v11",
-    "recorded_policy_version": "finance-policy-v11",
-    "decision_policy_version": "finance-policy-v11",
+    "policy_version": "finance-policy-v12",
+    "recorded_policy_version": "finance-policy-v12",
+    "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-03T03:15:00Z",
     "decision_time": "2026-08-04T05:15:00Z",
     "pack_hash": "45eea7e58b99e6373de8d395e3116edefe23b1bf03ee4a7f42b580f1def802a4",
@@ -250,13 +252,13 @@
         "id": "policy_in_force",
         "pillar": "guard",
         "status": "pass",
-        "detail": "finance-policy-v11 in force as of 2026-08-04T05:15:00Z (effective 2026-08-01T00:00:00Z)"
+        "detail": "finance-policy-v12 in force as of 2026-08-04T05:15:00Z (effective 2026-08-01T00:00:00Z)"
       },
       {
         "id": "policy_epoch_matches_decision",
         "pillar": "guard",
         "status": "pass",
-        "detail": "pack stamped finance-policy-v11, which is the version in force at decision_time 2026-08-04T05:15:00Z"
+        "detail": "pack stamped finance-policy-v12, which is the version in force at decision_time 2026-08-04T05:15:00Z"
       },
       {
         "id": "evidence_complete",
@@ -310,7 +312,7 @@
         "id": "closure_permitted_by_policy",
         "pillar": "guard",
         "status": "pass",
-        "detail": "status 'processed' is closeable under finance-policy-v11"
+        "detail": "status 'processed' is closeable under finance-policy-v12"
       },
       {
         "id": "temporal_consistency",
@@ -489,6 +491,7 @@
     "ground_truth": "FAILED/CONTRADICTORY_SOURCE",
     "agent_claim": "RECONCILED",
     "agent_reason_ignored_by_verifier": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
+    "agent_confidence_ignored_by_verifier": 0.91,
     "avos_verdict": "FAILED",
     "reason_code": "CONTRADICTORY_SOURCE",
     "correct": true,
@@ -497,9 +500,9 @@
     "difference_paise": 0,
     "fee_delta_paise": null,
     "tolerance_paise": 15000,
-    "policy_version": "finance-policy-v11",
-    "recorded_policy_version": "finance-policy-v11",
-    "decision_policy_version": "finance-policy-v11",
+    "policy_version": "finance-policy-v12",
+    "recorded_policy_version": "finance-policy-v12",
+    "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-04T01:43:00Z",
     "decision_time": "2026-08-04T19:43:00Z",
     "pack_hash": "a8654c5a66a95b89320efd86a19ba39cb66583293416ca7b8215e04caba9831d",
@@ -527,13 +530,13 @@
         "id": "policy_in_force",
         "pillar": "guard",
         "status": "pass",
-        "detail": "finance-policy-v11 in force as of 2026-08-04T19:43:00Z (effective 2026-08-01T00:00:00Z)"
+        "detail": "finance-policy-v12 in force as of 2026-08-04T19:43:00Z (effective 2026-08-01T00:00:00Z)"
       },
       {
         "id": "policy_epoch_matches_decision",
         "pillar": "guard",
         "status": "pass",
-        "detail": "pack stamped finance-policy-v11, which is the version in force at decision_time 2026-08-04T19:43:00Z"
+        "detail": "pack stamped finance-policy-v12, which is the version in force at decision_time 2026-08-04T19:43:00Z"
       },
       {
         "id": "evidence_complete",
@@ -599,13 +602,13 @@
         "id": "arithmetic_reconciles",
         "pillar": "verify",
         "status": "pass",
-        "detail": "expected 2651354p = gross 2715438p - refunds 0p - fees 54308p - tax 9776p (recomputed from finance-policy-v11 rate card at 200bps + 1800bps GST) - holds 0p; observed 2651354p; difference 0p; tolerance 15000p"
+        "detail": "expected 2651354p = gross 2715438p - refunds 0p - fees 54308p - tax 9776p (recomputed from finance-policy-v12 rate card at 200bps + 1800bps GST) - holds 0p; observed 2651354p; difference 0p; tolerance 15000p"
       },
       {
         "id": "recorded_fees_match_rate_card",
         "pillar": "verify",
         "status": "pass",
-        "detail": "payment-level fee columns agree with the finance-policy-v11 rate card to the paisa"
+        "detail": "payment-level fee columns agree with the finance-policy-v12 rate card to the paisa"
       }
     ],
     "evidence": [
@@ -695,6 +698,7 @@
     "ground_truth": "FAILED/FEE_MISMATCH",
     "agent_claim": "RECONCILED",
     "agent_reason_ignored_by_verifier": "Verified the UTR against the bank feed and the totals line up. Safe to close.",
+    "agent_confidence_ignored_by_verifier": 0.89,
     "avos_verdict": "FAILED",
     "reason_code": "FEE_MISMATCH",
     "correct": true,
@@ -703,9 +707,9 @@
     "difference_paise": 7500,
     "fee_delta_paise": 7500,
     "tolerance_paise": 5000,
-    "policy_version": "finance-policy-v12",
-    "recorded_policy_version": "finance-policy-v12",
-    "decision_policy_version": "finance-policy-v12",
+    "policy_version": "finance-policy-v13",
+    "recorded_policy_version": "finance-policy-v13",
+    "decision_policy_version": "finance-policy-v13",
     "event_time": "2026-08-16T12:28:00Z",
     "decision_time": "2026-08-16T23:28:00Z",
     "pack_hash": "566e0c748faddffe8e701d4cdf86fdf91120077422853113cbee50f1a53697b0",
@@ -733,13 +737,13 @@
         "id": "policy_in_force",
         "pillar": "guard",
         "status": "pass",
-        "detail": "finance-policy-v12 in force as of 2026-08-16T23:28:00Z (effective 2026-08-12T09:15:00Z)"
+        "detail": "finance-policy-v13 in force as of 2026-08-16T23:28:00Z (effective 2026-08-12T09:15:00Z)"
       },
       {
         "id": "policy_epoch_matches_decision",
         "pillar": "guard",
         "status": "pass",
-        "detail": "pack stamped finance-policy-v12, which is the version in force at decision_time 2026-08-16T23:28:00Z"
+        "detail": "pack stamped finance-policy-v13, which is the version in force at decision_time 2026-08-16T23:28:00Z"
       },
       {
         "id": "evidence_complete",
@@ -793,7 +797,7 @@
         "id": "closure_permitted_by_policy",
         "pillar": "guard",
         "status": "pass",
-        "detail": "status 'processed' is closeable under finance-policy-v12"
+        "detail": "status 'processed' is closeable under finance-policy-v13"
       },
       {
         "id": "temporal_consistency",
@@ -805,13 +809,13 @@
         "id": "arithmetic_reconciles",
         "pillar": "verify",
         "status": "fail",
-        "detail": "expected 6801338p = gross 6965728p - refunds 0p - fees 139313p - tax 25077p (recomputed from finance-policy-v12 rate card at 200bps + 1800bps GST) - holds 0p; observed 6793838p; difference 7500p; tolerance 5000p; the settlement declared 7500p more in fees than the rate card allows"
+        "detail": "expected 6801338p = gross 6965728p - refunds 0p - fees 139313p - tax 25077p (recomputed from finance-policy-v13 rate card at 200bps + 1800bps GST) - holds 0p; observed 6793838p; difference 7500p; tolerance 5000p; the settlement declared 7500p more in fees than the rate card allows"
       },
       {
         "id": "recorded_fees_match_rate_card",
         "pillar": "verify",
         "status": "pass",
-        "detail": "payment-level fee columns agree with the finance-policy-v12 rate card to the paisa"
+        "detail": "payment-level fee columns agree with the finance-policy-v13 rate card to the paisa"
       }
     ],
     "evidence": [
@@ -934,6 +938,7 @@
     "ground_truth": "FAILED/DUPLICATE_EVENT",
     "agent_claim": "RECONCILED",
     "agent_reason_ignored_by_verifier": "Settlement matches the bank credit once fees and GST are accounted for. Nothing outstanding.",
+    "agent_confidence_ignored_by_verifier": 0.87,
     "avos_verdict": "FAILED",
     "reason_code": "DUPLICATE_EVENT",
     "correct": true,
@@ -942,9 +947,9 @@
     "difference_paise": 0,
     "fee_delta_paise": 0,
     "tolerance_paise": 15000,
-    "policy_version": "finance-policy-v11",
-    "recorded_policy_version": "finance-policy-v11",
-    "decision_policy_version": "finance-policy-v11",
+    "policy_version": "finance-policy-v12",
+    "recorded_policy_version": "finance-policy-v12",
+    "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-06T12:20:00Z",
     "decision_time": "2026-08-07T11:20:00Z",
     "pack_hash": "e38e2c9b62c4dc63723ab750f417b2ecb1123b4fbd5adb1c44c1113513d3dda6",
@@ -972,13 +977,13 @@
         "id": "policy_in_force",
         "pillar": "guard",
         "status": "pass",
-        "detail": "finance-policy-v11 in force as of 2026-08-07T11:20:00Z (effective 2026-08-01T00:00:00Z)"
+        "detail": "finance-policy-v12 in force as of 2026-08-07T11:20:00Z (effective 2026-08-01T00:00:00Z)"
       },
       {
         "id": "policy_epoch_matches_decision",
         "pillar": "guard",
         "status": "pass",
-        "detail": "pack stamped finance-policy-v11, which is the version in force at decision_time 2026-08-07T11:20:00Z"
+        "detail": "pack stamped finance-policy-v12, which is the version in force at decision_time 2026-08-07T11:20:00Z"
       },
       {
         "id": "evidence_complete",
@@ -1032,7 +1037,7 @@
         "id": "closure_permitted_by_policy",
         "pillar": "guard",
         "status": "pass",
-        "detail": "status 'processed' is closeable under finance-policy-v11"
+        "detail": "status 'processed' is closeable under finance-policy-v12"
       },
       {
         "id": "temporal_consistency",
@@ -1044,13 +1049,13 @@
         "id": "arithmetic_reconciles",
         "pillar": "verify",
         "status": "pass",
-        "detail": "expected 12166707p = gross 12460782p - refunds 0p - fees 249216p - tax 44859p (recomputed from finance-policy-v11 rate card at 200bps + 1800bps GST) - holds 0p; observed 12166707p; difference 0p; tolerance 15000p"
+        "detail": "expected 12166707p = gross 12460782p - refunds 0p - fees 249216p - tax 44859p (recomputed from finance-policy-v12 rate card at 200bps + 1800bps GST) - holds 0p; observed 12166707p; difference 0p; tolerance 15000p"
       },
       {
         "id": "recorded_fees_match_rate_card",
         "pillar": "verify",
         "status": "pass",
-        "detail": "payment-level fee columns agree with the finance-policy-v11 rate card to the paisa"
+        "detail": "payment-level fee columns agree with the finance-policy-v12 rate card to the paisa"
       }
     ],
     "evidence": [
@@ -1184,6 +1189,7 @@
     "ground_truth": "UNCERTAIN/STALE_POLICY",
     "agent_claim": "RECONCILED",
     "agent_reason_ignored_by_verifier": "Fees were adjusted at settlement, so the small variance against gross is expected. Reconciled.",
+    "agent_confidence_ignored_by_verifier": 0.85,
     "avos_verdict": "UNCERTAIN",
     "reason_code": "STALE_POLICY",
     "correct": true,
@@ -1192,9 +1198,9 @@
     "difference_paise": 0,
     "fee_delta_paise": 0,
     "tolerance_paise": 15000,
-    "policy_version": "finance-policy-v11",
-    "recorded_policy_version": "finance-policy-v12",
-    "decision_policy_version": "finance-policy-v11",
+    "policy_version": "finance-policy-v12",
+    "recorded_policy_version": "finance-policy-v13",
+    "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-07T11:41:00Z",
     "decision_time": "2026-08-08T16:41:00Z",
     "pack_hash": "dda718090ed02923d5606c28c0b66331cba73f6b9802ed4658b3fd55cb7f0eff",
@@ -1222,13 +1228,13 @@
         "id": "policy_in_force",
         "pillar": "guard",
         "status": "pass",
-        "detail": "finance-policy-v11 in force as of 2026-08-08T16:41:00Z (effective 2026-08-01T00:00:00Z)"
+        "detail": "finance-policy-v12 in force as of 2026-08-08T16:41:00Z (effective 2026-08-01T00:00:00Z)"
       },
       {
         "id": "policy_epoch_matches_decision",
         "pillar": "guard",
         "status": "fail",
-        "detail": "pack stamped finance-policy-v12 but finance-policy-v11 was in force at decision_time 2026-08-08T16:41:00Z; historical decisions are evaluated under the policy that existed when the decision occurred"
+        "detail": "pack stamped finance-policy-v13 but finance-policy-v12 was in force at decision_time 2026-08-08T16:41:00Z; historical decisions are evaluated under the policy that existed when the decision occurred"
       },
       {
         "id": "evidence_complete",
@@ -1282,7 +1288,7 @@
         "id": "closure_permitted_by_policy",
         "pillar": "guard",
         "status": "pass",
-        "detail": "status 'processed' is closeable under finance-policy-v11"
+        "detail": "status 'processed' is closeable under finance-policy-v12"
       },
       {
         "id": "temporal_consistency",
@@ -1294,13 +1300,13 @@
         "id": "arithmetic_reconciles",
         "pillar": "verify",
         "status": "pass",
-        "detail": "expected 14403250p = gross 14751380p - refunds 0p - fees 295027p - tax 53103p (recomputed from finance-policy-v11 rate card at 200bps + 1800bps GST) - holds 0p; observed 14403250p; difference 0p; tolerance 15000p"
+        "detail": "expected 14403250p = gross 14751380p - refunds 0p - fees 295027p - tax 53103p (recomputed from finance-policy-v12 rate card at 200bps + 1800bps GST) - holds 0p; observed 14403250p; difference 0p; tolerance 15000p"
       },
       {
         "id": "recorded_fees_match_rate_card",
         "pillar": "verify",
         "status": "pass",
-        "detail": "payment-level fee columns agree with the finance-policy-v11 rate card to the paisa"
+        "detail": "payment-level fee columns agree with the finance-policy-v12 rate card to the paisa"
       }
     ],
     "evidence": [
@@ -1478,6 +1484,7 @@
     "ground_truth": "UNCERTAIN/MISSING_EVIDENCE",
     "agent_claim": "RECONCILED",
     "agent_reason_ignored_by_verifier": "All captured payments net down to the credited amount and the UTR traces to the bank statement.",
+    "agent_confidence_ignored_by_verifier": 0.83,
     "avos_verdict": "UNCERTAIN",
     "reason_code": "MISSING_EVIDENCE",
     "correct": true,
@@ -1486,9 +1493,9 @@
     "difference_paise": null,
     "fee_delta_paise": null,
     "tolerance_paise": 15000,
-    "policy_version": "finance-policy-v11",
-    "recorded_policy_version": "finance-policy-v11",
-    "decision_policy_version": "finance-policy-v11",
+    "policy_version": "finance-policy-v12",
+    "recorded_policy_version": "finance-policy-v12",
+    "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-08T20:33:00Z",
     "decision_time": "2026-08-09T13:33:00Z",
     "pack_hash": "02fcb79f5b77775d5923590e1081a59429ba6fb8a96ecb8026a18d12be2598a4",
@@ -1516,13 +1523,13 @@
         "id": "policy_in_force",
         "pillar": "guard",
         "status": "pass",
-        "detail": "finance-policy-v11 in force as of 2026-08-09T13:33:00Z (effective 2026-08-01T00:00:00Z)"
+        "detail": "finance-policy-v12 in force as of 2026-08-09T13:33:00Z (effective 2026-08-01T00:00:00Z)"
       },
       {
         "id": "policy_epoch_matches_decision",
         "pillar": "guard",
         "status": "pass",
-        "detail": "pack stamped finance-policy-v11, which is the version in force at decision_time 2026-08-09T13:33:00Z"
+        "detail": "pack stamped finance-policy-v12, which is the version in force at decision_time 2026-08-09T13:33:00Z"
       },
       {
         "id": "evidence_complete",
@@ -1576,7 +1583,7 @@
         "id": "closure_permitted_by_policy",
         "pillar": "guard",
         "status": "pass",
-        "detail": "status 'processed' is closeable under finance-policy-v11"
+        "detail": "status 'processed' is closeable under finance-policy-v12"
       },
       {
         "id": "temporal_consistency",
@@ -1700,6 +1707,7 @@
     "ground_truth": "FAILED/DUPLICATE_EVENT",
     "agent_claim": "RECONCILED",
     "agent_reason_ignored_by_verifier": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
+    "agent_confidence_ignored_by_verifier": 0.81,
     "avos_verdict": "FAILED",
     "reason_code": "DUPLICATE_EVENT",
     "correct": true,
@@ -1708,9 +1716,9 @@
     "difference_paise": 0,
     "fee_delta_paise": 0,
     "tolerance_paise": 15000,
-    "policy_version": "finance-policy-v11",
-    "recorded_policy_version": "finance-policy-v11",
-    "decision_policy_version": "finance-policy-v11",
+    "policy_version": "finance-policy-v12",
+    "recorded_policy_version": "finance-policy-v12",
+    "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-09T12:17:00Z",
     "decision_time": "2026-08-10T12:17:00Z",
     "pack_hash": "0904c9f05c6fbefad5c56fe25e23201f8e57ee0ec81f214ddd476a5d0e01f572",
@@ -1738,13 +1746,13 @@
         "id": "policy_in_force",
         "pillar": "guard",
         "status": "pass",
-        "detail": "finance-policy-v11 in force as of 2026-08-10T12:17:00Z (effective 2026-08-01T00:00:00Z)"
+        "detail": "finance-policy-v12 in force as of 2026-08-10T12:17:00Z (effective 2026-08-01T00:00:00Z)"
       },
       {
         "id": "policy_epoch_matches_decision",
         "pillar": "guard",
         "status": "pass",
-        "detail": "pack stamped finance-policy-v11, which is the version in force at decision_time 2026-08-10T12:17:00Z"
+        "detail": "pack stamped finance-policy-v12, which is the version in force at decision_time 2026-08-10T12:17:00Z"
       },
       {
         "id": "evidence_complete",
@@ -1798,7 +1806,7 @@
         "id": "closure_permitted_by_policy",
         "pillar": "guard",
         "status": "pass",
-        "detail": "status 'processed' is closeable under finance-policy-v11"
+        "detail": "status 'processed' is closeable under finance-policy-v12"
       },
       {
         "id": "temporal_consistency",
@@ -1810,13 +1818,13 @@
         "id": "arithmetic_reconciles",
         "pillar": "verify",
         "status": "pass",
-        "detail": "expected 10743834p = gross 11003517p - refunds 0p - fees 220070p - tax 39613p (recomputed from finance-policy-v11 rate card at 200bps + 1800bps GST) - holds 0p; observed 10743834p; difference 0p; tolerance 15000p"
+        "detail": "expected 10743834p = gross 11003517p - refunds 0p - fees 220070p - tax 39613p (recomputed from finance-policy-v12 rate card at 200bps + 1800bps GST) - holds 0p; observed 10743834p; difference 0p; tolerance 15000p"
       },
       {
         "id": "recorded_fees_match_rate_card",
         "pillar": "verify",
         "status": "pass",
-        "detail": "payment-level fee columns agree with the finance-policy-v11 rate card to the paisa"
+        "detail": "payment-level fee columns agree with the finance-policy-v12 rate card to the paisa"
       }
     ],
     "evidence": [
@@ -1994,6 +2002,7 @@
     "ground_truth": "UNCERTAIN/MISSING_EVIDENCE",
     "agent_claim": "RECONCILED",
     "agent_reason_ignored_by_verifier": "Verified the UTR against the bank feed and the totals line up. Safe to close.",
+    "agent_confidence_ignored_by_verifier": 0.79,
     "avos_verdict": "UNCERTAIN",
     "reason_code": "MISSING_EVIDENCE",
     "correct": true,
@@ -2002,9 +2011,9 @@
     "difference_paise": null,
     "fee_delta_paise": null,
     "tolerance_paise": 15000,
-    "policy_version": "finance-policy-v11",
-    "recorded_policy_version": "finance-policy-v11",
-    "decision_policy_version": "finance-policy-v11",
+    "policy_version": "finance-policy-v12",
+    "recorded_policy_version": "finance-policy-v12",
+    "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-10T20:56:00Z",
     "decision_time": "2026-08-11T12:56:00Z",
     "pack_hash": "924b696a5a82fb2df77b08e154e0a1f83c9782bea41c8a49abf8ccc4be633c42",
@@ -2032,13 +2041,13 @@
         "id": "policy_in_force",
         "pillar": "guard",
         "status": "pass",
-        "detail": "finance-policy-v11 in force as of 2026-08-11T12:56:00Z (effective 2026-08-01T00:00:00Z)"
+        "detail": "finance-policy-v12 in force as of 2026-08-11T12:56:00Z (effective 2026-08-01T00:00:00Z)"
       },
       {
         "id": "policy_epoch_matches_decision",
         "pillar": "guard",
         "status": "pass",
-        "detail": "pack stamped finance-policy-v11, which is the version in force at decision_time 2026-08-11T12:56:00Z"
+        "detail": "pack stamped finance-policy-v12, which is the version in force at decision_time 2026-08-11T12:56:00Z"
       },
       {
         "id": "evidence_complete",
@@ -2092,7 +2101,7 @@
         "id": "closure_permitted_by_policy",
         "pillar": "guard",
         "status": "pass",
-        "detail": "status 'processed' is closeable under finance-policy-v11"
+        "detail": "status 'processed' is closeable under finance-policy-v12"
       },
       {
         "id": "temporal_consistency",
@@ -2238,6 +2247,7 @@
     "ground_truth": "FAILED/CONTRADICTORY_SOURCE",
     "agent_claim": "RECONCILED",
     "agent_reason_ignored_by_verifier": "Fees were adjusted at settlement, so the small variance against gross is expected. Reconciled.",
+    "agent_confidence_ignored_by_verifier": 0.89,
     "avos_verdict": "FAILED",
     "reason_code": "CONTRADICTORY_SOURCE",
     "correct": true,
@@ -2246,9 +2256,9 @@
     "difference_paise": 0,
     "fee_delta_paise": null,
     "tolerance_paise": 15000,
-    "policy_version": "finance-policy-v11",
-    "recorded_policy_version": "finance-policy-v11",
-    "decision_policy_version": "finance-policy-v11",
+    "policy_version": "finance-policy-v12",
+    "recorded_policy_version": "finance-policy-v12",
+    "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-11T14:33:00Z",
     "decision_time": "2026-08-12T03:33:00Z",
     "pack_hash": "da43d7926925f724c59b8993cacc3d7aea880ff3d4684f988dae6629e317a658",
@@ -2276,13 +2286,13 @@
         "id": "policy_in_force",
         "pillar": "guard",
         "status": "pass",
-        "detail": "finance-policy-v11 in force as of 2026-08-12T03:33:00Z (effective 2026-08-01T00:00:00Z)"
+        "detail": "finance-policy-v12 in force as of 2026-08-12T03:33:00Z (effective 2026-08-01T00:00:00Z)"
       },
       {
         "id": "policy_epoch_matches_decision",
         "pillar": "guard",
         "status": "pass",
-        "detail": "pack stamped finance-policy-v11, which is the version in force at decision_time 2026-08-12T03:33:00Z"
+        "detail": "pack stamped finance-policy-v12, which is the version in force at decision_time 2026-08-12T03:33:00Z"
       },
       {
         "id": "evidence_complete",
@@ -2348,13 +2358,13 @@
         "id": "arithmetic_reconciles",
         "pillar": "verify",
         "status": "pass",
-        "detail": "expected 10622474p = gross 10879224p - refunds 0p - fees 217585p - tax 39165p (recomputed from finance-policy-v11 rate card at 200bps + 1800bps GST) - holds 0p; observed 10622474p; difference 0p; tolerance 15000p"
+        "detail": "expected 10622474p = gross 10879224p - refunds 0p - fees 217585p - tax 39165p (recomputed from finance-policy-v12 rate card at 200bps + 1800bps GST) - holds 0p; observed 10622474p; difference 0p; tolerance 15000p"
       },
       {
         "id": "recorded_fees_match_rate_card",
         "pillar": "verify",
         "status": "pass",
-        "detail": "payment-level fee columns agree with the finance-policy-v11 rate card to the paisa"
+        "detail": "payment-level fee columns agree with the finance-policy-v12 rate card to the paisa"
       }
     ],
     "evidence": [
@@ -2532,6 +2542,7 @@
     "ground_truth": "FAILED/CONTRADICTORY_SOURCE",
     "agent_claim": "RECONCILED",
     "agent_reason_ignored_by_verifier": "All captured payments net down to the credited amount and the UTR traces to the bank statement.",
+    "agent_confidence_ignored_by_verifier": 0.87,
     "avos_verdict": "FAILED",
     "reason_code": "CONTRADICTORY_SOURCE",
     "correct": true,
@@ -2540,9 +2551,9 @@
     "difference_paise": 0,
     "fee_delta_paise": null,
     "tolerance_paise": 5000,
-    "policy_version": "finance-policy-v12",
-    "recorded_policy_version": "finance-policy-v12",
-    "decision_policy_version": "finance-policy-v12",
+    "policy_version": "finance-policy-v13",
+    "recorded_policy_version": "finance-policy-v13",
+    "decision_policy_version": "finance-policy-v13",
     "event_time": "2026-08-12T11:56:00Z",
     "decision_time": "2026-08-13T00:56:00Z",
     "pack_hash": "ed7836479c9c4c5aded5ee84ebe542d0fa4c9cde9f32b02a127c060b3d5fb5ef",
@@ -2570,13 +2581,13 @@
         "id": "policy_in_force",
         "pillar": "guard",
         "status": "pass",
-        "detail": "finance-policy-v12 in force as of 2026-08-13T00:56:00Z (effective 2026-08-12T09:15:00Z)"
+        "detail": "finance-policy-v13 in force as of 2026-08-13T00:56:00Z (effective 2026-08-12T09:15:00Z)"
       },
       {
         "id": "policy_epoch_matches_decision",
         "pillar": "guard",
         "status": "pass",
-        "detail": "pack stamped finance-policy-v12, which is the version in force at decision_time 2026-08-13T00:56:00Z"
+        "detail": "pack stamped finance-policy-v13, which is the version in force at decision_time 2026-08-13T00:56:00Z"
       },
       {
         "id": "evidence_complete",
@@ -2642,13 +2653,13 @@
         "id": "arithmetic_reconciles",
         "pillar": "verify",
         "status": "pass",
-        "detail": "expected 13348891p = gross 13671539p - refunds 0p - fees 273431p - tax 49217p (recomputed from finance-policy-v12 rate card at 200bps + 1800bps GST) - holds 0p; observed 13348891p; difference 0p; tolerance 5000p"
+        "detail": "expected 13348891p = gross 13671539p - refunds 0p - fees 273431p - tax 49217p (recomputed from finance-policy-v13 rate card at 200bps + 1800bps GST) - holds 0p; observed 13348891p; difference 0p; tolerance 5000p"
       },
       {
         "id": "recorded_fees_match_rate_card",
         "pillar": "verify",
         "status": "pass",
-        "detail": "payment-level fee columns agree with the finance-policy-v12 rate card to the paisa"
+        "detail": "payment-level fee columns agree with the finance-policy-v13 rate card to the paisa"
       }
     ],
     "evidence": [
@@ -2815,6 +2826,7 @@
     "ground_truth": "UNCERTAIN/STALE_POLICY",
     "agent_claim": "RECONCILED",
     "agent_reason_ignored_by_verifier": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
+    "agent_confidence_ignored_by_verifier": 0.85,
     "avos_verdict": "UNCERTAIN",
     "reason_code": "STALE_POLICY",
     "correct": true,
@@ -2823,9 +2835,9 @@
     "difference_paise": 0,
     "fee_delta_paise": 0,
     "tolerance_paise": 15000,
-    "policy_version": "finance-policy-v11",
-    "recorded_policy_version": "finance-policy-v12",
-    "decision_policy_version": "finance-policy-v11",
+    "policy_version": "finance-policy-v12",
+    "recorded_policy_version": "finance-policy-v13",
+    "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-06T06:56:00Z",
     "decision_time": "2026-08-06T18:56:00Z",
     "pack_hash": "3f46c3011fc8e153dc44f0ea1346c0ec52cecb0d710ede0fb6a74e4f3c5fe96f",
@@ -2853,13 +2865,13 @@
         "id": "policy_in_force",
         "pillar": "guard",
         "status": "pass",
-        "detail": "finance-policy-v11 in force as of 2026-08-06T18:56:00Z (effective 2026-08-01T00:00:00Z)"
+        "detail": "finance-policy-v12 in force as of 2026-08-06T18:56:00Z (effective 2026-08-01T00:00:00Z)"
       },
       {
         "id": "policy_epoch_matches_decision",
         "pillar": "guard",
         "status": "fail",
-        "detail": "pack stamped finance-policy-v12 but finance-policy-v11 was in force at decision_time 2026-08-06T18:56:00Z; historical decisions are evaluated under the policy that existed when the decision occurred"
+        "detail": "pack stamped finance-policy-v13 but finance-policy-v12 was in force at decision_time 2026-08-06T18:56:00Z; historical decisions are evaluated under the policy that existed when the decision occurred"
       },
       {
         "id": "evidence_complete",
@@ -2913,7 +2925,7 @@
         "id": "closure_permitted_by_policy",
         "pillar": "guard",
         "status": "pass",
-        "detail": "status 'processed' is closeable under finance-policy-v11"
+        "detail": "status 'processed' is closeable under finance-policy-v12"
       },
       {
         "id": "temporal_consistency",
@@ -2925,13 +2937,13 @@
         "id": "arithmetic_reconciles",
         "pillar": "verify",
         "status": "pass",
-        "detail": "expected 4809117p = gross 4925355p - refunds 0p - fees 98507p - tax 17731p (recomputed from finance-policy-v11 rate card at 200bps + 1800bps GST) - holds 0p; observed 4809117p; difference 0p; tolerance 15000p"
+        "detail": "expected 4809117p = gross 4925355p - refunds 0p - fees 98507p - tax 17731p (recomputed from finance-policy-v12 rate card at 200bps + 1800bps GST) - holds 0p; observed 4809117p; difference 0p; tolerance 15000p"
       },
       {
         "id": "recorded_fees_match_rate_card",
         "pillar": "verify",
         "status": "pass",
-        "detail": "payment-level fee columns agree with the finance-policy-v11 rate card to the paisa"
+        "detail": "payment-level fee columns agree with the finance-policy-v12 rate card to the paisa"
       }
     ],
     "evidence": [
@@ -3021,6 +3033,7 @@
     "ground_truth": "FAILED/CONTRADICTORY_SOURCE",
     "agent_claim": "RECONCILED",
     "agent_reason_ignored_by_verifier": "Verified the UTR against the bank feed and the totals line up. Safe to close.",
+    "agent_confidence_ignored_by_verifier": 0.83,
     "avos_verdict": "FAILED",
     "reason_code": "CONTRADICTORY_SOURCE",
     "correct": true,
@@ -3029,9 +3042,9 @@
     "difference_paise": 0,
     "fee_delta_paise": null,
     "tolerance_paise": 5000,
-    "policy_version": "finance-policy-v12",
-    "recorded_policy_version": "finance-policy-v12",
-    "decision_policy_version": "finance-policy-v12",
+    "policy_version": "finance-policy-v13",
+    "recorded_policy_version": "finance-policy-v13",
+    "decision_policy_version": "finance-policy-v13",
     "event_time": "2026-08-14T13:39:00Z",
     "decision_time": "2026-08-15T07:39:00Z",
     "pack_hash": "0818554d2e953043b6f1ec1d386baaacb5f9c372d0650772ad13229ee961a960",
@@ -3059,13 +3072,13 @@
         "id": "policy_in_force",
         "pillar": "guard",
         "status": "pass",
-        "detail": "finance-policy-v12 in force as of 2026-08-15T07:39:00Z (effective 2026-08-12T09:15:00Z)"
+        "detail": "finance-policy-v13 in force as of 2026-08-15T07:39:00Z (effective 2026-08-12T09:15:00Z)"
       },
       {
         "id": "policy_epoch_matches_decision",
         "pillar": "guard",
         "status": "pass",
-        "detail": "pack stamped finance-policy-v12, which is the version in force at decision_time 2026-08-15T07:39:00Z"
+        "detail": "pack stamped finance-policy-v13, which is the version in force at decision_time 2026-08-15T07:39:00Z"
       },
       {
         "id": "evidence_complete",
@@ -3131,13 +3144,13 @@
         "id": "arithmetic_reconciles",
         "pillar": "verify",
         "status": "pass",
-        "detail": "expected 8723309p = gross 8934157p - refunds 0p - fees 178684p - tax 32164p (recomputed from finance-policy-v12 rate card at 200bps + 1800bps GST) - holds 0p; observed 8723309p; difference 0p; tolerance 5000p"
+        "detail": "expected 8723309p = gross 8934157p - refunds 0p - fees 178684p - tax 32164p (recomputed from finance-policy-v13 rate card at 200bps + 1800bps GST) - holds 0p; observed 8723309p; difference 0p; tolerance 5000p"
       },
       {
         "id": "recorded_fees_match_rate_card",
         "pillar": "verify",
         "status": "pass",
-        "detail": "payment-level fee columns agree with the finance-policy-v12 rate card to the paisa"
+        "detail": "payment-level fee columns agree with the finance-policy-v13 rate card to the paisa"
       }
     ],
     "evidence": [
@@ -3260,6 +3273,7 @@
     "ground_truth": "FAILED/CONTRADICTORY_SOURCE",
     "agent_claim": "RECONCILED",
     "agent_reason_ignored_by_verifier": "Settlement matches the bank credit once fees and GST are accounted for. Nothing outstanding.",
+    "agent_confidence_ignored_by_verifier": 0.81,
     "avos_verdict": "FAILED",
     "reason_code": "CONTRADICTORY_SOURCE",
     "correct": true,
@@ -3268,9 +3282,9 @@
     "difference_paise": 0,
     "fee_delta_paise": null,
     "tolerance_paise": 5000,
-    "policy_version": "finance-policy-v12",
-    "recorded_policy_version": "finance-policy-v12",
-    "decision_policy_version": "finance-policy-v12",
+    "policy_version": "finance-policy-v13",
+    "recorded_policy_version": "finance-policy-v13",
+    "decision_policy_version": "finance-policy-v13",
     "event_time": "2026-08-15T06:16:00Z",
     "decision_time": "2026-08-15T21:16:00Z",
     "pack_hash": "7ef19ee1a62944663175ec04a2e840d86d70cb9578ef65face44fcf7f2cd6bd0",
@@ -3298,13 +3312,13 @@
         "id": "policy_in_force",
         "pillar": "guard",
         "status": "pass",
-        "detail": "finance-policy-v12 in force as of 2026-08-15T21:16:00Z (effective 2026-08-12T09:15:00Z)"
+        "detail": "finance-policy-v13 in force as of 2026-08-15T21:16:00Z (effective 2026-08-12T09:15:00Z)"
       },
       {
         "id": "policy_epoch_matches_decision",
         "pillar": "guard",
         "status": "pass",
-        "detail": "pack stamped finance-policy-v12, which is the version in force at decision_time 2026-08-15T21:16:00Z"
+        "detail": "pack stamped finance-policy-v13, which is the version in force at decision_time 2026-08-15T21:16:00Z"
       },
       {
         "id": "evidence_complete",
@@ -3370,13 +3384,13 @@
         "id": "arithmetic_reconciles",
         "pillar": "verify",
         "status": "pass",
-        "detail": "expected 7260425p = gross 7435913p - refunds 0p - fees 148719p - tax 26769p (recomputed from finance-policy-v12 rate card at 200bps + 1800bps GST) - holds 0p; observed 7260425p; difference 0p; tolerance 5000p"
+        "detail": "expected 7260425p = gross 7435913p - refunds 0p - fees 148719p - tax 26769p (recomputed from finance-policy-v13 rate card at 200bps + 1800bps GST) - holds 0p; observed 7260425p; difference 0p; tolerance 5000p"
       },
       {
         "id": "recorded_fees_match_rate_card",
         "pillar": "verify",
         "status": "pass",
-        "detail": "payment-level fee columns agree with the finance-policy-v12 rate card to the paisa"
+        "detail": "payment-level fee columns agree with the finance-policy-v13 rate card to the paisa"
       }
     ],
     "evidence": [
@@ -3488,6 +3502,7 @@
     "ground_truth": "UNCERTAIN/MISSING_EVIDENCE",
     "agent_claim": "RECONCILED",
     "agent_reason_ignored_by_verifier": "Fees were adjusted at settlement, so the small variance against gross is expected. Reconciled.",
+    "agent_confidence_ignored_by_verifier": 0.79,
     "avos_verdict": "UNCERTAIN",
     "reason_code": "MISSING_EVIDENCE",
     "correct": true,
@@ -3496,9 +3511,9 @@
     "difference_paise": null,
     "fee_delta_paise": null,
     "tolerance_paise": 5000,
-    "policy_version": "finance-policy-v12",
-    "recorded_policy_version": "finance-policy-v12",
-    "decision_policy_version": "finance-policy-v12",
+    "policy_version": "finance-policy-v13",
+    "recorded_policy_version": "finance-policy-v13",
+    "decision_policy_version": "finance-policy-v13",
     "event_time": "2026-08-16T01:00:00Z",
     "decision_time": "2026-08-16T15:00:00Z",
     "pack_hash": "1acc2738efcffa71fe8f89e53cab552117691c392def62e59c25f450e48f9c20",
@@ -3526,13 +3541,13 @@
         "id": "policy_in_force",
         "pillar": "guard",
         "status": "pass",
-        "detail": "finance-policy-v12 in force as of 2026-08-16T15:00:00Z (effective 2026-08-12T09:15:00Z)"
+        "detail": "finance-policy-v13 in force as of 2026-08-16T15:00:00Z (effective 2026-08-12T09:15:00Z)"
       },
       {
         "id": "policy_epoch_matches_decision",
         "pillar": "guard",
         "status": "pass",
-        "detail": "pack stamped finance-policy-v12, which is the version in force at decision_time 2026-08-16T15:00:00Z"
+        "detail": "pack stamped finance-policy-v13, which is the version in force at decision_time 2026-08-16T15:00:00Z"
       },
       {
         "id": "evidence_complete",
@@ -3586,7 +3601,7 @@
         "id": "closure_permitted_by_policy",
         "pillar": "guard",
         "status": "pass",
-        "detail": "status 'processed' is closeable under finance-policy-v12"
+        "detail": "status 'processed' is closeable under finance-policy-v13"
       },
       {
         "id": "temporal_consistency",
@@ -3721,6 +3736,7 @@
     "ground_truth": "FAILED/FEE_MISMATCH",
     "agent_claim": "RECONCILED",
     "agent_reason_ignored_by_verifier": "All captured payments net down to the credited amount and the UTR traces to the bank statement.",
+    "agent_confidence_ignored_by_verifier": 0.77,
     "avos_verdict": "FAILED",
     "reason_code": "FEE_MISMATCH",
     "correct": true,
@@ -3729,9 +3745,9 @@
     "difference_paise": 7500,
     "fee_delta_paise": 7500,
     "tolerance_paise": 5000,
-    "policy_version": "finance-policy-v12",
-    "recorded_policy_version": "finance-policy-v12",
-    "decision_policy_version": "finance-policy-v12",
+    "policy_version": "finance-policy-v13",
+    "recorded_policy_version": "finance-policy-v13",
+    "decision_policy_version": "finance-policy-v13",
     "event_time": "2026-08-16T15:48:00Z",
     "decision_time": "2026-08-17T04:48:00Z",
     "pack_hash": "41bd247681ad0ee1078700c9b819a134c0398d6160d65d5d9f1578b041b6c2dd",
@@ -3759,13 +3775,13 @@
         "id": "policy_in_force",
         "pillar": "guard",
         "status": "pass",
-        "detail": "finance-policy-v12 in force as of 2026-08-17T04:48:00Z (effective 2026-08-12T09:15:00Z)"
+        "detail": "finance-policy-v13 in force as of 2026-08-17T04:48:00Z (effective 2026-08-12T09:15:00Z)"
       },
       {
         "id": "policy_epoch_matches_decision",
         "pillar": "guard",
         "status": "pass",
-        "detail": "pack stamped finance-policy-v12, which is the version in force at decision_time 2026-08-17T04:48:00Z"
+        "detail": "pack stamped finance-policy-v13, which is the version in force at decision_time 2026-08-17T04:48:00Z"
       },
       {
         "id": "evidence_complete",
@@ -3819,7 +3835,7 @@
         "id": "closure_permitted_by_policy",
         "pillar": "guard",
         "status": "pass",
-        "detail": "status 'processed' is closeable under finance-policy-v12"
+        "detail": "status 'processed' is closeable under finance-policy-v13"
       },
       {
         "id": "temporal_consistency",
@@ -3831,13 +3847,13 @@
         "id": "arithmetic_reconciles",
         "pillar": "verify",
         "status": "fail",
-        "detail": "expected 9388790p = gross 9615722p - refunds 0p - fees 192315p - tax 34617p (recomputed from finance-policy-v12 rate card at 200bps + 1800bps GST) - holds 0p; observed 9381290p; difference 7500p; tolerance 5000p; the settlement declared 7500p more in fees than the rate card allows"
+        "detail": "expected 9388790p = gross 9615722p - refunds 0p - fees 192315p - tax 34617p (recomputed from finance-policy-v13 rate card at 200bps + 1800bps GST) - holds 0p; observed 9381290p; difference 7500p; tolerance 5000p; the settlement declared 7500p more in fees than the rate card allows"
       },
       {
         "id": "recorded_fees_match_rate_card",
         "pillar": "verify",
         "status": "pass",
-        "detail": "payment-level fee columns agree with the finance-policy-v12 rate card to the paisa"
+        "detail": "payment-level fee columns agree with the finance-policy-v13 rate card to the paisa"
       }
     ],
     "evidence": [
@@ -3949,6 +3965,7 @@
     "ground_truth": "FAILED/DUPLICATE_FILE",
     "agent_claim": "RECONCILED",
     "agent_reason_ignored_by_verifier": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
+    "agent_confidence_ignored_by_verifier": 0.75,
     "avos_verdict": "FAILED",
     "reason_code": "DUPLICATE_FILE",
     "correct": true,
@@ -3957,9 +3974,9 @@
     "difference_paise": 0,
     "fee_delta_paise": 0,
     "tolerance_paise": 5000,
-    "policy_version": "finance-policy-v12",
-    "recorded_policy_version": "finance-policy-v12",
-    "decision_policy_version": "finance-policy-v12",
+    "policy_version": "finance-policy-v13",
+    "recorded_policy_version": "finance-policy-v13",
+    "decision_policy_version": "finance-policy-v13",
     "event_time": "2026-08-18T05:19:00Z",
     "decision_time": "2026-08-18T13:19:00Z",
     "pack_hash": "894209fc9e1381c237d6344198a0e5a1307ab6644cdf5375e6eb5eaf9ecd41fd",
@@ -3987,13 +4004,13 @@
         "id": "policy_in_force",
         "pillar": "guard",
         "status": "pass",
-        "detail": "finance-policy-v12 in force as of 2026-08-18T13:19:00Z (effective 2026-08-12T09:15:00Z)"
+        "detail": "finance-policy-v13 in force as of 2026-08-18T13:19:00Z (effective 2026-08-12T09:15:00Z)"
       },
       {
         "id": "policy_epoch_matches_decision",
         "pillar": "guard",
         "status": "pass",
-        "detail": "pack stamped finance-policy-v12, which is the version in force at decision_time 2026-08-18T13:19:00Z"
+        "detail": "pack stamped finance-policy-v13, which is the version in force at decision_time 2026-08-18T13:19:00Z"
       },
       {
         "id": "evidence_complete",
@@ -4047,7 +4064,7 @@
         "id": "closure_permitted_by_policy",
         "pillar": "guard",
         "status": "pass",
-        "detail": "status 'processed' is closeable under finance-policy-v12"
+        "detail": "status 'processed' is closeable under finance-policy-v13"
       },
       {
         "id": "temporal_consistency",
@@ -4059,13 +4076,13 @@
         "id": "arithmetic_reconciles",
         "pillar": "verify",
         "status": "pass",
-        "detail": "expected 7741427p = gross 7928541p - refunds 0p - fees 158571p - tax 28543p (recomputed from finance-policy-v12 rate card at 200bps + 1800bps GST) - holds 0p; observed 7741427p; difference 0p; tolerance 5000p"
+        "detail": "expected 7741427p = gross 7928541p - refunds 0p - fees 158571p - tax 28543p (recomputed from finance-policy-v13 rate card at 200bps + 1800bps GST) - holds 0p; observed 7741427p; difference 0p; tolerance 5000p"
       },
       {
         "id": "recorded_fees_match_rate_card",
         "pillar": "verify",
         "status": "pass",
-        "detail": "payment-level fee columns agree with the finance-policy-v12 rate card to the paisa"
+        "detail": "payment-level fee columns agree with the finance-policy-v13 rate card to the paisa"
       }
     ],
     "evidence": [
@@ -4166,6 +4183,7 @@
     "ground_truth": "FAILED/DUPLICATE_EVENT",
     "agent_claim": "RECONCILED",
     "agent_reason_ignored_by_verifier": "Verified the UTR against the bank feed and the totals line up. Safe to close.",
+    "agent_confidence_ignored_by_verifier": 0.73,
     "avos_verdict": "FAILED",
     "reason_code": "DUPLICATE_EVENT",
     "correct": true,
@@ -4174,9 +4192,9 @@
     "difference_paise": 0,
     "fee_delta_paise": 0,
     "tolerance_paise": 5000,
-    "policy_version": "finance-policy-v12",
-    "recorded_policy_version": "finance-policy-v12",
-    "decision_policy_version": "finance-policy-v12",
+    "policy_version": "finance-policy-v13",
+    "recorded_policy_version": "finance-policy-v13",
+    "decision_policy_version": "finance-policy-v13",
     "event_time": "2026-08-19T07:06:00Z",
     "decision_time": "2026-08-20T11:06:00Z",
     "pack_hash": "8efc45e2f23b2459502a7c237804846e736e868aa1d24a8124d6dee9990e1630",
@@ -4204,13 +4222,13 @@
         "id": "policy_in_force",
         "pillar": "guard",
         "status": "pass",
-        "detail": "finance-policy-v12 in force as of 2026-08-20T11:06:00Z (effective 2026-08-12T09:15:00Z)"
+        "detail": "finance-policy-v13 in force as of 2026-08-20T11:06:00Z (effective 2026-08-12T09:15:00Z)"
       },
       {
         "id": "policy_epoch_matches_decision",
         "pillar": "guard",
         "status": "pass",
-        "detail": "pack stamped finance-policy-v12, which is the version in force at decision_time 2026-08-20T11:06:00Z"
+        "detail": "pack stamped finance-policy-v13, which is the version in force at decision_time 2026-08-20T11:06:00Z"
       },
       {
         "id": "evidence_complete",
@@ -4264,7 +4282,7 @@
         "id": "closure_permitted_by_policy",
         "pillar": "guard",
         "status": "pass",
-        "detail": "status 'processed' is closeable under finance-policy-v12"
+        "detail": "status 'processed' is closeable under finance-policy-v13"
       },
       {
         "id": "temporal_consistency",
@@ -4276,13 +4294,13 @@
         "id": "arithmetic_reconciles",
         "pillar": "verify",
         "status": "pass",
-        "detail": "expected 5887188p = gross 6029484p - refunds 0p - fees 120590p - tax 21706p (recomputed from finance-policy-v12 rate card at 200bps + 1800bps GST) - holds 0p; observed 5887188p; difference 0p; tolerance 5000p"
+        "detail": "expected 5887188p = gross 6029484p - refunds 0p - fees 120590p - tax 21706p (recomputed from finance-policy-v13 rate card at 200bps + 1800bps GST) - holds 0p; observed 5887188p; difference 0p; tolerance 5000p"
       },
       {
         "id": "recorded_fees_match_rate_card",
         "pillar": "verify",
         "status": "pass",
-        "detail": "payment-level fee columns agree with the finance-policy-v12 rate card to the paisa"
+        "detail": "payment-level fee columns agree with the finance-policy-v13 rate card to the paisa"
       }
     ],
     "evidence": [
@@ -4394,6 +4412,7 @@
     "ground_truth": "FAILED/FEE_MISMATCH",
     "agent_claim": "RECONCILED",
     "agent_reason_ignored_by_verifier": "Settlement matches the bank credit once fees and GST are accounted for. Nothing outstanding.",
+    "agent_confidence_ignored_by_verifier": 0.98,
     "avos_verdict": "FAILED",
     "reason_code": "FEE_MISMATCH",
     "correct": true,
@@ -4402,9 +4421,9 @@
     "difference_paise": 7500,
     "fee_delta_paise": 7500,
     "tolerance_paise": 5000,
-    "policy_version": "finance-policy-v12",
-    "recorded_policy_version": "finance-policy-v12",
-    "decision_policy_version": "finance-policy-v12",
+    "policy_version": "finance-policy-v13",
+    "recorded_policy_version": "finance-policy-v13",
+    "decision_policy_version": "finance-policy-v13",
     "event_time": "2026-08-19T14:00:00Z",
     "decision_time": "2026-08-20T14:00:00Z",
     "pack_hash": "faee6c685c25c3c470fd797d5d9ddb82738ffacb0a420e2ef1ca8b60b718d764",
@@ -4432,13 +4451,13 @@
         "id": "policy_in_force",
         "pillar": "guard",
         "status": "pass",
-        "detail": "finance-policy-v12 in force as of 2026-08-20T14:00:00Z (effective 2026-08-12T09:15:00Z)"
+        "detail": "finance-policy-v13 in force as of 2026-08-20T14:00:00Z (effective 2026-08-12T09:15:00Z)"
       },
       {
         "id": "policy_epoch_matches_decision",
         "pillar": "guard",
         "status": "pass",
-        "detail": "pack stamped finance-policy-v12, which is the version in force at decision_time 2026-08-20T14:00:00Z"
+        "detail": "pack stamped finance-policy-v13, which is the version in force at decision_time 2026-08-20T14:00:00Z"
       },
       {
         "id": "evidence_complete",
@@ -4492,7 +4511,7 @@
         "id": "closure_permitted_by_policy",
         "pillar": "guard",
         "status": "pass",
-        "detail": "status 'processed' is closeable under finance-policy-v12"
+        "detail": "status 'processed' is closeable under finance-policy-v13"
       },
       {
         "id": "temporal_consistency",
@@ -4504,13 +4523,13 @@
         "id": "arithmetic_reconciles",
         "pillar": "verify",
         "status": "fail",
-        "detail": "expected 8770936p = gross 8982934p - refunds 0p - fees 179659p - tax 32339p (recomputed from finance-policy-v12 rate card at 200bps + 1800bps GST) - holds 0p; observed 8763436p; difference 7500p; tolerance 5000p; the settlement declared 7500p more in fees than the rate card allows"
+        "detail": "expected 8770936p = gross 8982934p - refunds 0p - fees 179659p - tax 32339p (recomputed from finance-policy-v13 rate card at 200bps + 1800bps GST) - holds 0p; observed 8763436p; difference 7500p; tolerance 5000p; the settlement declared 7500p more in fees than the rate card allows"
       },
       {
         "id": "recorded_fees_match_rate_card",
         "pillar": "verify",
         "status": "pass",
-        "detail": "payment-level fee columns agree with the finance-policy-v12 rate card to the paisa"
+        "detail": "payment-level fee columns agree with the finance-policy-v13 rate card to the paisa"
       }
     ],
     "evidence": [
@@ -4611,6 +4630,7 @@
     "ground_truth": "UNCERTAIN/STALE_POLICY",
     "agent_claim": "RECONCILED",
     "agent_reason_ignored_by_verifier": "All captured payments net down to the credited amount and the UTR traces to the bank statement.",
+    "agent_confidence_ignored_by_verifier": 0.86,
     "avos_verdict": "UNCERTAIN",
     "reason_code": "STALE_POLICY",
     "correct": true,
@@ -4619,9 +4639,9 @@
     "difference_paise": 0,
     "fee_delta_paise": 0,
     "tolerance_paise": 15000,
-    "policy_version": "finance-policy-v11",
-    "recorded_policy_version": "finance-policy-v12",
-    "decision_policy_version": "finance-policy-v11",
+    "policy_version": "finance-policy-v12",
+    "recorded_policy_version": "finance-policy-v13",
+    "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-07T06:52:00Z",
     "decision_time": "2026-08-07T17:52:00Z",
     "pack_hash": "09c42838398d58e08de821509e6f0b013a3d2eacc0032f3ecec175906b128f13",
@@ -4649,13 +4669,13 @@
         "id": "policy_in_force",
         "pillar": "guard",
         "status": "pass",
-        "detail": "finance-policy-v11 in force as of 2026-08-07T17:52:00Z (effective 2026-08-01T00:00:00Z)"
+        "detail": "finance-policy-v12 in force as of 2026-08-07T17:52:00Z (effective 2026-08-01T00:00:00Z)"
       },
       {
         "id": "policy_epoch_matches_decision",
         "pillar": "guard",
         "status": "fail",
-        "detail": "pack stamped finance-policy-v12 but finance-policy-v11 was in force at decision_time 2026-08-07T17:52:00Z; historical decisions are evaluated under the policy that existed when the decision occurred"
+        "detail": "pack stamped finance-policy-v13 but finance-policy-v12 was in force at decision_time 2026-08-07T17:52:00Z; historical decisions are evaluated under the policy that existed when the decision occurred"
       },
       {
         "id": "evidence_complete",
@@ -4709,7 +4729,7 @@
         "id": "closure_permitted_by_policy",
         "pillar": "guard",
         "status": "pass",
-        "detail": "status 'processed' is closeable under finance-policy-v11"
+        "detail": "status 'processed' is closeable under finance-policy-v12"
       },
       {
         "id": "temporal_consistency",
@@ -4721,13 +4741,13 @@
         "id": "arithmetic_reconciles",
         "pillar": "verify",
         "status": "pass",
-        "detail": "expected 6001278p = gross 6146330p - refunds 0p - fees 122926p - tax 22126p (recomputed from finance-policy-v11 rate card at 200bps + 1800bps GST) - holds 0p; observed 6001278p; difference 0p; tolerance 15000p"
+        "detail": "expected 6001278p = gross 6146330p - refunds 0p - fees 122926p - tax 22126p (recomputed from finance-policy-v12 rate card at 200bps + 1800bps GST) - holds 0p; observed 6001278p; difference 0p; tolerance 15000p"
       },
       {
         "id": "recorded_fees_match_rate_card",
         "pillar": "verify",
         "status": "pass",
-        "detail": "payment-level fee columns agree with the finance-policy-v11 rate card to the paisa"
+        "detail": "payment-level fee columns agree with the finance-policy-v12 rate card to the paisa"
       }
     ],
     "evidence": [
@@ -4817,6 +4837,7 @@
     "ground_truth": "FAILED/FEE_MISMATCH",
     "agent_claim": "RECONCILED",
     "agent_reason_ignored_by_verifier": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
+    "agent_confidence_ignored_by_verifier": 0.84,
     "avos_verdict": "FAILED",
     "reason_code": "FEE_MISMATCH",
     "correct": true,
@@ -4825,9 +4846,9 @@
     "difference_paise": 18000,
     "fee_delta_paise": 18000,
     "tolerance_paise": 5000,
-    "policy_version": "finance-policy-v12",
-    "recorded_policy_version": "finance-policy-v12",
-    "decision_policy_version": "finance-policy-v12",
+    "policy_version": "finance-policy-v13",
+    "recorded_policy_version": "finance-policy-v13",
+    "decision_policy_version": "finance-policy-v13",
     "event_time": "2026-08-21T18:40:00Z",
     "decision_time": "2026-08-22T08:40:00Z",
     "pack_hash": "f47134f14034057bfa30d3cdf22d7ee804cebc2793343e4f3700788729c63fcc",
@@ -4855,13 +4876,13 @@
         "id": "policy_in_force",
         "pillar": "guard",
         "status": "pass",
-        "detail": "finance-policy-v12 in force as of 2026-08-22T08:40:00Z (effective 2026-08-12T09:15:00Z)"
+        "detail": "finance-policy-v13 in force as of 2026-08-22T08:40:00Z (effective 2026-08-12T09:15:00Z)"
       },
       {
         "id": "policy_epoch_matches_decision",
         "pillar": "guard",
         "status": "pass",
-        "detail": "pack stamped finance-policy-v12, which is the version in force at decision_time 2026-08-22T08:40:00Z"
+        "detail": "pack stamped finance-policy-v13, which is the version in force at decision_time 2026-08-22T08:40:00Z"
       },
       {
         "id": "evidence_complete",
@@ -4915,7 +4936,7 @@
         "id": "closure_permitted_by_policy",
         "pillar": "guard",
         "status": "pass",
-        "detail": "status 'processed' is closeable under finance-policy-v12"
+        "detail": "status 'processed' is closeable under finance-policy-v13"
       },
       {
         "id": "temporal_consistency",
@@ -4927,13 +4948,13 @@
         "id": "arithmetic_reconciles",
         "pillar": "verify",
         "status": "fail",
-        "detail": "expected 6674529p = gross 6835857p - refunds 0p - fees 136718p - tax 24610p (recomputed from finance-policy-v12 rate card at 200bps + 1800bps GST) - holds 0p; observed 6656529p; difference 18000p; tolerance 5000p; the settlement declared 18000p more in fees than the rate card allows"
+        "detail": "expected 6674529p = gross 6835857p - refunds 0p - fees 136718p - tax 24610p (recomputed from finance-policy-v13 rate card at 200bps + 1800bps GST) - holds 0p; observed 6656529p; difference 18000p; tolerance 5000p; the settlement declared 18000p more in fees than the rate card allows"
       },
       {
         "id": "recorded_fees_match_rate_card",
         "pillar": "verify",
         "status": "pass",
-        "detail": "payment-level fee columns agree with the finance-policy-v12 rate card to the paisa"
+        "detail": "payment-level fee columns agree with the finance-policy-v13 rate card to the paisa"
       }
     ],
     "evidence": [
@@ -5023,6 +5044,7 @@
     "ground_truth": "FAILED/DUPLICATE_FILE",
     "agent_claim": "RECONCILED",
     "agent_reason_ignored_by_verifier": "Verified the UTR against the bank feed and the totals line up. Safe to close.",
+    "agent_confidence_ignored_by_verifier": 0.82,
     "avos_verdict": "FAILED",
     "reason_code": "DUPLICATE_FILE",
     "correct": true,
@@ -5031,9 +5053,9 @@
     "difference_paise": 0,
     "fee_delta_paise": 0,
     "tolerance_paise": 5000,
-    "policy_version": "finance-policy-v12",
-    "recorded_policy_version": "finance-policy-v12",
-    "decision_policy_version": "finance-policy-v12",
+    "policy_version": "finance-policy-v13",
+    "recorded_policy_version": "finance-policy-v13",
+    "decision_policy_version": "finance-policy-v13",
     "event_time": "2026-08-23T11:11:00Z",
     "decision_time": "2026-08-24T04:11:00Z",
     "pack_hash": "1dfe1fcba3706c9a1d416d78ed2f5bdceee40591c9a00cf9439c1f9c6d268a05",
@@ -5061,13 +5083,13 @@
         "id": "policy_in_force",
         "pillar": "guard",
         "status": "pass",
-        "detail": "finance-policy-v12 in force as of 2026-08-24T04:11:00Z (effective 2026-08-12T09:15:00Z)"
+        "detail": "finance-policy-v13 in force as of 2026-08-24T04:11:00Z (effective 2026-08-12T09:15:00Z)"
       },
       {
         "id": "policy_epoch_matches_decision",
         "pillar": "guard",
         "status": "pass",
-        "detail": "pack stamped finance-policy-v12, which is the version in force at decision_time 2026-08-24T04:11:00Z"
+        "detail": "pack stamped finance-policy-v13, which is the version in force at decision_time 2026-08-24T04:11:00Z"
       },
       {
         "id": "evidence_complete",
@@ -5121,7 +5143,7 @@
         "id": "closure_permitted_by_policy",
         "pillar": "guard",
         "status": "pass",
-        "detail": "status 'processed' is closeable under finance-policy-v12"
+        "detail": "status 'processed' is closeable under finance-policy-v13"
       },
       {
         "id": "temporal_consistency",
@@ -5133,13 +5155,13 @@
         "id": "arithmetic_reconciles",
         "pillar": "verify",
         "status": "pass",
-        "detail": "expected 10689001p = gross 10947358p - refunds 0p - fees 218946p - tax 39411p (recomputed from finance-policy-v12 rate card at 200bps + 1800bps GST) - holds 0p; observed 10689001p; difference 0p; tolerance 5000p"
+        "detail": "expected 10689001p = gross 10947358p - refunds 0p - fees 218946p - tax 39411p (recomputed from finance-policy-v13 rate card at 200bps + 1800bps GST) - holds 0p; observed 10689001p; difference 0p; tolerance 5000p"
       },
       {
         "id": "recorded_fees_match_rate_card",
         "pillar": "verify",
         "status": "pass",
-        "detail": "payment-level fee columns agree with the finance-policy-v12 rate card to the paisa"
+        "detail": "payment-level fee columns agree with the finance-policy-v13 rate card to the paisa"
       }
     ],
     "evidence": [
@@ -5328,6 +5350,7 @@
     "ground_truth": "FAILED/DUPLICATE_EVENT",
     "agent_claim": "RECONCILED",
     "agent_reason_ignored_by_verifier": "Settlement matches the bank credit once fees and GST are accounted for. Nothing outstanding.",
+    "agent_confidence_ignored_by_verifier": 0.8,
     "avos_verdict": "FAILED",
     "reason_code": "DUPLICATE_EVENT",
     "correct": true,
@@ -5336,9 +5359,9 @@
     "difference_paise": 0,
     "fee_delta_paise": 0,
     "tolerance_paise": 5000,
-    "policy_version": "finance-policy-v12",
-    "recorded_policy_version": "finance-policy-v12",
-    "decision_policy_version": "finance-policy-v12",
+    "policy_version": "finance-policy-v13",
+    "recorded_policy_version": "finance-policy-v13",
+    "decision_policy_version": "finance-policy-v13",
     "event_time": "2026-08-24T05:26:00Z",
     "decision_time": "2026-08-24T16:26:00Z",
     "pack_hash": "cab737c6af4671c72f8faebad89c5f461f61d9804edecfe4242eeeb1e73fd029",
@@ -5366,13 +5389,13 @@
         "id": "policy_in_force",
         "pillar": "guard",
         "status": "pass",
-        "detail": "finance-policy-v12 in force as of 2026-08-24T16:26:00Z (effective 2026-08-12T09:15:00Z)"
+        "detail": "finance-policy-v13 in force as of 2026-08-24T16:26:00Z (effective 2026-08-12T09:15:00Z)"
       },
       {
         "id": "policy_epoch_matches_decision",
         "pillar": "guard",
         "status": "pass",
-        "detail": "pack stamped finance-policy-v12, which is the version in force at decision_time 2026-08-24T16:26:00Z"
+        "detail": "pack stamped finance-policy-v13, which is the version in force at decision_time 2026-08-24T16:26:00Z"
       },
       {
         "id": "evidence_complete",
@@ -5426,7 +5449,7 @@
         "id": "closure_permitted_by_policy",
         "pillar": "guard",
         "status": "pass",
-        "detail": "status 'processed' is closeable under finance-policy-v12"
+        "detail": "status 'processed' is closeable under finance-policy-v13"
       },
       {
         "id": "temporal_consistency",
@@ -5438,13 +5461,13 @@
         "id": "arithmetic_reconciles",
         "pillar": "verify",
         "status": "pass",
-        "detail": "expected 5429099p = gross 5560322p - refunds 0p - fees 111207p - tax 20016p (recomputed from finance-policy-v12 rate card at 200bps + 1800bps GST) - holds 0p; observed 5429099p; difference 0p; tolerance 5000p"
+        "detail": "expected 5429099p = gross 5560322p - refunds 0p - fees 111207p - tax 20016p (recomputed from finance-policy-v13 rate card at 200bps + 1800bps GST) - holds 0p; observed 5429099p; difference 0p; tolerance 5000p"
       },
       {
         "id": "recorded_fees_match_rate_card",
         "pillar": "verify",
         "status": "pass",
-        "detail": "payment-level fee columns agree with the finance-policy-v12 rate card to the paisa"
+        "detail": "payment-level fee columns agree with the finance-policy-v13 rate card to the paisa"
       }
     ],
     "evidence": [
@@ -5545,6 +5568,7 @@
     "ground_truth": "FAILED/FEE_MISMATCH",
     "agent_claim": "RECONCILED",
     "agent_reason_ignored_by_verifier": "Fees were adjusted at settlement, so the small variance against gross is expected. Reconciled.",
+    "agent_confidence_ignored_by_verifier": 0.78,
     "avos_verdict": "FAILED",
     "reason_code": "FEE_MISMATCH",
     "correct": true,
@@ -5553,9 +5577,9 @@
     "difference_paise": 7500,
     "fee_delta_paise": 7500,
     "tolerance_paise": 5000,
-    "policy_version": "finance-policy-v12",
-    "recorded_policy_version": "finance-policy-v12",
-    "decision_policy_version": "finance-policy-v12",
+    "policy_version": "finance-policy-v13",
+    "recorded_policy_version": "finance-policy-v13",
+    "decision_policy_version": "finance-policy-v13",
     "event_time": "2026-08-24T14:58:00Z",
     "decision_time": "2026-08-25T18:58:00Z",
     "pack_hash": "4d18ccc84841145a4bf0a7c7fd96f5364aa600906eadbcb32c848101eabea679",
@@ -5583,13 +5607,13 @@
         "id": "policy_in_force",
         "pillar": "guard",
         "status": "pass",
-        "detail": "finance-policy-v12 in force as of 2026-08-25T18:58:00Z (effective 2026-08-12T09:15:00Z)"
+        "detail": "finance-policy-v13 in force as of 2026-08-25T18:58:00Z (effective 2026-08-12T09:15:00Z)"
       },
       {
         "id": "policy_epoch_matches_decision",
         "pillar": "guard",
         "status": "pass",
-        "detail": "pack stamped finance-policy-v12, which is the version in force at decision_time 2026-08-25T18:58:00Z"
+        "detail": "pack stamped finance-policy-v13, which is the version in force at decision_time 2026-08-25T18:58:00Z"
       },
       {
         "id": "evidence_complete",
@@ -5643,7 +5667,7 @@
         "id": "closure_permitted_by_policy",
         "pillar": "guard",
         "status": "pass",
-        "detail": "status 'processed' is closeable under finance-policy-v12"
+        "detail": "status 'processed' is closeable under finance-policy-v13"
       },
       {
         "id": "temporal_consistency",
@@ -5655,13 +5679,13 @@
         "id": "arithmetic_reconciles",
         "pillar": "verify",
         "status": "fail",
-        "detail": "expected 9205445p = gross 9427946p - refunds 0p - fees 188560p - tax 33941p (recomputed from finance-policy-v12 rate card at 200bps + 1800bps GST) - holds 0p; observed 9197945p; difference 7500p; tolerance 5000p; the settlement declared 7500p more in fees than the rate card allows"
+        "detail": "expected 9205445p = gross 9427946p - refunds 0p - fees 188560p - tax 33941p (recomputed from finance-policy-v13 rate card at 200bps + 1800bps GST) - holds 0p; observed 9197945p; difference 7500p; tolerance 5000p; the settlement declared 7500p more in fees than the rate card allows"
       },
       {
         "id": "recorded_fees_match_rate_card",
         "pillar": "verify",
         "status": "pass",
-        "detail": "payment-level fee columns agree with the finance-policy-v12 rate card to the paisa"
+        "detail": "payment-level fee columns agree with the finance-policy-v13 rate card to the paisa"
       }
     ],
     "evidence": [
@@ -5817,6 +5841,7 @@
     "ground_truth": "FAILED/DUPLICATE_FILE",
     "agent_claim": "RECONCILED",
     "agent_reason_ignored_by_verifier": "All captured payments net down to the credited amount and the UTR traces to the bank statement.",
+    "agent_confidence_ignored_by_verifier": 0.76,
     "avos_verdict": "FAILED",
     "reason_code": "DUPLICATE_FILE",
     "correct": true,
@@ -5825,9 +5850,9 @@
     "difference_paise": 0,
     "fee_delta_paise": 0,
     "tolerance_paise": 15000,
-    "policy_version": "finance-policy-v11",
-    "recorded_policy_version": "finance-policy-v11",
-    "decision_policy_version": "finance-policy-v11",
+    "policy_version": "finance-policy-v12",
+    "recorded_policy_version": "finance-policy-v12",
+    "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-03T05:56:00Z",
     "decision_time": "2026-08-04T02:56:00Z",
     "pack_hash": "f8bfc49a3389ca9b1a27959bd27eed4b48445b8c7c5220aa7a447f2e238aae9a",
@@ -5855,13 +5880,13 @@
         "id": "policy_in_force",
         "pillar": "guard",
         "status": "pass",
-        "detail": "finance-policy-v11 in force as of 2026-08-04T02:56:00Z (effective 2026-08-01T00:00:00Z)"
+        "detail": "finance-policy-v12 in force as of 2026-08-04T02:56:00Z (effective 2026-08-01T00:00:00Z)"
       },
       {
         "id": "policy_epoch_matches_decision",
         "pillar": "guard",
         "status": "pass",
-        "detail": "pack stamped finance-policy-v11, which is the version in force at decision_time 2026-08-04T02:56:00Z"
+        "detail": "pack stamped finance-policy-v12, which is the version in force at decision_time 2026-08-04T02:56:00Z"
       },
       {
         "id": "evidence_complete",
@@ -5915,7 +5940,7 @@
         "id": "closure_permitted_by_policy",
         "pillar": "guard",
         "status": "pass",
-        "detail": "status 'processed' is closeable under finance-policy-v11"
+        "detail": "status 'processed' is closeable under finance-policy-v12"
       },
       {
         "id": "temporal_consistency",
@@ -5927,13 +5952,13 @@
         "id": "arithmetic_reconciles",
         "pillar": "verify",
         "status": "pass",
-        "detail": "expected 5600438p = gross 5735805p - refunds 0p - fees 114717p - tax 20650p (recomputed from finance-policy-v11 rate card at 200bps + 1800bps GST) - holds 0p; observed 5600438p; difference 0p; tolerance 15000p"
+        "detail": "expected 5600438p = gross 5735805p - refunds 0p - fees 114717p - tax 20650p (recomputed from finance-policy-v12 rate card at 200bps + 1800bps GST) - holds 0p; observed 5600438p; difference 0p; tolerance 15000p"
       },
       {
         "id": "recorded_fees_match_rate_card",
         "pillar": "verify",
         "status": "pass",
-        "detail": "payment-level fee columns agree with the finance-policy-v11 rate card to the paisa"
+        "detail": "payment-level fee columns agree with the finance-policy-v12 rate card to the paisa"
       }
     ],
     "evidence": [
@@ -6023,6 +6048,7 @@
     "ground_truth": "FAILED/DUPLICATE_FILE",
     "agent_claim": "RECONCILED",
     "agent_reason_ignored_by_verifier": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
+    "agent_confidence_ignored_by_verifier": 0.74,
     "avos_verdict": "FAILED",
     "reason_code": "DUPLICATE_FILE",
     "correct": true,
@@ -6031,9 +6057,9 @@
     "difference_paise": 0,
     "fee_delta_paise": 0,
     "tolerance_paise": 15000,
-    "policy_version": "finance-policy-v11",
-    "recorded_policy_version": "finance-policy-v11",
-    "decision_policy_version": "finance-policy-v11",
+    "policy_version": "finance-policy-v12",
+    "recorded_policy_version": "finance-policy-v12",
+    "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-04T19:37:00Z",
     "decision_time": "2026-08-05T11:37:00Z",
     "pack_hash": "9f52c438b223228422314a729f4e6c44b6706f547b32e68b64a642180750f7b9",
@@ -6061,13 +6087,13 @@
         "id": "policy_in_force",
         "pillar": "guard",
         "status": "pass",
-        "detail": "finance-policy-v11 in force as of 2026-08-05T11:37:00Z (effective 2026-08-01T00:00:00Z)"
+        "detail": "finance-policy-v12 in force as of 2026-08-05T11:37:00Z (effective 2026-08-01T00:00:00Z)"
       },
       {
         "id": "policy_epoch_matches_decision",
         "pillar": "guard",
         "status": "pass",
-        "detail": "pack stamped finance-policy-v11, which is the version in force at decision_time 2026-08-05T11:37:00Z"
+        "detail": "pack stamped finance-policy-v12, which is the version in force at decision_time 2026-08-05T11:37:00Z"
       },
       {
         "id": "evidence_complete",
@@ -6121,7 +6147,7 @@
         "id": "closure_permitted_by_policy",
         "pillar": "guard",
         "status": "pass",
-        "detail": "status 'processed' is closeable under finance-policy-v11"
+        "detail": "status 'processed' is closeable under finance-policy-v12"
       },
       {
         "id": "temporal_consistency",
@@ -6133,13 +6159,13 @@
         "id": "arithmetic_reconciles",
         "pillar": "verify",
         "status": "pass",
-        "detail": "expected 6050798p = gross 6197050p - refunds 0p - fees 123942p - tax 22310p (recomputed from finance-policy-v11 rate card at 200bps + 1800bps GST) - holds 0p; observed 6050798p; difference 0p; tolerance 15000p"
+        "detail": "expected 6050798p = gross 6197050p - refunds 0p - fees 123942p - tax 22310p (recomputed from finance-policy-v12 rate card at 200bps + 1800bps GST) - holds 0p; observed 6050798p; difference 0p; tolerance 15000p"
       },
       {
         "id": "recorded_fees_match_rate_card",
         "pillar": "verify",
         "status": "pass",
-        "detail": "payment-level fee columns agree with the finance-policy-v11 rate card to the paisa"
+        "detail": "payment-level fee columns agree with the finance-policy-v12 rate card to the paisa"
       }
     ],
     "evidence": [
@@ -6262,6 +6288,7 @@
     "ground_truth": "UNCERTAIN/MISSING_EVIDENCE",
     "agent_claim": "RECONCILED",
     "agent_reason_ignored_by_verifier": "Verified the UTR against the bank feed and the totals line up. Safe to close.",
+    "agent_confidence_ignored_by_verifier": 0.72,
     "avos_verdict": "UNCERTAIN",
     "reason_code": "MISSING_EVIDENCE",
     "correct": true,
@@ -6270,9 +6297,9 @@
     "difference_paise": null,
     "fee_delta_paise": null,
     "tolerance_paise": 15000,
-    "policy_version": "finance-policy-v11",
-    "recorded_policy_version": "finance-policy-v11",
-    "decision_policy_version": "finance-policy-v11",
+    "policy_version": "finance-policy-v12",
+    "recorded_policy_version": "finance-policy-v12",
+    "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-05T07:13:00Z",
     "decision_time": "2026-08-05T23:13:00Z",
     "pack_hash": "6347f10c6bf9e695ae35b45a1030d17afcb142d6596508ac24656fa66b61fe87",
@@ -6300,13 +6327,13 @@
         "id": "policy_in_force",
         "pillar": "guard",
         "status": "pass",
-        "detail": "finance-policy-v11 in force as of 2026-08-05T23:13:00Z (effective 2026-08-01T00:00:00Z)"
+        "detail": "finance-policy-v12 in force as of 2026-08-05T23:13:00Z (effective 2026-08-01T00:00:00Z)"
       },
       {
         "id": "policy_epoch_matches_decision",
         "pillar": "guard",
         "status": "pass",
-        "detail": "pack stamped finance-policy-v11, which is the version in force at decision_time 2026-08-05T23:13:00Z"
+        "detail": "pack stamped finance-policy-v12, which is the version in force at decision_time 2026-08-05T23:13:00Z"
       },
       {
         "id": "evidence_complete",
@@ -6360,7 +6387,7 @@
         "id": "closure_permitted_by_policy",
         "pillar": "guard",
         "status": "pass",
-        "detail": "status 'processed' is closeable under finance-policy-v11"
+        "detail": "status 'processed' is closeable under finance-policy-v12"
       },
       {
         "id": "temporal_consistency",
@@ -6462,6 +6489,7 @@
     "ground_truth": "FAILED/DUPLICATE_EVENT",
     "agent_claim": "RECONCILED",
     "agent_reason_ignored_by_verifier": "Settlement matches the bank credit once fees and GST are accounted for. Nothing outstanding.",
+    "agent_confidence_ignored_by_verifier": 0.97,
     "avos_verdict": "FAILED",
     "reason_code": "DUPLICATE_EVENT",
     "correct": true,
@@ -6470,9 +6498,9 @@
     "difference_paise": 0,
     "fee_delta_paise": 0,
     "tolerance_paise": 15000,
-    "policy_version": "finance-policy-v11",
-    "recorded_policy_version": "finance-policy-v11",
-    "decision_policy_version": "finance-policy-v11",
+    "policy_version": "finance-policy-v12",
+    "recorded_policy_version": "finance-policy-v12",
+    "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-06T21:10:00Z",
     "decision_time": "2026-08-07T16:10:00Z",
     "pack_hash": "f048f57cf6d9a8cee9edb982b497ab4215bb8f9c88f4cfc0203effd818903f52",
@@ -6500,13 +6528,13 @@
         "id": "policy_in_force",
         "pillar": "guard",
         "status": "pass",
-        "detail": "finance-policy-v11 in force as of 2026-08-07T16:10:00Z (effective 2026-08-01T00:00:00Z)"
+        "detail": "finance-policy-v12 in force as of 2026-08-07T16:10:00Z (effective 2026-08-01T00:00:00Z)"
       },
       {
         "id": "policy_epoch_matches_decision",
         "pillar": "guard",
         "status": "pass",
-        "detail": "pack stamped finance-policy-v11, which is the version in force at decision_time 2026-08-07T16:10:00Z"
+        "detail": "pack stamped finance-policy-v12, which is the version in force at decision_time 2026-08-07T16:10:00Z"
       },
       {
         "id": "evidence_complete",
@@ -6560,7 +6588,7 @@
         "id": "closure_permitted_by_policy",
         "pillar": "guard",
         "status": "pass",
-        "detail": "status 'processed' is closeable under finance-policy-v11"
+        "detail": "status 'processed' is closeable under finance-policy-v12"
       },
       {
         "id": "temporal_consistency",
@@ -6572,13 +6600,13 @@
         "id": "arithmetic_reconciles",
         "pillar": "verify",
         "status": "pass",
-        "detail": "expected 9763596p = gross 9999586p - refunds 0p - fees 199992p - tax 35998p (recomputed from finance-policy-v11 rate card at 200bps + 1800bps GST) - holds 0p; observed 9763596p; difference 0p; tolerance 15000p"
+        "detail": "expected 9763596p = gross 9999586p - refunds 0p - fees 199992p - tax 35998p (recomputed from finance-policy-v12 rate card at 200bps + 1800bps GST) - holds 0p; observed 9763596p; difference 0p; tolerance 15000p"
       },
       {
         "id": "recorded_fees_match_rate_card",
         "pillar": "verify",
         "status": "pass",
-        "detail": "payment-level fee columns agree with the finance-policy-v11 rate card to the paisa"
+        "detail": "payment-level fee columns agree with the finance-policy-v12 rate card to the paisa"
       }
     ],
     "evidence": [
@@ -6723,6 +6751,7 @@
     "ground_truth": "UNCERTAIN/STALE_POLICY",
     "agent_claim": "RECONCILED",
     "agent_reason_ignored_by_verifier": "Fees were adjusted at settlement, so the small variance against gross is expected. Reconciled.",
+    "agent_confidence_ignored_by_verifier": 0.95,
     "avos_verdict": "UNCERTAIN",
     "reason_code": "STALE_POLICY",
     "correct": true,
@@ -6731,9 +6760,9 @@
     "difference_paise": 0,
     "fee_delta_paise": 0,
     "tolerance_paise": 15000,
-    "policy_version": "finance-policy-v11",
-    "recorded_policy_version": "finance-policy-v12",
-    "decision_policy_version": "finance-policy-v11",
+    "policy_version": "finance-policy-v12",
+    "recorded_policy_version": "finance-policy-v13",
+    "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-02T01:16:00Z",
     "decision_time": "2026-08-03T00:16:00Z",
     "pack_hash": "4944322e6316cbd2aacfd4ec084846cee6e5c2ad86318a4c63fcc777f4f03f0e",
@@ -6761,13 +6790,13 @@
         "id": "policy_in_force",
         "pillar": "guard",
         "status": "pass",
-        "detail": "finance-policy-v11 in force as of 2026-08-03T00:16:00Z (effective 2026-08-01T00:00:00Z)"
+        "detail": "finance-policy-v12 in force as of 2026-08-03T00:16:00Z (effective 2026-08-01T00:00:00Z)"
       },
       {
         "id": "policy_epoch_matches_decision",
         "pillar": "guard",
         "status": "fail",
-        "detail": "pack stamped finance-policy-v12 but finance-policy-v11 was in force at decision_time 2026-08-03T00:16:00Z; historical decisions are evaluated under the policy that existed when the decision occurred"
+        "detail": "pack stamped finance-policy-v13 but finance-policy-v12 was in force at decision_time 2026-08-03T00:16:00Z; historical decisions are evaluated under the policy that existed when the decision occurred"
       },
       {
         "id": "evidence_complete",
@@ -6821,7 +6850,7 @@
         "id": "closure_permitted_by_policy",
         "pillar": "guard",
         "status": "pass",
-        "detail": "status 'processed' is closeable under finance-policy-v11"
+        "detail": "status 'processed' is closeable under finance-policy-v12"
       },
       {
         "id": "temporal_consistency",
@@ -6833,13 +6862,13 @@
         "id": "arithmetic_reconciles",
         "pillar": "verify",
         "status": "pass",
-        "detail": "expected 5297575p = gross 5425621p - refunds 0p - fees 108514p - tax 19532p (recomputed from finance-policy-v11 rate card at 200bps + 1800bps GST) - holds 0p; observed 5297575p; difference 0p; tolerance 15000p"
+        "detail": "expected 5297575p = gross 5425621p - refunds 0p - fees 108514p - tax 19532p (recomputed from finance-policy-v12 rate card at 200bps + 1800bps GST) - holds 0p; observed 5297575p; difference 0p; tolerance 15000p"
       },
       {
         "id": "recorded_fees_match_rate_card",
         "pillar": "verify",
         "status": "pass",
-        "detail": "payment-level fee columns agree with the finance-policy-v11 rate card to the paisa"
+        "detail": "payment-level fee columns agree with the finance-policy-v12 rate card to the paisa"
       }
     ],
     "evidence": [
@@ -6929,6 +6958,7 @@
     "ground_truth": "UNCERTAIN/STALE_POLICY",
     "agent_claim": "RECONCILED",
     "agent_reason_ignored_by_verifier": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
+    "agent_confidence_ignored_by_verifier": 0.78,
     "avos_verdict": "UNCERTAIN",
     "reason_code": "STALE_POLICY",
     "correct": true,
@@ -6937,9 +6967,9 @@
     "difference_paise": 0,
     "fee_delta_paise": 0,
     "tolerance_paise": 15000,
-    "policy_version": "finance-policy-v11",
-    "recorded_policy_version": "finance-policy-v12",
-    "decision_policy_version": "finance-policy-v11",
+    "policy_version": "finance-policy-v12",
+    "recorded_policy_version": "finance-policy-v13",
+    "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-03T16:08:00Z",
     "decision_time": "2026-08-04T16:08:00Z",
     "pack_hash": "8cf05bd9804101eb30cc7c54d2c11f6dfc8aa7221d07c7bd4d2ebaee7aa4e5fb",
@@ -6967,13 +6997,13 @@
         "id": "policy_in_force",
         "pillar": "guard",
         "status": "pass",
-        "detail": "finance-policy-v11 in force as of 2026-08-04T16:08:00Z (effective 2026-08-01T00:00:00Z)"
+        "detail": "finance-policy-v12 in force as of 2026-08-04T16:08:00Z (effective 2026-08-01T00:00:00Z)"
       },
       {
         "id": "policy_epoch_matches_decision",
         "pillar": "guard",
         "status": "fail",
-        "detail": "pack stamped finance-policy-v12 but finance-policy-v11 was in force at decision_time 2026-08-04T16:08:00Z; historical decisions are evaluated under the policy that existed when the decision occurred"
+        "detail": "pack stamped finance-policy-v13 but finance-policy-v12 was in force at decision_time 2026-08-04T16:08:00Z; historical decisions are evaluated under the policy that existed when the decision occurred"
       },
       {
         "id": "evidence_complete",
@@ -7027,7 +7057,7 @@
         "id": "closure_permitted_by_policy",
         "pillar": "guard",
         "status": "pass",
-        "detail": "status 'processed' is closeable under finance-policy-v11"
+        "detail": "status 'processed' is closeable under finance-policy-v12"
       },
       {
         "id": "temporal_consistency",
@@ -7039,13 +7069,13 @@
         "id": "arithmetic_reconciles",
         "pillar": "verify",
         "status": "pass",
-        "detail": "expected 12052668p = gross 12343986p - refunds 0p - fees 246880p - tax 44438p (recomputed from finance-policy-v11 rate card at 200bps + 1800bps GST) - holds 0p; observed 12052668p; difference 0p; tolerance 15000p"
+        "detail": "expected 12052668p = gross 12343986p - refunds 0p - fees 246880p - tax 44438p (recomputed from finance-policy-v12 rate card at 200bps + 1800bps GST) - holds 0p; observed 12052668p; difference 0p; tolerance 15000p"
       },
       {
         "id": "recorded_fees_match_rate_card",
         "pillar": "verify",
         "status": "pass",
-        "detail": "payment-level fee columns agree with the finance-policy-v11 rate card to the paisa"
+        "detail": "payment-level fee columns agree with the finance-policy-v12 rate card to the paisa"
       }
     ],
     "evidence": [

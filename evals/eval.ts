@@ -73,6 +73,7 @@ async function recordDecisions(): Promise<{ log: DecisionLog; agentElapsedMs: nu
           proposed_status: proposal.claim.proposed_status,
           evidence_ids: proposal.claim.evidence_ids,
           agent_reason: proposal.agent_reason,
+          confidence: proposal.confidence,
           agent_version: proposal.agent_version,
           model_version: proposal.model_version,
           used_mock: proposal.used_mock,
@@ -122,6 +123,7 @@ function writeRaw(suite: Suite, decisions: Decision[]): void {
       ground_truth: gt ? `${gt.expected_verdict}${gt.expected_reason ? `/${gt.expected_reason}` : ''}` : '',
       agent_claim: d.proposal.claim.proposed_status,
       agent_reason_ignored_by_verifier: d.proposal.agent_reason,
+      agent_confidence_ignored_by_verifier: d.proposal.confidence,
       avos_verdict: d.result.verdict,
       reason_code: d.result.reason_code,
       correct: gt ? d.result.verdict === gt.expected_verdict : null,
@@ -172,6 +174,10 @@ function metricsTable(m: SuiteMetrics): string {
     `| Abstention accuracy | ${formatPct(m.abstention_accuracy)} (${m.abstention_n} cases) |`,
     `| Reason-code accuracy | ${formatPct(m.reason_code_accuracy)} (${m.reason_code_n} cases) |`,
     `| Throughput (verify only) | ${m.throughput_records_per_sec.toLocaleString()} records/sec |`,
+    `| Agent confidence — accepted closures | ${m.mean_confidence_accepted.toFixed(3)} |`,
+    `| Agent confidence — refused closures | ${m.mean_confidence_refused.toFixed(3)} |`,
+    `| **Confidence discrimination** | **${m.confidence_discrimination >= 0 ? '+' : ''}${m.confidence_discrimination.toFixed(3)}** |`,
+    `| High-confidence refusals (≥${m.confidence_threshold}) | ${m.high_confidence_refusals} |`,
     `| Verified value | ${formatPaise(m.verified_value_paise)} of ${formatPaise(m.verifiable_value_paise)} verifiable |`,
     `| Total batch value | ${formatPaise(m.total_value_paise)} |`,
     `| Verdicts | VERIFIED ${m.by_verdict.VERIFIED} · UNCERTAIN ${m.by_verdict.UNCERTAIN} · FAILED ${m.by_verdict.FAILED} |`,
@@ -452,6 +458,10 @@ async function main(): Promise<void> {
   console.log(`  abstention accuracy         ${formatPct(m.abstention_accuracy)} (${m.abstention_n} cases)`)
   console.log(`  reason-code accuracy        ${formatPct(m.reason_code_accuracy)}`)
   console.log(`  throughput (verify only)    ${m.throughput_records_per_sec.toLocaleString()} rec/sec`)
+  console.log(`  agent confidence accepted   ${m.mean_confidence_accepted.toFixed(3)}`)
+  console.log(`  agent confidence refused    ${m.mean_confidence_refused.toFixed(3)}`)
+  console.log(`  confidence discrimination   ${m.confidence_discrimination >= 0 ? '+' : ''}${m.confidence_discrimination.toFixed(3)}`)
+  console.log(`  high-confidence refusals    ${m.high_confidence_refusals} (>= ${m.confidence_threshold})`)
   console.log(`  verdicts                    VERIFIED ${m.by_verdict.VERIFIED} · UNCERTAIN ${m.by_verdict.UNCERTAIN} · FAILED ${m.by_verdict.FAILED}`)
 
   if (m.mismatches.length > 0) {

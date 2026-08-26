@@ -39,6 +39,11 @@ const ClaimSchema = z.object({
   agent_reason: z
     .string()
     .describe('One or two sentences explaining your reasoning, for a human reader.'),
+  confidence: z
+    .number()
+    .min(0)
+    .max(1)
+    .describe('How confident you are in this proposal, 0 to 1.'),
 })
 
 const SYSTEM = [
@@ -113,6 +118,20 @@ function stableIndex(key: string, n: number): number {
  * arithmetic. That is the point. AVOS's answer to all five is the same — it
  * does not read them.
  */
+/**
+ * Mock confidence: deterministic per settlement, spread across a realistic band,
+ * and — importantly — uncorrelated with whether the claim is actually right.
+ *
+ * That is not a shortcut. It is the honest model of a self-reported score. A
+ * real agent's confidence reflects how fluent its own reasoning felt, which is a
+ * fact about the agent and not about the settlement. The eval measures the
+ * resulting discrimination and reports it at whatever it turns out to be.
+ */
+function mockConfidence(settlementId: string): number {
+  const spread = stableIndex(`${settlementId}:conf`, 27)
+  return Math.round((0.72 + spread * 0.01) * 100) / 100
+}
+
 const MOCK_RATIONALES = [
   'Settlement matches the bank credit once fees and GST are accounted for. Nothing outstanding.',
   'Fees were adjusted at settlement, so the small variance against gross is expected. Reconciled.',
@@ -133,9 +152,19 @@ export async function proposeClaim(pack: EvidencePack): Promise<AgentProposal> {
       proposed_status: 'RECONCILED' as ProposedStatus,
       evidence_ids: allIds,
       agent_reason: MOCK_RATIONALES[stableIndex(pack.settlement_id, MOCK_RATIONALES.length)],
+      confidence: mockConfidence(pack.settlement_id),
     }),
   })
 
+  // ---------------------------------------------------------------------
+  // THE BOUNDARY.
+  //
+  // The model returned four fields. Three of them are a claim; two of them are
+  // the model talking about itself. `claim` is built from the first group only,
+  // and it is the sole thing `verifyClaim` will ever see. `agent_reason` and
+  // `confidence` travel on the proposal, are rendered to a reviewer, and are
+  // scored by the eval — but neither has a field on `VerifierInput` to occupy.
+  // ---------------------------------------------------------------------
   return {
     claim: {
       settlement_id: pack.settlement_id,
@@ -146,6 +175,7 @@ export async function proposeClaim(pack: EvidencePack): Promise<AgentProposal> {
       evidence_ids: value.evidence_ids,
     },
     agent_reason: value.agent_reason,
+    confidence: Math.min(1, Math.max(0, value.confidence)),
     agent_version: AGENT_VERSION,
     model_version,
     used_mock,

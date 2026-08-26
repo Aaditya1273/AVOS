@@ -43,6 +43,7 @@ function toRow(d: Decision): CaseRow {
     policy_version: d.result.policy_version,
     decision_time: d.pack.decision_time,
     agent_claim: d.proposal.claim.proposed_status,
+    confidence: d.proposal.confidence,
     injection: detectInjection(d.pack).found,
   }
 }
@@ -105,7 +106,7 @@ export default function Page() {
 
         {/* --- measured results ---------------------------------------------- */}
         {m ? (
-          <div className="grid grid-cols-2 gap-5 px-6 py-5 sm:grid-cols-3 lg:grid-cols-6">
+          <div className="grid grid-cols-2 gap-5 px-6 py-5 sm:grid-cols-4 lg:grid-cols-7">
             <Stat
               label="False closure rate"
               value={formatPct(m.false_closure_rate)}
@@ -139,6 +140,12 @@ export default function Page() {
               label="Throughput"
               value={`${m.throughput_records_per_sec.toLocaleString()}/s`}
               hint="deterministic verify"
+            />
+            <Stat
+              label="Confidence signal"
+              value={`${m.confidence_discrimination >= 0 ? '+' : ''}${m.confidence_discrimination.toFixed(3)}`}
+              hint={`${m.high_confidence_refusals} high-confidence refusals`}
+              tone={Math.abs(m.confidence_discrimination) < 0.05 ? 'failed' : undefined}
             />
           </div>
         ) : (
@@ -209,6 +216,13 @@ export default function Page() {
             <li>
               <span className="text-foreground">UNCERTAIN is a result, not a failure.</span> An
               abstention costs a reviewer ten minutes. A wrong VERIFIED costs a reconciliation.
+            </li>
+            <li>
+              <span className="text-foreground">Agent confidence carries no signal.</span> Mean
+              self-reported confidence on the closures AVOS accepted is{' '}
+              {m ? m.mean_confidence_accepted.toFixed(3) : '—'}; on the ones it refused,{' '}
+              {m ? m.mean_confidence_refused.toFixed(3) : '—'}. A system routing on that score
+              would have been routing on noise — which is why closure is conditional on evidence.
             </li>
           </ul>
         </Card>

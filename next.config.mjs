@@ -1,9 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  // Produces a self-contained server bundle for the Docker image. Vercel ignores
-  // this and uses its own packaging, so both targets work from one config.
-  output: 'standalone',
+  // Standalone output is for the Docker image only. It is opt-in because
+  // `next start` refuses to serve a standalone build, so leaving it always-on
+  // breaks `npm start` locally for the sake of a target that sets its own flag.
+  // Vercel ignores this either way and uses its own packaging.
+  output: process.env.AVOS_STANDALONE === '1' ? 'standalone' : undefined,
   experimental: {
     // The CSV ledger and the eval output are read from disk at request time via
     // paths built from `process.cwd()`. Vercel's file tracer cannot follow a

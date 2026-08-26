@@ -1,9 +1,11 @@
 'use client'
 
-import { Badge, Card, Mono, Separator, Stat } from '@/components/ui/primitives'
+import { useState } from 'react'
+import * as Tabs from '@radix-ui/react-tabs'
+import { Badge, Card, Mono, Separator } from '@/components/ui/primitives'
 import { VerdictBadge, VERDICT_MEANING } from '@/components/verdict'
 import { EvidenceInspector } from '@/components/evidence-inspector'
-import { ReplayPanel } from '@/components/replay-panel'
+import { ReplayView } from '@/components/replay-view'
 import { QaPanel } from '@/components/qa-panel'
 import { formatDelta, formatPaise } from '@/lib/money'
 import { cn, fmtTime } from '@/lib/utils'
@@ -28,35 +30,44 @@ const PILLAR_LABEL: Record<Pillar, string> = {
   verify: 'Verify — does the money actually reconcile?',
 }
 
+const TABS = [
+  ['proof', 'Proof'],
+  ['evidence', 'Evidence'],
+  ['replay', 'Replay'],
+  ['ask', 'Ask'],
+] as const
+
 /**
  * The Proof Card.
  *
- * One card carries the entire argument: what an agent claimed, what AVOS
- * independently computed, the raw rows it computed from, the dated policy it
- * applied, and a button to prove the whole thing again.
+ * One card carries the whole argument: what an agent claimed and how sure it
+ * said it was, what AVOS independently computed, the raw rows it computed from,
+ * the dated policy it applied, and a control to prove the thing again under a
+ * different epoch.
  *
- * The layout makes one editorial choice worth naming. The agent's rationale sits
- * directly beside the verdict, struck through and labelled as excluded. It would
- * be tidier to omit it. Showing it is the point: a reviewer sees a fluent,
- * confident, entirely plausible sentence — and sees that the system reached its
- * conclusion without reading it.
+ * The editorial choice worth naming is the left column. The agent's rationale
+ * sits directly beside the verdict, struck through, next to a confidence score
+ * that the eval shows separates nothing. It would be tidier to omit both.
+ * Showing them is the product: a reviewer sees a fluent, specific, 0.94-confident
+ * justification, and sees that the system reached its conclusion without reading
+ * a word of it.
  */
 export function ProofCard({
   payload,
   policyPoints,
   className,
-  compact = false,
 }: {
   payload: DecisionPayload
   policyPoints: PolicyPoint[]
   className?: string
-  compact?: boolean
 }) {
   const { decision, narration, injection } = payload
   const { result, pack, proposal } = decision
+  const [tab, setTab] = useState<string>('proof')
 
   const agentSaysReconciled = proposal.claim.proposed_status === 'RECONCILED'
   const avosDisagrees = agentSaysReconciled && result.verdict !== 'VERIFIED'
+  const failedChecks = result.checks.filter((c) => c.status === 'fail').length
 
   const byPillar = (['guard', 'prove', 'verify'] as Pillar[]).map((p) => ({
     pillar: p,
@@ -65,65 +76,106 @@ export function ProofCard({
 
   return (
     <Card className={cn('overflow-hidden', className)}>
-      {/* --- header ------------------------------------------------------- */}
-      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border bg-muted/40 px-5 py-3">
+      {/* --- identity bar --------------------------------------------------- */}
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border bg-gradient-to-r from-muted/60 to-transparent px-5 py-3">
         <div className="flex items-baseline gap-3">
-          <span className="font-mono text-lg font-bold tracking-tight">
-            {result.settlement_id}
-          </span>
+          <h2 className="font-mono text-lg font-bold tracking-tight">{result.settlement_id}</h2>
           <span className="text-[12px] text-muted-foreground">{pack.merchant_id}</span>
+          <span className="tnum text-[12px] font-medium">
+            {formatPaise(decision.batch_value_paise)}
+          </span>
         </div>
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="flex flex-wrap items-center gap-1.5">
           <Badge variant="outline">{decision.case_id}</Badge>
           <Badge variant="outline">
             {decision.suite === 'batch_120' ? 'batch 120' : 'adversarial 30'}
           </Badge>
-          <Badge variant="outline">{formatPaise(decision.batch_value_paise)}</Badge>
-          {injection.found ? <Badge variant="uncertain">injection in evidence</Badge> : null}
+          {injection.found ? <Badge variant="uncertain">⚑ injection in evidence</Badge> : null}
         </div>
       </div>
 
-      {/* --- claim vs verdict --------------------------------------------- */}
-      <div className="grid gap-5 p-5 md:grid-cols-[1fr_auto_1fr]">
-        <div className="flex flex-col gap-2">
-          <span className="text-[10px] font-medium uppercase tracking-[0.09em] text-muted-foreground">
-            Agent claim
-          </span>
-          <span className="font-mono text-base font-semibold">
-            {proposal.claim.proposed_status}
-          </span>
-          <div className="rounded-md border border-dashed border-border bg-muted/30 p-2.5">
-            <div className="mb-1 text-[9.5px] font-semibold uppercase tracking-[0.09em] text-muted-foreground">
-              Not an input to the verdict
+      {/* --- claim vs verdict ------------------------------------------------ */}
+      <div className="grid gap-0 md:grid-cols-2">
+        <div className="flex flex-col gap-2.5 border-b border-border p-5 md:border-b-0 md:border-r">
+          <div className="flex items-center justify-between gap-2">
+            <span className="text-[10px] font-semibold uppercase tracking-[0.1em] text-muted-foreground">
+              Agent claim
+            </span>
+            <Badge variant="outline">{proposal.used_mock ? 'offline mock' : 'live model'}</Badge>
+          </div>
+
+          <div className="flex items-baseline gap-3">
+            <span className="font-mono text-xl font-bold">{proposal.claim.proposed_status}</span>
+            <span className="tnum text-[12px] text-muted-foreground">
+              confidence {proposal.confidence.toFixed(2)}
+            </span>
+          </div>
+
+          {/* confidence bar — deliberately styled as inert */}
+          <div className="h-1 w-full overflow-hidden rounded-full bg-muted">
+            <div
+              className="h-full rounded-full bg-muted-foreground/40"
+              style={{ width: `${Math.round(proposal.confidence * 100)}%` }}
+            />
+          </div>
+
+          <div className="rounded-md border border-dashed border-border bg-muted/25 p-3">
+            <div className="mb-1.5 text-[9.5px] font-semibold uppercase tracking-[0.1em] text-muted-foreground">
+              Severed at the boundary — not inputs to the verdict
             </div>
-            <p className="text-[12px] italic leading-relaxed text-muted-foreground line-through decoration-muted-foreground/50">
+            <p className="text-[12px] italic leading-relaxed text-muted-foreground line-through decoration-muted-foreground/40">
               &ldquo;{proposal.agent_reason}&rdquo;
             </p>
+            <p className="mt-1.5 text-[11px] leading-relaxed text-muted-foreground">
+              The rationale and the confidence score both travel on the proposal.
+              <code className="mx-1 font-mono">StructuredClaim</code> has three fields and neither
+              is one of them.
+            </p>
           </div>
-          <div className="flex flex-wrap gap-1.5 text-[10px] text-muted-foreground">
+
+          <div className="flex flex-wrap items-center gap-1.5 text-[10px] text-muted-foreground">
             <Mono>{proposal.agent_version}</Mono>
             <Mono>{proposal.model_version}</Mono>
-            <span className="self-center">{proposal.claim.evidence_ids.length} ids cited</span>
+            <span>{proposal.claim.evidence_ids.length} ids cited</span>
           </div>
         </div>
 
-        <div className="hidden items-center justify-center md:flex">
-          <div className="flex h-full flex-col items-center justify-center gap-1">
-            <div className="h-full w-px bg-border" />
+        <div className="flex flex-col gap-2.5 p-5">
+          <div className="flex items-center justify-between gap-2">
+            <span className="text-[10px] font-semibold uppercase tracking-[0.1em] text-muted-foreground">
+              AVOS verdict
+            </span>
+            <span className="text-[10px] text-muted-foreground">
+              {failedChecks > 0
+                ? `${failedChecks} of ${result.checks.length} checks failed`
+                : `${result.checks.length} checks`}
+            </span>
           </div>
-        </div>
 
-        <div className="flex flex-col gap-2">
-          <span className="text-[10px] font-medium uppercase tracking-[0.09em] text-muted-foreground">
-            AVOS verdict
-          </span>
           <VerdictBadge verdict={result.verdict} reason={result.reason_code} size="lg" />
+
           <p className="text-[11.5px] leading-relaxed text-muted-foreground">
             {VERDICT_MEANING[result.verdict]}
           </p>
+
           {avosDisagrees ? (
-            <div className="rounded-md border border-[hsl(var(--verdict-failed)/0.35)] bg-[hsl(var(--verdict-failed)/0.08)] px-2.5 py-1.5 text-[11.5px] font-medium text-[hsl(var(--verdict-failed))]">
-              The agent proposed closure. AVOS refused it.
+            <div className="rounded-md border border-[hsl(var(--verdict-failed)/0.35)] bg-[hsl(var(--verdict-failed)/0.08)] px-3 py-2 text-[12px] font-medium text-[hsl(var(--verdict-failed))]">
+              The agent proposed closure at {proposal.confidence.toFixed(2)} confidence. AVOS
+              refused it.
+            </div>
+          ) : null}
+
+          {result.reason_code ? (
+            <div className="mt-auto rounded-md border border-border bg-muted/25 p-3">
+              <div className="mb-1 flex flex-wrap items-center gap-1.5">
+                <span className="text-[9.5px] font-semibold uppercase tracking-[0.1em] text-muted-foreground">
+                  Exception note
+                </span>
+                <Badge variant="outline">AI · describes, never decides</Badge>
+                <Badge variant="default">{narration.suggested_owner.replace('_', ' ')}</Badge>
+              </div>
+              <p className="text-[12px] leading-relaxed text-foreground/90">{narration.summary}</p>
+              <p className="mt-1 text-[11.5px] text-muted-foreground">→ {narration.next_action}</p>
             </div>
           ) : null}
         </div>
@@ -131,46 +183,45 @@ export function ProofCard({
 
       <Separator />
 
-      {/* --- the arithmetic ----------------------------------------------- */}
-      <div className="grid grid-cols-2 gap-4 px-5 py-4 sm:grid-cols-4">
-        <Stat
-          label="Expected"
-          value={formatPaise(result.expected_paise)}
-          hint="gross − refunds − fees − tax − holds"
-        />
-        <Stat label="Observed" value={formatPaise(result.observed_paise)} hint="bank credit" />
-        <Stat
+      {/* --- the arithmetic --------------------------------------------------- */}
+      <div className="grid grid-cols-2 divide-x divide-border border-b border-border sm:grid-cols-5">
+        <Figure label="Expected" value={formatPaise(result.expected_paise)} hint="recomputed" />
+        <Figure label="Observed" value={formatPaise(result.observed_paise)} hint="bank credit" />
+        <Figure
           label="Difference"
           value={formatDelta(result.difference_paise)}
           hint={`tolerance ${formatPaise(result.tolerance_paise)}`}
           tone={
             result.difference_paise === null
-              ? 'neutral'
+              ? undefined
               : result.tolerance_paise !== null &&
                   Math.abs(result.difference_paise) <= result.tolerance_paise
-                ? 'verified'
-                : 'failed'
+                ? 'ok'
+                : 'bad'
           }
         />
-        <Stat
+        <Figure
+          label="Policy fee"
+          value={formatPaise(result.policy_fee_paise)}
+          hint="from rate card"
+        />
+        <Figure
           label="Fee delta"
           value={formatDelta(result.fee_delta_paise)}
-          hint="declared − payment-level"
-          tone={result.fee_delta_paise ? 'failed' : 'neutral'}
+          hint="declared − rate card"
+          tone={result.fee_delta_paise ? 'bad' : undefined}
         />
       </div>
 
-      <Separator />
-
-      {/* --- provenance ---------------------------------------------------- */}
-      <div className="grid gap-x-6 gap-y-3 px-5 py-4 text-[11.5px] sm:grid-cols-2 lg:grid-cols-3">
+      {/* --- provenance ------------------------------------------------------- */}
+      <div className="grid gap-x-6 gap-y-3 border-b border-border px-5 py-4 text-[11.5px] sm:grid-cols-2 lg:grid-cols-3">
         <Field label="Policy applied">
           <Mono>{result.policy_version}</Mono>
           <span className="ml-1.5 text-muted-foreground">
-            effective {fmtTime(result.policy_effective_at)}
+            tolerance {formatPaise(result.tolerance_paise)}
           </span>
         </Field>
-        <Field label="Policy stamped on pack">
+        <Field label="Stamped on pack">
           <Mono
             className={cn(
               pack.recorded_policy_version !== pack.decision_policy_version &&
@@ -181,7 +232,7 @@ export function ProofCard({
           </Mono>
           {pack.recorded_policy_version !== pack.decision_policy_version ? (
             <span className="ml-1.5 text-[hsl(var(--verdict-uncertain))]">
-              ≠ {pack.decision_policy_version} in force at decision
+              ≠ {pack.decision_policy_version} at decision
             </span>
           ) : (
             <span className="ml-1.5 text-muted-foreground">matches decision epoch</span>
@@ -189,7 +240,7 @@ export function ProofCard({
         </Field>
         <Field label="Verifier">
           <Mono>{result.verifier_version}</Mono>
-          <span className="ml-1.5 text-muted-foreground">no LLM on this path</span>
+          <span className="ml-1.5 text-muted-foreground">zero LLM imports</span>
         </Field>
         <Field label="Event time">{fmtTime(pack.event_time)}</Field>
         <Field label="Decision time">{fmtTime(pack.decision_time)}</Field>
@@ -198,77 +249,99 @@ export function ProofCard({
         </Field>
       </div>
 
-      {/* --- what to do about it ------------------------------------------- */}
-      {result.reason_code ? (
-        <>
-          <Separator />
-          <div className="px-5 py-4">
-            <div className="mb-1.5 flex items-center gap-2">
-              <span className="text-[10px] font-medium uppercase tracking-[0.09em] text-muted-foreground">
-                Exception note
-              </span>
-              <Badge variant="outline">AI · describes, never decides</Badge>
-              <Badge variant="default">{narration.suggested_owner.replace('_', ' ')}</Badge>
-            </div>
-            <p className="text-[12.5px] leading-relaxed text-foreground/90">{narration.summary}</p>
-            <p className="mt-1 text-[12px] text-muted-foreground">→ {narration.next_action}</p>
-          </div>
-        </>
-      ) : null}
+      {/* --- tabs -------------------------------------------------------------- */}
+      <Tabs.Root value={tab} onValueChange={setTab}>
+        <Tabs.List className="flex border-b border-border bg-muted/20">
+          {TABS.map(([value, label]) => (
+            <Tabs.Trigger
+              key={value}
+              value={value}
+              className={cn(
+                'relative px-4 py-2.5 text-[12px] font-medium text-muted-foreground transition-colors hover:text-foreground',
+                'data-[state=active]:text-foreground',
+                'data-[state=active]:after:absolute data-[state=active]:after:inset-x-0 data-[state=active]:after:-bottom-px data-[state=active]:after:h-0.5 data-[state=active]:after:bg-primary',
+              )}
+            >
+              {label}
+              {value === 'evidence' ? (
+                <span className="ml-1.5 text-[10px] text-muted-foreground">
+                  {pack.evidence.length}
+                </span>
+              ) : null}
+            </Tabs.Trigger>
+          ))}
+        </Tabs.List>
 
-      {!compact ? (
-        <>
-          <Separator />
-
-          {/* --- the full check ledger -------------------------------------- */}
-          <div className="px-5 py-4">
-            <h4 className="mb-3 text-xs font-semibold uppercase tracking-[0.09em] text-muted-foreground">
-              Check ledger
-            </h4>
-            <div className="flex flex-col gap-4">
-              {byPillar.map(({ pillar, checks }) => (
-                <div key={pillar}>
-                  <div className="mb-1.5 text-[11px] font-medium text-foreground/70">
-                    {PILLAR_LABEL[pillar]}
-                  </div>
-                  <div className="flex flex-col gap-1">
-                    {checks.map((c) => (
-                      <CheckRow key={c.id} check={c} />
-                    ))}
-                  </div>
+        <Tabs.Content value="proof" className="px-5 py-4 focus-visible:outline-none">
+          <div className="flex flex-col gap-4">
+            {byPillar.map(({ pillar, checks }) => (
+              <div key={pillar}>
+                <div className="mb-1.5 text-[11px] font-medium text-foreground/70">
+                  {PILLAR_LABEL[pillar]}
                 </div>
-              ))}
-            </div>
+                <div className="flex flex-col gap-0.5">
+                  {checks.map((c) => (
+                    <CheckRow key={c.id} check={c} />
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
+        </Tabs.Content>
 
-          <Separator />
+        <Tabs.Content value="evidence" className="px-5 py-4 focus-visible:outline-none">
+          <EvidenceInspector
+            pack={pack}
+            checks={result.checks}
+            citedIds={proposal.claim.evidence_ids}
+            injectionRows={injection.rows}
+          />
+        </Tabs.Content>
 
-          <div className="px-5 py-4">
-            <EvidenceInspector
-              pack={pack}
-              citedIds={proposal.claim.evidence_ids}
-              injectionRows={injection.rows}
-            />
-          </div>
+        <Tabs.Content value="replay" className="px-5 py-4 focus-visible:outline-none">
+          <ReplayView
+            caseId={decision.case_id}
+            decisionTime={pack.decision_time}
+            policyPoints={policyPoints}
+            current={result}
+          />
+        </Tabs.Content>
 
-          <Separator />
-
-          <div className="px-5 py-4">
-            <ReplayPanel
-              caseId={decision.case_id}
-              decisionTime={pack.decision_time}
-              policyPoints={policyPoints}
-            />
-          </div>
-
-          <Separator />
-
-          <div className="px-5 py-4">
-            <QaPanel caseId={decision.case_id} />
-          </div>
-        </>
-      ) : null}
+        <Tabs.Content value="ask" className="px-5 py-4 focus-visible:outline-none">
+          <QaPanel caseId={decision.case_id} />
+        </Tabs.Content>
+      </Tabs.Root>
     </Card>
+  )
+}
+
+function Figure({
+  label,
+  value,
+  hint,
+  tone,
+}: {
+  label: string
+  value: React.ReactNode
+  hint?: string
+  tone?: 'ok' | 'bad'
+}) {
+  return (
+    <div className="px-4 py-3">
+      <div className="text-[9.5px] font-medium uppercase tracking-[0.09em] text-muted-foreground">
+        {label}
+      </div>
+      <div
+        className={cn(
+          'tnum mt-0.5 text-[15px] font-semibold leading-tight',
+          tone === 'ok' && 'text-[hsl(var(--verdict-verified))]',
+          tone === 'bad' && 'text-[hsl(var(--verdict-failed))]',
+        )}
+      >
+        {value}
+      </div>
+      {hint ? <div className="mt-0.5 text-[10px] text-muted-foreground">{hint}</div> : null}
+    </div>
   )
 }
 
@@ -296,6 +369,7 @@ function CheckRow({ check }: { check: CheckResult }) {
       className={cn(
         'flex gap-2.5 rounded px-2 py-1.5 text-[11.5px]',
         check.status === 'fail' && 'bg-[hsl(var(--verdict-failed)/0.07)]',
+        check.status === 'skipped' && 'opacity-70',
       )}
     >
       <span className={cn('mt-px w-3 shrink-0 text-center font-bold', tone)}>{glyph}</span>

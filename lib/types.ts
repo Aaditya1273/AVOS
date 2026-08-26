@@ -56,6 +56,20 @@ export interface AgentProposal {
    * struck through, next to what AVOS computed. Never an input to a verdict.
    */
   agent_reason: string
+  /**
+   * QUARANTINED, and the more interesting of the two.
+   *
+   * The agent emits a self-reported 0–1 confidence alongside its claim. It is
+   * severed at the same boundary as the prose, for the reason the product is
+   * named after: closure is conditional on evidence, not on confidence. A score
+   * the claimant assigns to its own claim is not evidence about the claim.
+   *
+   * Keeping it — rather than dropping it — makes it measurable. `lib/metrics.ts`
+   * reports mean confidence on the closures AVOS accepted versus the ones it
+   * refused. If those two numbers are the same, the score carries no signal, and
+   * any system that routed on it was routing on noise.
+   */
+  confidence: number
   agent_version: string
   model_version: string
   used_mock: boolean

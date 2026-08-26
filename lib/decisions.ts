@@ -51,6 +51,7 @@ export interface DecisionLogEntry {
     proposed_status: ProposedStatus
     evidence_ids: string[]
     agent_reason: string
+    confidence: number
     agent_version: string
     model_version: string
     used_mock: boolean
@@ -99,6 +100,7 @@ function placeholderProposal(c: SettlementCase, evidenceIds: string[]): AgentPro
       evidence_ids: evidenceIds,
     },
     agent_reason: '(no recorded agent rationale — run `npm run eval` to populate the decision log)',
+    confidence: 0,
     agent_version: AGENT_VERSION,
     model_version: MODEL_VERSION,
     used_mock: true,
@@ -136,6 +138,7 @@ export function materializeDecision(
           evidence_ids: entry.agent.evidence_ids,
         },
         agent_reason: entry.agent.agent_reason,
+        confidence: entry.agent.confidence ?? 0,
         agent_version: entry.agent.agent_version,
         model_version: entry.agent.model_version,
         used_mock: entry.agent.used_mock,

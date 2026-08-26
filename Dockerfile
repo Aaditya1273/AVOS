@@ -17,7 +17,8 @@ RUN npm ci --no-audit --no-fund
 # --- build -------------------------------------------------------------------
 FROM node:20-alpine AS builder
 WORKDIR /app
-ENV NEXT_TELEMETRY_DISABLED=1
+ENV NEXT_TELEMETRY_DISABLED=1 \
+    AVOS_STANDALONE=1
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 # No OPENAI_API_KEY at build time, so the offline mock is what gets exercised —
