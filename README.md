@@ -1,5 +1,3 @@
-This is the frozen final version. Build this exactly.
-
 ### AVOS Verify - Evidence-backed verification for AI-operated finance
 **Track 04 implementation: Settlement Assurance**
 
@@ -186,5 +184,3 @@ Agent: "Settlement S-10092 reconciled."
 AVOS: FAILED - Rs 120 discrepancy - fee mismatch - source row 183 vs 456 - policy v12 - human review. Then modify evidence, replay shows non-reproducible.
 
 Line: "An agent can be policy-compliant and still be financially wrong. AVOS makes closure conditional on evidence, not confidence."
-
-Build this exactly. Nothing more. This is a legitimate top 1% Track 04 winner if execution is exceptional.
