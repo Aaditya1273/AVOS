@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-26T10:04:07.111Z",
+  "generated_at": "2026-08-26T15:03:36.023Z",
   "verifier_version": "deterministic-v2.1",
   "model_version": "avos-mock-deterministic-1.0",
   "using_mock": true,
@@ -28,8 +28,8 @@
     "abstention_n": 10,
     "reason_code_accuracy": 1,
     "reason_code_n": 40,
-    "throughput_records_per_sec": 12606,
-    "verify_elapsed_ms": 10,
+    "throughput_records_per_sec": 11115,
+    "verify_elapsed_ms": 11,
     "confusion": {},
     "mismatches": []
   },
@@ -58,8 +58,8 @@
     "abstention_n": 10,
     "reason_code_accuracy": 1,
     "reason_code_n": 30,
-    "throughput_records_per_sec": 9293,
-    "verify_elapsed_ms": 3,
+    "throughput_records_per_sec": 14213,
+    "verify_elapsed_ms": 2,
     "confusion": {},
     "mismatches": []
   },
@@ -170,6 +170,62 @@
       "detail": "tamper detected on bank_statement:bnk-000001; replay returns FAILED/NON_REPRODUCIBLE"
     }
   ],
+  "ingest": [
+    {
+      "id": "money_styles_agree",
+      "name": "All four export money formats parse identically",
+      "passed": true,
+      "detail": "4 formats -> 14681621 paise, exactly"
+    },
+    {
+      "id": "money_avoids_float_error",
+      "name": "Parsing does not go through a float",
+      "passed": true,
+      "detail": "4/4 trap values are inexact under float multiply (4.35 -> 434.99999999999994); string arithmetic is exact for all of them and needs no rounding call for anyone to remove"
+    },
+    {
+      "id": "money_fraction_padding",
+      "name": "'.5' means fifty paise, not five",
+      "passed": true,
+      "detail": "10.5 -> 1050p · 10.05 -> 1005p · 10 -> 1000p · -₹1,000.01 -> -100001p"
+    },
+    {
+      "id": "money_rejects_garbage",
+      "name": "Unparseable money throws rather than coercing to zero",
+      "passed": true,
+      "detail": "6 malformed inputs throw; empty cell is null, never 0"
+    },
+    {
+      "id": "date_styles_agree",
+      "name": "ISO, SQL and slash formats resolve to one instant",
+      "passed": true,
+      "detail": "all four spellings of 11 Aug 2026 10:00 UTC agree"
+    },
+    {
+      "id": "date_slash_is_month_first",
+      "name": "Slash dates read MM/DD/YYYY uniformly",
+      "passed": true,
+      "detail": "03/04/2026 -> 4 Mar (declared convention); 31/12/2026 rejected rather than guessed"
+    },
+    {
+      "id": "date_rejects_garbage",
+      "name": "Unrecognised date formats throw",
+      "passed": true,
+      "detail": "5 unrecognised formats throw rather than defaulting to epoch"
+    },
+    {
+      "id": "ledger_parses_without_loss",
+      "name": "Every row of the real ledger parses exactly",
+      "passed": true,
+      "detail": "147 bank rows and 150 case rows parsed to exact paise and ISO-8601"
+    },
+    {
+      "id": "summary_disagrees_where_it_should",
+      "name": "Case-index summaries are not treated as evidence",
+      "passed": true,
+      "detail": "117/120 summary rows are internally self-consistent and still carry no evidentiary weight"
+    }
+  ],
   "isolation": [
     {
       "id": "verifier_has_zero_runtime_imports",
@@ -197,7 +253,7 @@
       "detail": "no reference to agent narrative"
     },
     {
-      "id": "verifier_avoids__bnarration_b",
+      "id": "verifier_avoids__bnarration_b_bmemo_b",
       "passed": true,
       "detail": "no reference to attacker-controlled bank text"
     },
@@ -282,6 +338,11 @@
       "name": "Verifier unit checks pass",
       "passed": true,
       "detail": "6/6 synthetic perturbation checks passed"
+    },
+    {
+      "name": "Ingest boundary parses dirty exports exactly",
+      "passed": true,
+      "detail": "9/9 money/date parsing checks passed"
     }
   ]
 }

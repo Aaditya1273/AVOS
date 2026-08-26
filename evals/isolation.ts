@@ -102,7 +102,7 @@ const FORBIDDEN_IDENTIFIERS: { pattern: RegExp; why: string }[] = [
   { pattern: /\bdisplay\b/, why: 'the quarantined free-text evidence field' },
   { pattern: /\bagent_reason\b|\bagentReason\b/, why: 'agent narrative' },
   { pattern: /\bexplanation\b|\brationale\b/, why: 'agent narrative' },
-  { pattern: /\bnarration\b/, why: 'attacker-controlled bank text' },
+  { pattern: /\bnarration\b|\bmemo\b/, why: 'attacker-controlled bank text' },
   { pattern: /\bconfidence\b/, why: 'a model score has no place in a deterministic verdict' },
   { pattern: /\bDate\s*\.\s*now\b/, why: 'ambient clock' },
   { pattern: /\bnew\s+Date\s*\(/, why: 'ambient clock' },
@@ -176,7 +176,7 @@ export function checkGroundTruthIsolation(): IsolationFinding[] {
       const code = strip(readFileSync(file, 'utf8'))
       // The loader itself defines the symbol; that is not a leak.
       if (file.endsWith(path.join('lib', 'data', 'ledger.ts'))) continue
-      if (/\bloadGroundTruth\b|ground_truth_/.test(code)) {
+      if (/\bloadGroundTruth\b|ground_truth\.json|ground_truth_/.test(code)) {
         offenders.push(path.relative(ROOT, file))
       }
     }

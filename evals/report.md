@@ -1,6 +1,6 @@
 # AVOS Verify — evaluation report
 
-Generated: 2026-08-26T10:04:07.111Z
+Generated: 2026-08-26T15:03:36.023Z
 Verifier: `deterministic-v2.1` · Model: `avos-mock-deterministic-1.0` (offline deterministic mock — no API key required)
 Fixture seed: 20260826 · money unit: paise (integer)
 
@@ -19,6 +19,7 @@ Fixture seed: 20260826 · money unit: paise (integer)
 | All 6 adversarial attack classes pass | **PASS** | 9/9 adversarial assertions passed (6 attack classes + 3 injection-specific) |
 | Verifier isolation intact | **PASS** | 16/16 isolation checks passed |
 | Verifier unit checks pass | **PASS** | 6/6 synthetic perturbation checks passed |
+| Ingest boundary parses dirty exports exactly | **PASS** | 9/9 money/date parsing checks passed |
 
 ---
 
@@ -35,7 +36,7 @@ Fixture seed: 20260826 · money unit: paise (integer)
 | Exception detection | 100.0% (40/40) |
 | Abstention accuracy | 100.0% (10 cases) |
 | Reason-code accuracy | 100.0% (40 cases) |
-| Throughput (verify only) | 12,606 records/sec |
+| Throughput (verify only) | 11,115 records/sec |
 | Verified value | ₹72,74,594.99 of ₹72,74,594.99 verifiable |
 | Total batch value | ₹1,08,66,536.96 |
 | Verdicts | VERIFIED 80 · UNCERTAIN 10 · FAILED 30 |
@@ -74,7 +75,7 @@ Fixture seed: 20260826 · money unit: paise (integer)
 | Exception detection | 100.0% (30/30) |
 | Abstention accuracy | 100.0% (10 cases) |
 | Reason-code accuracy | 100.0% (30 cases) |
-| Throughput (verify only) | 9,293 records/sec |
+| Throughput (verify only) | 14,213 records/sec |
 | Verified value | ₹0.00 of ₹0.00 verifiable |
 | Total batch value | ₹26,81,670.43 |
 | Verdicts | VERIFIED 0 · UNCERTAIN 10 · FAILED 20 |
@@ -121,7 +122,7 @@ The central architectural claim, asserted mechanically on every run.
 | `verifier_avoids__bdisplay_b` | **PASS** | no reference to the quarantined free-text evidence field |
 | `verifier_avoids__bagent_reason_b_bagentReason_b` | **PASS** | no reference to agent narrative |
 | `verifier_avoids__bexplanation_b_brationale_b` | **PASS** | no reference to agent narrative |
-| `verifier_avoids__bnarration_b` | **PASS** | no reference to attacker-controlled bank text |
+| `verifier_avoids__bnarration_b_bmemo_b` | **PASS** | no reference to attacker-controlled bank text |
 | `verifier_avoids__bconfidence_b` | **PASS** | no reference to a model score has no place in a deterministic verdict |
 | `verifier_avoids__bDate_s_s_now_b` | **PASS** | no reference to ambient clock |
 | `verifier_avoids__bnew_s_Date_s_` | **PASS** | no reference to ambient clock |
@@ -135,11 +136,32 @@ The central architectural claim, asserted mechanically on every run.
 
 ---
 
+## Ingest boundary
+
+Bank and portal exports arrive with money as formatted strings and dates in
+three conventions. Everything below converts them to exact integer paise and
+ISO-8601, and throws on anything unrecognised. This is the only layer where a
+silent bug becomes a wrong verdict rather than a crash, so it has its own gate.
+
+| Check | Result | Detail |
+|---|---|---|
+| All four export money formats parse identically | **PASS** | 4 formats -> 14681621 paise, exactly |
+| Parsing does not go through a float | **PASS** | 4/4 trap values are inexact under float multiply (4.35 -> 434.99999999999994); string arithmetic is exact for all of them and needs no rounding call for anyone to remove |
+| '.5' means fifty paise, not five | **PASS** | 10.5 -> 1050p · 10.05 -> 1005p · 10 -> 1000p · -₹1,000.01 -> -100001p |
+| Unparseable money throws rather than coercing to zero | **PASS** | 6 malformed inputs throw; empty cell is null, never 0 |
+| ISO, SQL and slash formats resolve to one instant | **PASS** | all four spellings of 11 Aug 2026 10:00 UTC agree |
+| Slash dates read MM/DD/YYYY uniformly | **PASS** | 03/04/2026 -> 4 Mar (declared convention); 31/12/2026 rejected rather than guessed |
+| Unrecognised date formats throw | **PASS** | 5 unrecognised formats throw rather than defaulting to epoch |
+| Every row of the real ledger parses exactly | **PASS** | 147 bank rows and 150 case rows parsed to exact paise and ISO-8601 |
+| Case-index summaries are not treated as evidence | **PASS** | 117/120 summary rows are internally self-consistent and still carry no evidentiary weight |
+
+---
+
 ## Notes on the numbers
 
-- **Throughput** is deterministic verification only: 12,606 records/sec over 120 cases
-  (10 ms). Agent proposal for all 150 cases took
-  34 ms on the offline mock. The two are reported
+- **Throughput** is deterministic verification only: 11,115 records/sec over 120 cases
+  (11 ms). Agent proposal for all 150 cases took
+  45 ms on the offline mock. The two are reported
   separately because only the first one decides anything.
 - **Value coverage** is reported against two denominators. `value coverage (of verifiable)`
   answers "of the money that genuinely reconciled, how much did we clear?" and is the gated

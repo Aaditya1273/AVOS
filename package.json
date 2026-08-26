@@ -2,7 +2,7 @@
   "name": "avos-verify",
   "version": "1.0.0",
   "private": true,
-  "description": "AVOS Verify — evidence-backed verification for AI-operated finance (Razorpay Buildathon Track 04: Settlement Assurance)",
+  "description": "AVOS Verify \u2014 evidence-backed verification for AI-operated finance (Razorpay Buildathon Track 04: Settlement Assurance)",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -12,7 +12,8 @@
     "data": "python3 scripts/generate_data.py",
     "eval": "tsx evals/eval.ts",
     "check:isolation": "tsx evals/isolation.ts",
-    "test:adversarial": "tsx evals/adversarial.ts"
+    "test:adversarial": "tsx evals/adversarial.ts",
+    "test:ingest": "tsx evals/ingest.ts"
   },
   "dependencies": {
     "@ai-sdk/openai": "^1.3.24",

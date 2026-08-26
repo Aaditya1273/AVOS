@@ -19,7 +19,7 @@
     "decision_policy_version": "finance-policy-v11",
     "event_time": "2026-08-02T05:45:00Z",
     "decision_time": "2026-08-03T16:45:00Z",
-    "pack_hash": "cce722e96269775be696beb2efc8d58d36dfc048e4c602196c3d044f101034bb",
+    "pack_hash": "d35c6413724340fe42a16956857bfd2df04d625f33eb5b89689d0ee3a96940c8",
     "reproducible": true,
     "checks": [
       {
@@ -32,7 +32,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 11 rows hash to their recorded values (pack cce722e96269)"
+        "detail": "all 11 rows hash to their recorded values (pack d35c64137243)"
       },
       {
         "id": "policy_in_force",
@@ -221,7 +221,7 @@
         "amount_paise": 9794199,
         "timestamp": "2026-08-02T13:45:00Z",
         "freshness_hours": 28.87,
-        "hash": "9aa71dd46363148e0ec9ac1538cca06ba13a6ed12009a06b525b95ffca0ff73b",
+        "hash": "7709a889b14541f974ae85c20ca44417f6816b4f710dde42347cf6d35349280c",
         "hash_matches_recorded": true
       },
       {
@@ -257,7 +257,7 @@
     "decision_policy_version": "finance-policy-v11",
     "event_time": "2026-08-03T08:34:00Z",
     "decision_time": "2026-08-04T13:34:00Z",
-    "pack_hash": "ee16c2d5275bcac2c5114c0e9773695d33a9c76a80031c409cfaf171696f34fc",
+    "pack_hash": "cddd395c5e3ea63035469241bbd888f9167ec76f21e524ca6e1cc4b807b1473c",
     "reproducible": true,
     "checks": [
       {
@@ -270,7 +270,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 8 rows hash to their recorded values (pack ee16c2d5275b)"
+        "detail": "all 8 rows hash to their recorded values (pack cddd395c5e3e)"
       },
       {
         "id": "policy_in_force",
@@ -426,7 +426,7 @@
         "amount_paise": 6412063,
         "timestamp": "2026-08-03T12:34:00Z",
         "freshness_hours": 25.78,
-        "hash": "93b1c3960dfe3b1b39aba72f4c27460c1059a03974a68ef473bbe683ede57c4a",
+        "hash": "04dbcd56afb92c16efc79d0f40519b129939fa7e42f9b16834253edefacac83a",
         "hash_matches_recorded": true
       },
       {
@@ -462,7 +462,7 @@
     "decision_policy_version": "finance-policy-v11",
     "event_time": "2026-08-04T06:15:00Z",
     "decision_time": "2026-08-05T17:15:00Z",
-    "pack_hash": "5c0fc49f31bbd01507482e491ae966f132d895b70ee2e52b3eec4cab66a5f062",
+    "pack_hash": "4c7975f8e1bf13c65f95840b3a18b0098b89969db7899e07acba9c084bfa6cf2",
     "reproducible": true,
     "checks": [
       {
@@ -475,7 +475,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 12 rows hash to their recorded values (pack 5c0fc49f31bb)"
+        "detail": "all 12 rows hash to their recorded values (pack 4c7975f8e1bf)"
       },
       {
         "id": "policy_in_force",
@@ -675,7 +675,7 @@
         "amount_paise": 12013793,
         "timestamp": "2026-08-04T14:15:00Z",
         "freshness_hours": 27.9,
-        "hash": "ccb5d5a3daf49b8c1d0c0e8d59be8eab845f68c67214e32c113facbabcd1de5f",
+        "hash": "4e8bc6c4cb090c7f9c60f61886258f7e326fb26928310ad01aa98cb101c81b74",
         "hash_matches_recorded": true
       },
       {
@@ -711,7 +711,7 @@
     "decision_policy_version": "finance-policy-v11",
     "event_time": "2026-08-05T01:07:00Z",
     "decision_time": "2026-08-06T13:07:00Z",
-    "pack_hash": "618f93591354ee3de9da4e1db855d5cc3d5ae389cf1876a7928d42092450a670",
+    "pack_hash": "f48212a6c6a9c8c39d8d63259a99581afd504972204e7fd1068670954e6e2e7f",
     "reproducible": true,
     "checks": [
       {
@@ -724,7 +724,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 7 rows hash to their recorded values (pack 618f93591354)"
+        "detail": "all 7 rows hash to their recorded values (pack f48212a6c6a9)"
       },
       {
         "id": "policy_in_force",
@@ -869,7 +869,7 @@
         "amount_paise": 5787967,
         "timestamp": "2026-08-05T11:07:00Z",
         "freshness_hours": 26.88,
-        "hash": "26d46c513e5820b9a6b15b4f9aa38a24c3110b4fd6f28c94adcb03232927ca66",
+        "hash": "0f3d08d777bf38de1cf8286e494b0e4f257e03b821b6e1be9b9331704c2f2ffe",
         "hash_matches_recorded": true
       },
       {
@@ -905,7 +905,7 @@
     "decision_policy_version": "finance-policy-v11",
     "event_time": "2026-08-06T05:27:00Z",
     "decision_time": "2026-08-06T17:27:00Z",
-    "pack_hash": "fb2d04a025b84f64edd371f2304bc34899115cf276050999ce993cc0017d78d0",
+    "pack_hash": "5017965f1dab8901bdb18d79402ea7b4663af2e36405c652f77166cb3d589260",
     "reproducible": true,
     "checks": [
       {
@@ -918,7 +918,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 12 rows hash to their recorded values (pack fb2d04a025b8)"
+        "detail": "all 12 rows hash to their recorded values (pack 5017965f1dab)"
       },
       {
         "id": "policy_in_force",
@@ -1118,7 +1118,7 @@
         "amount_paise": 10190026,
         "timestamp": "2026-08-06T12:27:00Z",
         "freshness_hours": 8.13,
-        "hash": "d27c6f761fd8b388c9837bc609eb0af135df84ad12fd5aaa13935263c58aa25d",
+        "hash": "0adcc1e1b1e56c62a048a867f23e2720d0b1b38acf4cb2300d666b745f5865f6",
         "hash_matches_recorded": true
       },
       {
@@ -1154,7 +1154,7 @@
     "decision_policy_version": "finance-policy-v11",
     "event_time": "2026-08-07T15:07:00Z",
     "decision_time": "2026-08-08T14:07:00Z",
-    "pack_hash": "16b5868ca108d25172aa8c8abf12805f859e8cd4c1249c9f352d855094b4b3f8",
+    "pack_hash": "f35aeb809717520dc7ab462bb60870b69e72aa3d7e9758325dae5ea2522f362b",
     "reproducible": true,
     "checks": [
       {
@@ -1167,7 +1167,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 6 rows hash to their recorded values (pack 16b5868ca108)"
+        "detail": "all 6 rows hash to their recorded values (pack f35aeb809717)"
       },
       {
         "id": "policy_in_force",
@@ -1301,7 +1301,7 @@
         "amount_paise": 1821153,
         "timestamp": "2026-08-07T19:07:00Z",
         "freshness_hours": 20.5,
-        "hash": "01bdab4a558fa0d983b122ad37d88f7f8290405f0febd3331336c167c4624ffc",
+        "hash": "cfb0705b9d6d9c98e83042966fdd3f87d029d642609478ac41237e165450801b",
         "hash_matches_recorded": true
       },
       {
@@ -1337,7 +1337,7 @@
     "decision_policy_version": "finance-policy-v11",
     "event_time": "2026-08-08T20:51:00Z",
     "decision_time": "2026-08-09T23:51:00Z",
-    "pack_hash": "8530691705cee608f0a0d78338e959778ef0c7d1e6280ce7c49720bfd7619111",
+    "pack_hash": "3174785941edbc77adbc190cab57448d8a58478fa2f8f067ef0f7b671ed3a4eb",
     "reproducible": true,
     "checks": [
       {
@@ -1350,7 +1350,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 8 rows hash to their recorded values (pack 8530691705ce)"
+        "detail": "all 8 rows hash to their recorded values (pack 3174785941ed)"
       },
       {
         "id": "policy_in_force",
@@ -1506,7 +1506,7 @@
         "amount_paise": 6523388,
         "timestamp": "2026-08-09T00:51:00Z",
         "freshness_hours": 22.38,
-        "hash": "abe3160ff7a47b3aeee893bd7cab6bd66fd656b0118ccf5f8665d386166827f3",
+        "hash": "89c9314229aae01a1118108bf56713f4813c6391be7141b30ff3e435458d5d6d",
         "hash_matches_recorded": true
       },
       {
@@ -1542,7 +1542,7 @@
     "decision_policy_version": "finance-policy-v11",
     "event_time": "2026-08-09T06:12:00Z",
     "decision_time": "2026-08-10T06:12:00Z",
-    "pack_hash": "6693cb66efac714f96562f9be293cc5f903c1c28d5963652dba08840f0e34337",
+    "pack_hash": "62eb4c5875f910065745a2291dde441e30675eb743341a302f821d2a5870a991",
     "reproducible": true,
     "checks": [
       {
@@ -1555,7 +1555,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 8 rows hash to their recorded values (pack 6693cb66efac)"
+        "detail": "all 8 rows hash to their recorded values (pack 62eb4c5875f9)"
       },
       {
         "id": "policy_in_force",
@@ -1689,7 +1689,7 @@
         "amount_paise": 3459901,
         "timestamp": "2026-08-09T14:12:00Z",
         "freshness_hours": 21.65,
-        "hash": "7ffdeaa55431d9e5b09e08095319cf1f29c07a8d6d5faab12b1e26f497a47a18",
+        "hash": "80035f9b1282a47b0c1ed0dfa68fca99eed955d697303505704fbef5a6cefda5",
         "hash_matches_recorded": true
       },
       {
@@ -1747,7 +1747,7 @@
     "decision_policy_version": "finance-policy-v11",
     "event_time": "2026-08-10T21:42:00Z",
     "decision_time": "2026-08-11T19:42:00Z",
-    "pack_hash": "c0f4fd9fbe27afe5349d1763fba1b225cd36c0f1d5b147241b3d22f6da701371",
+    "pack_hash": "00048a1191b23d0367ba5a3f8073b9313adc1b28708a7e88eaef098ebf32a5fc",
     "reproducible": true,
     "checks": [
       {
@@ -1760,7 +1760,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 13 rows hash to their recorded values (pack c0f4fd9fbe27)"
+        "detail": "all 13 rows hash to their recorded values (pack 00048a1191b2)"
       },
       {
         "id": "policy_in_force",
@@ -1938,7 +1938,7 @@
         "amount_paise": 5379522,
         "timestamp": "2026-08-11T06:42:00Z",
         "freshness_hours": 14.93,
-        "hash": "5ed53d6bd3c60777cdd3e63a030007f2d173baab9b201607ca11d44d3c8606c4",
+        "hash": "ed7225a0af856dc342946b265256191bc4af00bb92a8fdfc46da9153656c5866",
         "hash_matches_recorded": true
       },
       {
@@ -2007,7 +2007,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-11T21:56:00Z",
     "decision_time": "2026-08-12T10:56:00Z",
-    "pack_hash": "df6dce7c7471cd9a5c8318d58ea2c40b46d09be65a74d927d9a3080be007712e",
+    "pack_hash": "366c45439ee67c4c683ebb443b82dbe23e2d3a98cc9767e17a4483def9b6688f",
     "reproducible": true,
     "checks": [
       {
@@ -2020,7 +2020,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 12 rows hash to their recorded values (pack df6dce7c7471)"
+        "detail": "all 12 rows hash to their recorded values (pack 366c45439ee6)"
       },
       {
         "id": "policy_in_force",
@@ -2198,7 +2198,7 @@
         "amount_paise": 7245408,
         "timestamp": "2026-08-12T07:56:00Z",
         "freshness_hours": 6.13,
-        "hash": "c695bc31c09016e9d5d7a722f6d56c08d45f01a619c7b207ea5e78edcc8538ea",
+        "hash": "c90c11685d48fb1e8533c4f95d269c96bad0e3d10e6cb2c76590f4b1b08c16be",
         "hash_matches_recorded": true
       },
       {
@@ -2256,7 +2256,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-12T09:41:00Z",
     "decision_time": "2026-08-14T17:41:00Z",
-    "pack_hash": "b8b7ec9a250e56b04a923b24e1acefd34f2ba5a82e5365425533296adfc31b88",
+    "pack_hash": "ccc3afe2240d448f74978fa65ebcbc700ff037c895cd9bf42fe44a1860fb9121",
     "reproducible": true,
     "checks": [
       {
@@ -2269,7 +2269,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 15 rows hash to their recorded values (pack b8b7ec9a250e)"
+        "detail": "all 15 rows hash to their recorded values (pack ccc3afe2240d)"
       },
       {
         "id": "policy_in_force",
@@ -2502,7 +2502,7 @@
         "amount_paise": 14299848,
         "timestamp": "2026-08-13T19:41:00Z",
         "freshness_hours": 25.32,
-        "hash": "5f57e2e8ea975b7d56efea5763ec22e798ff5b445fec9bd2a604119407f5ca58",
+        "hash": "a5a6b9deb7883905a4da9ba0c645f3798dfefa58f79a8229a9c1896b3fea7c49",
         "hash_matches_recorded": true
       },
       {
@@ -2538,7 +2538,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-13T01:45:00Z",
     "decision_time": "2026-08-14T02:45:00Z",
-    "pack_hash": "ddb1be2c42058a1497f767901a6a345ef7a14222fc64302986c90a3c7354aa46",
+    "pack_hash": "52b5c35d64235413991764073e74b959a6aae68717abea90b8167c5f7a4bbb91",
     "reproducible": true,
     "checks": [
       {
@@ -2551,7 +2551,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 13 rows hash to their recorded values (pack ddb1be2c4205)"
+        "detail": "all 13 rows hash to their recorded values (pack 52b5c35d6423)"
       },
       {
         "id": "policy_in_force",
@@ -2762,7 +2762,7 @@
         "amount_paise": 14403630,
         "timestamp": "2026-08-13T09:45:00Z",
         "freshness_hours": 17.38,
-        "hash": "a535f6273e889d3d29b4851bb9597d9bac014e3d69dd5c638d8dc3a76f98487d",
+        "hash": "9ceaf96ca0102643a4244e55b3cafffca4a1795eccb162590e4920287ef6998e",
         "hash_matches_recorded": true
       },
       {
@@ -2798,7 +2798,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-14T05:49:00Z",
     "decision_time": "2026-08-15T01:49:00Z",
-    "pack_hash": "000d0f05c4c668db6fc6be4ee38e29f65bd5f2ae7b92268417d22a611de2c51f",
+    "pack_hash": "9e6db7a2a767dcba6847fb4921a853d74efe69f762a6849130580a4f4a8025fc",
     "reproducible": true,
     "checks": [
       {
@@ -2811,7 +2811,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 15 rows hash to their recorded values (pack 000d0f05c4c6)"
+        "detail": "all 15 rows hash to their recorded values (pack 9e6db7a2a767)"
       },
       {
         "id": "policy_in_force",
@@ -3044,7 +3044,7 @@
         "amount_paise": 14785365,
         "timestamp": "2026-08-14T15:49:00Z",
         "freshness_hours": 12.85,
-        "hash": "a6f6c599f88e6f25487029d8dd4d8698e7768d03ffc16a24710c581a0b179d81",
+        "hash": "1b19934b88b25ae2b4677ec75097312136a87e9d0ab8ab1adc67190d4af07653",
         "hash_matches_recorded": true
       },
       {
@@ -3080,7 +3080,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-15T04:00:00Z",
     "decision_time": "2026-08-16T09:00:00Z",
-    "pack_hash": "c51c596ef835b0748e7498986c57af3620b2c618d67b8818a7bf5dc00747a8db",
+    "pack_hash": "70d390b657180ff562c80e9259db409f6a78285724ac6620fc43d7cc31d6c23a",
     "reproducible": true,
     "checks": [
       {
@@ -3093,7 +3093,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 11 rows hash to their recorded values (pack c51c596ef835)"
+        "detail": "all 11 rows hash to their recorded values (pack 70d390b65718)"
       },
       {
         "id": "policy_in_force",
@@ -3271,7 +3271,7 @@
         "amount_paise": 9356600,
         "timestamp": "2026-08-15T11:00:00Z",
         "freshness_hours": 26.37,
-        "hash": "90335b9aefd1c2fdc514ff852b6d65cd34f54513327d861cd12d15e024069e54",
+        "hash": "504d02ad3647d2c6a24de053ffe78f5e4264094b1b32f7c0300e9865e49ba971",
         "hash_matches_recorded": true
       },
       {
@@ -3318,7 +3318,7 @@
     "decision_policy_version": "finance-policy-v11",
     "event_time": "2026-08-02T09:02:00Z",
     "decision_time": "2026-08-03T05:02:00Z",
-    "pack_hash": "169b0fa288b029e4f0eeb3e3b5dfd8d74ce28559e7e92ce59ac913e031a34e1a",
+    "pack_hash": "935a45ce523dd33ac84447a42dcd1ba55562f7005d5d7b319c94f0c28b2c3841",
     "reproducible": true,
     "checks": [
       {
@@ -3331,7 +3331,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 13 rows hash to their recorded values (pack 169b0fa288b0)"
+        "detail": "all 13 rows hash to their recorded values (pack 935a45ce523d)"
       },
       {
         "id": "policy_in_force",
@@ -3542,7 +3542,7 @@
         "amount_paise": 12045171,
         "timestamp": "2026-08-02T14:02:00Z",
         "freshness_hours": 14.43,
-        "hash": "a6989affa530347405a19dd3a93cdb181ea286cef08c4b36a66cf16e4a476a80",
+        "hash": "57d5adfab88ad4c28b6e39215a44e697a3e9758397d9714ed6580e7575147ca9",
         "hash_matches_recorded": true
       },
       {
@@ -3578,7 +3578,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-17T13:30:00Z",
     "decision_time": "2026-08-18T05:30:00Z",
-    "pack_hash": "90cd8e5a8e82b14137b6d6687c45334a4579d2996d0c34507a011f74bf76e233",
+    "pack_hash": "4c7e9b821594b00adb9ca3b504ac9619c2f4753a32df3e5fe84064bd583b5c60",
     "reproducible": true,
     "checks": [
       {
@@ -3591,7 +3591,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 12 rows hash to their recorded values (pack 90cd8e5a8e82)"
+        "detail": "all 12 rows hash to their recorded values (pack 4c7e9b821594)"
       },
       {
         "id": "policy_in_force",
@@ -3758,7 +3758,7 @@
         "amount_paise": 5819090,
         "timestamp": "2026-08-17T21:30:00Z",
         "freshness_hours": 11.45,
-        "hash": "457013145cc64d8f94fe65543dbe8982f6e42ccfa0a9f49f2f29b444d96fb5ce",
+        "hash": "f5639575a56556d9b0219bf33206ed885d1b8a7b716243efae477a1b896db12d",
         "hash_matches_recorded": true
       },
       {
@@ -3827,7 +3827,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-18T19:01:00Z",
     "decision_time": "2026-08-19T07:01:00Z",
-    "pack_hash": "d015a9cdf5b2284e569f66373cf6e0b991d7cda4218ae4317ec80e02f37ff974",
+    "pack_hash": "c8be5465cda4ef7edb67e8fcc1973e63d3a49a495a4540ae36626080a99d8555",
     "reproducible": true,
     "checks": [
       {
@@ -3840,7 +3840,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 8 rows hash to their recorded values (pack d015a9cdf5b2)"
+        "detail": "all 8 rows hash to their recorded values (pack c8be5465cda4)"
       },
       {
         "id": "policy_in_force",
@@ -3996,7 +3996,7 @@
         "amount_paise": 8309808,
         "timestamp": "2026-08-18T22:01:00Z",
         "freshness_hours": 8.77,
-        "hash": "fe8d4d370469eb528e8918cfdbc084081f20d6e979d6d5c462258caca79b2fa5",
+        "hash": "24371b4cacefb8ae6cc317a42e4d03725e784cc84aae2654dc3221b7cca12fb3",
         "hash_matches_recorded": true
       },
       {
@@ -4032,7 +4032,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-19T15:14:00Z",
     "decision_time": "2026-08-20T15:14:00Z",
-    "pack_hash": "0bae0b81f60f67ae4d5328425b0d43e364e93fab84e5925c5e110432b9fab2db",
+    "pack_hash": "7fc0f49eb1841c62d3851e133083b297c40733e5b5d923e61d929bbbb3686b3c",
     "reproducible": true,
     "checks": [
       {
@@ -4045,7 +4045,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 9 rows hash to their recorded values (pack 0bae0b81f60f)"
+        "detail": "all 9 rows hash to their recorded values (pack 7fc0f49eb184)"
       },
       {
         "id": "policy_in_force",
@@ -4212,7 +4212,7 @@
         "amount_paise": 7946944,
         "timestamp": "2026-08-19T21:14:00Z",
         "freshness_hours": 21.85,
-        "hash": "b85180c8e56da0c7a5e02ccfdd97f5b87bd0d3ab3d90082329412887cb76e117",
+        "hash": "b5e6b66341732884e83303e35928ee7cc53f7ef86d4b2ad814306df9510ac4aa",
         "hash_matches_recorded": true
       },
       {
@@ -4248,7 +4248,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-20T01:43:00Z",
     "decision_time": "2026-08-21T05:43:00Z",
-    "pack_hash": "9c1ae47bac252203f6b68b21029c35344b9ac027521268276f3bc0bc0d6e8bed",
+    "pack_hash": "c6cfefdc3a4e800cfed6eb17b20a099da99523b75a4ce3130dbd050870b1fd98",
     "reproducible": true,
     "checks": [
       {
@@ -4261,7 +4261,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 3 rows hash to their recorded values (pack 9c1ae47bac25)"
+        "detail": "all 3 rows hash to their recorded values (pack c6cfefdc3a4e)"
       },
       {
         "id": "policy_in_force",
@@ -4362,7 +4362,7 @@
         "amount_paise": 7869057,
         "timestamp": "2026-08-20T12:43:00Z",
         "freshness_hours": 19.87,
-        "hash": "326c77c6f4f6c8cc37a3c215f180304605ce975280fb54586bffb8e2d369f3b2",
+        "hash": "5a630df15d8f0ef6d64cbbc581d34a28766365ddb880e06d15154344833e4e83",
         "hash_matches_recorded": true
       },
       {
@@ -4398,7 +4398,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-21T16:03:00Z",
     "decision_time": "2026-08-22T15:03:00Z",
-    "pack_hash": "83b017254782311b1931e7b4e204ca08339f456589a339cf071548061d3436da",
+    "pack_hash": "eff8caa18165e17ed651fff9e2b0601ab430b4ce57f42da92422e562a61820dd",
     "reproducible": true,
     "checks": [
       {
@@ -4411,7 +4411,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 10 rows hash to their recorded values (pack 83b017254782)"
+        "detail": "all 10 rows hash to their recorded values (pack eff8caa18165)"
       },
       {
         "id": "policy_in_force",
@@ -4459,7 +4459,7 @@
         "id": "no_duplicate_ingestion",
         "pillar": "verify",
         "status": "fail",
-        "detail": "the same source content was ingested more than once: bank_statement rows [bnk-000020, bnk-000021] share content hash e3114a9e928a"
+        "detail": "the same source content was ingested more than once: bank_statement rows [bnk-000020, bnk-000021] share content hash eb2a8f3d6f4b"
       },
       {
         "id": "utr_unique",
@@ -4578,7 +4578,7 @@
         "amount_paise": 6962115,
         "timestamp": "2026-08-22T01:03:00Z",
         "freshness_hours": 17.25,
-        "hash": "e3114a9e928a98c21951d853209066c8f5806e45c278764bb84d34de7871b1d5",
+        "hash": "eb2a8f3d6f4b2183f43bc068c0a9ec52f01dd1cea8f02f0532e93bf21eb02e53",
         "hash_matches_recorded": true
       },
       {
@@ -4589,7 +4589,7 @@
         "amount_paise": 6962115,
         "timestamp": "2026-08-22T01:03:00Z",
         "freshness_hours": 17.25,
-        "hash": "e3114a9e928a98c21951d853209066c8f5806e45c278764bb84d34de7871b1d5",
+        "hash": "eb2a8f3d6f4b2183f43bc068c0a9ec52f01dd1cea8f02f0532e93bf21eb02e53",
         "hash_matches_recorded": true
       },
       {
@@ -4625,7 +4625,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-22T04:00:00Z",
     "decision_time": "2026-08-22T19:00:00Z",
-    "pack_hash": "46e61899e76e1abfa22b79afc73811975c66aaaed409dde5949aa4bcb580750c",
+    "pack_hash": "e62b207cb226a34ae0f74e6853bbffa0ce80bec61b7121d66553a9f643f2ff1e",
     "reproducible": true,
     "checks": [
       {
@@ -4638,7 +4638,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 7 rows hash to their recorded values (pack 46e61899e76e)"
+        "detail": "all 7 rows hash to their recorded values (pack e62b207cb226)"
       },
       {
         "id": "policy_in_force",
@@ -4783,7 +4783,7 @@
         "amount_paise": 4816244,
         "timestamp": "2026-08-22T10:00:00Z",
         "freshness_hours": 8.47,
-        "hash": "182b4af9e91ab7f6b14722674d91bedb437cd881d564f757a8e740c3e59e8a36",
+        "hash": "920488e415bf7b1e3d9be4c3aeeeed871d39426b68438545b8a0e8164640ead9",
         "hash_matches_recorded": true
       },
       {
@@ -4819,7 +4819,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-23T12:11:00Z",
     "decision_time": "2026-08-24T06:11:00Z",
-    "pack_hash": "d332896b02b741901f0969be57882cac91fffc82a6c36fce3fb7c4e8fa1222f6",
+    "pack_hash": "411bf0969b0cc24bc40c26724195266494581988eee12b647aa83de116a19c46",
     "reproducible": true,
     "checks": [
       {
@@ -4832,7 +4832,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 9 rows hash to their recorded values (pack d332896b02b7)"
+        "detail": "all 9 rows hash to their recorded values (pack 411bf0969b0c)"
       },
       {
         "id": "policy_in_force",
@@ -4999,7 +4999,7 @@
         "amount_paise": 5603766,
         "timestamp": "2026-08-23T21:11:00Z",
         "freshness_hours": 10.52,
-        "hash": "12e7c90906f7d1a7ada9f3637bb2d64f65205d9f6358063e629f5b41c9c99381",
+        "hash": "2a34f262d344f3ff8821aaa02b8599e605eb09787f284bf0cc2cb9be55fd5df5",
         "hash_matches_recorded": true
       },
       {
@@ -5035,7 +5035,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-24T21:57:00Z",
     "decision_time": "2026-08-26T00:57:00Z",
-    "pack_hash": "8a8748e2f53ee13c5ea988b4bd4188d5c6652d0c3a9aa24a2112bf9fd327290f",
+    "pack_hash": "6b5a47b01f82d86b226d5b223487ccbb512c82ad84577ee1753e3906d0547902",
     "reproducible": true,
     "checks": [
       {
@@ -5048,7 +5048,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 9 rows hash to their recorded values (pack 8a8748e2f53e)"
+        "detail": "all 9 rows hash to their recorded values (pack 6b5a47b01f82)"
       },
       {
         "id": "policy_in_force",
@@ -5215,7 +5215,7 @@
         "amount_paise": 7155536,
         "timestamp": "2026-08-25T11:57:00Z",
         "freshness_hours": 17.25,
-        "hash": "08fe0862eec3895ebee42157df9834ba6be36f59ab2db930bfc444b715dd2eff",
+        "hash": "2933a530593b43979a637b002d7b79268396e35dd1fd6df5e951ccd5ac4af038",
         "hash_matches_recorded": true
       },
       {
@@ -5251,7 +5251,7 @@
     "decision_policy_version": "finance-policy-v11",
     "event_time": "2026-08-02T22:00:00Z",
     "decision_time": "2026-08-04T00:00:00Z",
-    "pack_hash": "999acb2aa3f6b6d3a6b1a682bca92b6cddb04254ebe45bfb7cd8f7087881da24",
+    "pack_hash": "a5da27fa19f77dfbf7d5c403feb7b99e59dfd035eda724c885570ef879f86afe",
     "reproducible": true,
     "checks": [
       {
@@ -5264,7 +5264,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 8 rows hash to their recorded values (pack 999acb2aa3f6)"
+        "detail": "all 8 rows hash to their recorded values (pack a5da27fa19f7)"
       },
       {
         "id": "policy_in_force",
@@ -5420,7 +5420,7 @@
         "amount_paise": 3643935,
         "timestamp": "2026-08-03T02:00:00Z",
         "freshness_hours": 22.4,
-        "hash": "888fa0f443136d6a7435b64fb23c9b50e177ebea2b441b7470e616ea3b900030",
+        "hash": "d07d0687a5e920847f12a08e7f26ad57f3ba80b318282d84851faea5b493ce2e",
         "hash_matches_recorded": true
       },
       {
@@ -5456,7 +5456,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-13T21:45:00Z",
     "decision_time": "2026-08-14T16:45:00Z",
-    "pack_hash": "a2a75d5058de3c0bf78f82475045eb8310f9c925aa9befd6e0935b6ae61f01d8",
+    "pack_hash": "72c55eb7459f4385a8062a989bace129b2b7dc51f142ec3936004397062c922f",
     "reproducible": true,
     "checks": [
       {
@@ -5469,7 +5469,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 10 rows hash to their recorded values (pack a2a75d5058de)"
+        "detail": "all 10 rows hash to their recorded values (pack 72c55eb7459f)"
       },
       {
         "id": "policy_in_force",
@@ -5647,7 +5647,7 @@
         "amount_paise": 9109161,
         "timestamp": "2026-08-14T10:45:00Z",
         "freshness_hours": 11.68,
-        "hash": "724507508a924b507162ef137f6661c67f78550ffb11ff826803cbb00b0935aa",
+        "hash": "661c4e6520f35dd77e13ee680f8cbafc9de70339ed80961f610a1391a8db2a52",
         "hash_matches_recorded": true
       },
       {
@@ -5683,7 +5683,7 @@
     "decision_policy_version": "finance-policy-v11",
     "event_time": "2026-08-06T18:14:00Z",
     "decision_time": "2026-08-07T15:14:00Z",
-    "pack_hash": "406ad7526427fc6ea0dbc1f89b538bcff7863e426fb4aca1180d8424420a9563",
+    "pack_hash": "056c8585ebcbdd91cf662171f51bb24c1c2950159e1902d39bfbdd22bdd909bd",
     "reproducible": true,
     "checks": [
       {
@@ -5696,7 +5696,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 12 rows hash to their recorded values (pack 406ad7526427)"
+        "detail": "all 12 rows hash to their recorded values (pack 056c8585ebcb)"
       },
       {
         "id": "policy_in_force",
@@ -5896,7 +5896,7 @@
         "amount_paise": 10892176,
         "timestamp": "2026-08-07T03:14:00Z",
         "freshness_hours": 14.47,
-        "hash": "7aa723e89c760339e14fdca328c8d89e6a50ab679e3d2b489f09d0dc55e987ae",
+        "hash": "8501ec9b780d93709592739f728b72d631482a8069584e501bec57c8d490b7f6",
         "hash_matches_recorded": true
       },
       {
@@ -5932,7 +5932,7 @@
     "decision_policy_version": "finance-policy-v11",
     "event_time": "2026-08-05T17:33:00Z",
     "decision_time": "2026-08-07T02:33:00Z",
-    "pack_hash": "43759b7f0c611ab24bce06b6fba39ee26e87d7790abf670c3ac6305126492ed9",
+    "pack_hash": "a8f182dec538f7b0e808590b00a4346f3fd8b519bcdd5831559690bf7a641249",
     "reproducible": true,
     "checks": [
       {
@@ -5945,7 +5945,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 12 rows hash to their recorded values (pack 43759b7f0c61)"
+        "detail": "all 12 rows hash to their recorded values (pack a8f182dec538)"
       },
       {
         "id": "policy_in_force",
@@ -6145,7 +6145,7 @@
         "amount_paise": 9112419,
         "timestamp": "2026-08-05T22:33:00Z",
         "freshness_hours": 29.83,
-        "hash": "84fcd3048fc4390e21d829c2a6793abac17e1406131b82fa7145425905d7bfd8",
+        "hash": "b76eacd0be1123daadccbac3808714118d1fee890974015bbc80c381b8e2d866",
         "hash_matches_recorded": true
       },
       {
@@ -6181,7 +6181,7 @@
     "decision_policy_version": "finance-policy-v11",
     "event_time": "2026-08-06T12:22:00Z",
     "decision_time": "2026-08-07T02:22:00Z",
-    "pack_hash": "9da5a18c4753673d449120eb1c3deda7ac77ea9031921ea3de3bf298a3476b59",
+    "pack_hash": "ddac2d7f36fb41ea9e643cb35598e21230fa6d77c0e4b81e802478517a6ed8a9",
     "reproducible": true,
     "checks": [
       {
@@ -6194,7 +6194,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 14 rows hash to their recorded values (pack 9da5a18c4753)"
+        "detail": "all 14 rows hash to their recorded values (pack ddac2d7f36fb)"
       },
       {
         "id": "policy_in_force",
@@ -6416,7 +6416,7 @@
         "amount_paise": 11899845,
         "timestamp": "2026-08-06T22:22:00Z",
         "freshness_hours": 9.67,
-        "hash": "0e3b2e53c4ad9b4b5cb50d95418a839e10724b5352b66b5bbf0158e94fec7cd2",
+        "hash": "663d995a453c5bc18f74f1f84923be3d24cbd7de06c217fa1f4e98b474eb5220",
         "hash_matches_recorded": true
       },
       {
@@ -6452,7 +6452,7 @@
     "decision_policy_version": "finance-policy-v11",
     "event_time": "2026-08-07T04:47:00Z",
     "decision_time": "2026-08-08T10:47:00Z",
-    "pack_hash": "013425168801426a7941adfcf9b633c21381bfb69ad2da81770fb32dbd8c4e2b",
+    "pack_hash": "a72ba5bf3c11226bab3f0c790161b30321ed1894b67f742a01c97a5a32115cee",
     "reproducible": true,
     "checks": [
       {
@@ -6465,7 +6465,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 8 rows hash to their recorded values (pack 013425168801)"
+        "detail": "all 8 rows hash to their recorded values (pack a72ba5bf3c11)"
       },
       {
         "id": "policy_in_force",
@@ -6621,7 +6621,7 @@
         "amount_paise": 5262720,
         "timestamp": "2026-08-07T15:47:00Z",
         "freshness_hours": 23.83,
-        "hash": "bafe72676bf43e38ac4e3596b912fd6d38c6c8173237433bb460a7afe2806a5d",
+        "hash": "360782eef2ab4654bf40e69e47d3655a844cde0db937887292cb8cdd9d942bda",
         "hash_matches_recorded": true
       },
       {
@@ -6657,7 +6657,7 @@
     "decision_policy_version": "finance-policy-v11",
     "event_time": "2026-08-08T03:20:00Z",
     "decision_time": "2026-08-08T19:20:00Z",
-    "pack_hash": "e2f9804c142b2669f0cc0cb821532b6f538f72731ca20efc8dea04fc1eb5518e",
+    "pack_hash": "f4d173ee1cfbdff2faba30983aefb6e89ea10bebb3c2000d6e6fdb8e031ef8a8",
     "reproducible": true,
     "checks": [
       {
@@ -6670,7 +6670,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 13 rows hash to their recorded values (pack e2f9804c142b)"
+        "detail": "all 13 rows hash to their recorded values (pack f4d173ee1cfb)"
       },
       {
         "id": "policy_in_force",
@@ -6881,7 +6881,7 @@
         "amount_paise": 9995698,
         "timestamp": "2026-08-08T17:20:00Z",
         "freshness_hours": 7.05,
-        "hash": "eb52baff5c4382baf2d2a899a05647c7d40ee3b99e4b3633a24a4c6d76898041",
+        "hash": "0e7a1880c4d6e7fce80ca9826155c723046c7f03910b4f8ba3f6b48360b4bbf0",
         "hash_matches_recorded": true
       },
       {
@@ -6917,7 +6917,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-19T20:31:00Z",
     "decision_time": "2026-08-20T22:31:00Z",
-    "pack_hash": "6141cfd439813aab66f96e69192ccef22e1fcfb13cbced2b59ed42a82b9079c2",
+    "pack_hash": "1130ee5a1cca5d40e7e920621a48d7263fbcebb5d82c4693de28367da7fc8288",
     "reproducible": true,
     "checks": [
       {
@@ -6930,7 +6930,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 8 rows hash to their recorded values (pack 6141cfd43981)"
+        "detail": "all 8 rows hash to their recorded values (pack 1130ee5a1cca)"
       },
       {
         "id": "policy_in_force",
@@ -7086,7 +7086,7 @@
         "amount_paise": 3695626,
         "timestamp": "2026-08-20T03:31:00Z",
         "freshness_hours": 23.65,
-        "hash": "1733c33a188d92e6fbae0b7113bc965141596ef2d95196193ff8a2f7c90ea509",
+        "hash": "b7b0ceaaad7c9a6bda414a4861a62acd47e47ab44c64d136d5a9e50c82faf34c",
         "hash_matches_recorded": true
       },
       {
@@ -7122,7 +7122,7 @@
     "decision_policy_version": "finance-policy-v11",
     "event_time": "2026-08-10T19:20:00Z",
     "decision_time": "2026-08-11T06:20:00Z",
-    "pack_hash": "25a1c8ace7524d610afa1d316be294ff9fb56644cd83073743dc95de33738c54",
+    "pack_hash": "1e97123d73d1099481aede8aa90eb816db182dd100dd5ea28a379b5c89808df4",
     "reproducible": true,
     "checks": [
       {
@@ -7135,7 +7135,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 9 rows hash to their recorded values (pack 25a1c8ace752)"
+        "detail": "all 9 rows hash to their recorded values (pack 1e97123d73d1)"
       },
       {
         "id": "policy_in_force",
@@ -7302,7 +7302,7 @@
         "amount_paise": 8686815,
         "timestamp": "2026-08-10T22:20:00Z",
         "freshness_hours": 7.4,
-        "hash": "1c4e619ca3bd5e7f5c3138fd290dd3f3d5e1b36b2747c4d3142949dfb0244963",
+        "hash": "432344fab2d074a1c05ab413dba687e95363dbb05e6864aa918c7fd4bfb58995",
         "hash_matches_recorded": true
       },
       {
@@ -7338,7 +7338,7 @@
     "decision_policy_version": "finance-policy-v11",
     "event_time": "2026-08-06T14:39:00Z",
     "decision_time": "2026-08-07T18:39:00Z",
-    "pack_hash": "d55e0db26e558e71679820827dd67d108cb0469c6f3f20cae72c2ecb54e8e57e",
+    "pack_hash": "d16196be105203c5b936fee255185b02c9d99b0b805e57d2d87979baef7a59aa",
     "reproducible": true,
     "checks": [
       {
@@ -7351,7 +7351,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 14 rows hash to their recorded values (pack d55e0db26e55)"
+        "detail": "all 14 rows hash to their recorded values (pack d16196be1052)"
       },
       {
         "id": "policy_in_force",
@@ -7573,7 +7573,7 @@
         "amount_paise": 17309309,
         "timestamp": "2026-08-07T04:39:00Z",
         "freshness_hours": 19.33,
-        "hash": "9adfdcbb9f5e1e4d2c8f8193fab2b4188c54f11aa2f1accce61a46799bd6294b",
+        "hash": "a0cedf23daf2a8f0fb62de9474b1dc133e200f15a44c04e96ba2213d0d52f5a7",
         "hash_matches_recorded": true
       },
       {
@@ -7609,7 +7609,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-12T17:05:00Z",
     "decision_time": "2026-08-13T22:05:00Z",
-    "pack_hash": "87ea14681f325176dab9255d60e25a413e32697526294fc02f7757cfca642275",
+    "pack_hash": "0b1993396799bd107edae931a36a308e7de635ee13b498ab9946c392d2e2818e",
     "reproducible": true,
     "checks": [
       {
@@ -7622,7 +7622,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 11 rows hash to their recorded values (pack 87ea14681f32)"
+        "detail": "all 11 rows hash to their recorded values (pack 0b1993396799)"
       },
       {
         "id": "policy_in_force",
@@ -7811,7 +7811,7 @@
         "amount_paise": 11400892,
         "timestamp": "2026-08-13T01:05:00Z",
         "freshness_hours": 24.33,
-        "hash": "afdee1e4a0135fc9f0a0ad466f86e7bc4390efce58690f04e1860b36d3a37aaf",
+        "hash": "667fdea9567df836e316e816f2100e7d7e3f1fe293d584c54b082869b225a1da",
         "hash_matches_recorded": true
       },
       {
@@ -7847,7 +7847,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-13T19:49:00Z",
     "decision_time": "2026-08-14T21:49:00Z",
-    "pack_hash": "3907774cce90bac6955c724888aa2380f9bbf264852c74b98c29c7953480e5d8",
+    "pack_hash": "ad908e85a1f3f6d4a19bc08c5308f053b5feffa766bd32d8919744d8d959b670",
     "reproducible": true,
     "checks": [
       {
@@ -7860,7 +7860,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 8 rows hash to their recorded values (pack 3907774cce90)"
+        "detail": "all 8 rows hash to their recorded values (pack ad908e85a1f3)"
       },
       {
         "id": "policy_in_force",
@@ -7908,7 +7908,7 @@
         "id": "no_duplicate_ingestion",
         "pillar": "verify",
         "status": "fail",
-        "detail": "the same source content was ingested more than once: bank_statement rows [bnk-000036, bnk-000037] share content hash 23bc605405b8"
+        "detail": "the same source content was ingested more than once: bank_statement rows [bnk-000036, bnk-000037] share content hash cbb69a92e071"
       },
       {
         "id": "utr_unique",
@@ -8005,7 +8005,7 @@
         "amount_paise": 5039735,
         "timestamp": "2026-08-14T03:49:00Z",
         "freshness_hours": 18.7,
-        "hash": "23bc605405b8e15bc08b6905690c5ef3f84d23eb60f33c2b659305a23b85d2a4",
+        "hash": "cbb69a92e0715f575ec02a7a0f5f9cc4d041a6cf4e4be1d5327f8368e29b2ac9",
         "hash_matches_recorded": true
       },
       {
@@ -8016,7 +8016,7 @@
         "amount_paise": 5039735,
         "timestamp": "2026-08-14T03:49:00Z",
         "freshness_hours": 18.7,
-        "hash": "23bc605405b8e15bc08b6905690c5ef3f84d23eb60f33c2b659305a23b85d2a4",
+        "hash": "cbb69a92e0715f575ec02a7a0f5f9cc4d041a6cf4e4be1d5327f8368e29b2ac9",
         "hash_matches_recorded": true
       },
       {
@@ -8052,7 +8052,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-14T07:27:00Z",
     "decision_time": "2026-08-15T06:27:00Z",
-    "pack_hash": "b1b9a4de5ed5c5945d49e6f7e0a0575ee5be38f2351c693fdbe7f3c37fea231c",
+    "pack_hash": "52df8788d7398453c3d046a2516df261de6b53f9aa2982c5acfce4fc53ac7b01",
     "reproducible": true,
     "checks": [
       {
@@ -8065,7 +8065,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 15 rows hash to their recorded values (pack b1b9a4de5ed5)"
+        "detail": "all 15 rows hash to their recorded values (pack 52df8788d739)"
       },
       {
         "id": "policy_in_force",
@@ -8298,7 +8298,7 @@
         "amount_paise": 14760774,
         "timestamp": "2026-08-14T15:27:00Z",
         "freshness_hours": 18.37,
-        "hash": "8cdb26da8688ed7e125f9c65f99107da42a5cc50c33820f5f008369f0cc40bab",
+        "hash": "d5eac426af5fe1ec3b032224eec5022ad2e19f72b1cbab1b6b469f66f44c8853",
         "hash_matches_recorded": true
       },
       {
@@ -8334,7 +8334,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-15T01:30:00Z",
     "decision_time": "2026-08-16T02:30:00Z",
-    "pack_hash": "9f85133a1f315f1ba4a86f127531e447a664a0c0eee7c45d7c5b4ced3bee55be",
+    "pack_hash": "5c6605b4aa172ee90fb040527de8ca89778882fe48e43cb3ac40d2b0560de2f3",
     "reproducible": true,
     "checks": [
       {
@@ -8347,7 +8347,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 10 rows hash to their recorded values (pack 9f85133a1f31)"
+        "detail": "all 10 rows hash to their recorded values (pack 5c6605b4aa17)"
       },
       {
         "id": "policy_in_force",
@@ -8525,7 +8525,7 @@
         "amount_paise": 10298709,
         "timestamp": "2026-08-15T05:30:00Z",
         "freshness_hours": 22.25,
-        "hash": "491b46150523b87270e1f6651103c90c448d9defd48dfe62caed87fc99f4f860",
+        "hash": "8e8c1bbf12d66a6a3b20c050acecf5ebff5472886ab935a0327e867bade24539",
         "hash_matches_recorded": true
       },
       {
@@ -8561,7 +8561,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-16T12:54:00Z",
     "decision_time": "2026-08-17T19:54:00Z",
-    "pack_hash": "a543d35cbe04b2b93b44c845e42252e07a8ef0c245d582c79798a2464b295eb9",
+    "pack_hash": "50f81a1fbea6a8c0b291975e67064a22b91916e9ee4a268f64d78b4500fb1a9c",
     "reproducible": true,
     "checks": [
       {
@@ -8574,7 +8574,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 11 rows hash to their recorded values (pack a543d35cbe04)"
+        "detail": "all 11 rows hash to their recorded values (pack 50f81a1fbea6)"
       },
       {
         "id": "policy_in_force",
@@ -8730,7 +8730,7 @@
         "amount_paise": 5420245,
         "timestamp": "2026-08-16T18:54:00Z",
         "freshness_hours": 28.38,
-        "hash": "1f7e3de2392f2193d775b0929d1a304d291e25c2f26bd048fa60f2a15ea7eace",
+        "hash": "e21f2e6f78fea035a6826795c402008c24bb7602a0c529fc5e5568fb2d3fd095",
         "hash_matches_recorded": true
       },
       {
@@ -8799,7 +8799,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-17T14:35:00Z",
     "decision_time": "2026-08-18T19:35:00Z",
-    "pack_hash": "ecf1712128d4aff65db6a0efde3b3d76a3ab6bdde69de627feae36e294a0d644",
+    "pack_hash": "2b8d8c39f14d66ee9489f059746e0bbca0a8e521f7b72c4e8941e86b5f9c86df",
     "reproducible": true,
     "checks": [
       {
@@ -8812,7 +8812,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 16 rows hash to their recorded values (pack ecf1712128d4)"
+        "detail": "all 16 rows hash to their recorded values (pack 2b8d8c39f14d)"
       },
       {
         "id": "policy_in_force",
@@ -9023,7 +9023,7 @@
         "amount_paise": 10613352,
         "timestamp": "2026-08-17T20:35:00Z",
         "freshness_hours": 24.73,
-        "hash": "0030784c0665a082112cae6ab0a3c627c26174b95b3c75d8ebde48d1651443ee",
+        "hash": "19b8a75f6bab03b791134997b347c33f20dbf37c09b577b23827d6a88ea945f3",
         "hash_matches_recorded": true
       },
       {
@@ -9092,7 +9092,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-18T01:44:00Z",
     "decision_time": "2026-08-18T14:44:00Z",
-    "pack_hash": "0754caa554946cd289aa0186fed7f91f98eb258722fc2048fdc0436ec7ae4a9a",
+    "pack_hash": "9d0fa97bfc848e68d4a76fc7ea54ca49cee4ddcbd80ab5dfc74992dfed0e1a6b",
     "reproducible": true,
     "checks": [
       {
@@ -9105,7 +9105,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 12 rows hash to their recorded values (pack 0754caa55494)"
+        "detail": "all 12 rows hash to their recorded values (pack 9d0fa97bfc84)"
       },
       {
         "id": "policy_in_force",
@@ -9305,7 +9305,7 @@
         "amount_paise": 12533160,
         "timestamp": "2026-08-18T10:44:00Z",
         "freshness_hours": 8.43,
-        "hash": "181d8d9eee3cbe35cf62e7aaaedd377b35b580a4917b9b1a1d02598a94f2e4a5",
+        "hash": "bc0aa3a0f402cf9da82e534d87f00e5f25570710ec5bc6a5addd0620db6c9e10",
         "hash_matches_recorded": true
       },
       {
@@ -9341,7 +9341,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-19T15:13:00Z",
     "decision_time": "2026-08-20T18:13:00Z",
-    "pack_hash": "d1dbc6e78cbdc15df9ba68b9dc6891516a25040d242f21d161e102ce5cbc86e5",
+    "pack_hash": "4ce3e5275c9adc84a4a8d29771243a41355a930fa019bb3920e779fd7067039f",
     "reproducible": true,
     "checks": [
       {
@@ -9354,7 +9354,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 8 rows hash to their recorded values (pack d1dbc6e78cbd)"
+        "detail": "all 8 rows hash to their recorded values (pack 4ce3e5275c9a)"
       },
       {
         "id": "policy_in_force",
@@ -9402,7 +9402,7 @@
         "id": "no_duplicate_ingestion",
         "pillar": "verify",
         "status": "fail",
-        "detail": "the same source content was ingested more than once: bank_statement rows [bnk-000043, bnk-000044] share content hash 18cce3857c2b"
+        "detail": "the same source content was ingested more than once: bank_statement rows [bnk-000043, bnk-000044] share content hash d08de84ae083"
       },
       {
         "id": "utr_unique",
@@ -9499,7 +9499,7 @@
         "amount_paise": 1937475,
         "timestamp": "2026-08-20T05:13:00Z",
         "freshness_hours": 17.88,
-        "hash": "18cce3857c2b379e27ac302fabe5625b5cb26d0f3280d42f1ca672530982d3f1",
+        "hash": "d08de84ae083c38db81eb716f1ef5452ac04e039db1158fd3356d1edc76ba99e",
         "hash_matches_recorded": true
       },
       {
@@ -9510,7 +9510,7 @@
         "amount_paise": 1937475,
         "timestamp": "2026-08-20T05:13:00Z",
         "freshness_hours": 17.88,
-        "hash": "18cce3857c2b379e27ac302fabe5625b5cb26d0f3280d42f1ca672530982d3f1",
+        "hash": "d08de84ae083c38db81eb716f1ef5452ac04e039db1158fd3356d1edc76ba99e",
         "hash_matches_recorded": true
       },
       {
@@ -9546,7 +9546,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-20T13:56:00Z",
     "decision_time": "2026-08-21T05:56:00Z",
-    "pack_hash": "0c417c1ee7e2dd55bd3345cc1178d971ce1e94f6d21440ab5b07eef4bb61f23b",
+    "pack_hash": "e752c7d98b9067c4cd59a43e3edf4feff8f81efbf3820d60c057e39c778e8095",
     "reproducible": true,
     "checks": [
       {
@@ -9559,7 +9559,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 8 rows hash to their recorded values (pack 0c417c1ee7e2)"
+        "detail": "all 8 rows hash to their recorded values (pack e752c7d98b90)"
       },
       {
         "id": "policy_in_force",
@@ -9715,7 +9715,7 @@
         "amount_paise": 5661294,
         "timestamp": "2026-08-20T21:56:00Z",
         "freshness_hours": 10.1,
-        "hash": "31d0bb740cef30a778a108bd7dff0b83258cc3a2cd0a88be5019f5f00ba01737",
+        "hash": "01d297d42339a09d3ea4d6ba3138d508cb33f499f603b57dada2e24dba6418a0",
         "hash_matches_recorded": true
       },
       {
@@ -9751,7 +9751,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-21T06:39:00Z",
     "decision_time": "2026-08-22T03:39:00Z",
-    "pack_hash": "67a54bd51f18d8fc84edb37c7ea8226a19a4160863fac8054db6b1ea1b7c7cca",
+    "pack_hash": "e9b21e5b29532c6f072f91d48fb352f36324ce5ada71363abab796bf340e748f",
     "reproducible": true,
     "checks": [
       {
@@ -9764,7 +9764,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 13 rows hash to their recorded values (pack 67a54bd51f18)"
+        "detail": "all 13 rows hash to their recorded values (pack e9b21e5b2953)"
       },
       {
         "id": "policy_in_force",
@@ -9975,7 +9975,7 @@
         "amount_paise": 13347453,
         "timestamp": "2026-08-21T13:39:00Z",
         "freshness_hours": 16.55,
-        "hash": "14a2d670a820084f8502ccd712978f6466da373d84f4b186fca88a524f298064",
+        "hash": "974523b28d1a8b5d1186eb386119837b5babb5eefe065ca54e23e8d0f9c0e385",
         "hash_matches_recorded": true
       },
       {
@@ -10011,7 +10011,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-22T19:44:00Z",
     "decision_time": "2026-08-23T10:44:00Z",
-    "pack_hash": "33f28fca1acaad65985683f461ff63cc9410b3487a436d772e4e894e988c693c",
+    "pack_hash": "ff9920bdb7c2ebcd6b60188bdf2f740cef92d50cd72c267384c0117cc7995ec6",
     "reproducible": true,
     "checks": [
       {
@@ -10024,7 +10024,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 11 rows hash to their recorded values (pack 33f28fca1aca)"
+        "detail": "all 11 rows hash to their recorded values (pack ff9920bdb7c2)"
       },
       {
         "id": "policy_in_force",
@@ -10213,7 +10213,7 @@
         "amount_paise": 9963768,
         "timestamp": "2026-08-23T05:44:00Z",
         "freshness_hours": 7.65,
-        "hash": "584f22ac0d66d45e9163295f73e2a8a861ecefce8f6041209e237aa215196b3f",
+        "hash": "086cc5ebe6b03591c3b8a57192e0f8f7092958246a0c0b8f1c47b9b67c02084e",
         "hash_matches_recorded": true
       },
       {
@@ -10476,7 +10476,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-24T05:38:00Z",
     "decision_time": "2026-08-24T20:38:00Z",
-    "pack_hash": "e065ed46a9073c84bed50985a507c8acbfbb3ce38304ebea7cc03f258606bbf2",
+    "pack_hash": "fd33373e2dab3eddc2ccc804fa508e10c1df70c53e15daa7629dad5a7a5a11e7",
     "reproducible": true,
     "checks": [
       {
@@ -10489,7 +10489,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 12 rows hash to their recorded values (pack e065ed46a907)"
+        "detail": "all 12 rows hash to their recorded values (pack fd33373e2dab)"
       },
       {
         "id": "policy_in_force",
@@ -10689,7 +10689,7 @@
         "amount_paise": 10139222,
         "timestamp": "2026-08-24T13:38:00Z",
         "freshness_hours": 12.83,
-        "hash": "aecbc8fabc6f0999308d3082c6cf7e7fcc1677b240a0d3e8bdd0ecc57958285b",
+        "hash": "8879cd987451282df422703991d137c5b9f360c8fb6d7495fc8910b2cbe5cffe",
         "hash_matches_recorded": true
       },
       {
@@ -10725,7 +10725,7 @@
     "decision_policy_version": "finance-policy-v11",
     "event_time": "2026-08-02T17:52:00Z",
     "decision_time": "2026-08-06T22:52:00Z",
-    "pack_hash": "f8607900a1b7799007fa8970a27d75c9dc904eb04c2731e331c318224376c6fb",
+    "pack_hash": "c43f9101bea2dd9f1a2c447abfaaddbd3208f20efd004db286ab313a23f7b3c0",
     "reproducible": true,
     "checks": [
       {
@@ -10738,7 +10738,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 10 rows hash to their recorded values (pack f8607900a1b7)"
+        "detail": "all 10 rows hash to their recorded values (pack c43f9101bea2)"
       },
       {
         "id": "policy_in_force",
@@ -10916,7 +10916,7 @@
         "amount_paise": 9100156,
         "timestamp": "2026-08-06T05:52:00Z",
         "freshness_hours": 21.87,
-        "hash": "6b921f725b2c300cdd0498e9ee40ed90777d031af7db57e672911639ac3103b6",
+        "hash": "db6c119be272777b60571eaf69e6b19b3475f205bea5b986e05d35ab8d54223d",
         "hash_matches_recorded": true
       },
       {
@@ -10952,7 +10952,7 @@
     "decision_policy_version": "finance-policy-v11",
     "event_time": "2026-08-03T13:22:00Z",
     "decision_time": "2026-08-04T19:22:00Z",
-    "pack_hash": "a465bfbcb51386626621fb7cd5d4b7d560ee577fc739404b9bc117b74148411f",
+    "pack_hash": "58e30069424a7849461ed08acf1c9c43251a0b530286105ef69ca86c24e2f4e1",
     "reproducible": true,
     "checks": [
       {
@@ -10965,7 +10965,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 7 rows hash to their recorded values (pack a465bfbcb513)"
+        "detail": "all 7 rows hash to their recorded values (pack 58e30069424a)"
       },
       {
         "id": "policy_in_force",
@@ -11110,7 +11110,7 @@
         "amount_paise": 4541849,
         "timestamp": "2026-08-04T01:22:00Z",
         "freshness_hours": 23.17,
-        "hash": "82a7cfe0d09dbf860de63b12df969425271a9d1bd84727c99c0345b471ae5016",
+        "hash": "48dbb571e4d461b9514a50883986e98935ff1a234cd899e74e5085e0c6a76173",
         "hash_matches_recorded": true
       },
       {
@@ -11146,7 +11146,7 @@
     "decision_policy_version": "finance-policy-v11",
     "event_time": "2026-08-04T15:37:00Z",
     "decision_time": "2026-08-05T07:37:00Z",
-    "pack_hash": "35e08a222b87c4cf94c9f09ab16f7cc5dc99fe4da0db3a75ec00768e1bc608ee",
+    "pack_hash": "b6f28ed0d6ee7618caeaf3b5d2ab1d2d6ece0da32d09c314ac5030ccf96e7cf2",
     "reproducible": true,
     "checks": [
       {
@@ -11159,7 +11159,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 9 rows hash to their recorded values (pack 35e08a222b87)"
+        "detail": "all 9 rows hash to their recorded values (pack b6f28ed0d6ee)"
       },
       {
         "id": "policy_in_force",
@@ -11326,7 +11326,7 @@
         "amount_paise": 5874663,
         "timestamp": "2026-08-05T03:37:00Z",
         "freshness_hours": 7.55,
-        "hash": "4aa7ae01c2fb436401c238a9556e98513e59928c516399f2265d38c54915d991",
+        "hash": "8e41d6e7b3002d1cc06812c5b9a665097e3132025f4600f9558ebcafecfa84e6",
         "hash_matches_recorded": true
       },
       {
@@ -11362,7 +11362,7 @@
     "decision_policy_version": "finance-policy-v11",
     "event_time": "2026-08-05T19:36:00Z",
     "decision_time": "2026-08-10T02:36:00Z",
-    "pack_hash": "d81956a3acb7b3bc651227f53f46d77f975ca5fcf254521b42f5992ba364f2cb",
+    "pack_hash": "4dfb5c0b8736fe0b88c5bec0dd5762e21ed14bdd9d80020b30f875a615cbeb34",
     "reproducible": true,
     "checks": [
       {
@@ -11375,7 +11375,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 12 rows hash to their recorded values (pack d81956a3acb7)"
+        "detail": "all 12 rows hash to their recorded values (pack 4dfb5c0b8736)"
       },
       {
         "id": "policy_in_force",
@@ -11575,7 +11575,7 @@
         "amount_paise": 12437918,
         "timestamp": "2026-08-09T05:36:00Z",
         "freshness_hours": 25.97,
-        "hash": "8a21d042687dcd23a8bb20845ff98811c3dea6a27cb2c5ca6d8177938c09c5a0",
+        "hash": "ff3f267231fc77289798c145cdbcbb1b9242c58b37e082710469465f0f6a303d",
         "hash_matches_recorded": true
       },
       {
@@ -11611,7 +11611,7 @@
     "decision_policy_version": "finance-policy-v11",
     "event_time": "2026-08-06T02:50:00Z",
     "decision_time": "2026-08-06T23:50:00Z",
-    "pack_hash": "d6f7aa27c99fd12282f7670603cdece6582ed31a6dc84de27b8299a956f2e2bf",
+    "pack_hash": "7122c26f424fc781740e375e43c4af20834a6b53a34ba26ab98801335b56e8bb",
     "reproducible": true,
     "checks": [
       {
@@ -11624,7 +11624,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 14 rows hash to their recorded values (pack d6f7aa27c99f)"
+        "detail": "all 14 rows hash to their recorded values (pack 7122c26f424f)"
       },
       {
         "id": "policy_in_force",
@@ -11835,7 +11835,7 @@
         "amount_paise": 12952286,
         "timestamp": "2026-08-06T12:50:00Z",
         "freshness_hours": 12.3,
-        "hash": "abf5d1e5acbf67d2bc7a4c3a37dca5261536a4ded87b9e839a3ccb6a27dc35cd",
+        "hash": "4045b7935179e3f275550658a3ea941f1bb01977b5d1c514c66b3b950f08bd9a",
         "hash_matches_recorded": true
       },
       {
@@ -11882,7 +11882,7 @@
     "decision_policy_version": "finance-policy-v11",
     "event_time": "2026-08-04T20:10:00Z",
     "decision_time": "2026-08-05T18:10:00Z",
-    "pack_hash": "1eccaaa80e3aeef7fcc73c5fa039481b3c939223b88bccdc97c3ecb2af50631f",
+    "pack_hash": "038cd2cad0715b254f4cd4ea2cec9547b980a10c8cabf938ded93644a774a0ea",
     "reproducible": true,
     "checks": [
       {
@@ -11895,7 +11895,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 11 rows hash to their recorded values (pack 1eccaaa80e3a)"
+        "detail": "all 11 rows hash to their recorded values (pack 038cd2cad071)"
       },
       {
         "id": "policy_in_force",
@@ -12084,7 +12084,7 @@
         "amount_paise": 5422706,
         "timestamp": "2026-08-05T05:10:00Z",
         "freshness_hours": 17.48,
-        "hash": "333ccc26f8b450b28c916eb223e81688769f13bd817dcb23f119a01b70ebc170",
+        "hash": "e9eae417800a6e02a37e3817f210b1b523c1e7e8def877d2f595b28a1c53da0d",
         "hash_matches_recorded": true
       },
       {
@@ -12120,7 +12120,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-17T14:48:00Z",
     "decision_time": "2026-08-18T16:48:00Z",
-    "pack_hash": "9950f3422e7ebf621b0a65927b65919f4ee3a0d77fbcbf13886fea2cf8d77971",
+    "pack_hash": "a81d5ef27998a3db97e316cc03093a5eeadfe05277c15b072ef66231314f510d",
     "reproducible": true,
     "checks": [
       {
@@ -12133,7 +12133,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 15 rows hash to their recorded values (pack 9950f3422e7e)"
+        "detail": "all 15 rows hash to their recorded values (pack a81d5ef27998)"
       },
       {
         "id": "policy_in_force",
@@ -12366,7 +12366,7 @@
         "amount_paise": 15587197,
         "timestamp": "2026-08-17T22:48:00Z",
         "freshness_hours": 18.92,
-        "hash": "ebba0c6f4f4468b7b473b5d448966e6baf10e633bc75599cc5fcf5d79db9b65c",
+        "hash": "d821d47193f8a1d8bf4b1ad500aeb132be2bc1bcaee23f42e09d1aa088b770cf",
         "hash_matches_recorded": true
       },
       {
@@ -12402,7 +12402,7 @@
     "decision_policy_version": "finance-policy-v11",
     "event_time": "2026-08-09T20:25:00Z",
     "decision_time": "2026-08-10T08:25:00Z",
-    "pack_hash": "5448cdb513d3826eefa68d76829d3a6a7446379fe6553f4de607b81d51d0539c",
+    "pack_hash": "61f7d2eb2eec437ae5e0cdae7ee43626394da9abee3e044c93791aca226536fe",
     "reproducible": true,
     "checks": [
       {
@@ -12415,7 +12415,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 14 rows hash to their recorded values (pack 5448cdb513d3)"
+        "detail": "all 14 rows hash to their recorded values (pack 61f7d2eb2eec)"
       },
       {
         "id": "policy_in_force",
@@ -12637,7 +12637,7 @@
         "amount_paise": 13321499,
         "timestamp": "2026-08-10T01:25:00Z",
         "freshness_hours": 6.23,
-        "hash": "48b430fa2de9da9fd627d06e34012d270633ef84e8bfc25f7d45bd800202fe98",
+        "hash": "01b78da009ac445f4778c9307b866e3af33a7d3a3fec7d736be109f78ec9cb6f",
         "hash_matches_recorded": true
       },
       {
@@ -12673,7 +12673,7 @@
     "decision_policy_version": "finance-policy-v11",
     "event_time": "2026-08-10T14:34:00Z",
     "decision_time": "2026-08-11T14:34:00Z",
-    "pack_hash": "4720e81959c9c227735361fa906b6c931affca2faef2ede3d132d576871cc5c8",
+    "pack_hash": "061f82e1f7a9c38b79be4d59fa3cb85b84f1ca69ac7483a7663aa889049e687f",
     "reproducible": true,
     "checks": [
       {
@@ -12686,7 +12686,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 10 rows hash to their recorded values (pack 4720e81959c9)"
+        "detail": "all 10 rows hash to their recorded values (pack 061f82e1f7a9)"
       },
       {
         "id": "policy_in_force",
@@ -12864,7 +12864,7 @@
         "amount_paise": 8118010,
         "timestamp": "2026-08-10T20:34:00Z",
         "freshness_hours": 19.77,
-        "hash": "25b2e26858c9530824e5ef25b1833e4438dad8c62fddacf74301c30eb94c9226",
+        "hash": "b4d54a3b89cddff3c7861be41ec13930d3731577041b0e33e4153016ff30180a",
         "hash_matches_recorded": true
       },
       {
@@ -12900,7 +12900,7 @@
     "decision_policy_version": "finance-policy-v11",
     "event_time": "2026-08-11T13:03:00Z",
     "decision_time": "2026-08-12T05:03:00Z",
-    "pack_hash": "5ccc50773a14e8eba955c4f71793e019b2f57993e6ceedb89f415922451d2c3d",
+    "pack_hash": "c243a5877cae784bdcbd32f09896fce8bd9e4cf078188e949b6cdd603e07cb5b",
     "reproducible": true,
     "checks": [
       {
@@ -12913,7 +12913,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 14 rows hash to their recorded values (pack 5ccc50773a14)"
+        "detail": "all 14 rows hash to their recorded values (pack c243a5877cae)"
       },
       {
         "id": "policy_in_force",
@@ -13135,7 +13135,7 @@
         "amount_paise": 12532318,
         "timestamp": "2026-08-11T21:03:00Z",
         "freshness_hours": 11.98,
-        "hash": "06c7a0225aa5706c6b676a1dc6ff29b940b2d2d944caa710d9444f6c9fe313e6",
+        "hash": "a2468dc8d96fcbb020bb71d8e8dd6abdf32430a91a6c0a23b3d1f1ab12f9e2c0",
         "hash_matches_recorded": true
       },
       {
@@ -13171,7 +13171,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-12T19:40:00Z",
     "decision_time": "2026-08-13T15:40:00Z",
-    "pack_hash": "249dcfa611de1f25bb870f6ca20fe7c13e1e38f8eddd8994e5ce3d9602456a4c",
+    "pack_hash": "287b6fe31fe157845ceee5f03d90b87c9290ca6ebf4a222e7d431d0aa4758fac",
     "reproducible": true,
     "checks": [
       {
@@ -13184,7 +13184,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 10 rows hash to their recorded values (pack 249dcfa611de)"
+        "detail": "all 10 rows hash to their recorded values (pack 287b6fe31fe1)"
       },
       {
         "id": "policy_in_force",
@@ -13351,7 +13351,7 @@
         "amount_paise": 5911236,
         "timestamp": "2026-08-13T02:40:00Z",
         "freshness_hours": 12.85,
-        "hash": "248c3ce6ed52981c067a58e9f430414a09cf31598f43704467e649d945d72eab",
+        "hash": "a04f5ec00f4ac798c8726299113cfbe621207e064b64343728be41d8f4e20e95",
         "hash_matches_recorded": true
       },
       {
@@ -13398,7 +13398,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-13T13:43:00Z",
     "decision_time": "2026-08-15T02:43:00Z",
-    "pack_hash": "49e893263e6d4889c31015337b5e4770391ce99bd4a09e35fd3c33641ad309c5",
+    "pack_hash": "2a3509e4a0282dc1dc97ab7e27c1da3708ba1ea5f36ad4df1c1befbbccd10b9d",
     "reproducible": true,
     "checks": [
       {
@@ -13411,7 +13411,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 13 rows hash to their recorded values (pack 49e893263e6d)"
+        "detail": "all 13 rows hash to their recorded values (pack 2a3509e4a028)"
       },
       {
         "id": "policy_in_force",
@@ -13611,7 +13611,7 @@
         "amount_paise": 10473675,
         "timestamp": "2026-08-14T00:43:00Z",
         "freshness_hours": 27.95,
-        "hash": "e8416cdef6ec91f4b58f9b5f2d4f959b95b03c5abe04ddbc7b76c793f5807b5d",
+        "hash": "3843fde03671079c391101024373cb02648b259638f94c8624e881abdd442836",
         "hash_matches_recorded": true
       },
       {
@@ -13658,7 +13658,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-14T21:13:00Z",
     "decision_time": "2026-08-16T08:13:00Z",
-    "pack_hash": "ed9df1e1f080bc6036674ef26162b8ba137ca105d29e40eea058048287646a96",
+    "pack_hash": "99ce3fa5bbe49a9872ca17c0bf00c85e67d86f5267d921a8a39f48328f48e6e5",
     "reproducible": true,
     "checks": [
       {
@@ -13671,7 +13671,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 9 rows hash to their recorded values (pack ed9df1e1f080)"
+        "detail": "all 9 rows hash to their recorded values (pack 99ce3fa5bbe4)"
       },
       {
         "id": "policy_in_force",
@@ -13838,7 +13838,7 @@
         "amount_paise": 7899800,
         "timestamp": "2026-08-15T09:13:00Z",
         "freshness_hours": 26.38,
-        "hash": "be62332c094dcb29ce5d378a8d2b048362f65865f1c428482651ae814d798dfb",
+        "hash": "f2500fd1be914976188cc23af2d8e55a410d8afbd7e1dcebef7bcb69cd42c7cb",
         "hash_matches_recorded": true
       },
       {
@@ -13874,7 +13874,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-24T22:42:00Z",
     "decision_time": "2026-08-25T21:42:00Z",
-    "pack_hash": "71042612ef75cece7d700ab62005b8d540dd7f4fc0276f016291ce684be9abd0",
+    "pack_hash": "d8b74744b72a76216da9170b3b03cb93768f5b56ecf7f40f7ad70347ecd2b16f",
     "reproducible": true,
     "checks": [
       {
@@ -13887,7 +13887,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 10 rows hash to their recorded values (pack 71042612ef75)"
+        "detail": "all 10 rows hash to their recorded values (pack d8b74744b72a)"
       },
       {
         "id": "policy_in_force",
@@ -14065,7 +14065,7 @@
         "amount_paise": 11659045,
         "timestamp": "2026-08-25T07:42:00Z",
         "freshness_hours": 18.62,
-        "hash": "ef292b302ddd176406967b960bb1d5c53a5bc3e4f091476d692e36e8c341e641",
+        "hash": "d4593a799ee2e1eb0de03d72e89161fdf77e5b669a875004df92e9fdf0a891dd",
         "hash_matches_recorded": true
       },
       {
@@ -14101,7 +14101,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-16T20:20:00Z",
     "decision_time": "2026-08-18T01:20:00Z",
-    "pack_hash": "334a0bae0b7360aecf40f72225cf484801fb24cdccc5d0209e639812f9fd907d",
+    "pack_hash": "3fd923be08a649f01c3f892943379c6f8810e82c40a9c2b1b8fd43993ae4e1ca",
     "reproducible": true,
     "checks": [
       {
@@ -14114,7 +14114,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 3 rows hash to their recorded values (pack 334a0bae0b73)"
+        "detail": "all 3 rows hash to their recorded values (pack 3fd923be08a6)"
       },
       {
         "id": "policy_in_force",
@@ -14215,7 +14215,7 @@
         "amount_paise": 6880837,
         "timestamp": "2026-08-17T03:20:00Z",
         "freshness_hours": 25.05,
-        "hash": "2685e4e39691771985d3c2cfc3ffc0f8ce8f86c614dff5bcb9bc4e5f35bcd4fb",
+        "hash": "84230fdae43afcba740edbb20bf78694f438b77d58060a13575e3d45bc20d91b",
         "hash_matches_recorded": true
       },
       {
@@ -14251,7 +14251,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-17T05:15:00Z",
     "decision_time": "2026-08-18T12:15:00Z",
-    "pack_hash": "83d1a57f34415def7ddf1b0acaa0422df9c9838bfb62f935bcb2e282894a90c0",
+    "pack_hash": "e5c46446d43cf95e0f1b7c30a3a0f2ead9f8c8e9c3cc6a5392ed240bdb076de5",
     "reproducible": true,
     "checks": [
       {
@@ -14264,7 +14264,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 14 rows hash to their recorded values (pack 83d1a57f3441)"
+        "detail": "all 14 rows hash to their recorded values (pack e5c46446d43c)"
       },
       {
         "id": "policy_in_force",
@@ -14486,7 +14486,7 @@
         "amount_paise": 16711859,
         "timestamp": "2026-08-17T13:15:00Z",
         "freshness_hours": 24.22,
-        "hash": "89d154051968206eda29cf496204052fb35f70ba5a7777834d9a21819754a648",
+        "hash": "d488162a38aa88d55073641e6130f0d849b9995c9c1fe8af77e605653fa8ddf7",
         "hash_matches_recorded": true
       },
       {
@@ -14522,7 +14522,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-18T05:43:00Z",
     "decision_time": "2026-08-19T09:43:00Z",
-    "pack_hash": "263f3afc9517663c35eca40b924f5fcaceb62b0d077e6a45a972c7e8b4ba8e9d",
+    "pack_hash": "c5d19b3ccfdb35e58f3ca3496d67b31d40445a6b7eff1cc6445d72f3a7d32db8",
     "reproducible": true,
     "checks": [
       {
@@ -14535,7 +14535,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 10 rows hash to their recorded values (pack 263f3afc9517)"
+        "detail": "all 10 rows hash to their recorded values (pack c5d19b3ccfdb)"
       },
       {
         "id": "policy_in_force",
@@ -14713,7 +14713,7 @@
         "amount_paise": 6067842,
         "timestamp": "2026-08-18T08:43:00Z",
         "freshness_hours": 25.88,
-        "hash": "e936f8a06814bc74be855f91d88938e1e5795e2cc3dfc28ddbc12e2c0851ff9b",
+        "hash": "3937ed41725efbb57bf68e48fa73c72cafdd13c2dd15e0293a1579d1bace551c",
         "hash_matches_recorded": true
       },
       {
@@ -14749,7 +14749,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-19T13:48:00Z",
     "decision_time": "2026-08-20T05:48:00Z",
-    "pack_hash": "d25bb38e69489fd706938386bf84519224f0c97ba6b0961a3e4b98d2f4e4739f",
+    "pack_hash": "94a5141dd47012984b3a39a118b552c51530f47a8b0e379f28ba1ea9f82e97c3",
     "reproducible": true,
     "checks": [
       {
@@ -14762,7 +14762,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 6 rows hash to their recorded values (pack d25bb38e6948)"
+        "detail": "all 6 rows hash to their recorded values (pack 94a5141dd470)"
       },
       {
         "id": "policy_in_force",
@@ -14896,7 +14896,7 @@
         "amount_paise": 3491408,
         "timestamp": "2026-08-20T00:48:00Z",
         "freshness_hours": 6.55,
-        "hash": "3ed9f5ecc0880381d0a9b510e5abd19f6cfc7d9dcee75675f9531995752f8342",
+        "hash": "6c0686dc9195432275216c0b2fb9b83d8f64afe8cc6d0a122e0b96fc8059b211",
         "hash_matches_recorded": true
       },
       {
@@ -15192,7 +15192,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-21T06:45:00Z",
     "decision_time": "2026-08-22T03:45:00Z",
-    "pack_hash": "54344bcf0c70a8650a6f7ecdcace4ac65792b8f27df4f471d98eca1006ca4a1b",
+    "pack_hash": "9dc7024687455f136390fa9f895c01d675e29a0a9171eb1d039ab56ae3a6d612",
     "reproducible": true,
     "checks": [
       {
@@ -15205,7 +15205,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 15 rows hash to their recorded values (pack 54344bcf0c70)"
+        "detail": "all 15 rows hash to their recorded values (pack 9dc702468745)"
       },
       {
         "id": "policy_in_force",
@@ -15438,7 +15438,7 @@
         "amount_paise": 12293089,
         "timestamp": "2026-08-21T11:45:00Z",
         "freshness_hours": 16.22,
-        "hash": "30cb72a8727ba7a9eb2b9d2b4179a73f00b0dcc9ae07b9b6d17cee20ea50497c",
+        "hash": "5b0837cb11ff90192bff32f07c02c686e5b07f9efb036f093cd418f0998558f7",
         "hash_matches_recorded": true
       },
       {
@@ -15474,7 +15474,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-19T21:32:00Z",
     "decision_time": "2026-08-21T02:32:00Z",
-    "pack_hash": "0b70f7b7bcced69446bc169c3172de79e2600346d0af8277f45cc83940c29d78",
+    "pack_hash": "784ef8ffc0d8c71187d7a4c8fb2d9d924f0fab283a373403417e5c0182cfaeca",
     "reproducible": true,
     "checks": [
       {
@@ -15487,7 +15487,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 10 rows hash to their recorded values (pack 0b70f7b7bcce)"
+        "detail": "all 10 rows hash to their recorded values (pack 784ef8ffc0d8)"
       },
       {
         "id": "policy_in_force",
@@ -15665,7 +15665,7 @@
         "amount_paise": 9923733,
         "timestamp": "2026-08-20T03:32:00Z",
         "freshness_hours": 23.38,
-        "hash": "da8233c5b568d6c95b4424302602e797cc549fa13a2c6e8a563930bbe668ecca",
+        "hash": "cee5dfa98fbbc8c81c84132a3a99074f5481c35693ac2283b9ec1a86c700a9f7",
         "hash_matches_recorded": true
       },
       {
@@ -15701,7 +15701,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-23T17:02:00Z",
     "decision_time": "2026-08-24T23:02:00Z",
-    "pack_hash": "2930ce55f523e7c38e7121d1ad71a3118ed211469291f6e750a84777c1c7293f",
+    "pack_hash": "57596690dd523053cc1d1cb7f5a6cbf2b5429fe305c26d022d368916b036a347",
     "reproducible": true,
     "checks": [
       {
@@ -15714,7 +15714,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 15 rows hash to their recorded values (pack 2930ce55f523)"
+        "detail": "all 15 rows hash to their recorded values (pack 57596690dd52)"
       },
       {
         "id": "policy_in_force",
@@ -15936,7 +15936,7 @@
         "amount_paise": 7317549,
         "timestamp": "2026-08-24T02:02:00Z",
         "freshness_hours": 22.57,
-        "hash": "89ca3e6917bf08d1fcdf13bb365681d2f1686fd6520a1e3456571685117dc8cc",
+        "hash": "a144141d9eea6f7d43610c627a9ffb72dceb608ba7ff8614e5f8dfddee85caea",
         "hash_matches_recorded": true
       },
       {
@@ -15983,7 +15983,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-24T15:48:00Z",
     "decision_time": "2026-08-25T02:48:00Z",
-    "pack_hash": "067194e5c885f89c988f15bd254108d2644aa38df7d383623ec68a57448ba6fe",
+    "pack_hash": "0641f7ce91d1599216770eeb697e2b1762d7ea5d432e4faed787cc5c99510c9a",
     "reproducible": true,
     "checks": [
       {
@@ -15996,7 +15996,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 9 rows hash to their recorded values (pack 067194e5c885)"
+        "detail": "all 9 rows hash to their recorded values (pack 0641f7ce91d1)"
       },
       {
         "id": "policy_in_force",
@@ -16152,7 +16152,7 @@
         "amount_paise": 3175962,
         "timestamp": "2026-08-24T19:48:00Z",
         "freshness_hours": 8.3,
-        "hash": "4b7e13816055aee7a5a3acae10f62e937d92d06924a92bbca1425f209b6d5624",
+        "hash": "2ff08d0e8a096691edf969355b51cc45412e4f6a5a4d6cdd1eb0664a68471071",
         "hash_matches_recorded": true
       },
       {
@@ -16199,7 +16199,7 @@
     "decision_policy_version": "finance-policy-v11",
     "event_time": "2026-08-02T10:57:00Z",
     "decision_time": "2026-08-03T15:57:00Z",
-    "pack_hash": "d0893654297a3ea9dfda0fb12194555a779c3f5375e9727d86e2abf6186548e5",
+    "pack_hash": "4f1fee0c8de671035114eeddf092d2d82403c3414dc988ded15107e5522208bf",
     "reproducible": true,
     "checks": [
       {
@@ -16212,7 +16212,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 11 rows hash to their recorded values (pack d0893654297a)"
+        "detail": "all 11 rows hash to their recorded values (pack 4f1fee0c8de6)"
       },
       {
         "id": "policy_in_force",
@@ -16401,7 +16401,7 @@
         "amount_paise": 9298554,
         "timestamp": "2026-08-02T18:57:00Z",
         "freshness_hours": 22.35,
-        "hash": "20b26effca1fc291791329b20bea4b0c83a1c6733988fa575d34b8ecaaf01b38",
+        "hash": "dbf3e3222eff72123c9345444486c94a09ea04ab0e28ec5ddfe0d32123c6e9b3",
         "hash_matches_recorded": true
       },
       {
@@ -16437,7 +16437,7 @@
     "decision_policy_version": "finance-policy-v11",
     "event_time": "2026-08-03T03:50:00Z",
     "decision_time": "2026-08-03T18:50:00Z",
-    "pack_hash": "b10f6ec570bd0295aea3db34f446905fe65566b53f142df14e6b6dad550b2afd",
+    "pack_hash": "87f4152bd1b79eda9171876b1ed86d7d37cc94886dad13aeed6f5163dc08787d",
     "reproducible": true,
     "checks": [
       {
@@ -16450,7 +16450,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 15 rows hash to their recorded values (pack b10f6ec570bd)"
+        "detail": "all 15 rows hash to their recorded values (pack 87f4152bd1b7)"
       },
       {
         "id": "policy_in_force",
@@ -16683,7 +16683,7 @@
         "amount_paise": 20413039,
         "timestamp": "2026-08-03T13:50:00Z",
         "freshness_hours": 9.12,
-        "hash": "659c9a06449a8d0c115828e958b183433270b1e4d0f0452a67e3fb011711fccf",
+        "hash": "b91d2a8e389dbea7c5e872f4f71973c08e018b8c4dda4b185cb5e5e529f7ebea",
         "hash_matches_recorded": true
       },
       {
@@ -16719,7 +16719,7 @@
     "decision_policy_version": "finance-policy-v11",
     "event_time": "2026-08-04T07:14:00Z",
     "decision_time": "2026-08-05T02:14:00Z",
-    "pack_hash": "e9c00d4303c140bf77c59dac4e200e06679e46501a90884583b3930f2741970f",
+    "pack_hash": "6b913534ee0ca3b77551c33097cb0cf22a3591888df654ff55580909977c187e",
     "reproducible": true,
     "checks": [
       {
@@ -16732,7 +16732,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 16 rows hash to their recorded values (pack e9c00d4303c1)"
+        "detail": "all 16 rows hash to their recorded values (pack 6b913534ee0c)"
       },
       {
         "id": "policy_in_force",
@@ -16943,7 +16943,7 @@
         "amount_paise": 11695884,
         "timestamp": "2026-08-04T17:14:00Z",
         "freshness_hours": 11.48,
-        "hash": "e78187a6ee72a30467a4c05b1555ccbaf328bf06735db42e159ca73a71ea8021",
+        "hash": "b0072c5a1df6dc43b423643bcbed5ff026eb3c846df79c3baf68329d8ea4c608",
         "hash_matches_recorded": true
       },
       {
@@ -17012,7 +17012,7 @@
     "decision_policy_version": "finance-policy-v11",
     "event_time": "2026-08-05T07:55:00Z",
     "decision_time": "2026-08-09T08:55:00Z",
-    "pack_hash": "1776232bc34fa632463f627d32299fb857636d535ad6a52d26904b0575b84e86",
+    "pack_hash": "36ef25d9d5b17e365cbf0d833bf6526ac6b3da85c20ceecbae53a16f7b4bd89c",
     "reproducible": true,
     "checks": [
       {
@@ -17025,7 +17025,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 8 rows hash to their recorded values (pack 1776232bc34f)"
+        "detail": "all 8 rows hash to their recorded values (pack 36ef25d9d5b1)"
       },
       {
         "id": "policy_in_force",
@@ -17181,7 +17181,7 @@
         "amount_paise": 4745249,
         "timestamp": "2026-08-08T15:55:00Z",
         "freshness_hours": 20.03,
-        "hash": "2a7d62f6ae9767c73e8e4f661ffc97220e3f2f8fecd284c3041544f403492485",
+        "hash": "340ca84bc8cf7f1b7dd3777b0dc9404642c2792a056e32a84eb2f63b5fcd1c75",
         "hash_matches_recorded": true
       },
       {
@@ -17217,7 +17217,7 @@
     "decision_policy_version": "finance-policy-v11",
     "event_time": "2026-08-06T16:03:00Z",
     "decision_time": "2026-08-08T04:03:00Z",
-    "pack_hash": "1a5afb6d1812504cbba5017a55862f8e734a6c55fc9da00cc11e064b311418fc",
+    "pack_hash": "fb1e04bdd8ded63e44c048f196fdb45b0ceafd606cc475a908e1c6ffb6854825",
     "reproducible": true,
     "checks": [
       {
@@ -17230,7 +17230,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 13 rows hash to their recorded values (pack 1a5afb6d1812)"
+        "detail": "all 13 rows hash to their recorded values (pack fb1e04bdd8de)"
       },
       {
         "id": "policy_in_force",
@@ -17441,7 +17441,7 @@
         "amount_paise": 11306223,
         "timestamp": "2026-08-07T03:03:00Z",
         "freshness_hours": 28.52,
-        "hash": "b62040a1eb7cd3519c2e95e2b9fff98eba6f54aea4917337a92033b4e93e2964",
+        "hash": "5026df33705c421508150d34c323ef1725e6ae4efd7f581bc2509c1e2ae4cb77",
         "hash_matches_recorded": true
       },
       {
@@ -17477,7 +17477,7 @@
     "decision_policy_version": "finance-policy-v11",
     "event_time": "2026-08-07T04:46:00Z",
     "decision_time": "2026-08-07T23:46:00Z",
-    "pack_hash": "40691255e4b1fc3bfbf5821ac05df40f00fbc42bfd608c933d8a855784ae1457",
+    "pack_hash": "eee9ea9169fe45f7c48551cbcd2004c49aae9bf4ecf2c6946e4dea6b89d86bbd",
     "reproducible": true,
     "checks": [
       {
@@ -17490,7 +17490,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 7 rows hash to their recorded values (pack 40691255e4b1)"
+        "detail": "all 7 rows hash to their recorded values (pack eee9ea9169fe)"
       },
       {
         "id": "policy_in_force",
@@ -17635,7 +17635,7 @@
         "amount_paise": 5643435,
         "timestamp": "2026-08-07T17:46:00Z",
         "freshness_hours": 11.1,
-        "hash": "55c62d5ca97a17e316deb8ce147c863302a1baa6e992781645964c9b10ceef5f",
+        "hash": "2ee50f3f8328eea82d05fa2289a83cc077c2964e11e1e1f94b886e1845e6365a",
         "hash_matches_recorded": true
       },
       {
@@ -17671,7 +17671,7 @@
     "decision_policy_version": "finance-policy-v11",
     "event_time": "2026-08-08T06:47:00Z",
     "decision_time": "2026-08-08T22:47:00Z",
-    "pack_hash": "f46acfc33278663d479231841e3d55de5759501e46415bb01276daed0b963f03",
+    "pack_hash": "bdfb5140a87e47a20db171e589f40500e15c9c8abd48e9adc6b11c4b9f21ff6b",
     "reproducible": true,
     "checks": [
       {
@@ -17684,7 +17684,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 13 rows hash to their recorded values (pack f46acfc33278)"
+        "detail": "all 13 rows hash to their recorded values (pack bdfb5140a87e)"
       },
       {
         "id": "policy_in_force",
@@ -17884,7 +17884,7 @@
         "amount_paise": 8095190,
         "timestamp": "2026-08-08T19:47:00Z",
         "freshness_hours": 7.27,
-        "hash": "2f4ae3baac7c644900d0e52d79ad973f30fee951babd6bcdea96f4b02a220ff1",
+        "hash": "7cf120a99bf476a98432623cc5d7e31710f44349b6f0ce4ba74ea9ade977d6e1",
         "hash_matches_recorded": true
       },
       {
@@ -18191,7 +18191,7 @@
     "decision_policy_version": "finance-policy-v11",
     "event_time": "2026-08-10T03:52:00Z",
     "decision_time": "2026-08-10T14:52:00Z",
-    "pack_hash": "54a44a7f099bfaa8e77767279e23484e9f9f11697027335dbfc3c1521790838d",
+    "pack_hash": "62c319dd9279f885046eaf513de79b04e8db3b2fd8788dbc2f7ccde2854c28b8",
     "reproducible": true,
     "checks": [
       {
@@ -18204,7 +18204,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 11 rows hash to their recorded values (pack 54a44a7f099b)"
+        "detail": "all 11 rows hash to their recorded values (pack 62c319dd9279)"
       },
       {
         "id": "policy_in_force",
@@ -18393,7 +18393,7 @@
         "amount_paise": 7179687,
         "timestamp": "2026-08-10T11:52:00Z",
         "freshness_hours": 7.1,
-        "hash": "f2a52416baeb5cd9739167615c87c583480456789d10ade83d228f8006825f3e",
+        "hash": "a09f96473337b83eec6073c6f82a9e958e3b0b6cf22a08888c611652e75ed1f1",
         "hash_matches_recorded": true
       },
       {
@@ -18429,7 +18429,7 @@
     "decision_policy_version": "finance-policy-v11",
     "event_time": "2026-08-11T21:08:00Z",
     "decision_time": "2026-08-12T06:08:00Z",
-    "pack_hash": "de68d7d70beaf36d0eb6753157fe396449a12eeecd03e6b971a53a7bc42cde67",
+    "pack_hash": "690970255bd753db7125b7704b59c6759802da095a1ab5d4d6a98abc27fcb237",
     "reproducible": true,
     "checks": [
       {
@@ -18442,7 +18442,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 16 rows hash to their recorded values (pack de68d7d70bea)"
+        "detail": "all 16 rows hash to their recorded values (pack 690970255bd7)"
       },
       {
         "id": "policy_in_force",
@@ -18686,7 +18686,7 @@
         "amount_paise": 10908914,
         "timestamp": "2026-08-12T04:08:00Z",
         "freshness_hours": 6.45,
-        "hash": "bef07aa7c58d529082268cda573b5645b74ff68bde498368cee75bc61ecf86de",
+        "hash": "ae2723cf7fca51756b4211c0c64534601574c883ffea04fa107f45c8f9ceed5a",
         "hash_matches_recorded": true
       },
       {
@@ -18722,7 +18722,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-12T17:05:00Z",
     "decision_time": "2026-08-14T01:05:00Z",
-    "pack_hash": "604905587d2b7a91c0d2f25ac76502d173caa97208b70221240edf2125654a69",
+    "pack_hash": "f61ac6a32f6258a4ad5448af58b0f4afaab632392ae6491b84f0bb03c3d92978",
     "reproducible": true,
     "checks": [
       {
@@ -18735,7 +18735,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 16 rows hash to their recorded values (pack 604905587d2b)"
+        "detail": "all 16 rows hash to their recorded values (pack f61ac6a32f62)"
       },
       {
         "id": "policy_in_force",
@@ -18979,7 +18979,7 @@
         "amount_paise": 12863341,
         "timestamp": "2026-08-13T04:05:00Z",
         "freshness_hours": 26.13,
-        "hash": "83f836696a568908eec2b7de6987bedbe82fc575b66658abd340bed2897b5207",
+        "hash": "15339a0fe4e818f6bb408cb13fc08d332e389df795b55303c22fa9e7dab55946",
         "hash_matches_recorded": true
       },
       {
@@ -19015,7 +19015,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-13T14:53:00Z",
     "decision_time": "2026-08-14T11:53:00Z",
-    "pack_hash": "650332678433bc218ef9956aac379774e596e558e1d343a655e764b7a7ddc399",
+    "pack_hash": "0c90c06536d2a982e5e888e86a72c0aa7ccd0f61fcce15175336826971f4dd37",
     "reproducible": true,
     "checks": [
       {
@@ -19028,7 +19028,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 14 rows hash to their recorded values (pack 650332678433)"
+        "detail": "all 14 rows hash to their recorded values (pack 0c90c06536d2)"
       },
       {
         "id": "policy_in_force",
@@ -19250,7 +19250,7 @@
         "amount_paise": 14475770,
         "timestamp": "2026-08-13T20:53:00Z",
         "freshness_hours": 17.8,
-        "hash": "6555a87e42c13b12d4fa44d516f34568ad5d2cf00a9fc280b877118ba0fdce34",
+        "hash": "14c9fcd75bdd3c75aaa65211d99ae32d48af5075ef3e20b1c4d7397fdd774f66",
         "hash_matches_recorded": true
       },
       {
@@ -19286,7 +19286,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-14T05:20:00Z",
     "decision_time": "2026-08-16T02:20:00Z",
-    "pack_hash": "9903ab8033a1edcc68f91cdb16f647f542d2dc8e0b7c8f336c7f46b4e9c0d08b",
+    "pack_hash": "fc5a52bd6c98ca8b8c4ef0c8309f398dade2c1a7ca6f982a25a9c3b2a3710ba2",
     "reproducible": true,
     "checks": [
       {
@@ -19299,7 +19299,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 7 rows hash to their recorded values (pack 9903ab8033a1)"
+        "detail": "all 7 rows hash to their recorded values (pack fc5a52bd6c98)"
       },
       {
         "id": "policy_in_force",
@@ -19444,7 +19444,7 @@
         "amount_paise": 3736552,
         "timestamp": "2026-08-15T12:20:00Z",
         "freshness_hours": 18.38,
-        "hash": "427311615af67f90886efe15bbc771addbafa902f4a73a9c12298aa43ae9e6ee",
+        "hash": "c5af9ed91dff1d5f48183627e8c334537e9c5b138bf2b6a0ef56410087190e08",
         "hash_matches_recorded": true
       },
       {
@@ -19480,7 +19480,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-15T01:06:00Z",
     "decision_time": "2026-08-16T02:06:00Z",
-    "pack_hash": "6c5bfdac97e2a0fe72810e76eb2dd7b12555d9c4e65400afb69cb9d2fe13a564",
+    "pack_hash": "f330fd6723981ff252d2d0847eb120bba5a9c39eb14d02e355e91fd3ce634c3b",
     "reproducible": true,
     "checks": [
       {
@@ -19493,7 +19493,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 13 rows hash to their recorded values (pack 6c5bfdac97e2)"
+        "detail": "all 13 rows hash to their recorded values (pack f330fd672398)"
       },
       {
         "id": "policy_in_force",
@@ -19704,7 +19704,7 @@
         "amount_paise": 9657485,
         "timestamp": "2026-08-15T10:06:00Z",
         "freshness_hours": 18.23,
-        "hash": "39e30b16d06e4f7b281010f23f3d472170897b096749b157f9697b5e60526dfe",
+        "hash": "27c1e9d7741e85faa1e7048730faf4412560c3b0adb8236ac743a687ff24d45e",
         "hash_matches_recorded": true
       },
       {
@@ -19740,7 +19740,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-16T04:03:00Z",
     "decision_time": "2026-08-16T21:03:00Z",
-    "pack_hash": "456a34b301ed7060db171917565826f616ddf3bf87ea740adc98599bb3da2386",
+    "pack_hash": "568ecedfcf242d1f75e6e2c7c646db7f9d6739f22602e1ad71d4894044befec5",
     "reproducible": true,
     "checks": [
       {
@@ -19753,7 +19753,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 15 rows hash to their recorded values (pack 456a34b301ed)"
+        "detail": "all 15 rows hash to their recorded values (pack 568ecedfcf24)"
       },
       {
         "id": "policy_in_force",
@@ -19986,7 +19986,7 @@
         "amount_paise": 13591460,
         "timestamp": "2026-08-16T16:03:00Z",
         "freshness_hours": 8.15,
-        "hash": "169fba741366988544966d6943706c7b15963b1cf1b836304c9d5145e3e4a5cd",
+        "hash": "2105ab7bc7f0159b75ecb449aa9aaccb4c793c631f8008297356a2771dd06f20",
         "hash_matches_recorded": true
       },
       {
@@ -20022,7 +20022,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-17T11:48:00Z",
     "decision_time": "2026-08-18T05:48:00Z",
-    "pack_hash": "ac7173457a9f262ae359c35097c63f0382dd23414437765df9123b258397b9ed",
+    "pack_hash": "a939ba184de98d55e5e37885729bb57a5571f455d8e1602459a6d7ca56de5882",
     "reproducible": true,
     "checks": [
       {
@@ -20035,7 +20035,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 9 rows hash to their recorded values (pack ac7173457a9f)"
+        "detail": "all 9 rows hash to their recorded values (pack a939ba184de9)"
       },
       {
         "id": "policy_in_force",
@@ -20202,7 +20202,7 @@
         "amount_paise": 9291201,
         "timestamp": "2026-08-17T22:48:00Z",
         "freshness_hours": 10.55,
-        "hash": "550a24a5ee31e8e80a5b8d908aa436149dbf9227f865ca77e2e4692c69ab2755",
+        "hash": "469b1b3e05127313815b4d4fc886c00ee02179a0c87748106b74b53b9ce11c41",
         "hash_matches_recorded": true
       },
       {
@@ -20238,7 +20238,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-18T14:58:00Z",
     "decision_time": "2026-08-21T14:58:00Z",
-    "pack_hash": "b0d726424a8b4b0ebf10284d7cc3c022308942189e7b8cc5d5a098fda8655694",
+    "pack_hash": "636b5026d6065d5e004ae49ff0d5cd0ddbdc0410980b5d9e5e7589949eabbec1",
     "reproducible": true,
     "checks": [
       {
@@ -20251,7 +20251,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 14 rows hash to their recorded values (pack b0d726424a8b)"
+        "detail": "all 14 rows hash to their recorded values (pack 636b5026d606)"
       },
       {
         "id": "policy_in_force",
@@ -20473,7 +20473,7 @@
         "amount_paise": 12194047,
         "timestamp": "2026-08-20T19:58:00Z",
         "freshness_hours": 20.5,
-        "hash": "63f954322b9993777695013da780a5e5b75121ffd175730c22842a50be2856ef",
+        "hash": "fd65b5b681186fb88b24c3279d30cd8335476e982e259d3c0d1a61f961bd9c20",
         "hash_matches_recorded": true
       },
       {
@@ -20509,7 +20509,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-19T17:54:00Z",
     "decision_time": "2026-08-20T08:54:00Z",
-    "pack_hash": "e052445c265e80d0bb0cd70a493d0581ccefe833aabb662ef4749281abeeab29",
+    "pack_hash": "9f4ddc06f9c0e05bc574bf67e22b8afb6c28fd2b0700ea4e443956734de9628e",
     "reproducible": true,
     "checks": [
       {
@@ -20522,7 +20522,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 15 rows hash to their recorded values (pack e052445c265e)"
+        "detail": "all 15 rows hash to their recorded values (pack 9f4ddc06f9c0)"
       },
       {
         "id": "policy_in_force",
@@ -20744,7 +20744,7 @@
         "amount_paise": 11855279,
         "timestamp": "2026-08-20T05:54:00Z",
         "freshness_hours": 5.77,
-        "hash": "6c8846bec5669d67f8760abb8078d3e3bb2853e1b191a6af9ebd377c88065ec3",
+        "hash": "6bd2fa162019a51bcdcaa0f9ed264e99fc20a436bf21253c3d02ab8012039d9a",
         "hash_matches_recorded": true
       },
       {
@@ -20791,7 +20791,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-16T17:19:00Z",
     "decision_time": "2026-08-17T16:19:00Z",
-    "pack_hash": "fd4bf48260e64d5a92957046eff7b8fdb5d294c3da067556ceffbba1f57e80c9",
+    "pack_hash": "fa6004ab0f1645f140dd3fa3b7bf85a8ba7bfe10b502286085b02527ca01762a",
     "reproducible": true,
     "checks": [
       {
@@ -20804,7 +20804,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 7 rows hash to their recorded values (pack fd4bf48260e6)"
+        "detail": "all 7 rows hash to their recorded values (pack fa6004ab0f16)"
       },
       {
         "id": "policy_in_force",
@@ -20949,7 +20949,7 @@
         "amount_paise": 4433417,
         "timestamp": "2026-08-17T01:19:00Z",
         "freshness_hours": 16.53,
-        "hash": "49e02e6966361d5ba7577355bd8740148a5bbed1a4bba29fabb5e14fe72f27ae",
+        "hash": "fbc2053246b74019d4c20f2d06c5f96dbb513be8ea8a21d9e7edfe4cfa06d8c1",
         "hash_matches_recorded": true
       },
       {
@@ -20985,7 +20985,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-17T19:27:00Z",
     "decision_time": "2026-08-19T04:27:00Z",
-    "pack_hash": "51c314b49f781c1637ebb2df2a0865ef5882a6e2f24fdc371a39a68ef569f58f",
+    "pack_hash": "05db1108488bae0395c8824eac32718d8d7c1ba9319c54031eb6b1ee785af928",
     "reproducible": true,
     "checks": [
       {
@@ -20998,7 +20998,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 11 rows hash to their recorded values (pack 51c314b49f78)"
+        "detail": "all 11 rows hash to their recorded values (pack 05db1108488b)"
       },
       {
         "id": "policy_in_force",
@@ -21187,7 +21187,7 @@
         "amount_paise": 12404684,
         "timestamp": "2026-08-18T06:27:00Z",
         "freshness_hours": 26.08,
-        "hash": "d2f61f2ec13a97d33f5f8bdabc33a583a4b16ab7c6c5f86e2817656d7d43513e",
+        "hash": "a282eebdba1baa781f8665bd821fba59d85405d43993232796b2b9478990f567",
         "hash_matches_recorded": true
       },
       {
@@ -21223,7 +21223,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-22T22:35:00Z",
     "decision_time": "2026-08-23T16:35:00Z",
-    "pack_hash": "4b373f7fe0c7e0068e2cdd317a5307f8b201f4560dda7c7906079577a4e34cc3",
+    "pack_hash": "ce1346f1b56a89507f41238ac157151c3903503c9cd4a05dc42fe200a968bf23",
     "reproducible": true,
     "checks": [
       {
@@ -21236,7 +21236,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 7 rows hash to their recorded values (pack 4b373f7fe0c7)"
+        "detail": "all 7 rows hash to their recorded values (pack ce1346f1b56a)"
       },
       {
         "id": "policy_in_force",
@@ -21284,7 +21284,7 @@
         "id": "no_duplicate_ingestion",
         "pillar": "verify",
         "status": "fail",
-        "detail": "the same source content was ingested more than once: bank_statement rows [bnk-000090, bnk-000091] share content hash d25df1dc0fb6"
+        "detail": "the same source content was ingested more than once: bank_statement rows [bnk-000090, bnk-000091] share content hash 10b86cfe9f4a"
       },
       {
         "id": "utr_unique",
@@ -21370,7 +21370,7 @@
         "amount_paise": 2186796,
         "timestamp": "2026-08-23T05:35:00Z",
         "freshness_hours": 10.63,
-        "hash": "d25df1dc0fb6747c8c9c363bfe4501dc1e4db7a4e750809084a939054542621a",
+        "hash": "10b86cfe9f4a4b04e42289f91d75c98e56945e33da3338729ecf4c190877b383",
         "hash_matches_recorded": true
       },
       {
@@ -21381,7 +21381,7 @@
         "amount_paise": 2186796,
         "timestamp": "2026-08-23T05:35:00Z",
         "freshness_hours": 10.63,
-        "hash": "d25df1dc0fb6747c8c9c363bfe4501dc1e4db7a4e750809084a939054542621a",
+        "hash": "10b86cfe9f4a4b04e42289f91d75c98e56945e33da3338729ecf4c190877b383",
         "hash_matches_recorded": true
       },
       {
@@ -21417,7 +21417,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-23T18:14:00Z",
     "decision_time": "2026-08-28T03:14:00Z",
-    "pack_hash": "759529fbadcc683853d2fdfa549f467285e9197e11a866b7943a1b64c3b3851e",
+    "pack_hash": "101f93a5383b710f6acbb36488d2e8e51cffbe2825fba5aa1d3764fdacdf0dde",
     "reproducible": true,
     "checks": [
       {
@@ -21430,7 +21430,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 11 rows hash to their recorded values (pack 759529fbadcc)"
+        "detail": "all 11 rows hash to their recorded values (pack 101f93a5383b)"
       },
       {
         "id": "policy_in_force",
@@ -21619,7 +21619,7 @@
         "amount_paise": 7777911,
         "timestamp": "2026-08-27T02:14:00Z",
         "freshness_hours": 28.25,
-        "hash": "36ff8d4b6db12d2708dcf37505fdf9f81c0eea8b1266ec515127d7d29238a026",
+        "hash": "aefc41114a535d24a646d2403938d73083c57ca28f5d0fd935b55c92f6b88afb",
         "hash_matches_recorded": true
       },
       {
@@ -21655,7 +21655,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-11T10:00:00Z",
     "decision_time": "2026-08-12T09:15:00Z",
-    "pack_hash": "65d29b034dddf0fae17d92a9915c8905a586cf07804d792a091c6f69d1a2aa2f",
+    "pack_hash": "bd00f7678887cc7f4d36ac7e39a1682251c4257d3c6dfffcbfb00b6e078f684a",
     "reproducible": true,
     "checks": [
       {
@@ -21668,7 +21668,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 15 rows hash to their recorded values (pack 65d29b034ddd)"
+        "detail": "all 15 rows hash to their recorded values (pack bd00f7678887)"
       },
       {
         "id": "policy_in_force",
@@ -21901,7 +21901,7 @@
         "amount_paise": 14681621,
         "timestamp": "2026-08-11T17:40:00Z",
         "freshness_hours": 16.17,
-        "hash": "87574347ab4f7ca3b1f98d093c8462b54d357aa0c162497b38cc41440ceaedf2",
+        "hash": "138a3db9c81c295cc01eca17f2b4fb205351f1a8d929a7530efb4938ea27489b",
         "hash_matches_recorded": true
       },
       {
@@ -21937,7 +21937,7 @@
     "decision_policy_version": "finance-policy-v11",
     "event_time": "2026-08-02T20:52:00Z",
     "decision_time": "2026-08-03T18:52:00Z",
-    "pack_hash": "a0ed6245b732bcc1201d84d817f5afcd048c028d604d3d3449032abd0c935e26",
+    "pack_hash": "0f4a04da28744a3719b30df7f07f91999abaa8f57c53507ffa0808cb65fdcb2c",
     "reproducible": true,
     "checks": [
       {
@@ -21950,7 +21950,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 6 rows hash to their recorded values (pack a0ed6245b732)"
+        "detail": "all 6 rows hash to their recorded values (pack 0f4a04da2874)"
       },
       {
         "id": "policy_in_force",
@@ -22084,7 +22084,7 @@
         "amount_paise": 3028157,
         "timestamp": "2026-08-03T02:52:00Z",
         "freshness_hours": 18.32,
-        "hash": "e3f274d832e6a91f795d362b2133d02128664b92bcd97a6363230de66984d79b",
+        "hash": "c98e2548e8d189200115249435aaf59b14df8c8a55b3911832b7fc332f398e80",
         "hash_matches_recorded": true
       },
       {
@@ -22120,7 +22120,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-22T18:27:00Z",
     "decision_time": "2026-08-23T11:27:00Z",
-    "pack_hash": "231cb4a578b537e96784b0dd69d46cd33f6d29e04fbcec509661f0107d34501b",
+    "pack_hash": "28664188565a482cb96fc0a5f19f3187c3f6aeaa36a5f4f645db49b2a3ff8611",
     "reproducible": true,
     "checks": [
       {
@@ -22133,7 +22133,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 10 rows hash to their recorded values (pack 231cb4a578b5)"
+        "detail": "all 10 rows hash to their recorded values (pack 28664188565a)"
       },
       {
         "id": "policy_in_force",
@@ -22311,7 +22311,7 @@
         "amount_paise": 6807007,
         "timestamp": "2026-08-23T00:27:00Z",
         "freshness_hours": 13.55,
-        "hash": "f01ae1658b5e9d01a40e5421a3603fa94cc9ab37237e697a3566373e5efaf1ba",
+        "hash": "570a0779adf11d997af3b17da9e0d95622316344677a0353729683f45f7a8e54",
         "hash_matches_recorded": true
       },
       {
@@ -22347,7 +22347,7 @@
     "decision_policy_version": "finance-policy-v11",
     "event_time": "2026-08-04T22:58:00Z",
     "decision_time": "2026-08-06T01:58:00Z",
-    "pack_hash": "8f18e248b85f4614da3a91a22972ca8d59b4322beffc5ec3b868ffb62e9c98e7",
+    "pack_hash": "107c9e2913c155276e12bb66846d73887588002c73b1162c14f741551a9b75c9",
     "reproducible": true,
     "checks": [
       {
@@ -22360,7 +22360,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 11 rows hash to their recorded values (pack 8f18e248b85f)"
+        "detail": "all 11 rows hash to their recorded values (pack 107c9e2913c1)"
       },
       {
         "id": "policy_in_force",
@@ -22549,7 +22549,7 @@
         "amount_paise": 8010334,
         "timestamp": "2026-08-05T08:58:00Z",
         "freshness_hours": 18.8,
-        "hash": "0b19d42254307a83659b9c0936e572817d4bea459a2f98ea233f8039a0ad4ab0",
+        "hash": "2c93f4d97050364c4eb1a628c0d32f6a4af8d85824e18e1fc8112fff31b0ec89",
         "hash_matches_recorded": true
       },
       {
@@ -22585,7 +22585,7 @@
     "decision_policy_version": "finance-policy-v11",
     "event_time": "2026-08-05T12:06:00Z",
     "decision_time": "2026-08-06T05:06:00Z",
-    "pack_hash": "34765564aa3335b15136bf2c7ac199f53d652a13cd861884e061978b741314df",
+    "pack_hash": "cfb9c8902eac5c4c439a21489d90b9ed7ac70eb95230935f5a9bfbbc6bb43a83",
     "reproducible": true,
     "checks": [
       {
@@ -22598,7 +22598,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 15 rows hash to their recorded values (pack 34765564aa33)"
+        "detail": "all 15 rows hash to their recorded values (pack cfb9c8902eac)"
       },
       {
         "id": "policy_in_force",
@@ -22831,7 +22831,7 @@
         "amount_paise": 13114325,
         "timestamp": "2026-08-05T22:06:00Z",
         "freshness_hours": 10.97,
-        "hash": "9789437ead85014558b74283ef70e434743a8a01882c9b33b0a13325224e8db2",
+        "hash": "c43fe763d137ec19fafd9f06030c7acda5530b97b4b245df232d587bb92deede",
         "hash_matches_recorded": true
       },
       {
@@ -22867,7 +22867,7 @@
     "decision_policy_version": "finance-policy-v11",
     "event_time": "2026-08-06T04:55:00Z",
     "decision_time": "2026-08-07T03:55:00Z",
-    "pack_hash": "6c6bbe54ee16f3da49c75fa04573399a2498d1e49d2aa6da1c1f942448dc8051",
+    "pack_hash": "fcba05e5df2928c12f942e7af046143fd0c17ae28bd0b6dad98deb98dcc26305",
     "reproducible": true,
     "checks": [
       {
@@ -22880,7 +22880,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 12 rows hash to their recorded values (pack 6c6bbe54ee16)"
+        "detail": "all 12 rows hash to their recorded values (pack fcba05e5df29)"
       },
       {
         "id": "policy_in_force",
@@ -23080,7 +23080,7 @@
         "amount_paise": 10107415,
         "timestamp": "2026-08-06T08:55:00Z",
         "freshness_hours": 18.62,
-        "hash": "3b3c7ef368a2044ad976a2d8a2c4ed5cf1743abd6b796889e138cc4746956d9c",
+        "hash": "75d874c8cde294d39f8f24e2545d580eaa65eea6dd3148f05e6244bc8fa3ab1f",
         "hash_matches_recorded": true
       },
       {
@@ -23116,7 +23116,7 @@
     "decision_policy_version": "finance-policy-v11",
     "event_time": "2026-08-07T17:33:00Z",
     "decision_time": "2026-08-08T15:33:00Z",
-    "pack_hash": "2f19da3f2ec6e7510841e131e577b142a2389eaf9f706d2547b9d8cc44099561",
+    "pack_hash": "7de8a0ae2cf340711488bf46e40dc883bc7cf2e1acf5c60cc1c36620a8473e86",
     "reproducible": true,
     "checks": [
       {
@@ -23129,7 +23129,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 9 rows hash to their recorded values (pack 2f19da3f2ec6)"
+        "detail": "all 9 rows hash to their recorded values (pack 7de8a0ae2cf3)"
       },
       {
         "id": "policy_in_force",
@@ -23296,7 +23296,7 @@
         "amount_paise": 7096002,
         "timestamp": "2026-08-08T02:33:00Z",
         "freshness_hours": 13.33,
-        "hash": "d389caee03734d19e6528f9797f773fc260b46d5eca1ef73c1ad1c564695c6d7",
+        "hash": "bbe79168d2c49afcfdd3a260e2f3e47d852a62875e1df450f225fe46153ddc3f",
         "hash_matches_recorded": true
       },
       {
@@ -23332,7 +23332,7 @@
     "decision_policy_version": "finance-policy-v11",
     "event_time": "2026-08-08T05:43:00Z",
     "decision_time": "2026-08-09T06:43:00Z",
-    "pack_hash": "3dc95e425f3c3fdcec006547ef21ccf1f5ad06fd9041b3506aab55b192e35a41",
+    "pack_hash": "1b3a3b3ce8d33d7dbb9458bfe69819f2edbcb60c98bef52f6c41134bec1b0ef8",
     "reproducible": true,
     "checks": [
       {
@@ -23345,7 +23345,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 8 rows hash to their recorded values (pack 3dc95e425f3c)"
+        "detail": "all 8 rows hash to their recorded values (pack 1b3a3b3ce8d3)"
       },
       {
         "id": "policy_in_force",
@@ -23501,7 +23501,7 @@
         "amount_paise": 6602678,
         "timestamp": "2026-08-08T12:43:00Z",
         "freshness_hours": 19.57,
-        "hash": "bc88a0a4211adb0220d68b6ba333bb29cdb4b647fb3bc3c8e97e79ca06c5e26c",
+        "hash": "5d48f8a5ce2daffb9bf047b62a1b6a0e70494735ce6a9ec8e4d87fc331392b63",
         "hash_matches_recorded": true
       },
       {
@@ -23537,7 +23537,7 @@
     "decision_policy_version": "finance-policy-v11",
     "event_time": "2026-08-09T14:33:00Z",
     "decision_time": "2026-08-10T07:33:00Z",
-    "pack_hash": "6843366517e2b990b076665fec7acd16bbec99c21bb50869faf5490f19b8cff0",
+    "pack_hash": "d7509a57e45cb30de6bac15c0ddcead498e069c2018755aba77537df68d2233b",
     "reproducible": true,
     "checks": [
       {
@@ -23550,7 +23550,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 15 rows hash to their recorded values (pack 6843366517e2)"
+        "detail": "all 15 rows hash to their recorded values (pack d7509a57e45c)"
       },
       {
         "id": "policy_in_force",
@@ -23783,7 +23783,7 @@
         "amount_paise": 13788183,
         "timestamp": "2026-08-10T03:33:00Z",
         "freshness_hours": 9.88,
-        "hash": "07146a905c21426050de1efa3053fa5ff74353ef3345279c8cb3d35d55c9171b",
+        "hash": "1e09016683ca936a7a599b07880313522a058974a68f9a8c9ac39b4d47152adf",
         "hash_matches_recorded": true
       },
       {
@@ -23819,7 +23819,7 @@
     "decision_policy_version": "finance-policy-v11",
     "event_time": "2026-08-10T20:00:00Z",
     "decision_time": "2026-08-11T14:00:00Z",
-    "pack_hash": "5092c60a8c41087e8f2c4f8f02ca04a9baace3581779d5d7cd8972015779b9cd",
+    "pack_hash": "9df4d366452cb4da8ca0dbcfc5d4e2a0b178baefee044292c604480243d33471",
     "reproducible": true,
     "checks": [
       {
@@ -23832,7 +23832,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 13 rows hash to their recorded values (pack 5092c60a8c41)"
+        "detail": "all 13 rows hash to their recorded values (pack 9df4d366452c)"
       },
       {
         "id": "policy_in_force",
@@ -24043,7 +24043,7 @@
         "amount_paise": 8137039,
         "timestamp": "2026-08-11T09:00:00Z",
         "freshness_hours": 9.07,
-        "hash": "b51b69e4536044d7a80838d0ab696de2c00ccecf1be934bdc2eb4c5e09a9c4c3",
+        "hash": "080bc474821a4c2dcdabfb60e61a4b9387401b2839e71c59531c04c69f33cfd2",
         "hash_matches_recorded": true
       },
       {
@@ -24079,7 +24079,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-11T08:10:00Z",
     "decision_time": "2026-08-12T10:10:00Z",
-    "pack_hash": "075ce000976461b7a440911f0df12a91563911743028fefdda736e41e967a948",
+    "pack_hash": "0186f1027a569dd248bfca08e6b9ae59e70a6117adef5ef409fb4b57590d052d",
     "reproducible": true,
     "checks": [
       {
@@ -24092,7 +24092,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 12 rows hash to their recorded values (pack 075ce0009764)"
+        "detail": "all 12 rows hash to their recorded values (pack 0186f1027a56)"
       },
       {
         "id": "policy_in_force",
@@ -24140,7 +24140,7 @@
         "id": "no_duplicate_ingestion",
         "pillar": "verify",
         "status": "fail",
-        "detail": "the same source content was ingested more than once: bank_statement rows [bnk-000103, bnk-000104] share content hash cf5c297cbde7"
+        "detail": "the same source content was ingested more than once: bank_statement rows [bnk-000103, bnk-000104] share content hash 48b2d210285f"
       },
       {
         "id": "utr_unique",
@@ -24281,7 +24281,7 @@
         "amount_paise": 6493102,
         "timestamp": "2026-08-11T15:10:00Z",
         "freshness_hours": 19.7,
-        "hash": "cf5c297cbde76012979b42c87121797f7e526d17922f7b7803c143585f94fde9",
+        "hash": "48b2d210285f951d3d7c25536825d5e990f03b11f67924097944f46d8355b2f6",
         "hash_matches_recorded": true
       },
       {
@@ -24292,7 +24292,7 @@
         "amount_paise": 6493102,
         "timestamp": "2026-08-11T15:10:00Z",
         "freshness_hours": 19.7,
-        "hash": "cf5c297cbde76012979b42c87121797f7e526d17922f7b7803c143585f94fde9",
+        "hash": "48b2d210285f951d3d7c25536825d5e990f03b11f67924097944f46d8355b2f6",
         "hash_matches_recorded": true
       },
       {
@@ -24328,7 +24328,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-12T01:03:00Z",
     "decision_time": "2026-08-16T05:03:00Z",
-    "pack_hash": "b8fe64cb29c0dc263bc51ef028149c49f1a769b9f5171aec78bb4c6bfedf7cbb",
+    "pack_hash": "d21efce9d8a55a7d9ba78a80631f0bdfc9f2964e2270d5b57887e7c43ab30b3f",
     "reproducible": true,
     "checks": [
       {
@@ -24341,7 +24341,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 12 rows hash to their recorded values (pack b8fe64cb29c0)"
+        "detail": "all 12 rows hash to their recorded values (pack d21efce9d8a5)"
       },
       {
         "id": "policy_in_force",
@@ -24541,7 +24541,7 @@
         "amount_paise": 13956065,
         "timestamp": "2026-08-15T06:03:00Z",
         "freshness_hours": 23.7,
-        "hash": "5829bb25d4a79775d66d0679cdc26c1926c04cb2f3f5c9e6e4251093266c76d0",
+        "hash": "b8642639a5a27b1076c5b91d9aefe0d818b2d50c59bf7e5456494d3c8e422ad2",
         "hash_matches_recorded": true
       },
       {
@@ -24577,7 +24577,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-13T21:51:00Z",
     "decision_time": "2026-08-14T15:51:00Z",
-    "pack_hash": "e39beacc134c391bfe4b8567835c4b1a51dacb008cefba8ef7729996d1c39a93",
+    "pack_hash": "4b015dd4675604c6a75240352826d34e9dcc3c282b00c4698b436c2bfec54c34",
     "reproducible": true,
     "checks": [
       {
@@ -24590,7 +24590,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 8 rows hash to their recorded values (pack e39beacc134c)"
+        "detail": "all 8 rows hash to their recorded values (pack 4b015dd46756)"
       },
       {
         "id": "policy_in_force",
@@ -24746,7 +24746,7 @@
         "amount_paise": 7096223,
         "timestamp": "2026-08-14T06:51:00Z",
         "freshness_hours": 13.97,
-        "hash": "a82d905b5f834cd9f7f87f813da8a92a913bc67e1b1634af559346b2b626564b",
+        "hash": "cd81287f57bbe2596634a0f13b5c76c3e67a82b8a2799ff6152546ffc2d6f602",
         "hash_matches_recorded": true
       },
       {
@@ -24782,7 +24782,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-14T17:28:00Z",
     "decision_time": "2026-08-15T13:28:00Z",
-    "pack_hash": "dc820d9b8bfd73183b4dbebebd3481d46cf7ce38d3c286f089a50af2fec407c9",
+    "pack_hash": "8ef7fb5b47492a6aecff8bb4c70c33c61310356df9f7ba1f9b4fccdc8f5158c6",
     "reproducible": true,
     "checks": [
       {
@@ -24795,7 +24795,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 11 rows hash to their recorded values (pack dc820d9b8bfd)"
+        "detail": "all 11 rows hash to their recorded values (pack 8ef7fb5b4749)"
       },
       {
         "id": "policy_in_force",
@@ -24984,7 +24984,7 @@
         "amount_paise": 11244398,
         "timestamp": "2026-08-15T05:28:00Z",
         "freshness_hours": 11.45,
-        "hash": "76aedd4478c5149c24217415a4c4f41e2dcd0f869dd6ab3e8e7170c2bb72bd2a",
+        "hash": "d1066e0711fae07f3cb84295e6093b5fe3814a67e47b72f9803f3a90e32104aa",
         "hash_matches_recorded": true
       },
       {
@@ -25020,7 +25020,7 @@
     "decision_policy_version": "finance-policy-v11",
     "event_time": "2026-08-02T09:14:00Z",
     "decision_time": "2026-08-02T19:14:00Z",
-    "pack_hash": "408ec7986060cf1d066d876a1e5656396b35da9c58d1b568165d94f2a4bd92ed",
+    "pack_hash": "7138dfda00d4808e99b9c4bfcf7322223e7a6fd28a59303c1e4c23fec8180270",
     "reproducible": true,
     "checks": [
       {
@@ -25033,7 +25033,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 7 rows hash to their recorded values (pack 408ec7986060)"
+        "detail": "all 7 rows hash to their recorded values (pack 7138dfda00d4)"
       },
       {
         "id": "policy_in_force",
@@ -25178,7 +25178,7 @@
         "amount_paise": 4235222,
         "timestamp": "2026-08-02T17:14:00Z",
         "freshness_hours": 4.52,
-        "hash": "b0c443dfbdd4e17fb7069d7a5e1840643e95d61fd3f2b918fa1b3d594d8560ba",
+        "hash": "13ae33038f89346ef92243fa17a86ea46ffddbbfef8a2a8d3c3a91a9791b5156",
         "hash_matches_recorded": true
       },
       {
@@ -25214,7 +25214,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-16T17:41:00Z",
     "decision_time": "2026-08-18T01:41:00Z",
-    "pack_hash": "1669b4c6937d4a9a6e6c536242e68270057784cb458f208d0c553e477bc22d4a",
+    "pack_hash": "764828e079e0bfc8e8bd3e89bef1bc41948265d498de77fee62bc0b35179d7f0",
     "reproducible": true,
     "checks": [
       {
@@ -25227,7 +25227,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 11 rows hash to their recorded values (pack 1669b4c6937d)"
+        "detail": "all 11 rows hash to their recorded values (pack 764828e079e0)"
       },
       {
         "id": "policy_in_force",
@@ -25416,7 +25416,7 @@
         "amount_paise": 10260275,
         "timestamp": "2026-08-17T01:41:00Z",
         "freshness_hours": 26.28,
-        "hash": "3a6fa32e32b5c49f0b6824f66f25b401a2082c1da9550794fb7c0b07758617d6",
+        "hash": "a30f7217f9d1c15a87a33e0d2dc8b130fa4db20040f3282673f7f8d18ad68e30",
         "hash_matches_recorded": true
       },
       {
@@ -25452,7 +25452,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-17T06:53:00Z",
     "decision_time": "2026-08-18T10:53:00Z",
-    "pack_hash": "9cab282aecfd561097923943957fa2b8d55e192226c795c391d7c1ac25acc4e6",
+    "pack_hash": "7635a0ac97c9b97916ed7d0475ea33a2c949669690c555c675c0d0b9c6835e79",
     "reproducible": true,
     "checks": [
       {
@@ -25465,7 +25465,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 7 rows hash to their recorded values (pack 9cab282aecfd)"
+        "detail": "all 7 rows hash to their recorded values (pack 7635a0ac97c9)"
       },
       {
         "id": "policy_in_force",
@@ -25610,7 +25610,7 @@
         "amount_paise": 3027189,
         "timestamp": "2026-08-17T13:53:00Z",
         "freshness_hours": 23.47,
-        "hash": "96069a36c9465345d34c2c1231a526f4766f27a0a7d1d17f1763e97751ba4e13",
+        "hash": "2c85a48ed8716d45533a9f366567c38612bb8aca849a5230b57464800c5cc12f",
         "hash_matches_recorded": true
       },
       {
@@ -25646,7 +25646,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-18T20:23:00Z",
     "decision_time": "2026-08-20T02:23:00Z",
-    "pack_hash": "5a4ca14a07ad9cfad8182d58cb788db8a7be872322fe11223315e21921308486",
+    "pack_hash": "fb2f89d90afa0822b250cd1b09be22412c85fc0233c5bad5e689e6c599444de2",
     "reproducible": true,
     "checks": [
       {
@@ -25659,7 +25659,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 10 rows hash to their recorded values (pack 5a4ca14a07ad)"
+        "detail": "all 10 rows hash to their recorded values (pack fb2f89d90afa)"
       },
       {
         "id": "policy_in_force",
@@ -25837,7 +25837,7 @@
         "amount_paise": 5640369,
         "timestamp": "2026-08-19T02:23:00Z",
         "freshness_hours": 27.88,
-        "hash": "b49ebc669c24b4420727a3336795890e169ad43df1dd0dd747ba1a551f2caa3e",
+        "hash": "c14256138758ae69dbef63a1a9dd7efb3a5baedd6523b1e4b63d55da149c0f85",
         "hash_matches_recorded": true
       },
       {
@@ -25873,7 +25873,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-19T14:00:00Z",
     "decision_time": "2026-08-20T06:00:00Z",
-    "pack_hash": "15d4fae36fd6c33009983645173c8e8bbc1031d021344c8aaddf84c35c718f8c",
+    "pack_hash": "b9add450cf2779e3e4475b34c614b57b19b7c58e089dd5d47a56cc2e5446951e",
     "reproducible": true,
     "checks": [
       {
@@ -25886,7 +25886,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 8 rows hash to their recorded values (pack 15d4fae36fd6)"
+        "detail": "all 8 rows hash to their recorded values (pack b9add450cf27)"
       },
       {
         "id": "policy_in_force",
@@ -26042,7 +26042,7 @@
         "amount_paise": 6844321,
         "timestamp": "2026-08-20T02:00:00Z",
         "freshness_hours": 8.9,
-        "hash": "044bb0cc16330259cf7af2c3a1328f7854f6fe414bc2876181e15ba4bf583b67",
+        "hash": "bdc0f04dda23c94c2a23050d9b48d6cf761685dbc07ede09769a3c575779cbc4",
         "hash_matches_recorded": true
       },
       {
@@ -26078,7 +26078,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-20T04:01:00Z",
     "decision_time": "2026-08-20T17:01:00Z",
-    "pack_hash": "c7b8b8dc8c7506b5fc2c8130234802a7de62a0047fa4b4adb54c96f61f01c4ef",
+    "pack_hash": "8e6fbd65bc06a4d59d4d036e15d853781fc52a72efa053b1b32832aa71a44aed",
     "reproducible": true,
     "checks": [
       {
@@ -26091,7 +26091,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 8 rows hash to their recorded values (pack c7b8b8dc8c75)"
+        "detail": "all 8 rows hash to their recorded values (pack 8e6fbd65bc06)"
       },
       {
         "id": "policy_in_force",
@@ -26247,7 +26247,7 @@
         "amount_paise": 5994729,
         "timestamp": "2026-08-20T07:01:00Z",
         "freshness_hours": 9.7,
-        "hash": "b0f51aa63015a20f9954ede423996ef38b52facb2574082b59c1ddd5b80a0088",
+        "hash": "436126e0fa5ba6cccf82663a0fba736093c7d06667889d5f6d7745e3d2ac6527",
         "hash_matches_recorded": true
       },
       {
@@ -26283,7 +26283,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-21T13:13:00Z",
     "decision_time": "2026-08-21T22:13:00Z",
-    "pack_hash": "e7659c94dd4c4303a6c6fd460af7ce8ed74db57ae2b1d2279ed43991fce594e7",
+    "pack_hash": "0d02100ca3be8a714759f841dd56dbde453603e3e3ae3ab6ade2a04e0e675599",
     "reproducible": true,
     "checks": [
       {
@@ -26296,7 +26296,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 13 rows hash to their recorded values (pack e7659c94dd4c)"
+        "detail": "all 13 rows hash to their recorded values (pack 0d02100ca3be)"
       },
       {
         "id": "policy_in_force",
@@ -26507,7 +26507,7 @@
         "amount_paise": 13347783,
         "timestamp": "2026-08-21T16:13:00Z",
         "freshness_hours": 5.55,
-        "hash": "a29c5cc57df42faadd84a48bb493aaa6a68a3f72255a3bf96f7abc8a94bc9672",
+        "hash": "72806127fd2291f54942539be3ce191d7bcad3c219da2b4cfd3320c7933030d2",
         "hash_matches_recorded": true
       },
       {
@@ -26543,7 +26543,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-22T09:44:00Z",
     "decision_time": "2026-08-23T08:44:00Z",
-    "pack_hash": "f9be1f0fa2d82b3f0a68c2173dbb0cbb22a2e1c194b613a72d3c469de49e096e",
+    "pack_hash": "55c86d24f690677942a582f4c1f141819a4dbd5f7e20e38d93bc367dbbdc4b20",
     "reproducible": true,
     "checks": [
       {
@@ -26556,7 +26556,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 6 rows hash to their recorded values (pack f9be1f0fa2d8)"
+        "detail": "all 6 rows hash to their recorded values (pack 55c86d24f690)"
       },
       {
         "id": "policy_in_force",
@@ -26690,7 +26690,7 @@
         "amount_paise": 1752416,
         "timestamp": "2026-08-22T19:44:00Z",
         "freshness_hours": 18.23,
-        "hash": "71570c4a71cd1e933b71835169a3c86781af0535f9573d9d285b131ced1686e8",
+        "hash": "7e817c8e55d16d1d074a12bfec8561c15af45f5ae9810638fd5d475cff57f200",
         "hash_matches_recorded": true
       },
       {
@@ -26726,7 +26726,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-23T06:48:00Z",
     "decision_time": "2026-08-25T14:48:00Z",
-    "pack_hash": "61a1451f422229def2fa07aef603923b91ee056a74cde5c914dd89ae632c4738",
+    "pack_hash": "9142e3ad33f270fce4b40c6b7922506361d072b0e151f7f07c59d2b81499470e",
     "reproducible": true,
     "checks": [
       {
@@ -26739,7 +26739,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 9 rows hash to their recorded values (pack 61a1451f4222)"
+        "detail": "all 9 rows hash to their recorded values (pack 9142e3ad33f2)"
       },
       {
         "id": "policy_in_force",
@@ -26906,7 +26906,7 @@
         "amount_paise": 10975842,
         "timestamp": "2026-08-24T13:48:00Z",
         "freshness_hours": 27.23,
-        "hash": "5f166056fa26b54cb158b5659716b50ae21bae3893992cdafda6899cb63e76e6",
+        "hash": "e61c7187d74f2a0b217e64cdc69bfe0ee454d597ded9b4fd35daedae862bf786",
         "hash_matches_recorded": true
       },
       {
@@ -26942,7 +26942,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-24T06:33:00Z",
     "decision_time": "2026-08-25T04:33:00Z",
-    "pack_hash": "1aa80ee9cd82743b3fc66028021a03389c3be97c4d9ecf944827a1377c481f88",
+    "pack_hash": "f44edfe3a4f8f68c9a22ec26cbefce078563643332d49d3bfba41307e54b3db9",
     "reproducible": true,
     "checks": [
       {
@@ -26955,7 +26955,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 15 rows hash to their recorded values (pack 1aa80ee9cd82)"
+        "detail": "all 15 rows hash to their recorded values (pack f44edfe3a4f8)"
       },
       {
         "id": "policy_in_force",
@@ -27188,7 +27188,7 @@
         "amount_paise": 12999969,
         "timestamp": "2026-08-24T17:33:00Z",
         "freshness_hours": 13.37,
-        "hash": "a02bc8496e9de40530fdb4e6ff917ce036cdc8f207bbad25c2815339fd960366",
+        "hash": "51cabc3cbbda0147181bea7e61050cbdf96c929261b98c926a101e44365c8510",
         "hash_matches_recorded": true
       },
       {
@@ -27224,7 +27224,7 @@
     "decision_policy_version": "finance-policy-v11",
     "event_time": "2026-08-02T11:08:00Z",
     "decision_time": "2026-08-03T14:08:00Z",
-    "pack_hash": "113cdca564444496d4d010f0e44a08bf9794c94f46bc28ea842f4eacbbca973a",
+    "pack_hash": "ed406f8910d9210bcbf3ef2fc0a8bc7307db38ea21367513391f13ed6e997a6f",
     "reproducible": true,
     "checks": [
       {
@@ -27237,7 +27237,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 7 rows hash to their recorded values (pack 113cdca56444)"
+        "detail": "all 7 rows hash to their recorded values (pack ed406f8910d9)"
       },
       {
         "id": "policy_in_force",
@@ -27382,7 +27382,7 @@
         "amount_paise": 5023310,
         "timestamp": "2026-08-03T01:08:00Z",
         "freshness_hours": 17.58,
-        "hash": "054e919243646a820bb3f6a35098b80c2c76bcc8939e9c1794167828288d3c17",
+        "hash": "00191e8a3f884cf5b68bc3535e32a318b36cadc55640c89329396f2e036307f4",
         "hash_matches_recorded": true
       },
       {
@@ -27418,7 +27418,7 @@
     "decision_policy_version": "finance-policy-v11",
     "event_time": "2026-08-03T03:02:00Z",
     "decision_time": "2026-08-04T00:02:00Z",
-    "pack_hash": "fd1b9f124384919972c58a44b305612d776f000fcd3b6b0e45e83e23ed7e3e4e",
+    "pack_hash": "0e86d827acf25bc1f1572898afc7e69bcba5336418da58eaa80dfd39c79cafae",
     "reproducible": true,
     "checks": [
       {
@@ -27431,7 +27431,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 12 rows hash to their recorded values (pack fd1b9f124384)"
+        "detail": "all 12 rows hash to their recorded values (pack 0e86d827acf2)"
       },
       {
         "id": "policy_in_force",
@@ -27631,7 +27631,7 @@
         "amount_paise": 12269806,
         "timestamp": "2026-08-03T13:02:00Z",
         "freshness_hours": 13.48,
-        "hash": "af48fc458ac2dfff1042b15193f3f89a1e13aebe3a4fbfbd464c42ba6a22a150",
+        "hash": "9c900c755ad1236380d1387265079d2b6bd3c413e3f68b0941d52e6f7199c8c9",
         "hash_matches_recorded": true
       },
       {
@@ -27667,7 +27667,7 @@
     "decision_policy_version": "finance-policy-v11",
     "event_time": "2026-08-04T09:24:00Z",
     "decision_time": "2026-08-07T00:24:00Z",
-    "pack_hash": "9b1f64bfca9156e98e85ed18732e59bc20d3eb924368401bd1dc290a0f450683",
+    "pack_hash": "b60aa54575b6fd2601742b35a6c78f2c4407fcc3fb1616cd328002254a551a2c",
     "reproducible": true,
     "checks": [
       {
@@ -27680,7 +27680,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 13 rows hash to their recorded values (pack 9b1f64bfca91)"
+        "detail": "all 13 rows hash to their recorded values (pack b60aa54575b6)"
       },
       {
         "id": "policy_in_force",
@@ -27891,7 +27891,7 @@
         "amount_paise": 11639915,
         "timestamp": "2026-08-06T14:24:00Z",
         "freshness_hours": 10.72,
-        "hash": "94d1a18db86e2408db4a2a9456dd6a851b66ed622b6db2e0a3b1e578049191f1",
+        "hash": "98b8d5ce24ae279fccb4ecaaca62533597aecfb52bd5edd85a9d80c764741ec6",
         "hash_matches_recorded": true
       },
       {
@@ -27927,7 +27927,7 @@
     "decision_policy_version": "finance-policy-v11",
     "event_time": "2026-08-05T17:43:00Z",
     "decision_time": "2026-08-06T21:43:00Z",
-    "pack_hash": "3daeea48d92c45a5d6ac4f85fd660d0825161657fe0558019f13168c0017748c",
+    "pack_hash": "f9fc68ade640c9ffbe48b0b6ce7336dae6272c872886ead48a02ea3a7191d409",
     "reproducible": true,
     "checks": [
       {
@@ -27940,7 +27940,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 11 rows hash to their recorded values (pack 3daeea48d92c)"
+        "detail": "all 11 rows hash to their recorded values (pack f9fc68ade640)"
       },
       {
         "id": "policy_in_force",
@@ -28129,7 +28129,7 @@
         "amount_paise": 9077637,
         "timestamp": "2026-08-06T00:43:00Z",
         "freshness_hours": 21.08,
-        "hash": "d7a00e71ccaa319745ca079d747621f4f28be0d70c59d454419a83c5060d9092",
+        "hash": "f6be595ded5dcb46758421767a88eea77188501e16addad88c33fb5201aef414",
         "hash_matches_recorded": true
       },
       {
@@ -28165,7 +28165,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-24T18:08:00Z",
     "decision_time": "2026-08-25T04:08:00Z",
-    "pack_hash": "a001cb18c55e4afa7f21e1b2fd396b3db8f16f6e6bcdda64fb4cd34c6d8da22b",
+    "pack_hash": "4b02da48295c46fa2bd79d56aecd285ab241e63a51f466e9be26f7619c679f50",
     "reproducible": true,
     "checks": [
       {
@@ -28178,7 +28178,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 10 rows hash to their recorded values (pack a001cb18c55e)"
+        "detail": "all 10 rows hash to their recorded values (pack 4b02da48295c)"
       },
       {
         "id": "policy_in_force",
@@ -28356,7 +28356,7 @@
         "amount_paise": 10881421,
         "timestamp": "2026-08-25T00:08:00Z",
         "freshness_hours": 6.75,
-        "hash": "88cd6e1f8ddf82cc5ea9a8ec6886978248b191ce22a1454aac40457bb59be1c4",
+        "hash": "561218384240fd3e4148399ac3d7495cefc74bdd4d33ce8ab958a8fce4f9129d",
         "hash_matches_recorded": true
       },
       {

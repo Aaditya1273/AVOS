@@ -213,15 +213,19 @@ export function buildEvidencePack(
         timestamp: b.value_date,
         ingested_at: b.ingested_at,
         amount_paise: b.credit_paise,
+        // Hashed over NORMALISED values, not the raw export string. A bank that
+        // reformats `1,46,816.21` as `₹1,46,816.21` has not changed the fact,
+        // and a reproducibility check that fired on that would cry wolf until
+        // someone switched it off. Value changes are caught; formatting is not.
         content: {
           utr: b.utr,
           credit_paise: b.credit_paise,
           value_date: b.value_date,
-          narration: b.narration,
+          memo: b.memo,
         },
         keys: { utr: b.utr },
         // Attacker-controlled. Off the verdict path by construction.
-        display: { narration: b.narration },
+        display: { memo: b.memo },
       })
     }
   }

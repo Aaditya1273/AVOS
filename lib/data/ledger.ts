@@ -21,7 +21,14 @@
 
 import { readFileSync } from 'node:fs'
 import path from 'node:path'
-import { parseCsv, paiseField, type CsvRow } from '@/lib/csv'
+import {
+  parseCsv,
+  paiseField,
+  parsePaise,
+  parsePaiseOptional,
+  parseFlexibleDate,
+  type CsvRow,
+} from '@/lib/csv'
 import type { GroundTruth, SettlementCase, Verdict, ProposedStatus } from '@/lib/types'
 
 const DATA_DIR = path.join(process.cwd(), 'data')
@@ -62,9 +69,12 @@ export interface SettlementRow {
 export interface BankRow {
   row_id: string
   utr: string
+  /** Normalised from a formatted export string (`₹1,46,816.21`, `Rs. …`, plain). */
   credit_paise: number
+  /** Normalised to ISO-8601 from ISO, SQL or MM/DD/YYYY. */
   value_date: string
-  narration: string
+  /** Free text. The only attacker-controlled surface in the ledger. */
+  memo: string
   ingested_at: string
 }
 
@@ -145,12 +155,15 @@ export function loadLedger(): Ledger {
     ingested_at: r.ingested_at,
   }))
 
+  // The dirtiest file in the ledger, and the only one whose every column needs
+  // normalising: money as a formatted string, dates in three conventions, and a
+  // free-text memo an attacker can write into.
   const bank = readCsv('bank_statement.csv').map<BankRow>((r) => ({
     row_id: r.row_id,
-    utr: r.utr,
-    credit_paise: paiseField(r, 'credit_paise'),
-    value_date: r.value_date,
-    narration: r.narration,
+    utr: r.utr.trim(),
+    credit_paise: parsePaise(r.credit, `bank credit on row ${r.row_id}`),
+    value_date: parseFlexibleDate(r.value_date, `value_date on row ${r.row_id}`),
+    memo: r.memo ?? '',
     ingested_at: r.ingested_at,
   }))
 
@@ -228,16 +241,35 @@ const SUITE_FILE: Record<Suite, string> = {
 }
 
 export function loadCases(suite: Suite): SettlementCase[] {
-  return readCsv(SUITE_FILE[suite]).map<SettlementCase>((r) => ({
-    case_id: r.case_id,
-    settlement_id: r.settlement_id,
-    merchant_id: r.merchant_id,
-    event_time: r.event_time,
-    decision_time: r.decision_time,
-    batch_value_paise: paiseField(r, 'batch_value_paise'),
-    recorded_policy_version: r.recorded_policy_version,
-    agent_claim: r.agent_claim as ProposedStatus,
-  }))
+  return readCsv(SUITE_FILE[suite]).map<SettlementCase>((r) => {
+    const settlementAmount = parsePaise(
+      r.settlement_amount,
+      `settlement_amount on case ${r.case_id}`,
+    )
+    return {
+      case_id: r.case_id,
+      settlement_id: r.settlement_id,
+      merchant_id: r.merchant_id,
+      razorpay_payment_ids: (r.razorpay_payment_ids ?? '')
+        .split(';')
+        .map((x) => x.trim())
+        .filter(Boolean),
+      settlement_amount_paise: settlementAmount,
+      // An empty cell is a missing bank leg, not a zero credit. Coercing it to 0
+      // would turn "we have no evidence" into "the bank sent nothing", which is
+      // a different — and closeable — claim.
+      bank_credit_paise: parsePaiseOptional(r.bank_credit, `bank_credit on ${r.case_id}`),
+      fee_paise: parsePaise(r.fee, `fee on case ${r.case_id}`),
+      refund_paise: parsePaise(r.refund, `refund on case ${r.case_id}`),
+      utr: r.utr.trim(),
+      event_time: parseFlexibleDate(r.event_time, `event_time on case ${r.case_id}`),
+      decision_time: parseFlexibleDate(r.decision_time, `decision_time on case ${r.case_id}`),
+      recorded_policy_version: r.policy_version,
+      agent_claim: r.agent_claim as ProposedStatus,
+      memo: r.memo ?? '',
+      batch_value_paise: Math.max(settlementAmount, 0),
+    }
+  })
 }
 
 // ---------------------------------------------------------------------------
@@ -245,21 +277,33 @@ export function loadCases(suite: Suite): SettlementCase[] {
 // Nothing under app/ or lib/ai/ may import this. `evals/isolation.ts` enforces it.
 // ---------------------------------------------------------------------------
 
-const GT_FILE: Record<Suite, string> = {
-  batch_120: 'ground_truth_batch_120.csv',
-  adversarial_30: 'ground_truth_adversarial_30.csv',
+interface GroundTruthEntry {
+  settlement_id: string
+  scenario?: string
+  attack?: string
+  expected_status: string
+  expected_reason: string
+}
+
+interface GroundTruthFile {
+  batch_120: Record<string, GroundTruthEntry>
+  adversarial_30: Record<string, GroundTruthEntry>
 }
 
 export function loadGroundTruth(suite: Suite): Map<string, GroundTruth> {
+  const file = JSON.parse(
+    readFileSync(path.join(DATA_DIR, 'ground_truth.json'), 'utf8'),
+  ) as GroundTruthFile
+
   const out = new Map<string, GroundTruth>()
-  for (const r of readCsv(GT_FILE[suite])) {
-    out.set(r.case_id, {
-      case_id: r.case_id,
-      settlement_id: r.settlement_id,
-      // batch labels the column `scenario`; the adversarial suite labels it `attack`.
-      scenario: r.scenario ?? r.attack ?? '',
-      expected_verdict: r.expected_verdict as Verdict,
-      expected_reason: r.expected_reason,
+  for (const [case_id, e] of Object.entries(file[suite])) {
+    out.set(case_id, {
+      case_id,
+      settlement_id: e.settlement_id,
+      // The batch calls it `scenario`; the adversarial suite calls it `attack`.
+      scenario: e.scenario ?? e.attack ?? '',
+      expected_verdict: e.expected_status as Verdict,
+      expected_reason: e.expected_reason,
     })
   }
   return out

@@ -253,19 +253,43 @@ export interface VerificationResult {
 // Cases, decisions, replay
 // ---------------------------------------------------------------------------
 
-/** A row of `settlement_batch_120.csv` — everything the agent is allowed to see. */
+/**
+ * A row of `settlement_batch_120.csv` — everything the agent is allowed to see.
+ *
+ * A denormalised summary, in the messy shape a finance team actually receives:
+ * formatted money, mixed date conventions, semicolon-packed id lists. All of it
+ * is normalised to exact paise and ISO-8601 by `lib/data/ledger.ts` at load.
+ *
+ * These summary figures are **not evidence**. The verifier ignores every one of
+ * them and recomputes from the normalised source files, which is why a case can
+ * present a perfectly tidy summary row and still fail. A summary that agrees
+ * with itself proves nothing — that is the entire premise of the product.
+ */
 export interface SettlementCase {
   case_id: string
   settlement_id: string
   merchant_id: string
+  /** Semicolon-packed in the CSV; split at load. Empty when the payment leg is absent. */
+  razorpay_payment_ids: string[]
+  /** The settlement's own declared net. Summary only — never trusted. */
+  settlement_amount_paise: Paise
+  /** What the export says landed. Null when the bank leg is missing entirely. */
+  bank_credit_paise: Paise | null
+  fee_paise: Paise
+  refund_paise: Paise
+  utr: string
   event_time: string
   decision_time: string
-  batch_value_paise: Paise
+  /** The policy version stamped on this case by ingestion. Checked, not believed. */
   recorded_policy_version: string
   agent_claim: ProposedStatus
+  /** Free-text memo carried on the adversarial index. Display and Q&A only. */
+  memo: string
+  /** Derived from `settlement_amount_paise`; the denominator of value coverage. */
+  batch_value_paise: Paise
 }
 
-/** A row of `ground_truth_*.csv` — eval harness only. Never reaches the agent. */
+/** An entry in `ground_truth.json` — eval harness only. Never reaches the agent. */
 export interface GroundTruth {
   case_id: string
   settlement_id: string

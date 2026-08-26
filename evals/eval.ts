@@ -36,6 +36,7 @@ import { computeMetrics, type SuiteMetrics } from '@/lib/metrics'
 import { formatPaise, formatPct } from '@/lib/money'
 import { runIsolationChecks } from '@/evals/isolation'
 import { runAdversarialTests, type AdversarialTest } from '@/evals/adversarial'
+import { runIngestChecks, type IngestCheck } from '@/evals/ingest'
 import type { Decision } from '@/lib/types'
 
 const ROOT = process.cwd()
@@ -187,6 +188,7 @@ function buildReport(
   adversarialMetrics: SuiteMetrics,
   tests: AdversarialTest[],
   isolation: ReturnType<typeof runIsolationChecks>,
+  ingest: IngestCheck[],
   gates: Gate[],
   agentElapsedMs: number,
 ): string {
@@ -271,6 +273,19 @@ function buildReport(
     '',
     '---',
     '',
+    '## Ingest boundary',
+    '',
+    'Bank and portal exports arrive with money as formatted strings and dates in',
+    'three conventions. Everything below converts them to exact integer paise and',
+    'ISO-8601, and throws on anything unrecognised. This is the only layer where a',
+    'silent bug becomes a wrong verdict rather than a crash, so it has its own gate.',
+    '',
+    '| Check | Result | Detail |',
+    '|---|---|---|',
+    ...ingest.map((c) => `| ${c.name} | ${c.passed ? '**PASS**' : '**FAIL**'} | ${c.detail} |`),
+    '',
+    '---',
+    '',
     '## Notes on the numbers',
     '',
     `- **Throughput** is deterministic verification only: ${batch.throughput_records_per_sec.toLocaleString()} records/sec over ${batch.n} cases`,
@@ -322,7 +337,8 @@ async function main(): Promise<void> {
       `${batch.metrics.verify_elapsed_ms + adversarial.metrics.verify_elapsed_ms} ms\n`,
   )
 
-  console.log('Isolation + adversarial suite ...')
+  console.log('Ingest boundary + isolation + adversarial suite ...')
+  const ingest = runIngestChecks()
   const isolation = runIsolationChecks()
   const tests = await runAdversarialTests()
   const attackTests = tests.filter((t) => t.group === 'attack_suite')
@@ -363,6 +379,11 @@ async function main(): Promise<void> {
       passed: unitTests.every((t) => t.passed),
       detail: `${unitTests.filter((t) => t.passed).length}/${unitTests.length} synthetic perturbation checks passed`,
     },
+    {
+      name: 'Ingest boundary parses dirty exports exactly',
+      passed: ingest.every((c) => c.passed),
+      detail: `${ingest.filter((c) => c.passed).length}/${ingest.length} money/date parsing checks passed`,
+    },
   ]
 
   const report = buildReport(
@@ -370,6 +391,7 @@ async function main(): Promise<void> {
     adversarial.metrics,
     tests,
     isolation,
+    ingest,
     gates,
     agentElapsedMs,
   )
@@ -385,6 +407,7 @@ async function main(): Promise<void> {
         batch_120: batch.metrics,
         adversarial_30: adversarial.metrics,
         adversarial_tests: tests,
+        ingest: ingest,
         isolation: isolation.findings,
         gates,
       },
