@@ -116,7 +116,7 @@
     "H17": {
       "settlement_id": "S-80017",
       "family": "negative",
-      "note": "refunds exceed gross, nothing credited \u2014 carry-forward unmatched",
+      "note": "every payment refunded, nothing credited \u2014 carry-forward unmatched",
       "expected_status": "FAILED",
       "expected_reason": "AMOUNT_MISMATCH"
     },
@@ -137,7 +137,7 @@
     "H20": {
       "settlement_id": "S-80020",
       "family": "negative",
-      "note": "refunds exceed gross and the bank debits the difference",
+      "note": "every payment refunded and the bank debits the fees back",
       "expected_status": "VERIFIED",
       "expected_reason": ""
     },
@@ -160,7 +160,7 @@
       "family": "semantic",
       "note": "same payment_id twice with different amounts \u2014 a restatement, not a second payment",
       "expected_status": "FAILED",
-      "expected_reason": "CONTRADICTORY_SOURCE"
+      "expected_reason": "DUPLICATE_PAYMENT_ID_CONFLICT"
     },
     "H24": {
       "settlement_id": "S-80024",
@@ -188,7 +188,7 @@
       "family": "semantic",
       "note": "a refund larger than the payment it refunds \u2014 impossible, not merely unbalanced",
       "expected_status": "FAILED",
-      "expected_reason": "CONTRADICTORY_SOURCE"
+      "expected_reason": "OVER_REFUND"
     },
     "H28": {
       "settlement_id": "S-80028",

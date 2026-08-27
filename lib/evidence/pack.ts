@@ -87,6 +87,7 @@ interface Draft {
   created_at?: string
   fee_rate_bps?: number
   gst_rate_bps?: number
+  timestamp_precision?: 'datetime' | 'date'
 }
 
 export function buildEvidencePack(
@@ -190,10 +191,11 @@ export function buildEvidencePack(
       content: {
         refund_id: r.refund_id,
         settlement_id: r.settlement_id,
+        payment_id: r.payment_id,
         amount_paise: r.amount_paise,
         processed_at: r.processed_at,
       },
-      keys: { settlement_id: r.settlement_id },
+      keys: { settlement_id: r.settlement_id, payment_id: r.payment_id },
       display: {},
     })
   }
@@ -241,6 +243,7 @@ export function buildEvidencePack(
           memo: b.memo,
         },
         keys: { utr: b.utr },
+        timestamp_precision: b.value_date_precision,
         // Attacker-controlled. Off the verdict path by construction.
         display: { memo: b.memo },
       })
@@ -304,6 +307,7 @@ export function buildEvidencePack(
       created_at: d.created_at,
       fee_rate_bps: d.fee_rate_bps,
       gst_rate_bps: d.gst_rate_bps,
+      timestamp_precision: d.timestamp_precision ?? 'datetime',
       display: d.display,
     }
   })

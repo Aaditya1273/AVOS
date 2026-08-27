@@ -29,6 +29,7 @@ import {
   parseFlexibleDate,
   type CsvRow,
 } from '@/lib/csv'
+import { isDateOnly, type TimestampPrecision } from '@/lib/evidence/normalize'
 import type { GroundTruth, SettlementCase, Verdict, ProposedStatus } from '@/lib/types'
 
 const DATA_DIR = path.join(process.cwd(), 'data')
@@ -71,8 +72,10 @@ export interface BankRow {
   utr: string
   /** Normalised from a formatted export string (`₹1,46,816.21`, `Rs. …`, plain). */
   credit_paise: number
-  /** Normalised to ISO-8601 from ISO, SQL or MM/DD/YYYY. */
+  /** Normalised to ISO-8601 from ISO, SQL or MM/DD/YYYY. Date-only lands at end of day. */
   value_date: string
+  /** `'date'` when the export carried no time component. Ordering checks drop to day granularity. */
+  value_date_precision: TimestampPrecision
   /** Free text. The only attacker-controlled surface in the ledger. */
   memo: string
   ingested_at: string
@@ -82,6 +85,8 @@ export interface RefundRow {
   row_id: string
   refund_id: string
   settlement_id: string
+  /** The payment this refund refunds. Without it, "is this refund too large" is unanswerable. */
+  payment_id: string
   amount_paise: number
   processed_at: string
   ingested_at: string
@@ -163,6 +168,7 @@ export function loadLedger(): Ledger {
     utr: r.utr.trim(),
     credit_paise: parsePaise(r.credit, `bank credit on row ${r.row_id}`),
     value_date: parseFlexibleDate(r.value_date, `value_date on row ${r.row_id}`),
+    value_date_precision: isDateOnly(r.value_date) ? 'date' : 'datetime',
     memo: r.memo ?? '',
     ingested_at: r.ingested_at,
   }))
@@ -171,6 +177,7 @@ export function loadLedger(): Ledger {
     row_id: r.row_id,
     refund_id: r.refund_id,
     settlement_id: r.settlement_id,
+    payment_id: r.payment_id ?? '',
     amount_paise: paiseField(r, 'amount_paise'),
     processed_at: r.processed_at,
     ingested_at: r.ingested_at,

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-27T11:44:44.484Z",
+  "generated_at": "2026-08-27T12:02:46.487Z",
   "verifier_version": "deterministic-v2.1",
   "model_version": "avos-mock-deterministic-1.0",
   "using_mock": true,
@@ -33,8 +33,8 @@
     "confidence_discrimination": 0.284,
     "high_confidence_refusals": 14,
     "confidence_threshold": 0.85,
-    "throughput_records_per_sec": 11157,
-    "verify_elapsed_ms": 11,
+    "throughput_records_per_sec": 9738,
+    "verify_elapsed_ms": 12,
     "confusion": {},
     "mismatches": []
   },
@@ -68,8 +68,8 @@
     "confidence_discrimination": -0.74,
     "high_confidence_refusals": 13,
     "confidence_threshold": 0.85,
-    "throughput_records_per_sec": 10549,
-    "verify_elapsed_ms": 3,
+    "throughput_records_per_sec": 12180,
+    "verify_elapsed_ms": 2,
     "confusion": {},
     "mismatches": []
   },
@@ -209,7 +209,7 @@
       "id": "date_styles_agree",
       "name": "ISO, SQL and slash formats resolve to one instant",
       "passed": true,
-      "detail": "all four spellings of 11 Aug 2026 10:00 UTC agree"
+      "detail": "three spellings of 11 Aug 10:00 UTC agree; a date-only value lands at end of day"
     },
     {
       "id": "date_slash_is_month_first",
@@ -222,6 +222,12 @@
       "name": "Unrecognised date formats throw",
       "passed": true,
       "detail": "5 unrecognised formats throw rather than defaulting to epoch"
+    },
+    {
+      "id": "date_only_is_end_of_day",
+      "name": "A date-only value date reads as end of day, not midnight",
+      "passed": true,
+      "detail": "date-only -> 23:59:59Z, precision recorded, same-day comparison ties instead of ordering"
     },
     {
       "id": "ledger_parses_without_loss",
@@ -384,8 +390,8 @@
   ],
   "hard_slice": {
     "n": 28,
-    "verdict_accuracy_hard_slice": 0.8571428571428571,
-    "reason_accuracy_hard_slice": 0.8214285714285714,
+    "verdict_accuracy_hard_slice": 1,
+    "reason_accuracy_hard_slice": 1,
     "by_family": {
       "boundary": {
         "n": 4,
@@ -409,76 +415,15 @@
       },
       "semantic": {
         "n": 8,
-        "correct": 3
+        "correct": 8
       }
     },
     "by_verdict": {
-      "VERIFIED": 12,
+      "VERIFIED": 14,
       "UNCERTAIN": 4,
-      "FAILED": 12
+      "FAILED": 10
     },
-    "failures": [
-      {
-        "case_id": "H21",
-        "settlement_id": "S-80021",
-        "family": "semantic",
-        "note": "",
-        "expected": "VERIFIED",
-        "got": "FAILED/AMOUNT_MISMATCH",
-        "correct": false,
-        "verdict_only": false,
-        "difference_paise": -90000,
-        "tolerance_paise": 5000
-      },
-      {
-        "case_id": "H22",
-        "settlement_id": "S-80022",
-        "family": "semantic",
-        "note": "",
-        "expected": "VERIFIED",
-        "got": "FAILED/AMOUNT_MISMATCH",
-        "correct": false,
-        "verdict_only": false,
-        "difference_paise": 146460,
-        "tolerance_paise": 5000
-      },
-      {
-        "case_id": "H23",
-        "settlement_id": "S-80023",
-        "family": "semantic",
-        "note": "",
-        "expected": "FAILED/CONTRADICTORY_SOURCE",
-        "got": "FAILED/AMOUNT_MISMATCH",
-        "correct": false,
-        "verdict_only": true,
-        "difference_paise": 234336,
-        "tolerance_paise": 5000
-      },
-      {
-        "case_id": "H25",
-        "settlement_id": "S-80025",
-        "family": "semantic",
-        "note": "",
-        "expected": "VERIFIED",
-        "got": "FAILED/TEMPORAL_INCONSISTENCY",
-        "correct": false,
-        "verdict_only": false,
-        "difference_paise": 0,
-        "tolerance_paise": 5000
-      },
-      {
-        "case_id": "H27",
-        "settlement_id": "S-80027",
-        "family": "semantic",
-        "note": "",
-        "expected": "FAILED/CONTRADICTORY_SOURCE",
-        "got": "VERIFIED",
-        "correct": false,
-        "verdict_only": false,
-        "difference_paise": 0,
-        "tolerance_paise": 5000
-      }
-    ],
+    "failures": [],
     "results": [
       {
         "case_id": "H01",
@@ -726,10 +671,10 @@
         "family": "semantic",
         "note": "",
         "expected": "VERIFIED",
-        "got": "FAILED/AMOUNT_MISMATCH",
-        "correct": false,
+        "got": "VERIFIED",
+        "correct": true,
         "verdict_only": false,
-        "difference_paise": -90000,
+        "difference_paise": 0,
         "tolerance_paise": 5000
       },
       {
@@ -738,10 +683,10 @@
         "family": "semantic",
         "note": "",
         "expected": "VERIFIED",
-        "got": "FAILED/AMOUNT_MISMATCH",
-        "correct": false,
+        "got": "VERIFIED",
+        "correct": true,
         "verdict_only": false,
-        "difference_paise": 146460,
+        "difference_paise": 0,
         "tolerance_paise": 5000
       },
       {
@@ -749,11 +694,11 @@
         "settlement_id": "S-80023",
         "family": "semantic",
         "note": "",
-        "expected": "FAILED/CONTRADICTORY_SOURCE",
-        "got": "FAILED/AMOUNT_MISMATCH",
-        "correct": false,
-        "verdict_only": true,
-        "difference_paise": 234336,
+        "expected": "FAILED/DUPLICATE_PAYMENT_ID_CONFLICT",
+        "got": "FAILED/DUPLICATE_PAYMENT_ID_CONFLICT",
+        "correct": true,
+        "verdict_only": false,
+        "difference_paise": 0,
         "tolerance_paise": 5000
       },
       {
@@ -774,8 +719,8 @@
         "family": "semantic",
         "note": "",
         "expected": "VERIFIED",
-        "got": "FAILED/TEMPORAL_INCONSISTENCY",
-        "correct": false,
+        "got": "VERIFIED",
+        "correct": true,
         "verdict_only": false,
         "difference_paise": 0,
         "tolerance_paise": 5000
@@ -797,9 +742,9 @@
         "settlement_id": "S-80027",
         "family": "semantic",
         "note": "",
-        "expected": "FAILED/CONTRADICTORY_SOURCE",
-        "got": "VERIFIED",
-        "correct": false,
+        "expected": "FAILED/OVER_REFUND",
+        "got": "FAILED/OVER_REFUND",
+        "correct": true,
         "verdict_only": false,
         "difference_paise": 0,
         "tolerance_paise": 5000
@@ -817,7 +762,7 @@
         "tolerance_paise": 5000
       }
     ],
-    "elapsed_ms": 2
+    "elapsed_ms": 3
   },
   "isolation": [
     {
@@ -935,7 +880,7 @@
     {
       "name": "Ingest boundary parses dirty exports exactly",
       "passed": true,
-      "detail": "9/9 money/date parsing checks passed"
+      "detail": "10/10 money/date parsing checks passed"
     },
     {
       "name": "Verifier unit tests pass",

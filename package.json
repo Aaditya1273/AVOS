@@ -2,7 +2,7 @@
   "name": "avos-verify",
   "version": "1.0.0",
   "private": true,
-  "description": "AVOS Verify \u2014 evidence-backed verification for AI-operated finance (Razorpay Buildathon Track 04: Settlement Assurance)",
+  "description": "AVOS Verify — evidence-backed verification for AI-operated finance (Razorpay Buildathon Track 04: Settlement Assurance)",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -16,7 +16,8 @@
     "test:ingest": "tsx evals/ingest.ts",
     "test:verifier": "tsx evals/verifier.ts",
     "test:hard": "tsx evals/hard_slice.eval.ts",
-    "eval:live": "bash scripts/run_live.sh"
+    "eval:live": "bash scripts/run_live.sh",
+    "test:api": "vitest run"
   },
   "dependencies": {
     "@ai-sdk/openai": "^1.3.24",
@@ -37,10 +38,12 @@
     "autoprefixer": "^10.4.20",
     "eslint": "^8.57.1",
     "eslint-config-next": "14.2.33",
+    "playwright": "^1.62.1",
     "postcss": "^8.5.3",
     "tailwindcss": "^3.4.17",
     "tsx": "^4.19.3",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "vitest": "^2.1.9"
   },
   "engines": {
     "node": ">=20"

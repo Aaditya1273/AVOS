@@ -45,13 +45,37 @@
         "id": "policy_in_force",
         "pillar": "guard",
         "status": "pass",
-        "detail": "finance-policy-v12 in force as of 2026-08-02T22:25:00Z (effective 2026-08-01T00:00:00Z)"
+        "detail": "finance-policy-v12 in force as of 2026-08-02T22:25:00Z (effective 2026-07-01T00:00:00Z)"
       },
       {
         "id": "policy_epoch_matches_decision",
         "pillar": "guard",
         "status": "pass",
         "detail": "pack stamped finance-policy-v12, which is the version in force at decision_time 2026-08-02T22:25:00Z"
+      },
+      {
+        "id": "evidence_available_at_decision_time",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 7 rows were already facts at 2026-08-02T22:25:00Z"
+      },
+      {
+        "id": "payments_predate_settlement_cut",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 3 payment(s) were captured before the settlement was cut"
+      },
+      {
+        "id": "payment_ids_unique",
+        "pillar": "verify",
+        "status": "pass",
+        "detail": "3 distinct payment_id(s), no restatements"
+      },
+      {
+        "id": "refunds_within_their_payments",
+        "pillar": "verify",
+        "status": "skipped",
+        "detail": "no refunds attached to this settlement"
       },
       {
         "id": "evidence_complete",
@@ -252,13 +276,37 @@
         "id": "policy_in_force",
         "pillar": "guard",
         "status": "pass",
-        "detail": "finance-policy-v12 in force as of 2026-08-04T05:15:00Z (effective 2026-08-01T00:00:00Z)"
+        "detail": "finance-policy-v12 in force as of 2026-08-04T05:15:00Z (effective 2026-07-01T00:00:00Z)"
       },
       {
         "id": "policy_epoch_matches_decision",
         "pillar": "guard",
         "status": "pass",
         "detail": "pack stamped finance-policy-v12, which is the version in force at decision_time 2026-08-04T05:15:00Z"
+      },
+      {
+        "id": "evidence_available_at_decision_time",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 14 rows were already facts at 2026-08-04T05:15:00Z"
+      },
+      {
+        "id": "payments_predate_settlement_cut",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 12 payment(s) were captured before the settlement was cut"
+      },
+      {
+        "id": "payment_ids_unique",
+        "pillar": "verify",
+        "status": "pass",
+        "detail": "12 distinct payment_id(s), no restatements"
+      },
+      {
+        "id": "refunds_within_their_payments",
+        "pillar": "verify",
+        "status": "skipped",
+        "detail": "no refunds attached to this settlement"
       },
       {
         "id": "evidence_complete",
@@ -530,13 +578,37 @@
         "id": "policy_in_force",
         "pillar": "guard",
         "status": "pass",
-        "detail": "finance-policy-v12 in force as of 2026-08-04T19:43:00Z (effective 2026-08-01T00:00:00Z)"
+        "detail": "finance-policy-v12 in force as of 2026-08-04T19:43:00Z (effective 2026-07-01T00:00:00Z)"
       },
       {
         "id": "policy_epoch_matches_decision",
         "pillar": "guard",
         "status": "pass",
         "detail": "pack stamped finance-policy-v12, which is the version in force at decision_time 2026-08-04T19:43:00Z"
+      },
+      {
+        "id": "evidence_available_at_decision_time",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 7 rows were already facts at 2026-08-04T19:43:00Z"
+      },
+      {
+        "id": "payments_predate_settlement_cut",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 3 payment(s) were captured before the settlement was cut"
+      },
+      {
+        "id": "payment_ids_unique",
+        "pillar": "verify",
+        "status": "pass",
+        "detail": "3 distinct payment_id(s), no restatements"
+      },
+      {
+        "id": "refunds_within_their_payments",
+        "pillar": "verify",
+        "status": "skipped",
+        "detail": "no refunds attached to this settlement"
       },
       {
         "id": "evidence_complete",
@@ -744,6 +816,30 @@
         "pillar": "guard",
         "status": "pass",
         "detail": "pack stamped finance-policy-v13, which is the version in force at decision_time 2026-08-16T23:28:00Z"
+      },
+      {
+        "id": "evidence_available_at_decision_time",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 10 rows were already facts at 2026-08-16T23:28:00Z"
+      },
+      {
+        "id": "payments_predate_settlement_cut",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 7 payment(s) were captured before the settlement was cut"
+      },
+      {
+        "id": "payment_ids_unique",
+        "pillar": "verify",
+        "status": "pass",
+        "detail": "7 distinct payment_id(s), no restatements"
+      },
+      {
+        "id": "refunds_within_their_payments",
+        "pillar": "verify",
+        "status": "skipped",
+        "detail": "no refunds attached to this settlement"
       },
       {
         "id": "evidence_complete",
@@ -977,13 +1073,37 @@
         "id": "policy_in_force",
         "pillar": "guard",
         "status": "pass",
-        "detail": "finance-policy-v12 in force as of 2026-08-07T11:20:00Z (effective 2026-08-01T00:00:00Z)"
+        "detail": "finance-policy-v12 in force as of 2026-08-07T11:20:00Z (effective 2026-07-01T00:00:00Z)"
       },
       {
         "id": "policy_epoch_matches_decision",
         "pillar": "guard",
         "status": "pass",
         "detail": "pack stamped finance-policy-v12, which is the version in force at decision_time 2026-08-07T11:20:00Z"
+      },
+      {
+        "id": "evidence_available_at_decision_time",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 11 rows were already facts at 2026-08-07T11:20:00Z"
+      },
+      {
+        "id": "payments_predate_settlement_cut",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 7 payment(s) were captured before the settlement was cut"
+      },
+      {
+        "id": "payment_ids_unique",
+        "pillar": "verify",
+        "status": "pass",
+        "detail": "7 distinct payment_id(s), no restatements"
+      },
+      {
+        "id": "refunds_within_their_payments",
+        "pillar": "verify",
+        "status": "skipped",
+        "detail": "no refunds attached to this settlement"
       },
       {
         "id": "evidence_complete",
@@ -1228,13 +1348,37 @@
         "id": "policy_in_force",
         "pillar": "guard",
         "status": "pass",
-        "detail": "finance-policy-v12 in force as of 2026-08-08T16:41:00Z (effective 2026-08-01T00:00:00Z)"
+        "detail": "finance-policy-v12 in force as of 2026-08-08T16:41:00Z (effective 2026-07-01T00:00:00Z)"
       },
       {
         "id": "policy_epoch_matches_decision",
         "pillar": "guard",
         "status": "fail",
         "detail": "pack stamped finance-policy-v13 but finance-policy-v12 was in force at decision_time 2026-08-08T16:41:00Z; historical decisions are evaluated under the policy that existed when the decision occurred"
+      },
+      {
+        "id": "evidence_available_at_decision_time",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 15 rows were already facts at 2026-08-08T16:41:00Z"
+      },
+      {
+        "id": "payments_predate_settlement_cut",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 12 payment(s) were captured before the settlement was cut"
+      },
+      {
+        "id": "payment_ids_unique",
+        "pillar": "verify",
+        "status": "pass",
+        "detail": "12 distinct payment_id(s), no restatements"
+      },
+      {
+        "id": "refunds_within_their_payments",
+        "pillar": "verify",
+        "status": "skipped",
+        "detail": "no refunds attached to this settlement"
       },
       {
         "id": "evidence_complete",
@@ -1523,13 +1667,37 @@
         "id": "policy_in_force",
         "pillar": "guard",
         "status": "pass",
-        "detail": "finance-policy-v12 in force as of 2026-08-09T13:33:00Z (effective 2026-08-01T00:00:00Z)"
+        "detail": "finance-policy-v12 in force as of 2026-08-09T13:33:00Z (effective 2026-07-01T00:00:00Z)"
       },
       {
         "id": "policy_epoch_matches_decision",
         "pillar": "guard",
         "status": "pass",
         "detail": "pack stamped finance-policy-v12, which is the version in force at decision_time 2026-08-09T13:33:00Z"
+      },
+      {
+        "id": "evidence_available_at_decision_time",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 9 rows were already facts at 2026-08-09T13:33:00Z"
+      },
+      {
+        "id": "payments_predate_settlement_cut",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 7 payment(s) were captured before the settlement was cut"
+      },
+      {
+        "id": "payment_ids_unique",
+        "pillar": "verify",
+        "status": "pass",
+        "detail": "7 distinct payment_id(s), no restatements"
+      },
+      {
+        "id": "refunds_within_their_payments",
+        "pillar": "verify",
+        "status": "skipped",
+        "detail": "no refunds attached to this settlement"
       },
       {
         "id": "evidence_complete",
@@ -1746,13 +1914,37 @@
         "id": "policy_in_force",
         "pillar": "guard",
         "status": "pass",
-        "detail": "finance-policy-v12 in force as of 2026-08-10T12:17:00Z (effective 2026-08-01T00:00:00Z)"
+        "detail": "finance-policy-v12 in force as of 2026-08-10T12:17:00Z (effective 2026-07-01T00:00:00Z)"
       },
       {
         "id": "policy_epoch_matches_decision",
         "pillar": "guard",
         "status": "pass",
         "detail": "pack stamped finance-policy-v12, which is the version in force at decision_time 2026-08-10T12:17:00Z"
+      },
+      {
+        "id": "evidence_available_at_decision_time",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 15 rows were already facts at 2026-08-10T12:17:00Z"
+      },
+      {
+        "id": "payments_predate_settlement_cut",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 11 payment(s) were captured before the settlement was cut"
+      },
+      {
+        "id": "payment_ids_unique",
+        "pillar": "verify",
+        "status": "pass",
+        "detail": "11 distinct payment_id(s), no restatements"
+      },
+      {
+        "id": "refunds_within_their_payments",
+        "pillar": "verify",
+        "status": "skipped",
+        "detail": "no refunds attached to this settlement"
       },
       {
         "id": "evidence_complete",
@@ -2041,13 +2233,37 @@
         "id": "policy_in_force",
         "pillar": "guard",
         "status": "pass",
-        "detail": "finance-policy-v12 in force as of 2026-08-11T12:56:00Z (effective 2026-08-01T00:00:00Z)"
+        "detail": "finance-policy-v12 in force as of 2026-08-11T12:56:00Z (effective 2026-07-01T00:00:00Z)"
       },
       {
         "id": "policy_epoch_matches_decision",
         "pillar": "guard",
         "status": "pass",
         "detail": "pack stamped finance-policy-v12, which is the version in force at decision_time 2026-08-11T12:56:00Z"
+      },
+      {
+        "id": "evidence_available_at_decision_time",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 11 rows were already facts at 2026-08-11T12:56:00Z"
+      },
+      {
+        "id": "payments_predate_settlement_cut",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 9 payment(s) were captured before the settlement was cut"
+      },
+      {
+        "id": "payment_ids_unique",
+        "pillar": "verify",
+        "status": "pass",
+        "detail": "9 distinct payment_id(s), no restatements"
+      },
+      {
+        "id": "refunds_within_their_payments",
+        "pillar": "verify",
+        "status": "skipped",
+        "detail": "no refunds attached to this settlement"
       },
       {
         "id": "evidence_complete",
@@ -2286,13 +2502,37 @@
         "id": "policy_in_force",
         "pillar": "guard",
         "status": "pass",
-        "detail": "finance-policy-v12 in force as of 2026-08-12T03:33:00Z (effective 2026-08-01T00:00:00Z)"
+        "detail": "finance-policy-v12 in force as of 2026-08-12T03:33:00Z (effective 2026-07-01T00:00:00Z)"
       },
       {
         "id": "policy_epoch_matches_decision",
         "pillar": "guard",
         "status": "pass",
         "detail": "pack stamped finance-policy-v12, which is the version in force at decision_time 2026-08-12T03:33:00Z"
+      },
+      {
+        "id": "evidence_available_at_decision_time",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 15 rows were already facts at 2026-08-12T03:33:00Z"
+      },
+      {
+        "id": "payments_predate_settlement_cut",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 11 payment(s) were captured before the settlement was cut"
+      },
+      {
+        "id": "payment_ids_unique",
+        "pillar": "verify",
+        "status": "pass",
+        "detail": "11 distinct payment_id(s), no restatements"
+      },
+      {
+        "id": "refunds_within_their_payments",
+        "pillar": "verify",
+        "status": "skipped",
+        "detail": "no refunds attached to this settlement"
       },
       {
         "id": "evidence_complete",
@@ -2590,6 +2830,30 @@
         "detail": "pack stamped finance-policy-v13, which is the version in force at decision_time 2026-08-13T00:56:00Z"
       },
       {
+        "id": "evidence_available_at_decision_time",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 14 rows were already facts at 2026-08-13T00:56:00Z"
+      },
+      {
+        "id": "payments_predate_settlement_cut",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 10 payment(s) were captured before the settlement was cut"
+      },
+      {
+        "id": "payment_ids_unique",
+        "pillar": "verify",
+        "status": "pass",
+        "detail": "10 distinct payment_id(s), no restatements"
+      },
+      {
+        "id": "refunds_within_their_payments",
+        "pillar": "verify",
+        "status": "skipped",
+        "detail": "no refunds attached to this settlement"
+      },
+      {
         "id": "evidence_complete",
         "pillar": "prove",
         "status": "pass",
@@ -2865,13 +3129,37 @@
         "id": "policy_in_force",
         "pillar": "guard",
         "status": "pass",
-        "detail": "finance-policy-v12 in force as of 2026-08-06T18:56:00Z (effective 2026-08-01T00:00:00Z)"
+        "detail": "finance-policy-v12 in force as of 2026-08-06T18:56:00Z (effective 2026-07-01T00:00:00Z)"
       },
       {
         "id": "policy_epoch_matches_decision",
         "pillar": "guard",
         "status": "fail",
         "detail": "pack stamped finance-policy-v13 but finance-policy-v12 was in force at decision_time 2026-08-06T18:56:00Z; historical decisions are evaluated under the policy that existed when the decision occurred"
+      },
+      {
+        "id": "evidence_available_at_decision_time",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 7 rows were already facts at 2026-08-06T18:56:00Z"
+      },
+      {
+        "id": "payments_predate_settlement_cut",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 4 payment(s) were captured before the settlement was cut"
+      },
+      {
+        "id": "payment_ids_unique",
+        "pillar": "verify",
+        "status": "pass",
+        "detail": "4 distinct payment_id(s), no restatements"
+      },
+      {
+        "id": "refunds_within_their_payments",
+        "pillar": "verify",
+        "status": "skipped",
+        "detail": "no refunds attached to this settlement"
       },
       {
         "id": "evidence_complete",
@@ -3079,6 +3367,30 @@
         "pillar": "guard",
         "status": "pass",
         "detail": "pack stamped finance-policy-v13, which is the version in force at decision_time 2026-08-15T07:39:00Z"
+      },
+      {
+        "id": "evidence_available_at_decision_time",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 10 rows were already facts at 2026-08-15T07:39:00Z"
+      },
+      {
+        "id": "payments_predate_settlement_cut",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 6 payment(s) were captured before the settlement was cut"
+      },
+      {
+        "id": "payment_ids_unique",
+        "pillar": "verify",
+        "status": "pass",
+        "detail": "6 distinct payment_id(s), no restatements"
+      },
+      {
+        "id": "refunds_within_their_payments",
+        "pillar": "verify",
+        "status": "skipped",
+        "detail": "no refunds attached to this settlement"
       },
       {
         "id": "evidence_complete",
@@ -3321,6 +3633,30 @@
         "detail": "pack stamped finance-policy-v13, which is the version in force at decision_time 2026-08-15T21:16:00Z"
       },
       {
+        "id": "evidence_available_at_decision_time",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 9 rows were already facts at 2026-08-15T21:16:00Z"
+      },
+      {
+        "id": "payments_predate_settlement_cut",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 5 payment(s) were captured before the settlement was cut"
+      },
+      {
+        "id": "payment_ids_unique",
+        "pillar": "verify",
+        "status": "pass",
+        "detail": "5 distinct payment_id(s), no restatements"
+      },
+      {
+        "id": "refunds_within_their_payments",
+        "pillar": "verify",
+        "status": "skipped",
+        "detail": "no refunds attached to this settlement"
+      },
+      {
         "id": "evidence_complete",
         "pillar": "prove",
         "status": "pass",
@@ -3548,6 +3884,30 @@
         "pillar": "guard",
         "status": "pass",
         "detail": "pack stamped finance-policy-v13, which is the version in force at decision_time 2026-08-16T15:00:00Z"
+      },
+      {
+        "id": "evidence_available_at_decision_time",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 10 rows were already facts at 2026-08-16T15:00:00Z"
+      },
+      {
+        "id": "payments_predate_settlement_cut",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 8 payment(s) were captured before the settlement was cut"
+      },
+      {
+        "id": "payment_ids_unique",
+        "pillar": "verify",
+        "status": "pass",
+        "detail": "8 distinct payment_id(s), no restatements"
+      },
+      {
+        "id": "refunds_within_their_payments",
+        "pillar": "verify",
+        "status": "skipped",
+        "detail": "no refunds attached to this settlement"
       },
       {
         "id": "evidence_complete",
@@ -3784,6 +4144,30 @@
         "detail": "pack stamped finance-policy-v13, which is the version in force at decision_time 2026-08-17T04:48:00Z"
       },
       {
+        "id": "evidence_available_at_decision_time",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 9 rows were already facts at 2026-08-17T04:48:00Z"
+      },
+      {
+        "id": "payments_predate_settlement_cut",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 6 payment(s) were captured before the settlement was cut"
+      },
+      {
+        "id": "payment_ids_unique",
+        "pillar": "verify",
+        "status": "pass",
+        "detail": "6 distinct payment_id(s), no restatements"
+      },
+      {
+        "id": "refunds_within_their_payments",
+        "pillar": "verify",
+        "status": "skipped",
+        "detail": "no refunds attached to this settlement"
+      },
+      {
         "id": "evidence_complete",
         "pillar": "prove",
         "status": "pass",
@@ -4013,6 +4397,30 @@
         "detail": "pack stamped finance-policy-v13, which is the version in force at decision_time 2026-08-18T13:19:00Z"
       },
       {
+        "id": "evidence_available_at_decision_time",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 8 rows were already facts at 2026-08-18T13:19:00Z"
+      },
+      {
+        "id": "payments_predate_settlement_cut",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 4 payment(s) were captured before the settlement was cut"
+      },
+      {
+        "id": "payment_ids_unique",
+        "pillar": "verify",
+        "status": "pass",
+        "detail": "4 distinct payment_id(s), no restatements"
+      },
+      {
+        "id": "refunds_within_their_payments",
+        "pillar": "verify",
+        "status": "skipped",
+        "detail": "no refunds attached to this settlement"
+      },
+      {
         "id": "evidence_complete",
         "pillar": "prove",
         "status": "pass",
@@ -4229,6 +4637,30 @@
         "pillar": "guard",
         "status": "pass",
         "detail": "pack stamped finance-policy-v13, which is the version in force at decision_time 2026-08-20T11:06:00Z"
+      },
+      {
+        "id": "evidence_available_at_decision_time",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 9 rows were already facts at 2026-08-20T11:06:00Z"
+      },
+      {
+        "id": "payments_predate_settlement_cut",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 5 payment(s) were captured before the settlement was cut"
+      },
+      {
+        "id": "payment_ids_unique",
+        "pillar": "verify",
+        "status": "pass",
+        "detail": "5 distinct payment_id(s), no restatements"
+      },
+      {
+        "id": "refunds_within_their_payments",
+        "pillar": "verify",
+        "status": "skipped",
+        "detail": "no refunds attached to this settlement"
       },
       {
         "id": "evidence_complete",
@@ -4460,6 +4892,30 @@
         "detail": "pack stamped finance-policy-v13, which is the version in force at decision_time 2026-08-20T14:00:00Z"
       },
       {
+        "id": "evidence_available_at_decision_time",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 8 rows were already facts at 2026-08-20T14:00:00Z"
+      },
+      {
+        "id": "payments_predate_settlement_cut",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 5 payment(s) were captured before the settlement was cut"
+      },
+      {
+        "id": "payment_ids_unique",
+        "pillar": "verify",
+        "status": "pass",
+        "detail": "5 distinct payment_id(s), no restatements"
+      },
+      {
+        "id": "refunds_within_their_payments",
+        "pillar": "verify",
+        "status": "skipped",
+        "detail": "no refunds attached to this settlement"
+      },
+      {
         "id": "evidence_complete",
         "pillar": "prove",
         "status": "pass",
@@ -4669,13 +5125,37 @@
         "id": "policy_in_force",
         "pillar": "guard",
         "status": "pass",
-        "detail": "finance-policy-v12 in force as of 2026-08-07T17:52:00Z (effective 2026-08-01T00:00:00Z)"
+        "detail": "finance-policy-v12 in force as of 2026-08-07T17:52:00Z (effective 2026-07-01T00:00:00Z)"
       },
       {
         "id": "policy_epoch_matches_decision",
         "pillar": "guard",
         "status": "fail",
         "detail": "pack stamped finance-policy-v13 but finance-policy-v12 was in force at decision_time 2026-08-07T17:52:00Z; historical decisions are evaluated under the policy that existed when the decision occurred"
+      },
+      {
+        "id": "evidence_available_at_decision_time",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 7 rows were already facts at 2026-08-07T17:52:00Z"
+      },
+      {
+        "id": "payments_predate_settlement_cut",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 4 payment(s) were captured before the settlement was cut"
+      },
+      {
+        "id": "payment_ids_unique",
+        "pillar": "verify",
+        "status": "pass",
+        "detail": "4 distinct payment_id(s), no restatements"
+      },
+      {
+        "id": "refunds_within_their_payments",
+        "pillar": "verify",
+        "status": "skipped",
+        "detail": "no refunds attached to this settlement"
       },
       {
         "id": "evidence_complete",
@@ -4885,6 +5365,30 @@
         "detail": "pack stamped finance-policy-v13, which is the version in force at decision_time 2026-08-22T08:40:00Z"
       },
       {
+        "id": "evidence_available_at_decision_time",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 7 rows were already facts at 2026-08-22T08:40:00Z"
+      },
+      {
+        "id": "payments_predate_settlement_cut",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 4 payment(s) were captured before the settlement was cut"
+      },
+      {
+        "id": "payment_ids_unique",
+        "pillar": "verify",
+        "status": "pass",
+        "detail": "4 distinct payment_id(s), no restatements"
+      },
+      {
+        "id": "refunds_within_their_payments",
+        "pillar": "verify",
+        "status": "skipped",
+        "detail": "no refunds attached to this settlement"
+      },
+      {
         "id": "evidence_complete",
         "pillar": "prove",
         "status": "pass",
@@ -5090,6 +5594,30 @@
         "pillar": "guard",
         "status": "pass",
         "detail": "pack stamped finance-policy-v13, which is the version in force at decision_time 2026-08-24T04:11:00Z"
+      },
+      {
+        "id": "evidence_available_at_decision_time",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 16 rows were already facts at 2026-08-24T04:11:00Z"
+      },
+      {
+        "id": "payments_predate_settlement_cut",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 12 payment(s) were captured before the settlement was cut"
+      },
+      {
+        "id": "payment_ids_unique",
+        "pillar": "verify",
+        "status": "pass",
+        "detail": "12 distinct payment_id(s), no restatements"
+      },
+      {
+        "id": "refunds_within_their_payments",
+        "pillar": "verify",
+        "status": "skipped",
+        "detail": "no refunds attached to this settlement"
       },
       {
         "id": "evidence_complete",
@@ -5398,6 +5926,30 @@
         "detail": "pack stamped finance-policy-v13, which is the version in force at decision_time 2026-08-24T16:26:00Z"
       },
       {
+        "id": "evidence_available_at_decision_time",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 8 rows were already facts at 2026-08-24T16:26:00Z"
+      },
+      {
+        "id": "payments_predate_settlement_cut",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 4 payment(s) were captured before the settlement was cut"
+      },
+      {
+        "id": "payment_ids_unique",
+        "pillar": "verify",
+        "status": "pass",
+        "detail": "4 distinct payment_id(s), no restatements"
+      },
+      {
+        "id": "refunds_within_their_payments",
+        "pillar": "verify",
+        "status": "skipped",
+        "detail": "no refunds attached to this settlement"
+      },
+      {
         "id": "evidence_complete",
         "pillar": "prove",
         "status": "pass",
@@ -5614,6 +6166,30 @@
         "pillar": "guard",
         "status": "pass",
         "detail": "pack stamped finance-policy-v13, which is the version in force at decision_time 2026-08-25T18:58:00Z"
+      },
+      {
+        "id": "evidence_available_at_decision_time",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 13 rows were already facts at 2026-08-25T18:58:00Z"
+      },
+      {
+        "id": "payments_predate_settlement_cut",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 10 payment(s) were captured before the settlement was cut"
+      },
+      {
+        "id": "payment_ids_unique",
+        "pillar": "verify",
+        "status": "pass",
+        "detail": "10 distinct payment_id(s), no restatements"
+      },
+      {
+        "id": "refunds_within_their_payments",
+        "pillar": "verify",
+        "status": "skipped",
+        "detail": "no refunds attached to this settlement"
       },
       {
         "id": "evidence_complete",
@@ -5880,13 +6456,37 @@
         "id": "policy_in_force",
         "pillar": "guard",
         "status": "pass",
-        "detail": "finance-policy-v12 in force as of 2026-08-04T02:56:00Z (effective 2026-08-01T00:00:00Z)"
+        "detail": "finance-policy-v12 in force as of 2026-08-04T02:56:00Z (effective 2026-07-01T00:00:00Z)"
       },
       {
         "id": "policy_epoch_matches_decision",
         "pillar": "guard",
         "status": "pass",
         "detail": "pack stamped finance-policy-v12, which is the version in force at decision_time 2026-08-04T02:56:00Z"
+      },
+      {
+        "id": "evidence_available_at_decision_time",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 7 rows were already facts at 2026-08-04T02:56:00Z"
+      },
+      {
+        "id": "payments_predate_settlement_cut",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 3 payment(s) were captured before the settlement was cut"
+      },
+      {
+        "id": "payment_ids_unique",
+        "pillar": "verify",
+        "status": "pass",
+        "detail": "3 distinct payment_id(s), no restatements"
+      },
+      {
+        "id": "refunds_within_their_payments",
+        "pillar": "verify",
+        "status": "skipped",
+        "detail": "no refunds attached to this settlement"
       },
       {
         "id": "evidence_complete",
@@ -6087,13 +6687,37 @@
         "id": "policy_in_force",
         "pillar": "guard",
         "status": "pass",
-        "detail": "finance-policy-v12 in force as of 2026-08-05T11:37:00Z (effective 2026-08-01T00:00:00Z)"
+        "detail": "finance-policy-v12 in force as of 2026-08-05T11:37:00Z (effective 2026-07-01T00:00:00Z)"
       },
       {
         "id": "policy_epoch_matches_decision",
         "pillar": "guard",
         "status": "pass",
         "detail": "pack stamped finance-policy-v12, which is the version in force at decision_time 2026-08-05T11:37:00Z"
+      },
+      {
+        "id": "evidence_available_at_decision_time",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 10 rows were already facts at 2026-08-05T11:37:00Z"
+      },
+      {
+        "id": "payments_predate_settlement_cut",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 6 payment(s) were captured before the settlement was cut"
+      },
+      {
+        "id": "payment_ids_unique",
+        "pillar": "verify",
+        "status": "pass",
+        "detail": "6 distinct payment_id(s), no restatements"
+      },
+      {
+        "id": "refunds_within_their_payments",
+        "pillar": "verify",
+        "status": "skipped",
+        "detail": "no refunds attached to this settlement"
       },
       {
         "id": "evidence_complete",
@@ -6327,13 +6951,37 @@
         "id": "policy_in_force",
         "pillar": "guard",
         "status": "pass",
-        "detail": "finance-policy-v12 in force as of 2026-08-05T23:13:00Z (effective 2026-08-01T00:00:00Z)"
+        "detail": "finance-policy-v12 in force as of 2026-08-05T23:13:00Z (effective 2026-07-01T00:00:00Z)"
       },
       {
         "id": "policy_epoch_matches_decision",
         "pillar": "guard",
         "status": "pass",
         "detail": "pack stamped finance-policy-v12, which is the version in force at decision_time 2026-08-05T23:13:00Z"
+      },
+      {
+        "id": "evidence_available_at_decision_time",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 7 rows were already facts at 2026-08-05T23:13:00Z"
+      },
+      {
+        "id": "payments_predate_settlement_cut",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 5 payment(s) were captured before the settlement was cut"
+      },
+      {
+        "id": "payment_ids_unique",
+        "pillar": "verify",
+        "status": "pass",
+        "detail": "5 distinct payment_id(s), no restatements"
+      },
+      {
+        "id": "refunds_within_their_payments",
+        "pillar": "verify",
+        "status": "skipped",
+        "detail": "no refunds attached to this settlement"
       },
       {
         "id": "evidence_complete",
@@ -6528,13 +7176,37 @@
         "id": "policy_in_force",
         "pillar": "guard",
         "status": "pass",
-        "detail": "finance-policy-v12 in force as of 2026-08-07T16:10:00Z (effective 2026-08-01T00:00:00Z)"
+        "detail": "finance-policy-v12 in force as of 2026-08-07T16:10:00Z (effective 2026-07-01T00:00:00Z)"
       },
       {
         "id": "policy_epoch_matches_decision",
         "pillar": "guard",
         "status": "pass",
         "detail": "pack stamped finance-policy-v12, which is the version in force at decision_time 2026-08-07T16:10:00Z"
+      },
+      {
+        "id": "evidence_available_at_decision_time",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 12 rows were already facts at 2026-08-07T16:10:00Z"
+      },
+      {
+        "id": "payments_predate_settlement_cut",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 8 payment(s) were captured before the settlement was cut"
+      },
+      {
+        "id": "payment_ids_unique",
+        "pillar": "verify",
+        "status": "pass",
+        "detail": "8 distinct payment_id(s), no restatements"
+      },
+      {
+        "id": "refunds_within_their_payments",
+        "pillar": "verify",
+        "status": "skipped",
+        "detail": "no refunds attached to this settlement"
       },
       {
         "id": "evidence_complete",
@@ -6790,13 +7462,37 @@
         "id": "policy_in_force",
         "pillar": "guard",
         "status": "pass",
-        "detail": "finance-policy-v12 in force as of 2026-08-03T00:16:00Z (effective 2026-08-01T00:00:00Z)"
+        "detail": "finance-policy-v12 in force as of 2026-08-03T00:16:00Z (effective 2026-07-01T00:00:00Z)"
       },
       {
         "id": "policy_epoch_matches_decision",
         "pillar": "guard",
         "status": "fail",
         "detail": "pack stamped finance-policy-v13 but finance-policy-v12 was in force at decision_time 2026-08-03T00:16:00Z; historical decisions are evaluated under the policy that existed when the decision occurred"
+      },
+      {
+        "id": "evidence_available_at_decision_time",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 7 rows were already facts at 2026-08-03T00:16:00Z"
+      },
+      {
+        "id": "payments_predate_settlement_cut",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 4 payment(s) were captured before the settlement was cut"
+      },
+      {
+        "id": "payment_ids_unique",
+        "pillar": "verify",
+        "status": "pass",
+        "detail": "4 distinct payment_id(s), no restatements"
+      },
+      {
+        "id": "refunds_within_their_payments",
+        "pillar": "verify",
+        "status": "skipped",
+        "detail": "no refunds attached to this settlement"
       },
       {
         "id": "evidence_complete",
@@ -6997,13 +7693,37 @@
         "id": "policy_in_force",
         "pillar": "guard",
         "status": "pass",
-        "detail": "finance-policy-v12 in force as of 2026-08-04T16:08:00Z (effective 2026-08-01T00:00:00Z)"
+        "detail": "finance-policy-v12 in force as of 2026-08-04T16:08:00Z (effective 2026-07-01T00:00:00Z)"
       },
       {
         "id": "policy_epoch_matches_decision",
         "pillar": "guard",
         "status": "fail",
         "detail": "pack stamped finance-policy-v13 but finance-policy-v12 was in force at decision_time 2026-08-04T16:08:00Z; historical decisions are evaluated under the policy that existed when the decision occurred"
+      },
+      {
+        "id": "evidence_available_at_decision_time",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 13 rows were already facts at 2026-08-04T16:08:00Z"
+      },
+      {
+        "id": "payments_predate_settlement_cut",
+        "pillar": "prove",
+        "status": "pass",
+        "detail": "all 10 payment(s) were captured before the settlement was cut"
+      },
+      {
+        "id": "payment_ids_unique",
+        "pillar": "verify",
+        "status": "pass",
+        "detail": "10 distinct payment_id(s), no restatements"
+      },
+      {
+        "id": "refunds_within_their_payments",
+        "pillar": "verify",
+        "status": "skipped",
+        "detail": "no refunds attached to this settlement"
       },
       {
         "id": "evidence_complete",

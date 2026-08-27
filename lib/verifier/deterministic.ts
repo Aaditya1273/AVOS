@@ -107,6 +107,9 @@ export function calcFees(
     // levied at capture, so a settlement spanning a repricing is priced per
     // payment; falling back to the decision-time card only when the pack builder
     // could not resolve one.
+    // A payment with no resolvable rate card is priced at the decision-time card
+    // and flagged by `rate_card_resolved` above, which abstains. Zero is never a
+    // safe default for a rate: it silently prices the fee at nothing.
     const feeBps = p.fee_rate_bps ?? policy.fee_rate_bps
     const gstBps = p.gst_rate_bps ?? policy.gst_rate_bps
     const f = applyBps(p.amount_paise, feeBps)
@@ -151,10 +154,12 @@ const PRECEDENCE: ReasonCode[] = [
   'MISSING_EVIDENCE',
   'STALE_EVIDENCE',
   // --- policy-INDEPENDENT integrity breaks -----------------------------------
+  'DUPLICATE_PAYMENT_ID_CONFLICT',
   'DUPLICATE_EVENT',
   'DUPLICATE_FILE',
   'DUPLICATE_UTR',
   'CONTRADICTORY_SOURCE',
+  'OVER_REFUND',
   // --- policy-DEPENDENT findings ---------------------------------------------
   'POLICY_BREACH',
   'TEMPORAL_INCONSISTENCY',
@@ -175,6 +180,8 @@ const VERDICT_FOR: Record<ReasonCode, Verdict> = {
   TEMPORAL_INCONSISTENCY: 'FAILED',
   FEE_MISMATCH: 'FAILED',
   AMOUNT_MISMATCH: 'FAILED',
+  DUPLICATE_PAYMENT_ID_CONFLICT: 'FAILED',
+  OVER_REFUND: 'FAILED',
   // Not disproved — undecidable. Abstain rather than close.
   STALE_POLICY: 'UNCERTAIN',
   MISSING_EVIDENCE: 'UNCERTAIN',
@@ -183,6 +190,33 @@ const VERDICT_FOR: Record<ReasonCode, Verdict> = {
 }
 
 const DAY_MS = 86_400_000
+
+/**
+ * Was this row's fact already true when the decision was taken?
+ *
+ * A refund processed six hours after a settlement was closed is real, and it is
+ * not evidence about that closure — the person who closed it could not have
+ * known. Netting it into `expected` grades a historical decision against
+ * information from its future, which produces a discrepancy that never existed
+ * and is unfixable by whoever gets paged for it.
+ *
+ * This is the verifier's only notion of "now", and it is supplied rather than
+ * read: `decision_time` arrives on the pack. There is no clock in this file.
+ */
+export function isEvidenceAvailableAtDecisionTime(
+  e: EvidenceItem,
+  decisionTime: string,
+): boolean {
+  const at = Date.parse(e.timestamp)
+  const cutoff = Date.parse(decisionTime)
+  if (!Number.isFinite(at) || !Number.isFinite(cutoff)) return true
+  // Day granularity when the source lost its time component, so a same-day
+  // date-only stamp is not read as "after".
+  if (e.timestamp_precision === 'date') {
+    return e.timestamp.slice(0, 10) <= decisionTime.slice(0, 10)
+  }
+  return at <= cutoff
+}
 
 // ---------------------------------------------------------------------------
 
@@ -310,15 +344,115 @@ export function verify(input: VerifierInput): VerificationResult {
   // -------------------------------------------------------------------------
   // 3. PROVE — completeness. Partition once; every later check reads these.
   // -------------------------------------------------------------------------
-  const settlementsForClaim = pack.evidence.filter(
+  // --- H21: nothing dated after the decision may inform it -----------------
+  const fromTheFutureByEvent = pack.evidence.filter(
+    (e) => !isEvidenceAvailableAtDecisionTime(e, pack.decision_time),
+  )
+  const available = pack.evidence.filter((e) =>
+    isEvidenceAvailableAtDecisionTime(e, pack.decision_time),
+  )
+  add(
+    'evidence_available_at_decision_time',
+    'prove',
+    fromTheFutureByEvent.length === 0 ? 'pass' : 'fail',
+    fromTheFutureByEvent.length === 0
+      ? `all ${pack.evidence.length} rows were already facts at ${pack.decision_time}`
+      : `${fromTheFutureByEvent.length} row(s) dated after decision_time are excluded from the ` +
+        `recomputation — the decision could not have known them: ${fromTheFutureByEvent
+          .map((e) => `${e.evidence_id} @ ${e.timestamp}`)
+          .join(', ')}`,
+  )
+
+  const settlementsForClaim = available.filter(
     (e) => e.kind === 'settlement' && e.keys.settlement_id === claim.settlement_id,
   )
-  const allSettlementRows = pack.evidence.filter((e) => e.kind === 'settlement')
-  const payments = pack.evidence.filter((e) => e.kind === 'payment')
-  const bankCredits = pack.evidence.filter((e) => e.kind === 'bank_credit')
-  const refunds = pack.evidence.filter((e) => e.kind === 'refund')
-  const holds = pack.evidence.filter((e) => e.kind === 'hold')
-  const webhooks = pack.evidence.filter((e) => e.kind === 'webhook_event')
+  const allSettlementRows = available.filter((e) => e.kind === 'settlement')
+
+  // --- H22: a payment captured after the settlement was cut is not in it ----
+  const settlementCut = settlementsForClaim[0]?.created_at ?? ''
+  const cutMs = Date.parse(settlementCut)
+  const allPayments = available.filter((e) => e.kind === 'payment')
+  const afterCut = Number.isFinite(cutMs)
+    ? allPayments.filter((e) => {
+        const captured = Date.parse(e.timestamp)
+        return Number.isFinite(captured) && captured > cutMs
+      })
+    : []
+  add(
+    'payments_predate_settlement_cut',
+    'prove',
+    afterCut.length === 0 ? 'pass' : 'fail',
+    afterCut.length === 0
+      ? `all ${allPayments.length} payment(s) were captured before the settlement was cut`
+      : `${afterCut.length} payment(s) captured after the settlement was cut at ${settlementCut} ` +
+        `are excluded from gross — they belong to a later settlement: ${afterCut
+          .map((e) => e.evidence_id)
+          .join(', ')}`,
+  )
+  const inCutPayments = allPayments.filter((e) => !afterCut.includes(e))
+
+  // --- H23: the same payment restated at a different amount -----------------
+  const byPaymentId = new Map<string, EvidenceItem[]>()
+  for (const e of inCutPayments) {
+    const id = e.keys.payment_id ?? e.row_id
+    const list = byPaymentId.get(id)
+    if (list) list.push(e)
+    else byPaymentId.set(id, [e])
+  }
+  const conflicts = [...byPaymentId.entries()].filter(
+    ([, rows]) => new Set(rows.map((r) => r.amount_paise)).size > 1,
+  )
+  add(
+    'payment_ids_unique',
+    'verify',
+    inCutPayments.length === 0 ? 'skipped' : conflicts.length === 0 ? 'pass' : 'fail',
+    inCutPayments.length === 0
+      ? 'no payment evidence to check'
+      : conflicts.length === 0
+        ? `${byPaymentId.size} distinct payment_id(s), no restatements`
+        : conflicts
+            .map(
+              ([id, rows]) =>
+                `payment ${id} appears ${rows.length} times at different amounts (` +
+                `${rows.map((r) => `${r.amount_paise}p`).join(', ')}) with no supersession marker`,
+            )
+            .join('; '),
+    'DUPLICATE_PAYMENT_ID_CONFLICT',
+  )
+  // Deduplicate by payment_id, first row wins, so a conflict never double-counts
+  // gross on top of being reported.
+  const payments = [...byPaymentId.values()].map((rows) => rows[0])
+
+  const bankCredits = available.filter((e) => e.kind === 'bank_credit')
+  const refunds = available.filter((e) => e.kind === 'refund')
+  const holds = available.filter((e) => e.kind === 'hold')
+  const webhooks = available.filter((e) => e.kind === 'webhook_event')
+
+  // --- H27: a refund cannot exceed the payment it refunds -------------------
+  const refundedByPayment = new Map<string, number>()
+  for (const r of refunds) {
+    const pid = r.keys.payment_id
+    if (!pid) continue
+    refundedByPayment.set(pid, (refundedByPayment.get(pid) ?? 0) + r.amount_paise)
+  }
+  const overRefunds: string[] = []
+  for (const [pid, refunded] of refundedByPayment) {
+    const parent = payments.find((p) => p.keys.payment_id === pid)
+    if (parent && refunded > parent.amount_paise) {
+      overRefunds.push(`${pid}: refunded ${refunded}p against a ${parent.amount_paise}p payment`)
+    }
+  }
+  add(
+    'refunds_within_their_payments',
+    'verify',
+    refunds.length === 0 ? 'skipped' : overRefunds.length === 0 ? 'pass' : 'fail',
+    refunds.length === 0
+      ? 'no refunds attached to this settlement'
+      : overRefunds.length === 0
+        ? `${refunds.length} refund(s), each within the payment it refunds`
+        : `refund exceeds its parent payment — impossible, not merely unbalanced: ${overRefunds.join('; ')}`,
+    'OVER_REFUND',
+  )
 
   const missing: string[] = []
   if (settlementsForClaim.length === 0) missing.push('settlement')
@@ -564,7 +698,17 @@ export function verify(input: VerifierInput): VerificationResult {
 
     for (const b of bankCredits) {
       const valued = Date.parse(b.timestamp)
-      if (Number.isFinite(valued) && Number.isFinite(settled) && valued < settled) {
+      if (!Number.isFinite(valued) || !Number.isFinite(settled)) continue
+      // A date-only value date carries no time of day, so comparing it against a
+      // to-the-second settled_at compares a fact against a guess. Drop to
+      // calendar days when either side lost precision — otherwise every bank
+      // that exports `08/20/2026` looks like it paid before it was asked to.
+      const dayGranularity =
+        b.timestamp_precision === 'date' || settlement.timestamp_precision === 'date'
+      const isBefore = dayGranularity
+        ? b.timestamp.slice(0, 10) < settlement.timestamp.slice(0, 10)
+        : valued < settled
+      if (isBefore) {
         problems.push(`bank credit ${b.row_id} is value-dated before the settlement was made`)
       }
     }

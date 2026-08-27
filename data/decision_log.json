@@ -1,6 +1,6 @@
 {
   "verifier_version": "deterministic-v2.1",
-  "generated_at": "2026-08-27T11:44:44.484Z",
+  "generated_at": "2026-08-27T12:02:46.487Z",
   "entries": {
     "B001": {
       "case_id": "B001",
@@ -307,7 +307,7 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "4833773b0b533367650f020861c8da45dcabdc02dbea28e525ed2d2c472d5488",
+      "pack_hash": "f921ea6e8da399d3c70b90855c136df831a8c3578c4fc52d890895e5116a95b5",
       "evidence_hashes": {
         "razorpay_payments:pay-000041": "228e27885cc4a61f8b537b6deacb3a04a7c21642c6f57fbac9aadd1215964976",
         "razorpay_payments:pay-000042": "abec27723af9382d58c683b7747b07af34533c09cefc4f8fc9d9884902b834ff",
@@ -317,8 +317,8 @@
         "razorpay_payments:pay-000046": "d2f8d972628fc35a3b94ad2a386f45d5624c1dc06f028f3dc730a8541f397bc8",
         "razorpay_settlements:stl-000009": "3eb872623714046a144c3b99d6f22c8d4e47a372fbf96e1f386ecd39ddccd335",
         "bank_statement:bnk-000008": "76647f7f114198e1b9d5a85355769699c7fead1721dc37dda7ebb609c42d8aa2",
-        "refunds:ref-000001": "840d83ea678449265c632d33b643b4ba173cf242df32c3440f96e277dc0543ea",
-        "refunds:ref-000002": "584f75506d89e9e7d72e5022eb81a51102abf98f8562694472638b0a3eb3bd0a",
+        "refunds:ref-000001": "c2eaed5df375ed9fcdb8a27a28d207fa22b42c5252e58eaa1dfcb1c16301709e",
+        "refunds:ref-000002": "9aa2933b70b5841dce7ea10fc55afe71cb09a2b29e01310a0a149c7ea0ccca08",
         "webhook_events:whk-000008": "32cfd8c9dba90f554005e2338acb2c3b286688aa27251d00ae60ae8aa0a91f41"
       },
       "recorded_verdict": "VERIFIED",
@@ -358,7 +358,7 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "ace5285b6012fa7f747714cf64f4f2f9fa8467323160c9beaa4092862ada04c1",
+      "pack_hash": "962837c9f96a7aaa2ce03fe111eefd512e4215e541b4ca25c12238a643021198",
       "evidence_hashes": {
         "razorpay_payments:pay-000047": "92cdbcbdab8598528d97c8afd9eea103ef6baeab4cfa6df5704b46e081d55e2c",
         "razorpay_payments:pay-000048": "56b4ac38667b9712983838a55aba4dd094cb94caf231107abe5984bf4dff7762",
@@ -374,9 +374,9 @@
         "razorpay_payments:pay-000058": "63f2a1958afd152c94654fee4f8c232e45cdb6a2a20fce6d0b5961371c982a82",
         "razorpay_settlements:stl-000010": "4cd9de6aa20f2f44549dff2858cb6e5ba08bf1b62bfe119c09f9586af5b5a169",
         "bank_statement:bnk-000009": "95f464987014cf181be2309fe4200a8552d20c1dd77c3ba93f04b803fb313601",
-        "refunds:ref-000003": "c5b006a8e7ed445d25c7ae4cbb2edc94cb8bc2db3c6b2d1696b8dd99e88ef8dc",
-        "refunds:ref-000004": "e2079e1bdc044c11ed15ba4e90a74b609ebdadb721fd7b9f5a949c538e03063c",
-        "refunds:ref-000005": "ea3d6a0999e12c9ad7612f8c158dc59484b50ac0c350292376c7b67b534f487c",
+        "refunds:ref-000003": "310586d47ddaeb0d04da5acc1027adb4fed98940dd41165554b0496b5c24644e",
+        "refunds:ref-000004": "b8ad6ae83382cdeee7f025c8c7aa1025255dd3374ef40fb51cbf39d78c5b0601",
+        "refunds:ref-000005": "cc9568bf71db4656c90e72cdd0f9c138c2842d0642a1514c097c3aacbb92be67",
         "webhook_events:whk-000009": "057dbb71b2b2740a8a19bd85e9e6df460b5475bdf669bd08dd635f3d837c2b03"
       },
       "recorded_verdict": "VERIFIED",
@@ -414,7 +414,7 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "98b456ad1a4c125eae7bc3d79092283c9b9f2934a55d253c142035ddc60a1a72",
+      "pack_hash": "2e2b852bd59153eb9adc4096beb40d0a651385b65031badd5f8c50d520c04107",
       "evidence_hashes": {
         "razorpay_payments:pay-000059": "2770266889d3c2601c5e8b0bb9e0d1221639482bfb61e775acb8e8945225649a",
         "razorpay_payments:pay-000060": "021278a14f51feb0a631a76a422136b1619713c4edab5f2b3eec670f06d28b90",
@@ -428,9 +428,9 @@
         "razorpay_payments:pay-000068": "fb1750ccd6bfd6ca728ff442d62ba567b099913cfc5c0b603e641a354363bba7",
         "razorpay_settlements:stl-000011": "cf97bb31413441adad96fddb371cecf74b1faa9479eeaa416154f12a5a2c841d",
         "bank_statement:bnk-000010": "37f89f203cc12ece2bd115690294e1482bef796308227e2076084024fea5b364",
-        "refunds:ref-000006": "3c26f0932155ee8060303d7859a8ad478e05811bb76e0e6f8dc1ad5a8a83777d",
-        "refunds:ref-000007": "9d927dd39009e83e1ec8cdbcaa064d9e203432ac5f5e2dbc8172e9ceae1e9bb5",
-        "refunds:ref-000008": "3fd07ff581400a1552f622d5d165d2da7a5f6edae4748ebee4356b9cb7ddd242",
+        "refunds:ref-000006": "b66cc47fe1f05d5af6911b177337fa878a4d01df0cc27cc4250efb66a1e1076d",
+        "refunds:ref-000007": "c38f21ab6d99f776930d486276ac50f2a8ec3db5d726cffbb25dabc138cabd75",
+        "refunds:ref-000008": "b61b3994d55c71d5052704f3a3e683b32a91828b741d6eb72e26f63bf7e902ed",
         "webhook_events:whk-000010": "1619cd38c78bee5f4931e03ab1129f416dc2ae4d0f40aa8f07c22edc1b138248"
       },
       "recorded_verdict": "VERIFIED",
@@ -676,7 +676,7 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "3e619081659dfbf74dd915cdcf53b27203fa34ae0f5c317f7f23f0909f235f9d",
+      "pack_hash": "ecbd7eda70da248e8804a3326eb408c3d0d673a2b4f0945f3aaf932b7449b76e",
       "evidence_hashes": {
         "razorpay_payments:pay-000102": "aa92e5d8424bdbbddbd76573cf58ceadbfbd34023e083807e8464c12b281791b",
         "razorpay_payments:pay-000103": "99b1624e41827fa9cffe58fb44898bfaceb811d036684e3073b9ef08f9cf8c94",
@@ -690,9 +690,9 @@
         "razorpay_payments:pay-000111": "6e364f73acd9d52b68068673a5b9257a1c810e50a4b338b6aadde18fe0b51d1b",
         "razorpay_settlements:stl-000017": "8c54279f89561243f366ea1d9876459b79ad822150ebe292a48017b8bded456d",
         "bank_statement:bnk-000016": "b21b462870ae1d194a2f60246d138db1d5a176541fc1b505a0a045e993410434",
-        "refunds:ref-000009": "5268a9fd33fb4b6346c30d284bf77b8ee667d6f0a9026da9db484eb084cecd6c",
-        "refunds:ref-000010": "24a2409c401bcd0cc9b5d92f01a718cbdae0b03eb5455280122e136950e788d2",
-        "refunds:ref-000011": "ef44688b667f52e09e1de5b62e4edfc5d7bd207cda5107d7995477f842b09bae",
+        "refunds:ref-000009": "d895d80c27c4988d5ff9245dcf5c3304ec7187ba4303fb39edfe1a459c52a9e4",
+        "refunds:ref-000010": "77175e3cb464f94c3e29ce4eb839b72f7b1bc46107129504bce34e7291eed18d",
+        "refunds:ref-000011": "4078e6f7ee0a13bf81785a2f3d1889073ecbaac84359f1c066823745aea4d21f",
         "webhook_events:whk-000016": "60f2c8983c679cfa226fb9c5bb41ad1bc39acddf364cdfffd903cd1cd2f1c0c7"
       },
       "recorded_verdict": "VERIFIED",
@@ -1614,7 +1614,7 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "2d0251ed5c34762db9c88949b695b0dc9297adbb5ba1641af03ecf14a4516a8c",
+      "pack_hash": "1e79bd2e2638a143efb24e0397b176879a14484dc12cc4611e2b0d2e9a9dd45c",
       "evidence_hashes": {
         "razorpay_payments:pay-000254": "16374a1c039c4bba129c67eabd0c19bac135683d7edd358e87be328605b3f17b",
         "razorpay_payments:pay-000255": "f87945bb7163966d9eb54cb2b4d93fea4b17b698a9ac6fabd08a7b394e7b105d",
@@ -1628,9 +1628,9 @@
         "razorpay_payments:pay-000263": "b34f0a96778a9ed75656e7dbc688728501fc48e3dbf15b044a143e91f3865220",
         "razorpay_settlements:stl-000042": "1a86e2940628b56dbdc92ed74dd85dbdcf9558ef5b988a45a4bd8c33a1b4175c",
         "bank_statement:bnk-000040": "ac13e36248feba7b11d46f944c00e2a296a04a7f32b94b79b2f98965bf34ef94",
-        "refunds:ref-000012": "2e9f90acae988b4c07f7d20d032a6dadea3be237061f27c5bbf6bd670f03b00b",
-        "refunds:ref-000013": "d9c91ca5cbe6f5fc2a557b10441214fe75fa2a4eec9723883fd544c847b81b3a",
-        "refunds:ref-000014": "9e26c0201c49a3664677f9c0cc092b2dbd2b5318a3ab9f22373a05cf148aea83",
+        "refunds:ref-000012": "9db0a4c9d7e8165748f4356aac289aa6ded5390246f8731437c8a5d5aa458ba7",
+        "refunds:ref-000013": "93faa027cdd93cbdbe8c7acbdebdecd9631faeb57cc1f23f750a0533cf830ac3",
+        "refunds:ref-000014": "09e9f62c0a51c37efbceeb94a2001db4c8ee458a534791c737742a3527e43616",
         "webhook_events:whk-000038": "1f159bde8770b4d30942beb47411a09a26270ba0c51c7551c417ae073bf76055"
       },
       "recorded_verdict": "VERIFIED",
@@ -1660,15 +1660,15 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "1d1cdbb8dd750348023c9715e951c26b2fd7d5ee7fed58c425c83b9fe3afd48b",
+      "pack_hash": "2f01a4a80513a8ad7238cc2ba41c77a185f80ba9edad3ced6057158eb68dab91",
       "evidence_hashes": {
         "razorpay_payments:pay-000264": "07bcdf20d4c1a0d76742e742e7cbe9aec81f4bd3da77011905667e93d82f9215",
         "razorpay_payments:pay-000265": "c8393a93441059b2a1660faaf89e2922392a7e9a8ba291c015776093078053c5",
         "razorpay_payments:pay-000266": "42c6c959b9df9c36e8731300edab8c022c50d3fd3e2c44faff09e138d82a7cc3",
         "razorpay_settlements:stl-000043": "fd156f2e93c2e2725ef3ec2eb83ce3de6da316d009ee7f14d51404e53dbbf23d",
         "bank_statement:bnk-000041": "db36bc5f69cdf945e7c9e9f973dfc183edde5b3fab6d49cd7f52fc3d2a9f6882",
-        "refunds:ref-000015": "269f9f096d09e463dd80324b4612421f80e6fa3262b8fd327b4991df0535248c",
-        "refunds:ref-000016": "7bc1dcc2e275b30c9343afa813e24e54564a1e7de7044ef0fbe42d0f084345b3",
+        "refunds:ref-000015": "d8ebc4f380e52df9f3ed0f03328b8616c5392e3781cc243473f2b73981c1ef2e",
+        "refunds:ref-000016": "26fc6379c7f6813b473740a94c91bc461806c2d1577b131f02d191bdf695ff15",
         "webhook_events:whk-000039": "3ff84d9c35ae1e301330162591f0981335a58c25fdea39e005f347fee221f6d9"
       },
       "recorded_verdict": "VERIFIED",
@@ -3116,7 +3116,7 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "5c0a9e8880cb32a4c538b9ca367e80f21ca580bd42d907ed2d710743544745e0",
+      "pack_hash": "306cf391de4f59e71a3ddb1d80e3b40b391b3e4cf8be972d891b7c2ccf4b02d4",
       "evidence_hashes": {
         "razorpay_payments:pay-000518": "3e8eca7e0126e7008ca5e2e20b2ff04ccfdfaa5e87106cf57601c83a5c8b1d5a",
         "razorpay_payments:pay-000519": "a7d5c49c7f1032db3dca1bd676481de062af7d7f8f0a167ef6f0184cbecc3b20",
@@ -3127,9 +3127,9 @@
         "razorpay_payments:pay-000524": "23c2b7fb66ad915cd58563b7ea1660a1f0b29ab7179a9fe7dbf706c3f65b53cf",
         "razorpay_settlements:stl-000079": "ac5772ff5e75fb785e6cc5b5f9fc2e1ed6d5107f6375e5ab69391c628de2ed9a",
         "bank_statement:bnk-000073": "fbfd0e8453525766873911c629486c9c9b285f0de29c399cf30d9c7ff6536941",
-        "refunds:ref-000017": "9b4118b2ac6359961db1bf0b59d2f094169e42d16f7b5f5a344ad082b088cc7b",
-        "refunds:ref-000018": "5ba4baa1085702eaede3afb182e66905cd09e4a55bbef26503aa8baba87415c9",
-        "refunds:ref-000019": "13b4827e7e281f1afc83ae4be37eac4b494df1e2dfc7998abbb8267521c3e340",
+        "refunds:ref-000017": "e06a0a79dd5e472edf5d0fac5c60e8ae20d820113a69e4ef2f14e33faf51878b",
+        "refunds:ref-000018": "cebbadf403a08fceaa418c4dbd94b388c0ab4e3571214d9a50c0abb67feed531",
+        "refunds:ref-000019": "848a319fde95eb35d685f5d5d7cde0782d627e629e8f367c903042dab859f697",
         "webhook_events:whk-000072": "d69b3a60e7525b3b999594f5863b1ce42fdd1189fccb6c0f632c300b9f94a9ac"
       },
       "recorded_verdict": "VERIFIED",

@@ -145,7 +145,9 @@ if (isMain) {
   console.log('='.repeat(W))
   console.log(
     m.failures.length === 0
-      ? '\n  20/20. This slice was not hard enough — add harder cases.\n'
+      ? `\n  ${m.n}/${m.n}. Every case passes, which means this slice has stopped being a\n` +
+        '  measurement and become a regression suite. Both are useful; only one tells you\n' +
+        '  anything new. Add harder cases before quoting this number as evidence.\n'
       : `\n  ${m.failures.length} case(s) disagree. That is the signal; publish it.\n`,
   )
   // Deliberately exits 0 regardless. This measures capability; it is not a gate

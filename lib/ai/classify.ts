@@ -101,6 +101,16 @@ const ROUTING: Record<ReasonCode, Omit<ExceptionNarration, 'summary'> & { blurb:
     next_action: 'Fix the malformed source rows at ingest, then re-verify. Do not close on unparsed data.',
     blurb: 'An amount or timestamp reached the verifier malformed, so nothing could be recomputed from it.',
   },
+  DUPLICATE_PAYMENT_ID_CONFLICT: {
+    suggested_owner: 'data_engineering',
+    next_action: 'Establish which row supersedes the other and mark it, then re-verify.',
+    blurb: 'The same payment appears twice at different amounts, so its gross is not a settled fact.',
+  },
+  OVER_REFUND: {
+    suggested_owner: 'risk',
+    next_action: 'Investigate how a refund exceeded its original payment before releasing anything.',
+    blurb: 'A refund is larger than the payment it refunds, which should not be constructible.',
+  },
   POLICY_BREACH: {
     suggested_owner: 'risk',
     next_action: 'Confirm whether this settlement status may be closed under the active policy.',

@@ -1,7 +1,7 @@
 [
   {
     "version": "finance-policy-v12",
-    "effective_at": "2026-08-01T00:00:00Z",
+    "effective_at": "2026-07-01T00:00:00Z",
     "fee_tolerance_paise": 15000,
     "fee_rate_bps": 200,
     "gst_rate_bps": 1800,

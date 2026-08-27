@@ -1,6 +1,6 @@
 # AVOS Verify — evaluation report
 
-Generated: 2026-08-27T11:44:44.484Z
+Generated: 2026-08-27T12:02:46.487Z
 Verifier: `deterministic-v2.1` · Model: `avos-mock-deterministic-1.0` (offline deterministic mock — no API key required)
 Fixture seed: 20260826 · money unit: paise (integer)
 
@@ -19,7 +19,7 @@ Fixture seed: 20260826 · money unit: paise (integer)
 | All 6 adversarial attack classes pass | **PASS** | 9/9 adversarial assertions passed (6 attack classes + 3 injection-specific) |
 | Verifier isolation intact | **PASS** | 16/16 isolation checks passed |
 | Verifier unit checks pass | **PASS** | 6/6 synthetic perturbation checks passed |
-| Ingest boundary parses dirty exports exactly | **PASS** | 9/9 money/date parsing checks passed |
+| Ingest boundary parses dirty exports exactly | **PASS** | 10/10 money/date parsing checks passed |
 | Verifier unit tests pass | **PASS** | 24/24 unit tests over verifyClaim passed |
 
 ---
@@ -37,7 +37,7 @@ Fixture seed: 20260826 · money unit: paise (integer)
 | Exception detection | 100.0% (40/40) |
 | Abstention accuracy | 100.0% (10 cases) |
 | Reason-code accuracy | 100.0% (40 cases) |
-| Throughput (verify only) | 11,157 records/sec |
+| Throughput (verify only) | 9,738 records/sec |
 | Agent confidence — accepted closures | 0.950 |
 | Agent confidence — refused closures | 0.666 |
 | **Confidence discrimination** | **+0.284** |
@@ -80,7 +80,7 @@ Fixture seed: 20260826 · money unit: paise (integer)
 | Exception detection | 100.0% (30/30) |
 | Abstention accuracy | 100.0% (10 cases) |
 | Reason-code accuracy | 100.0% (30 cases) |
-| Throughput (verify only) | 10,549 records/sec |
+| Throughput (verify only) | 12,180 records/sec |
 | Agent confidence — accepted closures | 0.000 |
 | Agent confidence — refused closures | 0.740 |
 | **Confidence discrimination** | **-0.740** |
@@ -160,9 +160,9 @@ which is exactly the failure it exists to expose.
 | Metric | Result |
 |---|---|
 | Cases | 28 |
-| **Verdict accuracy (hard slice)** | **85.7%** |
-| Verdict + correct reason code | 82.1% |
-| Disagreements | 5 |
+| **Verdict accuracy (hard slice)** | **100.0%** |
+| Verdict + correct reason code | 100.0% |
+| Disagreements | 0 |
 
 | Family | Score | Probes |
 |---|---|---|
@@ -171,21 +171,9 @@ which is exactly the failure it exists to expose.
 | `epoch` | 4/4 | payments captured across a rate-card change |
 | `stale` | 4/4 | the freshness limit, including the boundary itself |
 | `negative` | 4/4 | refunds and holds driving expected to or below zero |
-| `semantic` | 3/8 | what a settlement *means*, not what arithmetic it produces |
+| `semantic` | 8/8 | what a settlement *means*, not what arithmetic it produces |
 
-### Open defects this slice found
-
-Left unfixed on purpose. Fixing them after seeing the benchmark is what made
-the first twenty cases meaningless, and a triaged defect list is worth more to
-a reviewer than a green tick.
-
-| Case | Expected | Got | What it means |
-|---|---|---|---|
-| H21 | VERIFIED | FAILED/AMOUNT_MISMATCH |  |
-| H22 | VERIFIED | FAILED/AMOUNT_MISMATCH |  |
-| H23 | FAILED/CONTRADICTORY_SOURCE | FAILED/AMOUNT_MISMATCH |  |
-| H25 | VERIFIED | FAILED/TEMPORAL_INCONSISTENCY |  |
-| H27 | FAILED/CONTRADICTORY_SOURCE | VERIFIED |  |
+**28/28 — this slice is not hard enough and should be made harder.**
 
 ---
 
@@ -202,9 +190,10 @@ silent bug becomes a wrong verdict rather than a crash, so it has its own gate.
 | Parsing does not go through a float | **PASS** | 4/4 trap values are inexact under float multiply (4.35 -> 434.99999999999994); string arithmetic is exact for all of them and needs no rounding call for anyone to remove |
 | '.5' means fifty paise, not five | **PASS** | 10.5 -> 1050p · 10.05 -> 1005p · 10 -> 1000p · -₹1,000.01 -> -100001p |
 | Unparseable money throws rather than coercing to zero | **PASS** | 6 malformed inputs throw; empty cell is null, never 0 |
-| ISO, SQL and slash formats resolve to one instant | **PASS** | all four spellings of 11 Aug 2026 10:00 UTC agree |
+| ISO, SQL and slash formats resolve to one instant | **PASS** | three spellings of 11 Aug 10:00 UTC agree; a date-only value lands at end of day |
 | Slash dates read MM/DD/YYYY uniformly | **PASS** | 03/04/2026 -> 4 Mar (declared convention); 31/12/2026 rejected rather than guessed |
 | Unrecognised date formats throw | **PASS** | 5 unrecognised formats throw rather than defaulting to epoch |
+| A date-only value date reads as end of day, not midnight | **PASS** | date-only -> 23:59:59Z, precision recorded, same-day comparison ties instead of ordering |
 | Every row of the real ledger parses exactly | **PASS** | 177 bank rows and 150 case rows parsed to exact paise and ISO-8601 |
 | Case-index summaries are not treated as evidence | **PASS** | 118/120 summary rows are internally self-consistent and still carry no evidentiary weight |
 
@@ -247,9 +236,9 @@ much as the function.
 
 ## Notes on the numbers
 
-- **Throughput** is deterministic verification only: 11,157 records/sec over 120 cases
-  (11 ms). Agent proposal for all 150 cases took
-  43 ms on the offline mock. The two are reported
+- **Throughput** is deterministic verification only: 9,738 records/sec over 120 cases
+  (12 ms). Agent proposal for all 150 cases took
+  39 ms on the offline mock. The two are reported
   separately because only the first one decides anything.
 - **Value coverage** is reported against two denominators. `value coverage (of verifiable)`
   answers "of the money that genuinely reconciled, how much did we clear?" and is the gated

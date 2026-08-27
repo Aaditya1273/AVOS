@@ -70,7 +70,11 @@ EPOCH = datetime(2026, 8, 1, 0, 0, 0, tzinfo=timezone.utc)
 POLICIES = [
     {
         "version": "finance-policy-v12",
-        "effective_at": "2026-08-01T00:00:00Z",
+        # Backdated a month. Payments are captured up to 46h before their
+        # settlement, so an Aug-2 settlement can hold a Jul-31 payment; with the
+        # card starting Aug 1 the verifier had no rate for it and had to guess.
+        # A rate card that predates the oldest payment is the correct fixture.
+        "effective_at": "2026-07-01T00:00:00Z",
         "fee_tolerance_paise": 15000,          # Rs 150
         # The rate card. The verifier recomputes the fee from THIS rather than
         # trusting any recorded fee, so a settlement and its payment rows can
@@ -330,10 +334,10 @@ def build_case(case_id: str, settlement_id: str, scenario: str, day_offset: int,
             if refund_total + amt > cap:
                 continue
             refund_total += amt
-            refund_rows.append(amt)
+            refund_rows.append((amt, idx))
         if not refund_rows:  # guarantee the scenario actually has a refund leg
             amt = round(payments[0]["amount"] * 0.25)
-            refund_rows.append(amt)
+            refund_rows.append((amt, 0))
             refund_total = amt
 
     # --- holds (rolling reserve) --------------------------------------------
@@ -380,11 +384,12 @@ def build_case(case_id: str, settlement_id: str, scenario: str, day_offset: int,
             })
 
     # --- emit refunds / holds ------------------------------------------------
-    for i, amt in enumerate(refund_rows):
+    for i, (amt, src_idx) in enumerate(refund_rows):
         LEDGER.refunds.append({
             "row_id": LEDGER.rid("ref"),
             "refund_id": f"rfnd_{settlement_id[2:]}{i:02d}",
             "settlement_id": settlement_id,
+            "payment_id": f"pay_{settlement_id[2:]}{src_idx:02d}",
             "amount_paise": amt,
             "processed_at": iso(created_at - timedelta(hours=RNG.randint(1, 20))),
             "ingested_at": iso(ingested_at),
@@ -616,7 +621,8 @@ def main() -> None:
     write_csv("bank_statement.csv", LEDGER.bank,
               ["row_id", "utr", "credit", "value_date", "memo", "ingested_at"])
     write_csv("refunds.csv", LEDGER.refunds,
-              ["row_id", "refund_id", "settlement_id", "amount_paise", "processed_at", "ingested_at"])
+              ["row_id", "refund_id", "settlement_id", "payment_id", "amount_paise",
+               "processed_at", "ingested_at"])
     write_csv("holds.csv", LEDGER.holds,
               ["row_id", "hold_id", "settlement_id", "amount_paise", "reason",
                "placed_at", "ingested_at"])
@@ -934,16 +940,17 @@ def build_hard_cases() -> list[HardCase]:
     big = _pay(3, 200_000, AUG)
     gross_big = sum(a for a, _ in big)
     fee_big, tax_big = _fees_per_epoch(big)
-    C.append(HardCase("H17", "negative", "refunds exceed gross, nothing credited — carry-forward unmatched",
+    full_reversal = tuple(a for a, _ in big)   # each payment fully refunded, each within itself
+    C.append(HardCase("H17", "negative", "every payment refunded, nothing credited — carry-forward unmatched",
                       "FAILED", "AMOUNT_MISMATCH", big, AUG_DECIDE,
-                      refunds=(gross_big,), bank_override=0))
+                      refunds=full_reversal, bank_override=0))
     C.append(HardCase("H18", "negative", "refunds + hold net the settlement to exactly zero",
                       "VERIFIED", "", big, AUG_DECIDE,
                       refunds=(100_000,), hold=gross_big - 100_000 - fee_big - tax_big))
     C.append(HardCase("H19", "negative", "hold absorbs the entire net, zero credited",
                       "VERIFIED", "", big, AUG_DECIDE, hold=gross_big - fee_big - tax_big))
-    C.append(HardCase("H20", "negative", "refunds exceed gross and the bank debits the difference",
-                      "VERIFIED", "", big, AUG_DECIDE, refunds=(gross_big,)))
+    C.append(HardCase("H20", "negative", "every payment refunded and the bank debits the fees back",
+                      "VERIFIED", "", big, AUG_DECIDE, refunds=full_reversal))
 
     # --- semantic -----------------------------------------------------------
     # Added AFTER the first twenty scored 20/20. That result was not a pass mark,
@@ -963,7 +970,7 @@ def build_hard_cases() -> list[HardCase]:
                       "VERIFIED", "", _pay(3, 200_000, AUG), AUG_DECIDE, late_payment=True))
     C.append(HardCase("H23", "semantic",
                       "same payment_id twice with different amounts — a restatement, not a second payment",
-                      "FAILED", "CONTRADICTORY_SOURCE", _pay(3, 200_000, AUG), AUG_DECIDE,
+                      "FAILED", "DUPLICATE_PAYMENT_ID_CONFLICT", _pay(3, 200_000, AUG), AUG_DECIDE,
                       dup_payment=True))
     C.append(HardCase("H24", "semantic",
                       "one settlement credited in two legitimate bank tranches",
@@ -977,7 +984,7 @@ def build_hard_cases() -> list[HardCase]:
                       "VERIFIED", "", _pay(3, 200_000, AUG), AUG_DECIDE, hold=-50_000))
     C.append(HardCase("H27", "semantic",
                       "a refund larger than the payment it refunds — impossible, not merely unbalanced",
-                      "FAILED", "CONTRADICTORY_SOURCE", _pay(3, 200_000, AUG), AUG_DECIDE,
+                      "FAILED", "OVER_REFUND", _pay(3, 200_000, AUG), AUG_DECIDE,
                       refunds=(900_000,), oversized_refund=True))
     C.append(HardCase("H28", "semantic",
                       "no payment rows at all, only a hold and a zero credit",
@@ -1038,8 +1045,9 @@ def emit_hard_slice() -> tuple[list[dict], dict]:
                          else created_at - timedelta(hours=1))
             LEDGER.refunds.append({
                 "row_id": LEDGER.rid("ref"), "refund_id": f"rfnd_{sid[2:]}{j:02d}",
-                "settlement_id": sid, "amount_paise": amt,
-                "processed_at": iso(processed),
+                "settlement_id": sid,
+                "payment_id": f"pay_{sid[2:]}{min(j, max(len(hc.payments) - 1, 0)):02d}",
+                "amount_paise": amt, "processed_at": iso(processed),
                 "ingested_at": iso(ingested_at),
             })
 

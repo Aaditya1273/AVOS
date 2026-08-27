@@ -3,6 +3,12 @@
 ### Evidence-backed verification for AI-operated finance
 **Razorpay Buildathon · Track 04 — Settlement Assurance**
 
+[![CI](https://github.com/Aaditya1273/avos-verify/actions/workflows/ci.yml/badge.svg)](../../actions/workflows/ci.yml)
+
+*Every gate below runs in CI on a machine that is not the author's, with no API
+key configured — because "it passes locally" is precisely the evidence a
+zero-runtime-imports claim cannot rest on.*
+
 > Agents can act. AVOS Verify independently proves whether the financial claim is
 > correct, traces it to source evidence, and refuses to close when the evidence
 > will not carry it.
@@ -138,7 +144,8 @@ docker build -t avos-verify . && docker run -p 3000:3000 avos-verify
 > What *has* been verified is the exact file layout the image ships: the
 > standalone bundle plus `data/` and `evals/raw/` was assembled by hand and served
 > with `node server.js`, returning 200 on the page and on every API route.
-> Treat the command above as untested until you run it.
+> Treat the command above as untested until you run it. Build and evaluation are
+> covered on clean CI runners instead — see the badge above.
 
 Deploys to Vercel unmodified — no Python at runtime. The single Python script
 generates fixtures locally and is not part of the deployment.
@@ -146,6 +153,8 @@ generates fixtures locally and is not part of the deployment.
 ---
 
 ## The Proof Card
+
+![Proof Card — agent claim struck through beside the AVOS refusal](docs/proof-card-failed.png)
 
 One card carries the entire argument.
 
@@ -202,6 +211,8 @@ Most systems get this wrong invisibly. They store a verdict, and when an auditor
 asks "why was this closed?", they re-run *today's* rules against *yesterday's*
 evidence. The answer looks reproducible because nobody checked what it was
 reproduced against.
+
+![Replay — same evidence, earlier policy epoch, verdict flips](docs/replay-demo.png)
 
 **Tamper detection.** The `Modify a source row` button perturbs one evidence row
 by a single paisa in memory and re-verifies:
@@ -325,17 +336,27 @@ Full write-up in [`evals/report.md`](evals/report.md); raw per-case output in
 The agent proposed `RECONCILED` on **all 120**. AVOS cleared 80, refused 30 and
 abstained on 10.
 
-### Hard slice — 28 cases, 85.7%
+### Hard slice — 28 cases, 100.0%
 
 The 120 above scores 100% and always will. Every scenario in it maps 1:1 onto
 exactly one detector, and the script that injects each fault also authored the
-label. **That number measures construction, not capability**, and publishing it
-alone would be the kind of overstatement a verification product cannot afford.
+label. **That number measures construction, not capability.**
 
-The hard slice exists to be failable. Expected verdicts were reasoned by hand,
-per case, before the cases were run, and kept in a separate file. It is
-**reported, not gated** — wiring it as a gate would create pressure to tune it
-green, which is the failure it exists to expose.
+The hard slice exists to be failable: expected verdicts reasoned by hand, per
+case, before the cases were run, kept in a separate file. It is **reported, not
+gated** — a gate creates pressure to tune it green.
+
+| | Verdict | With reason code |
+|---|---|---|
+| **Before fixes** | 85.7% | 82.1% |
+| **After fixes** | **100.0%** | **100.0%** |
+
+**These fixes were applied after seeing the benchmark. That is the honest
+description of what happened**, and it is only defensible because the failures
+were published first, in a commit that predates the fixes. The first twenty
+cases scored 20/20 on their initial run — which was not a pass mark but a signal
+they had been designed with the implementation in view. Eight `semantic` cases
+were added to probe behaviour the verifier did not implement; five failed.
 
 | Family | Score | What it probes |
 |---|---|---|
@@ -344,27 +365,27 @@ green, which is the failure it exists to expose.
 | `epoch` | 4/4 | payments captured across a rate-card change |
 | `stale` | 4/4 | the freshness limit, including the boundary itself |
 | `negative` | 4/4 | refunds and holds driving expected to or below zero |
-| **`semantic`** | **3/8** | what a settlement *means*, not what arithmetic it produces |
-| **Total** | **85.7% verdict / 82.1% with reason code** | |
+| `semantic` | 8/8 | what a settlement *means*, not what arithmetic it produces |
 
-The first twenty cases scored 20/20 on their first run. That was not a pass mark
-— it meant they had been designed with the implementation in view. The eight
-`semantic` cases were added afterwards to probe behaviour the verifier does not
-implement, and five of them fail.
+#### The five defects, and what fixed them
 
-#### Open defects, left unfixed on purpose
+| Case | The defect | The fix |
+|---|---|---|
+| H21 | A refund processed **after** `decision_time` was netted into expected — grading a historical decision against its own future | `isEvidenceAvailableAtDecisionTime()` partitions the pack; anything dated later is excluded and reported |
+| H22 | A payment captured after the settlement was cut counted toward its gross | Payments are filtered against `settlement.created_at`; late captures belong to a later settlement |
+| H23 | The same `payment_id` twice at different amounts silently double-counted, and routed to settlements ops | New `DUPLICATE_PAYMENT_ID_CONFLICT`, highest of the integrity codes; gross deduplicates by `payment_id` |
+| H25 | A date-only bank `value_date` parsed to `00:00Z` and tripped the lifecycle check on clean money | `lib/evidence/normalize.ts`: date-only reads as **end** of day, precision is recorded, ordering drops to calendar-day granularity |
+| H27 | A refund larger than the payment it refunds passed unremarked | Refunds now carry `payment_id`; new `OVER_REFUND` compares each against its parent |
 
-| Case | Expected | Got | The defect |
-|---|---|---|---|
-| H21 | VERIFIED | FAILED / AMOUNT_MISMATCH | A refund processed **after** `decision_time` is netted into expected. The verifier uses evidence the decision could not have had. |
-| H22 | VERIFIED | FAILED / AMOUNT_MISMATCH | A payment captured after the settlement was cut is counted in its gross. |
-| H23 | FAILED / CONTRADICTORY_SOURCE | FAILED / AMOUNT_MISMATCH | The same `payment_id` twice at different amounts silently double-counts. Right verdict, wrong owner — this routes to settlements ops when it belongs to data engineering. |
-| H25 | VERIFIED | FAILED / TEMPORAL_INCONSISTENCY | A date-only bank `value_date` parses to `00:00Z` and trips the lifecycle check on a legitimate same-day settlement. **A false positive from our own date parser — highest priority, it would fire on real bank exports.** |
-| H27 | VERIFIED | — | A refund larger than the payment it refunds passes unremarked. |
+Plus one found by the adversarial agent rather than the slice: a payment
+captured before the earliest policy snapshot was priced at a **zero** rate,
+manufacturing `FEE_MISMATCH` on clean settlements. Zero is never a safe default
+for a rate.
 
-Fixing these after seeing the benchmark is precisely what made the first twenty
-meaningless. They are triaged and published instead; H25 is the one to fix first
-because it manufactures exceptions on clean money.
+A note on the 100%: every case now passes, which means this slice has
+stopped being a measurement and become a regression suite. Both are useful; only
+one tells you something new. It needs harder cases before the number is quotable
+as evidence again.
 
 ### Adversarial 30
 
@@ -527,6 +548,9 @@ evals/isolation.ts             asserts the verifier's isolation, every run
 evals/ingest.ts                money/date parsing, incl. the whole real ledger
 evals/verifier.ts              24 unit tests over verifyClaim, in-memory packs
 evals/hard_slice.eval.ts       28 failable cases — reported, never gated
+app/api/__tests__/            8 boundary tests (vitest, no network)
+lib/evidence/normalize.ts     date-only timestamps, and the precision that survives
+.github/workflows/ci.yml      every gate, on a machine that is not the author's
 data/ground_truth_hard.json    hand-reasoned labels, separate on purpose
 evals/report.md                generated write-up
 evals/raw/                     raw per-case output
@@ -551,12 +575,13 @@ data/                          the CSV ledger + policy snapshots + decision log
 | Verifier unit checks | **PASS** — 6/6 |
 | Ingest boundary parses dirty exports exactly | **PASS** — 9/9 |
 | Verifier unit tests | **PASS** — 24/24 |
+| API boundary tests | **PASS** — 8/8 |
 
 And one number that is deliberately **not** a gate:
 
 | Reported | Result |
 |---|---|
-| Hard-slice verdict accuracy | **85.7%** (5 open defects) |
+| Hard-slice verdict accuracy | **100.0%** (was 85.7%; 5 defects fixed) |
 
 ### Does the agent's confidence mean anything?
 

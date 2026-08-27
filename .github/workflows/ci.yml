@@ -1,0 +1,73 @@
+name: CI
+
+# Every gate that guards this repo runs here, on a machine that is not the
+# author's. That matters more than usual: the central claim is that the verifier
+# has zero runtime imports and no ambient state, and "it passes on my laptop" is
+# precisely the evidence that claim cannot rest on.
+#
+# No OPENAI_API_KEY is configured, deliberately. The whole evaluation must run
+# for free on a cold clone, and CI is where that gets proven rather than asserted.
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - run: npm ci
+
+      # The fixture is committed, but regenerating it must be byte-identical or
+      # every evidence hash in the decision log is meaningless.
+      - name: Fixture is deterministic
+        run: |
+          md5sum data/*.csv data/*.json > /tmp/before.txt
+          python3 scripts/generate_data.py > /dev/null
+          md5sum -c /tmp/before.txt
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Build
+        run: npm run build
+
+      # The central architectural claim, checked before anything that depends on it.
+      - name: Verifier isolation (16 checks)
+        run: npm run check:isolation
+
+      - name: Ingest boundary
+        run: npm run test:ingest
+
+      - name: Verifier unit tests
+        run: npm run test:verifier
+
+      - name: Adversarial suite
+        run: npm run test:adversarial
+
+      - name: API boundary tests
+        run: npm run test:api
+
+      # Runs everything again end to end and fails on any acceptance gate.
+      - name: Evaluation harness (8 gates)
+        run: npm run eval
+
+      - name: Hard slice (reported, not gated)
+        run: npm run test:hard
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: evaluation-output
+          path: |
+            evals/report.md
+            evals/raw/

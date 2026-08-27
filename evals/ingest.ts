@@ -15,6 +15,7 @@
  */
 
 import { parsePaise, parsePaiseOptional, parseFlexibleDate } from '@/lib/csv'
+import { isDateOnly, compareAtPrecision } from '@/lib/evidence/normalize'
 import { loadLedger, loadCases } from '@/lib/data/ledger'
 
 export interface IngestCheck {
@@ -120,8 +121,8 @@ export function runIngestChecks(): IngestCheck[] {
       eq(parseFlexibleDate('2026-08-11T10:00:00Z'), '2026-08-11T10:00:00Z', 'iso')
       eq(parseFlexibleDate('2026-08-11 10:00:00'), '2026-08-11T10:00:00Z', 'sql')
       eq(parseFlexibleDate('08/11/2026 10:00'), '2026-08-11T10:00:00Z', 'us_slash')
-      eq(parseFlexibleDate('2026-08-11'), '2026-08-11T00:00:00Z', 'date only')
-      return 'all four spellings of 11 Aug 2026 10:00 UTC agree'
+      eq(parseFlexibleDate('2026-08-11'), '2026-08-11T23:59:59Z', 'date only -> end of day')
+      return 'three spellings of 11 Aug 10:00 UTC agree; a date-only value lands at end of day'
     }),
   )
 
@@ -131,8 +132,8 @@ export function runIngestChecks(): IngestCheck[] {
       // 03/04/2026 is 4 March under the declared convention, never 3 April.
       // A parser that switched on plausibility would be right most of the time
       // and silently wrong on exactly the days nobody checks.
-      eq(parseFlexibleDate('03/04/2026'), '2026-03-04T00:00:00Z', 'ambiguous slash date')
-      eq(parseFlexibleDate('12/31/2026'), '2026-12-31T00:00:00Z', 'unambiguous slash date')
+      eq(parseFlexibleDate('03/04/2026'), '2026-03-04T23:59:59Z', 'ambiguous slash date')
+      eq(parseFlexibleDate('12/31/2026'), '2026-12-31T23:59:59Z', 'unambiguous slash date')
       throws(() => parseFlexibleDate('31/12/2026'), 'day-first input')
       return '03/04/2026 -> 4 Mar (declared convention); 31/12/2026 rejected rather than guessed'
     }),
@@ -144,6 +145,28 @@ export function runIngestChecks(): IngestCheck[] {
         throws(() => parseFlexibleDate(bad), `parseFlexibleDate('${bad}')`)
       }
       return '5 unrecognised formats throw rather than defaulting to epoch'
+    }),
+  )
+
+  // --- date-only lands at END of day, and that is load-bearing -------------
+  checks.push(
+    check('date_only_is_end_of_day', 'A date-only value date reads as end of day, not midnight', () => {
+      // Midnight silently asserts the earliest instant the source could have
+      // meant. A bank writing `08/20/2026` against a settlement made at 16:40
+      // that day then looks like it paid before it was asked to — a false
+      // TEMPORAL_INCONSISTENCY on clean money. This was hard-slice case H25.
+      eq(parseFlexibleDate('08/20/2026'), '2026-08-20T23:59:59Z', 'slash date-only')
+      eq(parseFlexibleDate('2026-08-20'), '2026-08-20T23:59:59Z', 'iso date-only')
+      eq(isDateOnly('2026-08-20'), true, 'isDateOnly on iso date')
+      eq(isDateOnly('08/20/2026'), true, 'isDateOnly on slash date')
+      eq(isDateOnly('2026-08-20T16:40:00Z'), false, 'isDateOnly on a full timestamp')
+      // Precision is recorded, not just rounded away.
+      eq(
+        compareAtPrecision('2026-08-20T23:59:59Z', 'date', '2026-08-20T16:40:00Z', 'datetime'),
+        0,
+        'same-day comparison at date precision is a tie, not an ordering',
+      )
+      return 'date-only -> 23:59:59Z, precision recorded, same-day comparison ties instead of ordering'
     }),
   )
 

@@ -98,6 +98,7 @@ export type EvidenceKind =
 export interface EvidenceKeys {
   settlement_id?: string
   utr?: string
+  /** On a payment, its own id. On a refund, the payment it refunds. */
   payment_id?: string
   event_id?: string
 }
@@ -138,6 +139,8 @@ export interface EvidenceItem {
    */
   fee_rate_bps?: number
   gst_rate_bps?: number
+  /** `'date'` when the source carried no time of day. Ordering drops to day granularity. */
+  timestamp_precision?: 'datetime' | 'date'
   /**
    * Free text from the source row: bank narration, hold reason, event type.
    *
@@ -245,6 +248,10 @@ export type ReasonCode =
   | 'POLICY_BREACH'
   /** An amount or timestamp reached the verifier malformed. Never a verdict input. */
   | 'MALFORMED_EVIDENCE'
+  /** The same payment_id appears twice at different amounts. Summing both invents revenue. */
+  | 'DUPLICATE_PAYMENT_ID_CONFLICT'
+  /** A refund exceeds the payment it refunds. Impossible, not merely unbalanced. */
+  | 'OVER_REFUND'
 
 export type Pillar = 'guard' | 'prove' | 'verify'
 

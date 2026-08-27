@@ -10,6 +10,8 @@
  * No dependency needed for 60 lines that we fully control.
  */
 
+import { endOfDay } from '@/lib/evidence/normalize'
+
 export type CsvRow = Record<string, string>
 
 export function parseCsv(text: string): CsvRow[] {
@@ -184,7 +186,10 @@ export function parseFlexibleDate(raw: string, context = 'timestamp'): string {
     return new Date(t).toISOString().replace(/\.\d{3}Z$/, 'Z')
   }
 
-  if (DATE_ONLY.test(s)) return `${s}T00:00:00Z`
+  // End of day, not midnight. See lib/evidence/normalize.ts — midnight silently
+  // asserts the earliest instant the source could have meant, which is the one
+  // reading it did not make, and it manufactures ordering violations on clean data.
+  if (DATE_ONLY.test(s)) return endOfDay(s)
 
   const m = US_SLASH.exec(s)
   if (m) {
@@ -195,7 +200,10 @@ export function parseFlexibleDate(raw: string, context = 'timestamp'): string {
       throw new Error(`out-of-range ${context}: '${raw}'`)
     }
     const pad = (n: string | number) => String(n).padStart(2, '0')
-    return `${yyyy}-${pad(month)}-${pad(day)}T${pad(hh)}:${pad(mi)}:${pad(ss)}Z`
+    const day0 = `${yyyy}-${pad(month)}-${pad(day)}`
+    // A slash date with no time is date-only too, and gets the same treatment.
+    if (hh === '00' && mi === '00' && ss === '00' && !/[ T]/.test(s)) return endOfDay(day0)
+    return `${day0}T${pad(hh)}:${pad(mi)}:${pad(ss)}Z`
   }
 
   throw new Error(`unrecognised ${context} format: '${raw}'`)

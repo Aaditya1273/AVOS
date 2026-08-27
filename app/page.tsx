@@ -218,11 +218,15 @@ export default function Page() {
               abstention costs a reviewer ten minutes. A wrong VERIFIED costs a reconciliation.
             </li>
             <li>
-              <span className="text-foreground">Agent confidence carries no signal.</span> Mean
-              self-reported confidence on the closures AVOS accepted is{' '}
-              {m ? m.mean_confidence_accepted.toFixed(3) : '—'}; on the ones it refused,{' '}
-              {m ? m.mean_confidence_refused.toFixed(3) : '—'}. A system routing on that score
-              would have been routing on noise — which is why closure is conditional on evidence.
+              <span className="text-foreground">Confidence is not correctness.</span> The agent
+              scores {m ? m.mean_confidence_accepted.toFixed(3) : '—'} on closures AVOS accepted and{' '}
+              {m ? m.mean_confidence_refused.toFixed(3) : '—'} on the ones it refused — it
+              discriminates, but{' '}
+              <span className="text-foreground">
+                {m ? m.high_confidence_refusals : '—'} refused closures still scored ≥0.85
+              </span>
+              . A self-reported score measures how complete the inputs looked, which is a fact
+              about the inputs and not about the money.
             </li>
           </ul>
         </Card>
@@ -237,7 +241,7 @@ export default function Page() {
         <Badge variant="uncertain">{tally.UNCERTAIN} abstained</Badge>
         <Badge variant="verified">{tally.VERIFIED} cleared</Badge>
         <span className="text-[11.5px] text-muted-foreground">
-          The agent proposed RECONCILED on every one of them.
+          Verdicts are recomputed from source on every request, not read from the decision log.
         </span>
       </div>
 
