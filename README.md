@@ -120,13 +120,25 @@ npm run dev      # the console at http://localhost:3000
 deterministic offline mock and the full evaluation runs for free. Copy
 `.env.example` → `.env` and set `OPENAI_API_KEY` to run the live agent.
 
-The verdicts are **identical either way**, which is the intended demonstration
-rather than a caveat: if setting a key changed a verdict, the architecture would
-be broken.
+The verdict path contains no model, so setting a key **should not** change a
+single verdict — and if it did, the architecture would be broken. That is the
+load-bearing claim of this design and it is **currently untested**: no
+`OPENAI_API_KEY` was present in any environment this was built or evaluated in,
+so every committed number comes from the mock. `evals/raw/metrics.live.json`
+records exactly that (`status: skipped_no_key`) rather than implying otherwise.
+`npm run eval:live` produces the comparison for real.
 
 ```bash
 docker build -t avos-verify . && docker run -p 3000:3000 avos-verify
 ```
+
+> **Not verified.** The Dockerfile is multi-stage, runs as non-root, and carries a
+> healthcheck against `/api/decision`, but **the Docker daemon was inactive in
+> every environment this was built in, so the image has never been built or run.**
+> What *has* been verified is the exact file layout the image ships: the
+> standalone bundle plus `data/` and `evals/raw/` was assembled by hand and served
+> with `node server.js`, returning 200 on the page and on every API route.
+> Treat the command above as untested until you run it.
 
 Deploys to Vercel unmodified — no Python at runtime. The single Python script
 generates fixtures locally and is not part of the deployment.
@@ -139,7 +151,7 @@ One card carries the entire argument.
 
 ```
 Settlement: S-10092                                     MERCH-BOLT · ₹94,385.56
-Agent claim: RECONCILED   confidence 0.77
+Agent claim: RECONCILED   confidence 0.95
   "Refunds and the rolling reserve fully explain the gap between gross
    and the deposit. Closing."              ← SEVERED: prose AND confidence
 
@@ -313,6 +325,47 @@ Full write-up in [`evals/report.md`](evals/report.md); raw per-case output in
 The agent proposed `RECONCILED` on **all 120**. AVOS cleared 80, refused 30 and
 abstained on 10.
 
+### Hard slice — 28 cases, 85.7%
+
+The 120 above scores 100% and always will. Every scenario in it maps 1:1 onto
+exactly one detector, and the script that injects each fault also authored the
+label. **That number measures construction, not capability**, and publishing it
+alone would be the kind of overstatement a verification product cannot afford.
+
+The hard slice exists to be failable. Expected verdicts were reasoned by hand,
+per case, before the cases were run, and kept in a separate file. It is
+**reported, not gated** — wiring it as a gate would create pressure to tune it
+green, which is the failure it exists to expose.
+
+| Family | Score | What it probes |
+|---|---|---|
+| `boundary` | 4/4 | is the tolerance inclusive, in both directions |
+| `compound` | 4/4 | two faults in one settlement — which reason code owns it |
+| `epoch` | 4/4 | payments captured across a rate-card change |
+| `stale` | 4/4 | the freshness limit, including the boundary itself |
+| `negative` | 4/4 | refunds and holds driving expected to or below zero |
+| **`semantic`** | **3/8** | what a settlement *means*, not what arithmetic it produces |
+| **Total** | **85.7% verdict / 82.1% with reason code** | |
+
+The first twenty cases scored 20/20 on their first run. That was not a pass mark
+— it meant they had been designed with the implementation in view. The eight
+`semantic` cases were added afterwards to probe behaviour the verifier does not
+implement, and five of them fail.
+
+#### Open defects, left unfixed on purpose
+
+| Case | Expected | Got | The defect |
+|---|---|---|---|
+| H21 | VERIFIED | FAILED / AMOUNT_MISMATCH | A refund processed **after** `decision_time` is netted into expected. The verifier uses evidence the decision could not have had. |
+| H22 | VERIFIED | FAILED / AMOUNT_MISMATCH | A payment captured after the settlement was cut is counted in its gross. |
+| H23 | FAILED / CONTRADICTORY_SOURCE | FAILED / AMOUNT_MISMATCH | The same `payment_id` twice at different amounts silently double-counts. Right verdict, wrong owner — this routes to settlements ops when it belongs to data engineering. |
+| H25 | VERIFIED | FAILED / TEMPORAL_INCONSISTENCY | A date-only bank `value_date` parses to `00:00Z` and trips the lifecycle check on a legitimate same-day settlement. **A false positive from our own date parser — highest priority, it would fire on real bank exports.** |
+| H27 | VERIFIED | — | A refund larger than the payment it refunds passes unremarked. |
+
+Fixing these after seeing the benchmark is precisely what made the first twenty
+meaningless. They are triaged and published instead; H25 is the one to fix first
+because it manufactures exceptions on clean money.
+
 ### Adversarial 30
 
 **All 6 attack classes pass**, plus 3 injection-specific assertions and 6
@@ -401,7 +454,9 @@ would have worked until the next person added it back. Instead:
 
 **After.** `S-10092` returns `FAILED · FEE_MISMATCH`, expected ₹94,505.56,
 observed ₹94,385.56, difference ₹120.00 against a ₹50.00 tolerance under
-`finance-policy-v13`. The agent had proposed closure at 0.77 confidence.
+`finance-policy-v13`. The agent had proposed closure at 0.95 confidence — the
+pack was complete, fresh and self-consistent, which is all a confidence score can
+ever measure.
 
 **In one line, for the deck:** *we intentionally injected a fee mismatch; the
 first verifier trusted the prose and passed it, the current one recomputes from
@@ -471,6 +526,8 @@ evals/adversarial.test.ts      6 attack classes + 6 unit checks
 evals/isolation.ts             asserts the verifier's isolation, every run
 evals/ingest.ts                money/date parsing, incl. the whole real ledger
 evals/verifier.ts              24 unit tests over verifyClaim, in-memory packs
+evals/hard_slice.eval.ts       28 failable cases — reported, never gated
+data/ground_truth_hard.json    hand-reasoned labels, separate on purpose
 evals/report.md                generated write-up
 evals/raw/                     raw per-case output
 
@@ -495,14 +552,39 @@ data/                          the CSV ledger + policy snapshots + decision log
 | Ingest boundary parses dirty exports exactly | **PASS** — 9/9 |
 | Verifier unit tests | **PASS** — 24/24 |
 
+And one number that is deliberately **not** a gate:
+
+| Reported | Result |
+|---|---|
+| Hard-slice verdict accuracy | **85.7%** (5 open defects) |
+
 ### Does the agent's confidence mean anything?
 
-The agent emits a self-reported `confidence` alongside its claim. It is severed
-at the same boundary as the prose — `StructuredClaim` has three fields and
-neither is one of them — which makes it measurable rather than load-bearing:
+The agent emits a self-reported `confidence` alongside its claim, severed at the
+same boundary as the prose. It is derived from **evidence completeness** — is
+every leg present, is it fresh, do the sources agree — never from correctness,
+because an agent cannot see the verdict.
 
 | | |
 |---|---|
+| Mean confidence, closures AVOS **accepted** | 0.950 |
+| Mean confidence, closures AVOS **refused** | 0.666 |
+| Discrimination | +0.284 |
+| **Closures refused at ≥0.85 confidence** | **14** |
+
+It discriminates, but not nearly well enough to route on. The last row is the
+one that matters: **14 settlements where the pack looked complete, fresh and
+self-consistent — so the agent scored them 0.95 — and the money was wrong
+anyway.** Completeness is not correctness, and a system that auto-closed above a
+confidence threshold would have closed every one of them.
+
+> **These figures are from the offline mock**, whose confidence function is
+> written in `lib/ai/agent.ts` and is therefore a control rather than a finding
+> about production agents. Live-mode calibration would go in
+> `evals/raw/metrics.live.json`, which currently records `skipped_no_key`.
+
+---
+|---|
 | Mean confidence, closures AVOS **accepted** | 0.840 |
 | Mean confidence, closures AVOS **refused** | 0.838 |
 | **Discrimination** | **+0.002** |

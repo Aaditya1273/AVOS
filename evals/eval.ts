@@ -38,6 +38,7 @@ import { runIsolationChecks } from '@/evals/isolation'
 import { runAdversarialTests, type AdversarialTest } from '@/evals/adversarial.test'
 import { runIngestChecks, type IngestCheck } from '@/evals/ingest'
 import { runVerifierTests, type VerifierTest } from '@/evals/verifier'
+import { runHardSlice, type HardSliceMetrics } from '@/evals/hard_slice.eval'
 import type { Decision } from '@/lib/types'
 
 const ROOT = process.cwd()
@@ -197,6 +198,7 @@ function buildReport(
   isolation: ReturnType<typeof runIsolationChecks>,
   ingest: IngestCheck[],
   verifierUnits: VerifierTest[],
+  hard: HardSliceMetrics,
   gates: Gate[],
   agentElapsedMs: number,
 ): string {
@@ -281,6 +283,50 @@ function buildReport(
     '',
     '---',
     '',
+    '## Suite 3 — `hard_slice_28` (the one that can fail)',
+    '',
+    'The 120 above scores 100% and always will: every scenario in it maps 1:1 onto',
+    'exactly one detector, and the script that injects each fault also authored the',
+    'label. That number measures construction, not capability.',
+    '',
+    'These 28 are different. The expected verdicts were reasoned by hand, per case,',
+    'before the cases were run, from what a competent finance reviewer would',
+    'conclude — and they live in a separate file so the distinction stays visible.',
+    'It is **not** a gate. Wiring it as one would create pressure to tune it green,',
+    'which is exactly the failure it exists to expose.',
+    '',
+    '| Metric | Result |',
+    '|---|---|',
+    `| Cases | ${hard.n} |`,
+    `| **Verdict accuracy (hard slice)** | **${formatPct(hard.verdict_accuracy_hard_slice)}** |`,
+    `| Verdict + correct reason code | ${formatPct(hard.reason_accuracy_hard_slice)} |`,
+    `| Disagreements | ${hard.failures.length} |`,
+    '',
+    '| Family | Score | Probes |',
+    '|---|---|---|',
+    ...Object.entries(hard.by_family).map(([f, s2]) => {
+      const probes: Record<string, string> = {
+        boundary: 'is the tolerance inclusive, and does it work in both directions',
+        compound: 'two faults in one settlement — which reason code owns it',
+        epoch: 'payments captured across a rate-card change',
+        stale: 'the freshness limit, including the boundary itself',
+        negative: 'refunds and holds driving expected to or below zero',
+        semantic: 'what a settlement *means*, not what arithmetic it produces',
+      }
+      return `| \`${f}\` | ${s2.correct}/${s2.n} | ${probes[f] ?? ''} |`
+    }),
+    '',
+    hard.failures.length === 0
+      ? '**28/28 — this slice is not hard enough and should be made harder.**'
+      : ['### Open defects this slice found', '',
+         'Left unfixed on purpose. Fixing them after seeing the benchmark is what made',
+         'the first twenty cases meaningless, and a triaged defect list is worth more to',
+         'a reviewer than a green tick.', '',
+         '| Case | Expected | Got | What it means |', '|---|---|---|---|',
+         ...hard.failures.map((f) => `| ${f.case_id} | ${f.expected} | ${f.got} | ${f.note} |`)].join('\n'),
+    '',
+    '---',
+    '',
     '## Ingest boundary',
     '',
     'Bank and portal exports arrive with money as formatted strings and dates in',
@@ -360,6 +406,7 @@ async function main(): Promise<void> {
   console.log('Ingest boundary + isolation + adversarial suite ...')
   const ingest = runIngestChecks()
   const verifierUnits = runVerifierTests()
+  const hard = runHardSlice()
   const isolation = runIsolationChecks()
   const tests = await runAdversarialTests()
   const attackTests = tests.filter((t) => t.group === 'attack_suite')
@@ -419,6 +466,7 @@ async function main(): Promise<void> {
     isolation,
     ingest,
     verifierUnits,
+    hard,
     gates,
     agentElapsedMs,
   )
@@ -436,6 +484,7 @@ async function main(): Promise<void> {
         adversarial_tests: tests,
         ingest: ingest,
         verifier_units: verifierUnits,
+        hard_slice: hard,
         isolation: isolation.findings,
         gates,
       },
@@ -470,6 +519,21 @@ async function main(): Promise<void> {
       console.log(`    ${mm.case_id} ${mm.scenario.padEnd(26)} want ${mm.expected.padEnd(34)} got ${mm.got}`)
     }
     if (m.mismatches.length > 15) console.log(`    ... and ${m.mismatches.length - 15} more`)
+  }
+
+  console.log('\n' + '='.repeat(W))
+  console.log('  HARD SLICE — reported, NOT gated')
+  console.log('='.repeat(W))
+  console.log(`  verdict accuracy (hard)     ${formatPct(hard.verdict_accuracy_hard_slice)}   <- the real signal`)
+  console.log(`  verdict + reason code       ${formatPct(hard.reason_accuracy_hard_slice)}`)
+  for (const [f, s2] of Object.entries(hard.by_family)) {
+    console.log(`    ${f.padEnd(12)} ${s2.correct}/${s2.n}`)
+  }
+  if (hard.failures.length > 0) {
+    console.log('  open defects (deliberately unfixed):')
+    for (const f of hard.failures) {
+      console.log(`    ${f.case_id}  want ${f.expected.padEnd(30)} got ${f.got}`)
+    }
   }
 
   console.log('\n' + '='.repeat(W))

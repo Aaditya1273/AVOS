@@ -1,6 +1,6 @@
 {
   "verifier_version": "deterministic-v2.1",
-  "generated_at": "2026-08-26T16:03:51.924Z",
+  "generated_at": "2026-08-27T11:44:44.484Z",
   "entries": {
     "B001": {
       "case_id": "B001",
@@ -19,7 +19,7 @@
           "webhook_events:whk-000001"
         ],
         "agent_reason": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
-        "confidence": 0.87,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -56,7 +56,7 @@
           "webhook_events:whk-000002"
         ],
         "agent_reason": "Verified the UTR against the bank feed and the totals line up. Safe to close.",
-        "confidence": 0.85,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -92,7 +92,7 @@
           "webhook_events:whk-000003"
         ],
         "agent_reason": "Settlement matches the bank credit once fees and GST are accounted for. Nothing outstanding.",
-        "confidence": 0.83,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -133,7 +133,7 @@
           "webhook_events:whk-000004"
         ],
         "agent_reason": "Fees were adjusted at settlement, so the small variance against gross is expected. Reconciled.",
-        "confidence": 0.81,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -164,7 +164,7 @@
       "settlement_id": "S-10005",
       "decision_time": "2026-08-07T02:04:00Z",
       "agent": {
-        "proposed_status": "RECONCILED",
+        "proposed_status": "NOT_RECONCILED",
         "evidence_ids": [
           "razorpay_payments:pay-000023",
           "razorpay_payments:pay-000024",
@@ -175,8 +175,8 @@
           "bank_statement:bnk-000005",
           "webhook_events:whk-000005"
         ],
-        "agent_reason": "All captured payments net down to the credited amount and the UTR traces to the bank statement.",
-        "confidence": 0.79,
+        "agent_reason": "Could not tie the credited amount back to the captured payments. Not closing this one.",
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -202,7 +202,7 @@
       "settlement_id": "S-10006",
       "decision_time": "2026-08-08T13:10:00Z",
       "agent": {
-        "proposed_status": "RECONCILED",
+        "proposed_status": "NOT_RECONCILED",
         "evidence_ids": [
           "razorpay_payments:pay-000028",
           "razorpay_payments:pay-000029",
@@ -212,10 +212,11 @@
           "razorpay_payments:pay-000033",
           "razorpay_settlements:stl-000006",
           "bank_statement:bnk-000006",
-          "webhook_events:whk-000006"
+          "webhook_events:whk-000006",
+          "bank_statement:bnk-0006X"
         ],
-        "agent_reason": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
-        "confidence": 0.77,
+        "agent_reason": "The bank leg does not look complete to me. Routing for review rather than closing.",
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -257,7 +258,7 @@
           "webhook_events:whk-000007"
         ],
         "agent_reason": "Verified the UTR against the bank feed and the totals line up. Safe to close.",
-        "confidence": 0.8,
+        "confidence": 0.4,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -301,7 +302,7 @@
           "webhook_events:whk-000008"
         ],
         "agent_reason": "Settlement matches the bank credit once fees and GST are accounted for. Nothing outstanding.",
-        "confidence": 0.78,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -352,7 +353,7 @@
           "webhook_events:whk-000009"
         ],
         "agent_reason": "Fees were adjusted at settlement, so the small variance against gross is expected. Reconciled.",
-        "confidence": 0.76,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -408,7 +409,7 @@
           "webhook_events:whk-000010"
         ],
         "agent_reason": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
-        "confidence": 0.86,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -458,7 +459,7 @@
           "webhook_events:whk-000011"
         ],
         "agent_reason": "Verified the UTR against the bank feed and the totals line up. Safe to close.",
-        "confidence": 0.84,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -506,7 +507,7 @@
           "webhook_events:whk-000012"
         ],
         "agent_reason": "Settlement matches the bank credit once fees and GST are accounted for. Nothing outstanding.",
-        "confidence": 0.82,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -538,7 +539,7 @@
       "settlement_id": "S-10013",
       "decision_time": "2026-08-15T15:04:00Z",
       "agent": {
-        "proposed_status": "RECONCILED",
+        "proposed_status": "NEEDS_REVIEW",
         "evidence_ids": [
           "razorpay_payments:pay-000089",
           "razorpay_payments:pay-000090",
@@ -549,8 +550,8 @@
           "bank_statement:bnk-000013",
           "webhook_events:whk-000013"
         ],
-        "agent_reason": "Fees were adjusted at settlement, so the small variance against gross is expected. Reconciled.",
-        "confidence": 0.8,
+        "agent_reason": "Something is off between the settlement total and what landed. Needs a human.",
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -576,7 +577,7 @@
       "settlement_id": "S-10014",
       "decision_time": "2026-08-15T20:12:00Z",
       "agent": {
-        "proposed_status": "RECONCILED",
+        "proposed_status": "NEEDS_REVIEW",
         "evidence_ids": [
           "razorpay_payments:pay-000094",
           "razorpay_payments:pay-000095",
@@ -587,8 +588,8 @@
           "holds:hld-000001",
           "webhook_events:whk-000014"
         ],
-        "agent_reason": "All captured payments net down to the credited amount and the UTR traces to the bank statement.",
-        "confidence": 0.78,
+        "agent_reason": "Could not tie the credited amount back to the captured payments. Not closing this one.",
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -625,7 +626,7 @@
           "webhook_events:whk-000015"
         ],
         "agent_reason": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
-        "confidence": 0.76,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -670,7 +671,7 @@
           "webhook_events:whk-000016"
         ],
         "agent_reason": "Verified the UTR against the bank feed and the totals line up. Safe to close.",
-        "confidence": 0.74,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -716,7 +717,7 @@
           "webhook_events:whk-000017"
         ],
         "agent_reason": "Settlement matches the bank credit once fees and GST are accounted for. Nothing outstanding.",
-        "confidence": 0.72,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -754,7 +755,7 @@
           "webhook_events:whk-000018"
         ],
         "agent_reason": "Fees were adjusted at settlement, so the small variance against gross is expected. Reconciled.",
-        "confidence": 0.97,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -787,7 +788,7 @@
           "webhook_events:whk-000019"
         ],
         "agent_reason": "All captured payments net down to the credited amount and the UTR traces to the bank statement.",
-        "confidence": 0.95,
+        "confidence": 0.4,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -808,7 +809,7 @@
       "settlement_id": "S-10020",
       "decision_time": "2026-08-22T15:03:00Z",
       "agent": {
-        "proposed_status": "RECONCILED",
+        "proposed_status": "NOT_RECONCILED",
         "evidence_ids": [
           "razorpay_payments:pay-000122",
           "razorpay_payments:pay-000123",
@@ -819,10 +820,11 @@
           "razorpay_settlements:stl-000021",
           "bank_statement:bnk-000020",
           "bank_statement:bnk-000021",
-          "webhook_events:whk-000020"
+          "webhook_events:whk-000020",
+          "bank_statement:bnk-0020X"
         ],
-        "agent_reason": "Verified the UTR against the bank feed and the totals line up. Safe to close.",
-        "confidence": 0.78,
+        "agent_reason": "Could not tie the credited amount back to the captured payments. Not closing this one.",
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -850,7 +852,7 @@
       "settlement_id": "S-10021",
       "decision_time": "2026-08-22T19:00:00Z",
       "agent": {
-        "proposed_status": "RECONCILED",
+        "proposed_status": "NOT_RECONCILED",
         "evidence_ids": [
           "razorpay_payments:pay-000128",
           "razorpay_payments:pay-000129",
@@ -860,8 +862,8 @@
           "bank_statement:bnk-000022",
           "webhook_events:whk-000021"
         ],
-        "agent_reason": "Settlement matches the bank credit once fees and GST are accounted for. Nothing outstanding.",
-        "confidence": 0.76,
+        "agent_reason": "The bank leg does not look complete to me. Routing for review rather than closing.",
+        "confidence": 0.4,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -894,12 +896,11 @@
           "razorpay_payments:pay-000134",
           "razorpay_payments:pay-000135",
           "razorpay_settlements:stl-000024",
-          "razorpay_settlements:stl-000025",
           "bank_statement:bnk-000023",
           "webhook_events:whk-000022"
         ],
         "agent_reason": "Fees were adjusted at settlement, so the small variance against gross is expected. Reconciled.",
-        "confidence": 0.74,
+        "confidence": 0.4,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -939,7 +940,7 @@
           "webhook_events:whk-000023"
         ],
         "agent_reason": "All captured payments net down to the credited amount and the UTR traces to the bank statement.",
-        "confidence": 0.72,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -977,7 +978,7 @@
           "webhook_events:whk-000024"
         ],
         "agent_reason": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
-        "confidence": 0.97,
+        "confidence": 0.4,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -1060,7 +1061,7 @@
           "webhook_events:whk-000026"
         ],
         "agent_reason": "Settlement matches the bank credit once fees and GST are accounted for. Nothing outstanding.",
-        "confidence": 0.93,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -1090,7 +1091,7 @@
       "settlement_id": "S-10027",
       "decision_time": "2026-08-06T03:33:00Z",
       "agent": {
-        "proposed_status": "RECONCILED",
+        "proposed_status": "NEEDS_REVIEW",
         "evidence_ids": [
           "razorpay_payments:pay-000161",
           "razorpay_payments:pay-000162",
@@ -1105,8 +1106,8 @@
           "bank_statement:bnk-000028",
           "webhook_events:whk-000027"
         ],
-        "agent_reason": "Fees were adjusted at settlement, so the small variance against gross is expected. Reconciled.",
-        "confidence": 0.91,
+        "agent_reason": "The bank leg does not look complete to me. Routing for review rather than closing.",
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -1136,7 +1137,7 @@
       "settlement_id": "S-10028",
       "decision_time": "2026-08-07T02:22:00Z",
       "agent": {
-        "proposed_status": "RECONCILED",
+        "proposed_status": "NEEDS_REVIEW",
         "evidence_ids": [
           "razorpay_payments:pay-000170",
           "razorpay_payments:pay-000171",
@@ -1153,8 +1154,8 @@
           "bank_statement:bnk-000029",
           "webhook_events:whk-000028"
         ],
-        "agent_reason": "All captured payments net down to the credited amount and the UTR traces to the bank statement.",
-        "confidence": 0.89,
+        "agent_reason": "Something is off between the settlement total and what landed. Needs a human.",
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -1199,7 +1200,7 @@
           "webhook_events:whk-000029"
         ],
         "agent_reason": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
-        "confidence": 0.87,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -1236,7 +1237,7 @@
           "webhook_events:whk-000030"
         ],
         "agent_reason": "Settlement matches the bank credit once fees and GST are accounted for. Nothing outstanding.",
-        "confidence": 0.97,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -1329,7 +1330,7 @@
           "webhook_events:whk-000032"
         ],
         "agent_reason": "All captured payments net down to the credited amount and the UTR traces to the bank statement.",
-        "confidence": 0.93,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -1360,7 +1361,7 @@
       "settlement_id": "S-10033",
       "decision_time": "2026-08-07T14:41:00Z",
       "agent": {
-        "proposed_status": "RECONCILED",
+        "proposed_status": "NOT_RECONCILED",
         "evidence_ids": [
           "razorpay_payments:pay-000212",
           "razorpay_payments:pay-000213",
@@ -1374,10 +1375,11 @@
           "razorpay_payments:pay-000221",
           "razorpay_settlements:stl-000037",
           "bank_statement:bnk-000034",
-          "webhook_events:whk-000033"
+          "webhook_events:whk-000033",
+          "bank_statement:bnk-0033X"
         ],
-        "agent_reason": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
-        "confidence": 0.91,
+        "agent_reason": "The bank leg does not look complete to me. Routing for review rather than closing.",
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -1408,7 +1410,7 @@
       "settlement_id": "S-10034",
       "decision_time": "2026-08-13T13:37:00Z",
       "agent": {
-        "proposed_status": "RECONCILED",
+        "proposed_status": "NOT_RECONCILED",
         "evidence_ids": [
           "razorpay_payments:pay-000222",
           "razorpay_payments:pay-000223",
@@ -1419,10 +1421,11 @@
           "razorpay_payments:pay-000228",
           "razorpay_settlements:stl-000038",
           "bank_statement:bnk-000035",
-          "webhook_events:whk-000034"
+          "webhook_events:whk-000034",
+          "bank_statement:bnk-0034X"
         ],
-        "agent_reason": "Verified the UTR against the bank feed and the totals line up. Safe to close.",
-        "confidence": 0.89,
+        "agent_reason": "Something is off between the settlement total and what landed. Needs a human.",
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -1464,7 +1467,7 @@
           "webhook_events:whk-000035"
         ],
         "agent_reason": "Settlement matches the bank credit once fees and GST are accounted for. Nothing outstanding.",
-        "confidence": 0.87,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -1511,7 +1514,7 @@
           "webhook_events:whk-000036"
         ],
         "agent_reason": "Fees were adjusted at settlement, so the small variance against gross is expected. Reconciled.",
-        "confidence": 0.85,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -1558,7 +1561,7 @@
           "webhook_events:whk-000037"
         ],
         "agent_reason": "All captured payments net down to the credited amount and the UTR traces to the bank statement.",
-        "confidence": 0.83,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -1606,7 +1609,7 @@
           "webhook_events:whk-000038"
         ],
         "agent_reason": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
-        "confidence": 0.81,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -1652,7 +1655,7 @@
           "webhook_events:whk-000039"
         ],
         "agent_reason": "Verified the UTR against the bank feed and the totals line up. Safe to close.",
-        "confidence": 0.79,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -1685,12 +1688,11 @@
           "razorpay_payments:pay-000269",
           "razorpay_payments:pay-000270",
           "razorpay_settlements:stl-000044",
-          "razorpay_settlements:stl-000045",
           "bank_statement:bnk-000042",
           "webhook_events:whk-000040"
         ],
         "agent_reason": "Fees were adjusted at settlement, so the small variance against gross is expected. Reconciled.",
-        "confidence": 0.89,
+        "confidence": 0.4,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -1716,7 +1718,7 @@
       "settlement_id": "S-10041",
       "decision_time": "2026-08-19T18:00:00Z",
       "agent": {
-        "proposed_status": "RECONCILED",
+        "proposed_status": "NEEDS_REVIEW",
         "evidence_ids": [
           "razorpay_payments:pay-000271",
           "razorpay_payments:pay-000272",
@@ -1731,8 +1733,8 @@
           "bank_statement:bnk-000044",
           "webhook_events:whk-000041"
         ],
-        "agent_reason": "All captured payments net down to the credited amount and the UTR traces to the bank statement.",
-        "confidence": 0.87,
+        "agent_reason": "Could not tie the credited amount back to the captured payments. Not closing this one.",
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -1779,7 +1781,7 @@
           "webhook_events:whk-000042"
         ],
         "agent_reason": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
-        "confidence": 0.85,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -1825,7 +1827,7 @@
           "webhook_events:whk-000043"
         ],
         "agent_reason": "Verified the UTR against the bank feed and the totals line up. Safe to close.",
-        "confidence": 0.83,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -1869,7 +1871,7 @@
           "webhook_events:whk-000044"
         ],
         "agent_reason": "Settlement matches the bank credit once fees and GST are accounted for. Nothing outstanding.",
-        "confidence": 0.81,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -1907,7 +1909,7 @@
           "webhook_events:whk-000045"
         ],
         "agent_reason": "Fees were adjusted at settlement, so the small variance against gross is expected. Reconciled.",
-        "confidence": 0.79,
+        "confidence": 0.4,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -1930,7 +1932,7 @@
       "settlement_id": "S-10046",
       "decision_time": "2026-08-24T18:35:00Z",
       "agent": {
-        "proposed_status": "RECONCILED",
+        "proposed_status": "NOT_RECONCILED",
         "evidence_ids": [
           "razorpay_payments:pay-000308",
           "razorpay_payments:pay-000309",
@@ -1945,8 +1947,8 @@
           "bank_statement:bnk-000048",
           "webhook_events:whk-000046"
         ],
-        "agent_reason": "All captured payments net down to the credited amount and the UTR traces to the bank statement.",
-        "confidence": 0.77,
+        "agent_reason": "Something is off between the settlement total and what landed. Needs a human.",
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -1976,7 +1978,7 @@
       "settlement_id": "S-10047",
       "decision_time": "2026-08-05T15:02:00Z",
       "agent": {
-        "proposed_status": "RECONCILED",
+        "proposed_status": "NOT_RECONCILED",
         "evidence_ids": [
           "razorpay_payments:pay-000317",
           "razorpay_payments:pay-000318",
@@ -1994,8 +1996,8 @@
           "bank_statement:bnk-000049",
           "webhook_events:whk-000047"
         ],
-        "agent_reason": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
-        "confidence": 0.75,
+        "agent_reason": "Could not tie the credited amount back to the captured payments. Not closing this one.",
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -2028,7 +2030,7 @@
       "settlement_id": "S-10048",
       "decision_time": "2026-08-04T07:17:00Z",
       "agent": {
-        "proposed_status": "RECONCILED",
+        "proposed_status": "NOT_RECONCILED",
         "evidence_ids": [
           "razorpay_payments:pay-000329",
           "razorpay_payments:pay-000330",
@@ -2044,10 +2046,11 @@
           "razorpay_payments:pay-000340",
           "razorpay_settlements:stl-000053",
           "bank_statement:bnk-000050",
-          "webhook_events:whk-000048"
+          "webhook_events:whk-000048",
+          "bank_statement:bnk-0048X"
         ],
-        "agent_reason": "Verified the UTR against the bank feed and the totals line up. Safe to close.",
-        "confidence": 0.73,
+        "agent_reason": "The bank leg does not look complete to me. Routing for review rather than closing.",
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -2097,7 +2100,7 @@
           "webhook_events:whk-000049"
         ],
         "agent_reason": "Settlement matches the bank credit once fees and GST are accounted for. Nothing outstanding.",
-        "confidence": 0.98,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -2141,7 +2144,7 @@
           "webhook_events:whk-000050"
         ],
         "agent_reason": "All captured payments net down to the credited amount and the UTR traces to the bank statement.",
-        "confidence": 0.81,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -2181,7 +2184,7 @@
           "webhook_events:whk-000051"
         ],
         "agent_reason": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
-        "confidence": 0.79,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -2219,7 +2222,7 @@
           "webhook_events:whk-000052"
         ],
         "agent_reason": "Verified the UTR against the bank feed and the totals line up. Safe to close.",
-        "confidence": 0.82,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -2261,7 +2264,7 @@
           "webhook_events:whk-000053"
         ],
         "agent_reason": "Settlement matches the bank credit once fees and GST are accounted for. Nothing outstanding.",
-        "confidence": 0.8,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -2307,7 +2310,7 @@
           "webhook_events:whk-000054"
         ],
         "agent_reason": "Fees were adjusted at settlement, so the small variance against gross is expected. Reconciled.",
-        "confidence": 0.78,
+        "confidence": 0.4,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -2336,7 +2339,7 @@
       "settlement_id": "S-10055",
       "decision_time": "2026-08-11T05:03:00Z",
       "agent": {
-        "proposed_status": "RECONCILED",
+        "proposed_status": "NEEDS_REVIEW",
         "evidence_ids": [
           "razorpay_payments:pay-000383",
           "razorpay_payments:pay-000384",
@@ -2353,8 +2356,8 @@
           "bank_statement:bnk-000057",
           "webhook_events:whk-000055"
         ],
-        "agent_reason": "All captured payments net down to the credited amount and the UTR traces to the bank statement.",
-        "confidence": 0.76,
+        "agent_reason": "Something is off between the settlement total and what landed. Needs a human.",
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -2386,7 +2389,7 @@
       "settlement_id": "S-10056",
       "decision_time": "2026-08-12T15:40:00Z",
       "agent": {
-        "proposed_status": "RECONCILED",
+        "proposed_status": "NEEDS_REVIEW",
         "evidence_ids": [
           "razorpay_payments:pay-000394",
           "razorpay_payments:pay-000395",
@@ -2398,8 +2401,8 @@
           "bank_statement:bnk-000058",
           "webhook_events:whk-000056"
         ],
-        "agent_reason": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
-        "confidence": 0.74,
+        "agent_reason": "Could not tie the credited amount back to the captured payments. Not closing this one.",
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -2446,7 +2449,7 @@
           "webhook_events:whk-000057"
         ],
         "agent_reason": "Verified the UTR against the bank feed and the totals line up. Safe to close.",
-        "confidence": 0.72,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -2495,7 +2498,7 @@
           "webhook_events:whk-000058"
         ],
         "agent_reason": "Settlement matches the bank credit once fees and GST are accounted for. Nothing outstanding.",
-        "confidence": 0.97,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -2591,7 +2594,7 @@
           "webhook_events:whk-000060"
         ],
         "agent_reason": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
-        "confidence": 0.78,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -2624,14 +2627,15 @@
       "settlement_id": "S-10061",
       "decision_time": "2026-08-16T23:13:00Z",
       "agent": {
-        "proposed_status": "RECONCILED",
+        "proposed_status": "NOT_RECONCILED",
         "evidence_ids": [
           "razorpay_settlements:stl-000067",
           "bank_statement:bnk-000063",
-          "webhook_events:whk-000061"
+          "webhook_events:whk-000061",
+          "bank_statement:bnk-0061X"
         ],
-        "agent_reason": "Verified the UTR against the bank feed and the totals line up. Safe to close.",
-        "confidence": 0.76,
+        "agent_reason": "Something is off between the settlement total and what landed. Needs a human.",
+        "confidence": 0.4,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -2652,7 +2656,7 @@
       "settlement_id": "S-10062",
       "decision_time": "2026-08-17T15:14:00Z",
       "agent": {
-        "proposed_status": "RECONCILED",
+        "proposed_status": "NOT_RECONCILED",
         "evidence_ids": [
           "razorpay_payments:pay-000441",
           "razorpay_payments:pay-000442",
@@ -2669,8 +2673,8 @@
           "bank_statement:bnk-000064",
           "webhook_events:whk-000062"
         ],
-        "agent_reason": "Settlement matches the bank credit once fees and GST are accounted for. Nothing outstanding.",
-        "confidence": 0.74,
+        "agent_reason": "Could not tie the credited amount back to the captured payments. Not closing this one.",
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -2715,7 +2719,7 @@
           "webhook_events:whk-000063"
         ],
         "agent_reason": "Fees were adjusted at settlement, so the small variance against gross is expected. Reconciled.",
-        "confidence": 0.72,
+        "confidence": 0.4,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -2754,7 +2758,7 @@
           "webhook_events:whk-000064"
         ],
         "agent_reason": "All captured payments net down to the credited amount and the UTR traces to the bank statement.",
-        "confidence": 0.97,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -2792,7 +2796,7 @@
           "webhook_events:whk-000065"
         ],
         "agent_reason": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
-        "confidence": 0.95,
+        "confidence": 0.4,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -2829,7 +2833,7 @@
           "webhook_events:whk-000066"
         ],
         "agent_reason": "Verified the UTR against the bank feed and the totals line up. Safe to close.",
-        "confidence": 0.93,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -2871,7 +2875,7 @@
           "webhook_events:whk-000067"
         ],
         "agent_reason": "Settlement matches the bank credit once fees and GST are accounted for. Nothing outstanding.",
-        "confidence": 0.91,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -2902,7 +2906,7 @@
       "settlement_id": "S-10068",
       "decision_time": "2026-08-24T05:18:00Z",
       "agent": {
-        "proposed_status": "RECONCILED",
+        "proposed_status": "NOT_RECONCILED",
         "evidence_ids": [
           "razorpay_payments:pay-000482",
           "razorpay_payments:pay-000483",
@@ -2917,8 +2921,8 @@
           "holds:hld-000005",
           "webhook_events:whk-000068"
         ],
-        "agent_reason": "Fees were adjusted at settlement, so the small variance against gross is expected. Reconciled.",
-        "confidence": 0.89,
+        "agent_reason": "Could not tie the credited amount back to the captured payments. Not closing this one.",
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -2948,7 +2952,7 @@
       "settlement_id": "S-10069",
       "decision_time": "2026-08-24T18:50:00Z",
       "agent": {
-        "proposed_status": "RECONCILED",
+        "proposed_status": "NEEDS_REVIEW",
         "evidence_ids": [
           "razorpay_payments:pay-000490",
           "razorpay_payments:pay-000491",
@@ -2967,8 +2971,8 @@
           "holds:hld-000006",
           "webhook_events:whk-000069"
         ],
-        "agent_reason": "All captured payments net down to the credited amount and the UTR traces to the bank statement.",
-        "confidence": 0.87,
+        "agent_reason": "The bank leg does not look complete to me. Routing for review rather than closing.",
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -3019,7 +3023,7 @@
           "webhook_events:whk-000070"
         ],
         "agent_reason": "Verified the UTR against the bank feed and the totals line up. Safe to close.",
-        "confidence": 0.97,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -3107,7 +3111,7 @@
           "webhook_events:whk-000072"
         ],
         "agent_reason": "Fees were adjusted at settlement, so the small variance against gross is expected. Reconciled.",
-        "confidence": 0.93,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -3149,7 +3153,7 @@
           "webhook_events:whk-000073"
         ],
         "agent_reason": "All captured payments net down to the credited amount and the UTR traces to the bank statement.",
-        "confidence": 0.91,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -3174,7 +3178,7 @@
       "settlement_id": "S-10074",
       "decision_time": "2026-08-06T22:47:00Z",
       "agent": {
-        "proposed_status": "RECONCILED",
+        "proposed_status": "NOT_RECONCILED",
         "evidence_ids": [
           "razorpay_payments:pay-000529",
           "razorpay_payments:pay-000530",
@@ -3186,12 +3190,12 @@
           "razorpay_payments:pay-000536",
           "razorpay_payments:pay-000537",
           "razorpay_settlements:stl-000081",
-          "razorpay_settlements:stl-000082",
           "bank_statement:bnk-000075",
-          "webhook_events:whk-000074"
+          "webhook_events:whk-000074",
+          "bank_statement:bnk-0074X"
         ],
-        "agent_reason": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
-        "confidence": 0.89,
+        "agent_reason": "Could not tie the credited amount back to the captured payments. Not closing this one.",
+        "confidence": 0.4,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -3222,7 +3226,7 @@
       "settlement_id": "S-10075",
       "decision_time": "2026-08-08T08:24:00Z",
       "agent": {
-        "proposed_status": "RECONCILED",
+        "proposed_status": "NOT_RECONCILED",
         "evidence_ids": [
           "razorpay_payments:pay-000538",
           "razorpay_payments:pay-000539",
@@ -3234,10 +3238,11 @@
           "razorpay_payments:pay-000545",
           "razorpay_settlements:stl-000083",
           "bank_statement:bnk-000076",
-          "webhook_events:whk-000075"
+          "webhook_events:whk-000075",
+          "bank_statement:bnk-0075X"
         ],
-        "agent_reason": "Verified the UTR against the bank feed and the totals line up. Safe to close.",
-        "confidence": 0.87,
+        "agent_reason": "The bank leg does not look complete to me. Routing for review rather than closing.",
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -3266,7 +3271,7 @@
       "settlement_id": "S-10076",
       "decision_time": "2026-08-09T12:21:00Z",
       "agent": {
-        "proposed_status": "RECONCILED",
+        "proposed_status": "NOT_RECONCILED",
         "evidence_ids": [
           "razorpay_payments:pay-000546",
           "razorpay_payments:pay-000547",
@@ -3275,10 +3280,11 @@
           "razorpay_settlements:stl-000084",
           "bank_statement:bnk-000077",
           "holds:hld-000007",
-          "webhook_events:whk-000076"
+          "webhook_events:whk-000076",
+          "bank_statement:bnk-0076X"
         ],
-        "agent_reason": "Settlement matches the bank credit once fees and GST are accounted for. Nothing outstanding.",
-        "confidence": 0.85,
+        "agent_reason": "Something is off between the settlement total and what landed. Needs a human.",
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -3311,7 +3317,7 @@
           "webhook_events:whk-000077"
         ],
         "agent_reason": "Fees were adjusted at settlement, so the small variance against gross is expected. Reconciled.",
-        "confidence": 0.83,
+        "confidence": 0.4,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -3347,7 +3353,7 @@
           "webhook_events:whk-000078"
         ],
         "agent_reason": "All captured payments net down to the credited amount and the UTR traces to the bank statement.",
-        "confidence": 0.81,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -3389,7 +3395,7 @@
           "webhook_events:whk-000079"
         ],
         "agent_reason": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
-        "confidence": 0.79,
+        "confidence": 0.4,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -3433,7 +3439,7 @@
           "webhook_events:whk-000080"
         ],
         "agent_reason": "Settlement matches the bank credit once fees and GST are accounted for. Nothing outstanding.",
-        "confidence": 0.89,
+        "confidence": 0.4,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -3478,7 +3484,7 @@
           "webhook_events:whk-000081"
         ],
         "agent_reason": "Fees were adjusted at settlement, so the small variance against gross is expected. Reconciled.",
-        "confidence": 0.87,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -3506,7 +3512,7 @@
       "settlement_id": "S-10082",
       "decision_time": "2026-08-17T12:38:00Z",
       "agent": {
-        "proposed_status": "RECONCILED",
+        "proposed_status": "NOT_RECONCILED",
         "evidence_ids": [
           "razorpay_payments:pay-000579",
           "razorpay_payments:pay-000580",
@@ -3520,8 +3526,8 @@
           "bank_statement:bnk-000083",
           "webhook_events:whk-000082"
         ],
-        "agent_reason": "All captured payments net down to the credited amount and the UTR traces to the bank statement.",
-        "confidence": 0.85,
+        "agent_reason": "Something is off between the settlement total and what landed. Needs a human.",
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -3563,7 +3569,7 @@
           "webhook_events:whk-000083"
         ],
         "agent_reason": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
-        "confidence": 0.83,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -3602,7 +3608,7 @@
           "webhook_events:whk-000084"
         ],
         "agent_reason": "Verified the UTR against the bank feed and the totals line up. Safe to close.",
-        "confidence": 0.81,
+        "confidence": 0.4,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -3647,7 +3653,7 @@
           "webhook_events:whk-000085"
         ],
         "agent_reason": "Settlement matches the bank credit once fees and GST are accounted for. Nothing outstanding.",
-        "confidence": 0.79,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -3690,7 +3696,7 @@
           "webhook_events:whk-000086"
         ],
         "agent_reason": "Fees were adjusted at settlement, so the small variance against gross is expected. Reconciled.",
-        "confidence": 0.77,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -3729,7 +3735,7 @@
           "webhook_events:whk-000087"
         ],
         "agent_reason": "All captured payments net down to the credited amount and the UTR traces to the bank statement.",
-        "confidence": 0.75,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -3758,7 +3764,7 @@
       "settlement_id": "S-10088",
       "decision_time": "2026-08-17T06:40:00Z",
       "agent": {
-        "proposed_status": "RECONCILED",
+        "proposed_status": "NOT_RECONCILED",
         "evidence_ids": [
           "razorpay_payments:pay-000619",
           "razorpay_payments:pay-000620",
@@ -3770,8 +3776,8 @@
           "bank_statement:bnk-000089",
           "webhook_events:whk-000088"
         ],
-        "agent_reason": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
-        "confidence": 0.73,
+        "agent_reason": "Something is off between the settlement total and what landed. Needs a human.",
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -3798,7 +3804,7 @@
       "settlement_id": "S-10089",
       "decision_time": "2026-08-18T06:47:00Z",
       "agent": {
-        "proposed_status": "RECONCILED",
+        "proposed_status": "NOT_RECONCILED",
         "evidence_ids": [
           "razorpay_payments:pay-000625",
           "razorpay_payments:pay-000626",
@@ -3816,8 +3822,8 @@
           "bank_statement:bnk-000090",
           "webhook_events:whk-000089"
         ],
-        "agent_reason": "Verified the UTR against the bank feed and the totals line up. Safe to close.",
-        "confidence": 0.98,
+        "agent_reason": "Could not tie the credited amount back to the captured payments. Not closing this one.",
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -3850,7 +3856,7 @@
       "settlement_id": "S-10090",
       "decision_time": "2026-08-24T00:43:00Z",
       "agent": {
-        "proposed_status": "RECONCILED",
+        "proposed_status": "NEEDS_REVIEW",
         "evidence_ids": [
           "razorpay_payments:pay-000637",
           "razorpay_payments:pay-000638",
@@ -3866,11 +3872,10 @@
           "razorpay_payments:pay-000648",
           "razorpay_settlements:stl-000101",
           "bank_statement:bnk-000091",
-          "bank_statement:bnk-000092",
           "webhook_events:whk-000090"
         ],
-        "agent_reason": "Fees were adjusted at settlement, so the small variance against gross is expected. Reconciled.",
-        "confidence": 0.81,
+        "agent_reason": "The bank leg does not look complete to me. Routing for review rather than closing.",
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -3918,7 +3923,7 @@
           "webhook_events:whk-000091"
         ],
         "agent_reason": "All captured payments net down to the credited amount and the UTR traces to the bank statement.",
-        "confidence": 0.79,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -3963,7 +3968,7 @@
           "webhook_events:whk-000092"
         ],
         "agent_reason": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
-        "confidence": 0.77,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -4006,7 +4011,7 @@
           "webhook_events:whk-000093"
         ],
         "agent_reason": "Verified the UTR against the bank feed and the totals line up. Safe to close.",
-        "confidence": 0.75,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -4047,7 +4052,7 @@
           "webhook_events:whk-000094"
         ],
         "agent_reason": "Settlement matches the bank credit once fees and GST are accounted for. Nothing outstanding.",
-        "confidence": 0.73,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -4094,7 +4099,7 @@
           "webhook_events:whk-000095"
         ],
         "agent_reason": "Fees were adjusted at settlement, so the small variance against gross is expected. Reconciled.",
-        "confidence": 0.98,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -4126,7 +4131,7 @@
       "settlement_id": "S-10096",
       "decision_time": "2026-08-06T12:23:00Z",
       "agent": {
-        "proposed_status": "RECONCILED",
+        "proposed_status": "NEEDS_REVIEW",
         "evidence_ids": [
           "razorpay_payments:pay-000690",
           "razorpay_payments:pay-000691",
@@ -4145,8 +4150,8 @@
           "bank_statement:bnk-000098",
           "webhook_events:whk-000096"
         ],
-        "agent_reason": "All captured payments net down to the credited amount and the UTR traces to the bank statement.",
-        "confidence": 0.96,
+        "agent_reason": "The bank leg does not look complete to me. Routing for review rather than closing.",
+        "confidence": 0.4,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -4180,7 +4185,7 @@
       "settlement_id": "S-10097",
       "decision_time": "2026-08-06T21:42:00Z",
       "agent": {
-        "proposed_status": "RECONCILED",
+        "proposed_status": "NEEDS_REVIEW",
         "evidence_ids": [
           "razorpay_payments:pay-000702",
           "razorpay_payments:pay-000703",
@@ -4194,8 +4199,8 @@
           "bank_statement:bnk-000099",
           "webhook_events:whk-000097"
         ],
-        "agent_reason": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
-        "confidence": 0.94,
+        "agent_reason": "Something is off between the settlement total and what landed. Needs a human.",
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -4224,7 +4229,7 @@
       "settlement_id": "S-10098",
       "decision_time": "2026-08-08T05:08:00Z",
       "agent": {
-        "proposed_status": "RECONCILED",
+        "proposed_status": "NEEDS_REVIEW",
         "evidence_ids": [
           "razorpay_payments:pay-000710",
           "razorpay_payments:pay-000711",
@@ -4237,8 +4242,8 @@
           "bank_statement:bnk-000100",
           "webhook_events:whk-000098"
         ],
-        "agent_reason": "Verified the UTR against the bank feed and the totals line up. Safe to close.",
-        "confidence": 0.92,
+        "agent_reason": "Could not tie the credited amount back to the captured payments. Not closing this one.",
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -4278,7 +4283,7 @@
           "webhook_events:whk-000099"
         ],
         "agent_reason": "Settlement matches the bank credit once fees and GST are accounted for. Nothing outstanding.",
-        "confidence": 0.9,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -4316,7 +4321,7 @@
           "webhook_events:whk-000100"
         ],
         "agent_reason": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
-        "confidence": 0.92,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -4342,7 +4347,7 @@
       "settlement_id": "S-10101",
       "decision_time": "2026-08-10T22:52:00Z",
       "agent": {
-        "proposed_status": "RECONCILED",
+        "proposed_status": "NOT_RECONCILED",
         "evidence_ids": [
           "razorpay_payments:pay-000727",
           "razorpay_payments:pay-000728",
@@ -4357,8 +4362,8 @@
           "bank_statement:bnk-000103",
           "webhook_events:whk-000101"
         ],
-        "agent_reason": "Verified the UTR against the bank feed and the totals line up. Safe to close.",
-        "confidence": 0.9,
+        "agent_reason": "Could not tie the credited amount back to the captured payments. Not closing this one.",
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -4407,7 +4412,7 @@
           "webhook_events:whk-000102"
         ],
         "agent_reason": "Settlement matches the bank credit once fees and GST are accounted for. Nothing outstanding.",
-        "confidence": 0.88,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -4455,7 +4460,7 @@
           "webhook_events:whk-000103"
         ],
         "agent_reason": "Fees were adjusted at settlement, so the small variance against gross is expected. Reconciled.",
-        "confidence": 0.86,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -4502,7 +4507,7 @@
           "webhook_events:whk-000104"
         ],
         "agent_reason": "All captured payments net down to the credited amount and the UTR traces to the bank statement.",
-        "confidence": 0.84,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -4546,7 +4551,7 @@
           "webhook_events:whk-000105"
         ],
         "agent_reason": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
-        "confidence": 0.82,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -4590,7 +4595,7 @@
           "webhook_events:whk-000106"
         ],
         "agent_reason": "Verified the UTR against the bank feed and the totals line up. Safe to close.",
-        "confidence": 0.8,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -4622,7 +4627,7 @@
       "settlement_id": "S-10107",
       "decision_time": "2026-08-17T06:47:00Z",
       "agent": {
-        "proposed_status": "RECONCILED",
+        "proposed_status": "NOT_RECONCILED",
         "evidence_ids": [
           "razorpay_payments:pay-000782",
           "razorpay_payments:pay-000783",
@@ -4631,8 +4636,8 @@
           "bank_statement:bnk-000110",
           "webhook_events:whk-000107"
         ],
-        "agent_reason": "Settlement matches the bank credit once fees and GST are accounted for. Nothing outstanding.",
-        "confidence": 0.78,
+        "agent_reason": "Could not tie the credited amount back to the captured payments. Not closing this one.",
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -4656,7 +4661,7 @@
       "settlement_id": "S-10108",
       "decision_time": "2026-08-17T16:21:00Z",
       "agent": {
-        "proposed_status": "RECONCILED",
+        "proposed_status": "NOT_RECONCILED",
         "evidence_ids": [
           "razorpay_payments:pay-000785",
           "razorpay_payments:pay-000786",
@@ -4669,8 +4674,8 @@
           "bank_statement:bnk-000111",
           "webhook_events:whk-000108"
         ],
-        "agent_reason": "Fees were adjusted at settlement, so the small variance against gross is expected. Reconciled.",
-        "confidence": 0.76,
+        "agent_reason": "The bank leg does not look complete to me. Routing for review rather than closing.",
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -4705,10 +4710,11 @@
           "razorpay_payments:pay-000794",
           "razorpay_settlements:stl-000121",
           "bank_statement:bnk-000112",
-          "webhook_events:whk-000109"
+          "webhook_events:whk-000109",
+          "bank_statement:bnk-0109X"
         ],
         "agent_reason": "All captured payments net down to the credited amount and the UTR traces to the bank statement.",
-        "confidence": 0.74,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -4732,7 +4738,7 @@
       "settlement_id": "S-10110",
       "decision_time": "2026-08-20T08:23:00Z",
       "agent": {
-        "proposed_status": "RECONCILED",
+        "proposed_status": "NEEDS_REVIEW",
         "evidence_ids": [
           "razorpay_payments:pay-000795",
           "razorpay_payments:pay-000796",
@@ -4748,8 +4754,8 @@
           "bank_statement:bnk-000113",
           "webhook_events:whk-000110"
         ],
-        "agent_reason": "Verified the UTR against the bank feed and the totals line up. Safe to close.",
-        "confidence": 0.84,
+        "agent_reason": "Could not tie the credited amount back to the captured payments. Not closing this one.",
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -4793,7 +4799,7 @@
           "webhook_events:whk-000111"
         ],
         "agent_reason": "Settlement matches the bank credit once fees and GST are accounted for. Nothing outstanding.",
-        "confidence": 0.82,
+        "confidence": 0.4,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -4831,7 +4837,7 @@
           "webhook_events:whk-000112"
         ],
         "agent_reason": "Fees were adjusted at settlement, so the small variance against gross is expected. Reconciled.",
-        "confidence": 0.8,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -4874,7 +4880,7 @@
           "webhook_events:whk-000113"
         ],
         "agent_reason": "All captured payments net down to the credited amount and the UTR traces to the bank statement.",
-        "confidence": 0.78,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -4917,7 +4923,7 @@
           "webhook_events:whk-000114"
         ],
         "agent_reason": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
-        "confidence": 0.76,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -4954,7 +4960,7 @@
           "webhook_events:whk-000115"
         ],
         "agent_reason": "Verified the UTR against the bank feed and the totals line up. Safe to close.",
-        "confidence": 0.74,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -4980,7 +4986,7 @@
       "settlement_id": "S-10116",
       "decision_time": "2026-08-02T23:43:00Z",
       "agent": {
-        "proposed_status": "RECONCILED",
+        "proposed_status": "NEEDS_REVIEW",
         "evidence_ids": [
           "razorpay_payments:pay-000834",
           "razorpay_payments:pay-000835",
@@ -4999,8 +5005,8 @@
           "bank_statement:bnk-000119",
           "webhook_events:whk-000116"
         ],
-        "agent_reason": "Settlement matches the bank credit once fees and GST are accounted for. Nothing outstanding.",
-        "confidence": 0.72,
+        "agent_reason": "Could not tie the credited amount back to the captured payments. Not closing this one.",
+        "confidence": 0.4,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -5034,7 +5040,7 @@
       "settlement_id": "S-10117",
       "decision_time": "2026-08-04T22:26:00Z",
       "agent": {
-        "proposed_status": "RECONCILED",
+        "proposed_status": "NEEDS_REVIEW",
         "evidence_ids": [
           "razorpay_payments:pay-000846",
           "razorpay_payments:pay-000847",
@@ -5044,8 +5050,8 @@
           "bank_statement:bnk-000120",
           "webhook_events:whk-000117"
         ],
-        "agent_reason": "Fees were adjusted at settlement, so the small variance against gross is expected. Reconciled.",
-        "confidence": 0.97,
+        "agent_reason": "The bank leg does not look complete to me. Routing for review rather than closing.",
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -5131,7 +5137,7 @@
           "webhook_events:whk-000119"
         ],
         "agent_reason": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
-        "confidence": 0.93,
+        "confidence": 0.4,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -5175,7 +5181,7 @@
           "webhook_events:whk-000120"
         ],
         "agent_reason": "Settlement matches the bank credit once fees and GST are accounted for. Nothing outstanding.",
-        "confidence": 0.76,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -5256,7 +5262,7 @@
           "webhook_events:whk-000122"
         ],
         "agent_reason": "All captured payments net down to the credited amount and the UTR traces to the bank statement.",
-        "confidence": 0.93,
+        "confidence": 0.4,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -5299,7 +5305,7 @@
           "webhook_events:whk-000123"
         ],
         "agent_reason": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
-        "confidence": 0.91,
+        "confidence": 0.4,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -5324,7 +5330,7 @@
       "settlement_id": "S-90004",
       "decision_time": "2026-08-16T23:28:00Z",
       "agent": {
-        "proposed_status": "RECONCILED",
+        "proposed_status": "NOT_RECONCILED",
         "evidence_ids": [
           "razorpay_payments:pay-000891",
           "razorpay_payments:pay-000892",
@@ -5337,8 +5343,8 @@
           "bank_statement:bnk-000126",
           "webhook_events:whk-000124"
         ],
-        "agent_reason": "Verified the UTR against the bank feed and the totals line up. Safe to close.",
-        "confidence": 0.89,
+        "agent_reason": "The bank leg does not look complete to me. Routing for review rather than closing.",
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -5366,7 +5372,7 @@
       "settlement_id": "S-90005",
       "decision_time": "2026-08-07T11:20:00Z",
       "agent": {
-        "proposed_status": "RECONCILED",
+        "proposed_status": "NEEDS_REVIEW",
         "evidence_ids": [
           "razorpay_payments:pay-000898",
           "razorpay_payments:pay-000899",
@@ -5380,8 +5386,8 @@
           "webhook_events:whk-000125",
           "webhook_events:whk-000126"
         ],
-        "agent_reason": "Settlement matches the bank credit once fees and GST are accounted for. Nothing outstanding.",
-        "confidence": 0.87,
+        "agent_reason": "Something is off between the settlement total and what landed. Needs a human.",
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -5429,7 +5435,7 @@
           "webhook_events:whk-000127"
         ],
         "agent_reason": "Fees were adjusted at settlement, so the small variance against gross is expected. Reconciled.",
-        "confidence": 0.85,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -5475,7 +5481,7 @@
           "webhook_events:whk-000128"
         ],
         "agent_reason": "All captured payments net down to the credited amount and the UTR traces to the bank statement.",
-        "confidence": 0.83,
+        "confidence": 0.4,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -5521,7 +5527,7 @@
           "webhook_events:whk-000130"
         ],
         "agent_reason": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
-        "confidence": 0.81,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -5569,7 +5575,7 @@
           "webhook_events:whk-000131"
         ],
         "agent_reason": "Verified the UTR against the bank feed and the totals line up. Safe to close.",
-        "confidence": 0.79,
+        "confidence": 0.4,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -5598,7 +5604,7 @@
       "settlement_id": "S-90010",
       "decision_time": "2026-08-12T03:33:00Z",
       "agent": {
-        "proposed_status": "RECONCILED",
+        "proposed_status": "NOT_RECONCILED",
         "evidence_ids": [
           "razorpay_payments:pay-000944",
           "razorpay_payments:pay-000945",
@@ -5616,8 +5622,8 @@
           "bank_statement:bnk-000130",
           "webhook_events:whk-000132"
         ],
-        "agent_reason": "Fees were adjusted at settlement, so the small variance against gross is expected. Reconciled.",
-        "confidence": 0.89,
+        "agent_reason": "The bank leg does not look complete to me. Routing for review rather than closing.",
+        "confidence": 0.4,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -5650,7 +5656,7 @@
       "settlement_id": "S-90011",
       "decision_time": "2026-08-13T00:56:00Z",
       "agent": {
-        "proposed_status": "RECONCILED",
+        "proposed_status": "NOT_RECONCILED",
         "evidence_ids": [
           "razorpay_payments:pay-000955",
           "razorpay_payments:pay-000956",
@@ -5665,10 +5671,11 @@
           "razorpay_settlements:stl-000149",
           "razorpay_settlements:stl-000150",
           "bank_statement:bnk-000131",
-          "webhook_events:whk-000133"
+          "webhook_events:whk-000133",
+          "bank_statement:bnk-0011X"
         ],
-        "agent_reason": "All captured payments net down to the credited amount and the UTR traces to the bank statement.",
-        "confidence": 0.87,
+        "agent_reason": "Something is off between the settlement total and what landed. Needs a human.",
+        "confidence": 0.4,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -5708,10 +5715,11 @@
           "razorpay_payments:pay-000968",
           "razorpay_settlements:stl-000151",
           "bank_statement:bnk-000132",
-          "webhook_events:whk-000134"
+          "webhook_events:whk-000134",
+          "bank_statement:bnk-0012X"
         ],
         "agent_reason": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
-        "confidence": 0.85,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -5750,7 +5758,7 @@
           "webhook_events:whk-000135"
         ],
         "agent_reason": "Verified the UTR against the bank feed and the totals line up. Safe to close.",
-        "confidence": 0.83,
+        "confidence": 0.4,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -5791,7 +5799,7 @@
           "webhook_events:whk-000136"
         ],
         "agent_reason": "Settlement matches the bank credit once fees and GST are accounted for. Nothing outstanding.",
-        "confidence": 0.81,
+        "confidence": 0.4,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -5832,7 +5840,7 @@
           "webhook_events:whk-000137"
         ],
         "agent_reason": "Fees were adjusted at settlement, so the small variance against gross is expected. Reconciled.",
-        "confidence": 0.79,
+        "confidence": 0.4,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -5873,7 +5881,7 @@
           "webhook_events:whk-000138"
         ],
         "agent_reason": "All captured payments net down to the credited amount and the UTR traces to the bank statement.",
-        "confidence": 0.77,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -5900,7 +5908,7 @@
       "settlement_id": "S-90017",
       "decision_time": "2026-08-18T13:19:00Z",
       "agent": {
-        "proposed_status": "RECONCILED",
+        "proposed_status": "NOT_RECONCILED",
         "evidence_ids": [
           "razorpay_payments:pay-000994",
           "razorpay_payments:pay-000995",
@@ -5911,8 +5919,8 @@
           "bank_statement:bnk-000136",
           "webhook_events:whk-000139"
         ],
-        "agent_reason": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
-        "confidence": 0.75,
+        "agent_reason": "Something is off between the settlement total and what landed. Needs a human.",
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -5938,7 +5946,7 @@
       "settlement_id": "S-90018",
       "decision_time": "2026-08-20T11:06:00Z",
       "agent": {
-        "proposed_status": "RECONCILED",
+        "proposed_status": "NOT_RECONCILED",
         "evidence_ids": [
           "razorpay_payments:pay-000998",
           "razorpay_payments:pay-000999",
@@ -5948,10 +5956,11 @@
           "razorpay_settlements:stl-000160",
           "bank_statement:bnk-000137",
           "webhook_events:whk-000140",
-          "webhook_events:whk-000141"
+          "webhook_events:whk-000141",
+          "bank_statement:bnk-0018X"
         ],
-        "agent_reason": "Verified the UTR against the bank feed and the totals line up. Safe to close.",
-        "confidence": 0.73,
+        "agent_reason": "Could not tie the credited amount back to the captured payments. Not closing this one.",
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -5978,7 +5987,7 @@
       "settlement_id": "S-90019",
       "decision_time": "2026-08-20T14:00:00Z",
       "agent": {
-        "proposed_status": "RECONCILED",
+        "proposed_status": "NOT_RECONCILED",
         "evidence_ids": [
           "razorpay_payments:pay-001003",
           "razorpay_payments:pay-001004",
@@ -5989,8 +5998,8 @@
           "bank_statement:bnk-000138",
           "webhook_events:whk-000142"
         ],
-        "agent_reason": "Settlement matches the bank credit once fees and GST are accounted for. Nothing outstanding.",
-        "confidence": 0.98,
+        "agent_reason": "The bank leg does not look complete to me. Routing for review rather than closing.",
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -6027,7 +6036,7 @@
           "webhook_events:whk-000143"
         ],
         "agent_reason": "All captured payments net down to the credited amount and the UTR traces to the bank statement.",
-        "confidence": 0.86,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -6063,7 +6072,7 @@
           "webhook_events:whk-000144"
         ],
         "agent_reason": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
-        "confidence": 0.84,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -6108,7 +6117,7 @@
           "webhook_events:whk-000145"
         ],
         "agent_reason": "Verified the UTR against the bank feed and the totals line up. Safe to close.",
-        "confidence": 0.82,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -6154,7 +6163,7 @@
           "webhook_events:whk-000147"
         ],
         "agent_reason": "Settlement matches the bank credit once fees and GST are accounted for. Nothing outstanding.",
-        "confidence": 0.8,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -6180,7 +6189,7 @@
       "settlement_id": "S-90024",
       "decision_time": "2026-08-25T18:58:00Z",
       "agent": {
-        "proposed_status": "RECONCILED",
+        "proposed_status": "NOT_RECONCILED",
         "evidence_ids": [
           "razorpay_payments:pay-001032",
           "razorpay_payments:pay-001033",
@@ -6196,8 +6205,8 @@
           "bank_statement:bnk-000143",
           "webhook_events:whk-000148"
         ],
-        "agent_reason": "Fees were adjusted at settlement, so the small variance against gross is expected. Reconciled.",
-        "confidence": 0.78,
+        "agent_reason": "Could not tie the credited amount back to the captured payments. Not closing this one.",
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -6228,18 +6237,17 @@
       "settlement_id": "S-90025",
       "decision_time": "2026-08-04T02:56:00Z",
       "agent": {
-        "proposed_status": "RECONCILED",
+        "proposed_status": "NOT_RECONCILED",
         "evidence_ids": [
           "razorpay_payments:pay-001042",
           "razorpay_payments:pay-001043",
           "razorpay_payments:pay-001044",
           "razorpay_settlements:stl-000168",
-          "razorpay_settlements:stl-000169",
           "bank_statement:bnk-000144",
           "webhook_events:whk-000149"
         ],
-        "agent_reason": "All captured payments net down to the credited amount and the UTR traces to the bank statement.",
-        "confidence": 0.76,
+        "agent_reason": "The bank leg does not look complete to me. Routing for review rather than closing.",
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -6278,7 +6286,7 @@
           "webhook_events:whk-000150"
         ],
         "agent_reason": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
-        "confidence": 0.74,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -6317,7 +6325,7 @@
           "webhook_events:whk-000151"
         ],
         "agent_reason": "Verified the UTR against the bank feed and the totals line up. Safe to close.",
-        "confidence": 0.72,
+        "confidence": 0.4,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -6358,7 +6366,7 @@
           "webhook_events:whk-000153"
         ],
         "agent_reason": "Settlement matches the bank credit once fees and GST are accounted for. Nothing outstanding.",
-        "confidence": 0.97,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
@@ -6441,7 +6449,7 @@
           "webhook_events:whk-000155"
         ],
         "agent_reason": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
-        "confidence": 0.78,
+        "confidence": 0.95,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true

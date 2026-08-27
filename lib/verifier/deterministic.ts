@@ -103,9 +103,15 @@ export function calcFees(
   let fee = 0
   let tax = 0
   for (const p of payments) {
-    const f = applyBps(p.amount_paise, policy.fee_rate_bps)
+    // The rate stamped on the row wins over the decision-time rate. A fee is
+    // levied at capture, so a settlement spanning a repricing is priced per
+    // payment; falling back to the decision-time card only when the pack builder
+    // could not resolve one.
+    const feeBps = p.fee_rate_bps ?? policy.fee_rate_bps
+    const gstBps = p.gst_rate_bps ?? policy.gst_rate_bps
+    const f = applyBps(p.amount_paise, feeBps)
     fee += f
-    tax += applyBps(f, policy.gst_rate_bps)
+    tax += applyBps(f, gstBps)
   }
   return { fee, tax }
 }
@@ -115,31 +121,47 @@ export function calcFees(
  *
  * The ordering is not cosmetic — it is the operational routing table:
  *
- *  - Tampered evidence outranks everything: if the source moved, nothing
- *    computed from it means anything.
- *  - Unenforceable or absent evidence comes next, because you cannot evaluate
- *    integrity or arithmetic you do not have.
- *  - Integrity breaks (double-count, reference reuse, contradiction) outrank
- *    arithmetic, because a duplicate row makes the arithmetic wrong for a
- *    reason the arithmetic itself cannot name. Reporting AMOUNT_MISMATCH on a
- *    doubled bank credit would send a finance operator hunting a fee bug that
- *    does not exist.
- *  - Arithmetic is last: it is only meaningful once the evidence set is sound.
+ * The organising principle is **how much of the answer the finding invalidates**:
+ *
+ *  1. Findings that make computation impossible. Tampered, absent, or
+ *     out-of-date evidence: nothing downstream means anything, so they come
+ *     first. STALE_EVIDENCE sits here because rows too old to trust cannot
+ *     support an assertion that the money is definitely wrong either.
+ *
+ *  2. Policy-INDEPENDENT integrity breaks. A duplicate UTR is wrong under every
+ *     tolerance that has ever existed, so it outranks anything that depends on
+ *     which tolerance applies. It also names a different owner: reporting
+ *     AMOUNT_MISMATCH on a doubled bank credit sends a finance operator hunting a
+ *     fee bug that does not exist.
+ *
+ *  3. Policy-DEPENDENT findings. Real, actionable, but only meaningful once the
+ *     evidence set is sound and the epoch is known.
+ *
+ *  4. STALE_POLICY last, and this is the one worth explaining. It does NOT mean
+ *     the wrong tolerance was applied — the verifier always resolves policy from
+ *     decision_time, so the arithmetic above is already correct. It means the
+ *     ingestion pipeline stamped the wrong version, which is a provenance defect
+ *     rather than a financial one. If the money is definitely wrong, say that
+ *     first; the stamping bug is the second call to make, not the first.
  */
 const PRECEDENCE: ReasonCode[] = [
+  // --- cannot compute at all -------------------------------------------------
   'MALFORMED_EVIDENCE',
   'NON_REPRODUCIBLE',
-  'STALE_POLICY',
   'MISSING_EVIDENCE',
+  'STALE_EVIDENCE',
+  // --- policy-INDEPENDENT integrity breaks -----------------------------------
   'DUPLICATE_EVENT',
   'DUPLICATE_FILE',
   'DUPLICATE_UTR',
   'CONTRADICTORY_SOURCE',
-  'STALE_EVIDENCE',
+  // --- policy-DEPENDENT findings ---------------------------------------------
   'POLICY_BREACH',
   'TEMPORAL_INCONSISTENCY',
   'FEE_MISMATCH',
   'AMOUNT_MISMATCH',
+  // --- provenance defect, money is fine --------------------------------------
+  'STALE_POLICY',
 ]
 
 const VERDICT_FOR: Record<ReasonCode, Verdict> = {
@@ -313,8 +335,15 @@ export function verify(input: VerifierInput): VerificationResult {
     'MISSING_EVIDENCE',
   )
 
-  // Reported, never fatal. The verdict already ignores the agent's selection —
-  // but an agent that routinely omits rows is a finding an operator wants.
+  // REPORTED, NEVER FATAL — and the distinction is load-bearing.
+  //
+  // An earlier version let a bad citation set contribute MISSING_EVIDENCE, which
+  // meant an agent could force UNCERTAIN by citing an id that does not exist.
+  // That hands the agent a lever over the verdict, which is precisely what this
+  // architecture exists to deny it. The verifier already scores the whole
+  // retrieved pack, so a hallucinated or omitted citation tells us something
+  // about the agent and nothing about the settlement. It is surfaced on the
+  // Proof Card and scored by the eval; it does not move the outcome.
   const packIds = new Set(pack.evidence.map((e) => e.evidence_id))
   const uncited = pack.evidence.filter((e) => !claim.evidence_ids.includes(e.evidence_id))
   const phantom = claim.evidence_ids.filter((id) => !packIds.has(id))
@@ -328,7 +357,8 @@ export function verify(input: VerifierInput): VerificationResult {
         (uncited.length > 0
           ? `; ${uncited.length} retrieved row(s) went uncited and were scored anyway`
           : ''),
-    'MISSING_EVIDENCE',
+    // No reason code, deliberately. See the note above: a citation defect is a
+    // fact about the agent, not about the settlement, and must not move a verdict.
   )
 
   // -------------------------------------------------------------------------

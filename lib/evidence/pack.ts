@@ -85,6 +85,8 @@ interface Draft {
   tax_paise?: number
   status?: string
   created_at?: string
+  fee_rate_bps?: number
+  gst_rate_bps?: number
 }
 
 export function buildEvidencePack(
@@ -139,7 +141,22 @@ export function buildEvidencePack(
 
   // --- payments --------------------------------------------------------------
   for (const p of ledger.paymentsBySettlement.get(c.settlement_id) ?? []) {
+    // The rate card in force when this payment was captured — not when the
+    // settlement was decided. For a settlement spanning a repricing these differ,
+    // and using the decision-time rate for all of them manufactures a
+    // discrepancy that does not exist.
+    // Left UNDEFINED when the capture predates every snapshot, so the verifier
+    // falls back to the decision-time rate card.
+    //
+    // The first cut used NULL_POLICY here, whose zero rate silently priced those
+    // payments at nothing and manufactured a FEE_MISMATCH on clean settlements
+    // whose oldest payment happened to land a few hours before the earliest
+    // policy. A "safe" default that is silently wrong is worse than no default:
+    // deferring to the decision-time card is at least a rate somebody chose.
+    const rateCard = resolvePolicy(p.captured_at)
     drafts.push({
+      fee_rate_bps: rateCard?.fee_rate_bps,
+      gst_rate_bps: rateCard?.gst_rate_bps,
       source: 'razorpay_payments',
       kind: 'payment',
       row_id: p.row_id,
@@ -285,6 +302,8 @@ export function buildEvidencePack(
       tax_paise: d.tax_paise,
       status: d.status,
       created_at: d.created_at,
+      fee_rate_bps: d.fee_rate_bps,
+      gst_rate_bps: d.gst_rate_bps,
       display: d.display,
     }
   })

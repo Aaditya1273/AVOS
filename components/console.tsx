@@ -12,7 +12,7 @@ export interface CaseRow {
   case_id: string
   settlement_id: string
   merchant_id: string
-  suite: 'batch_120' | 'adversarial_30'
+  suite: 'batch_120' | 'adversarial_30' | 'hard_slice_20'
   verdict: Verdict
   reason_code: string | null
   value_paise: number

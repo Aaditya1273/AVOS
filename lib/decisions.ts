@@ -169,7 +169,7 @@ export function materializeSuite(suite: Suite): Decision[] {
 
 /** Case lookup by id across both suites. */
 export function findCase(caseId: string): { c: SettlementCase; suite: Suite } | null {
-  for (const suite of ['batch_120', 'adversarial_30'] as Suite[]) {
+  for (const suite of ['batch_120', 'adversarial_30', 'hard_slice_20'] as Suite[]) {
     const c = loadCases(suite).find((x) => x.case_id === caseId)
     if (c) return { c, suite }
   }
@@ -178,7 +178,7 @@ export function findCase(caseId: string): { c: SettlementCase; suite: Suite } | 
 
 /** Same, by settlement id — what a human types into a search box. */
 export function findCaseBySettlement(settlementId: string): { c: SettlementCase; suite: Suite } | null {
-  for (const suite of ['batch_120', 'adversarial_30'] as Suite[]) {
+  for (const suite of ['batch_120', 'adversarial_30', 'hard_slice_20'] as Suite[]) {
     const c = loadCases(suite).find((x) => x.settlement_id === settlementId)
     if (c) return { c, suite }
   }

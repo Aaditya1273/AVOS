@@ -1,6 +1,6 @@
 # AVOS Verify — evaluation report
 
-Generated: 2026-08-26T16:03:51.924Z
+Generated: 2026-08-27T11:44:44.484Z
 Verifier: `deterministic-v2.1` · Model: `avos-mock-deterministic-1.0` (offline deterministic mock — no API key required)
 Fixture seed: 20260826 · money unit: paise (integer)
 
@@ -37,11 +37,11 @@ Fixture seed: 20260826 · money unit: paise (integer)
 | Exception detection | 100.0% (40/40) |
 | Abstention accuracy | 100.0% (10 cases) |
 | Reason-code accuracy | 100.0% (40 cases) |
-| Throughput (verify only) | 11,764 records/sec |
-| Agent confidence — accepted closures | 0.840 |
-| Agent confidence — refused closures | 0.838 |
-| **Confidence discrimination** | **+0.002** |
-| High-confidence refusals (≥0.85) | 17 |
+| Throughput (verify only) | 11,157 records/sec |
+| Agent confidence — accepted closures | 0.950 |
+| Agent confidence — refused closures | 0.666 |
+| **Confidence discrimination** | **+0.284** |
+| High-confidence refusals (≥0.85) | 14 |
 | Verified value | ₹73,05,506.42 of ₹73,05,506.42 verifiable |
 | Total batch value | ₹1,09,31,260.78 |
 | Verdicts | VERIFIED 80 · UNCERTAIN 10 · FAILED 30 |
@@ -80,10 +80,10 @@ Fixture seed: 20260826 · money unit: paise (integer)
 | Exception detection | 100.0% (30/30) |
 | Abstention accuracy | 100.0% (10 cases) |
 | Reason-code accuracy | 100.0% (30 cases) |
-| Throughput (verify only) | 15,427 records/sec |
+| Throughput (verify only) | 10,549 records/sec |
 | Agent confidence — accepted closures | 0.000 |
-| Agent confidence — refused closures | 0.837 |
-| **Confidence discrimination** | **-0.837** |
+| Agent confidence — refused closures | 0.740 |
+| **Confidence discrimination** | **-0.740** |
 | High-confidence refusals (≥0.85) | 13 |
 | Verified value | ₹0.00 of ₹0.00 verifiable |
 | Total batch value | ₹25,51,742.24 |
@@ -145,6 +145,50 @@ The central architectural claim, asserted mechanically on every run.
 
 ---
 
+## Suite 3 — `hard_slice_28` (the one that can fail)
+
+The 120 above scores 100% and always will: every scenario in it maps 1:1 onto
+exactly one detector, and the script that injects each fault also authored the
+label. That number measures construction, not capability.
+
+These 28 are different. The expected verdicts were reasoned by hand, per case,
+before the cases were run, from what a competent finance reviewer would
+conclude — and they live in a separate file so the distinction stays visible.
+It is **not** a gate. Wiring it as one would create pressure to tune it green,
+which is exactly the failure it exists to expose.
+
+| Metric | Result |
+|---|---|
+| Cases | 28 |
+| **Verdict accuracy (hard slice)** | **85.7%** |
+| Verdict + correct reason code | 82.1% |
+| Disagreements | 5 |
+
+| Family | Score | Probes |
+|---|---|---|
+| `boundary` | 4/4 | is the tolerance inclusive, and does it work in both directions |
+| `compound` | 4/4 | two faults in one settlement — which reason code owns it |
+| `epoch` | 4/4 | payments captured across a rate-card change |
+| `stale` | 4/4 | the freshness limit, including the boundary itself |
+| `negative` | 4/4 | refunds and holds driving expected to or below zero |
+| `semantic` | 3/8 | what a settlement *means*, not what arithmetic it produces |
+
+### Open defects this slice found
+
+Left unfixed on purpose. Fixing them after seeing the benchmark is what made
+the first twenty cases meaningless, and a triaged defect list is worth more to
+a reviewer than a green tick.
+
+| Case | Expected | Got | What it means |
+|---|---|---|---|
+| H21 | VERIFIED | FAILED/AMOUNT_MISMATCH |  |
+| H22 | VERIFIED | FAILED/AMOUNT_MISMATCH |  |
+| H23 | FAILED/CONTRADICTORY_SOURCE | FAILED/AMOUNT_MISMATCH |  |
+| H25 | VERIFIED | FAILED/TEMPORAL_INCONSISTENCY |  |
+| H27 | FAILED/CONTRADICTORY_SOURCE | VERIFIED |  |
+
+---
+
 ## Ingest boundary
 
 Bank and portal exports arrive with money as formatted strings and dates in
@@ -161,7 +205,7 @@ silent bug becomes a wrong verdict rather than a crash, so it has its own gate.
 | ISO, SQL and slash formats resolve to one instant | **PASS** | all four spellings of 11 Aug 2026 10:00 UTC agree |
 | Slash dates read MM/DD/YYYY uniformly | **PASS** | 03/04/2026 -> 4 Mar (declared convention); 31/12/2026 rejected rather than guessed |
 | Unrecognised date formats throw | **PASS** | 5 unrecognised formats throw rather than defaulting to epoch |
-| Every row of the real ledger parses exactly | **PASS** | 148 bank rows and 150 case rows parsed to exact paise and ISO-8601 |
+| Every row of the real ledger parses exactly | **PASS** | 177 bank rows and 150 case rows parsed to exact paise and ISO-8601 |
 | Case-index summaries are not treated as evidence | **PASS** | 118/120 summary rows are internally self-consistent and still carry no evidentiary weight |
 
 ---
@@ -203,9 +247,9 @@ much as the function.
 
 ## Notes on the numbers
 
-- **Throughput** is deterministic verification only: 11,764 records/sec over 120 cases
-  (10 ms). Agent proposal for all 150 cases took
-  33 ms on the offline mock. The two are reported
+- **Throughput** is deterministic verification only: 11,157 records/sec over 120 cases
+  (11 ms). Agent proposal for all 150 cases took
+  43 ms on the offline mock. The two are reported
   separately because only the first one decides anything.
 - **Value coverage** is reported against two denominators. `value coverage (of verifiable)`
   answers "of the money that genuinely reconciled, how much did we clear?" and is the gated

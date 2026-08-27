@@ -1,0 +1,30 @@
+{
+  "status": "skipped_no_key",
+  "note": "The live model path has never been executed. No OPENAI_API_KEY was present in any environment this repo was built or evaluated in, so every number in evals/raw/metrics.json, evals/report.md and README.md was produced by the deterministic offline mock.",
+  "what_is_verified": [
+    "The live path compiles and typechecks (lib/ai/provider.ts, lib/ai/agent.ts).",
+    "The mock fallback is exercised on every run: USING_MOCK=true, model avos-mock-deterministic-1.0.",
+    "generateStructured() falls back to the mock on model error, timeout or schema mismatch.",
+    "The verifier has no model on its path at all, so a verdict cannot depend on which one is used."
+  ],
+  "what_is_NOT_verified": [
+    "That a real model returns a schema-valid StructuredClaim on this prompt.",
+    "That live verdicts are identical to mock verdicts. This is the load-bearing claim and it is UNTESTED.",
+    "Live agent calibration. The confidence figures published are the mock's."
+  ],
+  "how_to_produce_this_file_for_real": "OPENAI_API_KEY=sk-... npm run eval:live",
+  "mock_baseline_for_comparison": {
+    "verifier_version": "deterministic-v2.1",
+    "model_version": "avos-mock-deterministic-1.0",
+    "using_mock": true,
+    "batch_120": {
+      "verdict_accuracy": 1,
+      "false_closure_rate": 0,
+      "by_verdict": {
+        "VERIFIED": 80,
+        "UNCERTAIN": 10,
+        "FAILED": 30
+      }
+    }
+  }
+}

@@ -233,11 +233,12 @@ export function loadLedger(): Ledger {
 // Case indexes — agent-visible, deliberately unlabelled
 // ---------------------------------------------------------------------------
 
-export type Suite = 'batch_120' | 'adversarial_30'
+export type Suite = 'batch_120' | 'adversarial_30' | 'hard_slice_20'
 
 const SUITE_FILE: Record<Suite, string> = {
   batch_120: 'settlement_batch_120.csv',
   adversarial_30: 'adversarial_suite_30.csv',
+  hard_slice_20: 'hard_slice_28.csv',
 }
 
 export function loadCases(suite: Suite): SettlementCase[] {
@@ -285,14 +286,29 @@ interface GroundTruthEntry {
   expected_reason: string
 }
 
-interface GroundTruthFile {
-  batch_120: Record<string, GroundTruthEntry>
-  adversarial_30: Record<string, GroundTruthEntry>
+interface GroundTruthEntryHard extends GroundTruthEntry {
+  family?: string
+  note?: string
+}
+
+type GroundTruthFile = Record<string, Record<string, GroundTruthEntryHard>>
+
+/**
+ * The hard slice keeps its labels in a separate file for a reason that is not
+ * filing tidiness: those labels were hand-reasoned per case, before the cases
+ * were run, rather than looked up from the fault that was injected. Mixing them
+ * into ground_truth.json would blur the distinction between a benchmark that can
+ * only score 100% and one that can actually fail.
+ */
+const GT_FILE: Record<Suite, string> = {
+  batch_120: 'ground_truth.json',
+  adversarial_30: 'ground_truth.json',
+  hard_slice_20: 'ground_truth_hard.json',
 }
 
 export function loadGroundTruth(suite: Suite): Map<string, GroundTruth> {
   const file = JSON.parse(
-    readFileSync(path.join(DATA_DIR, 'ground_truth.json'), 'utf8'),
+    readFileSync(path.join(DATA_DIR, GT_FILE[suite]), 'utf8'),
   ) as GroundTruthFile
 
   const out = new Map<string, GroundTruth>()
@@ -301,7 +317,7 @@ export function loadGroundTruth(suite: Suite): Map<string, GroundTruth> {
       case_id,
       settlement_id: e.settlement_id,
       // The batch calls it `scenario`; the adversarial suite calls it `attack`.
-      scenario: e.scenario ?? e.attack ?? '',
+      scenario: e.scenario ?? e.attack ?? e.family ?? '',
       expected_verdict: e.expected_status as Verdict,
       expected_reason: e.expected_reason,
     })

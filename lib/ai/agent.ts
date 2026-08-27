@@ -119,17 +119,54 @@ function stableIndex(key: string, n: number): number {
  * does not read them.
  */
 /**
- * Mock confidence: deterministic per settlement, spread across a realistic band,
- * and — importantly — uncorrelated with whether the claim is actually right.
+ * The offline agent.
  *
- * That is not a shortcut. It is the honest model of a self-reported score. A
- * real agent's confidence reflects how fluent its own reasoning felt, which is a
- * fact about the agent and not about the settlement. The eval measures the
- * resulting discrimination and reports it at whatever it turns out to be.
+ * The first version of this returned RECONCILED on every case with a confidence
+ * drawn from `hash(settlement_id)`. That made two of the eval's metrics
+ * meaningless: `agent_citation_coverage` could never fail, because the mock cited
+ * every retrieved row; and "confidence carries no signal" was not a finding about
+ * agents, it was a restatement of the hash.
+ *
+ * This one is adversarial in the ways a real throughput-optimised agent is:
+ *
+ *  - it mostly over-closes, but not always;
+ *  - it sometimes omits the one row that would sink its own claim;
+ *  - it occasionally cites an id that does not exist;
+ *  - and its confidence is a function of what it could see, not of what is true.
+ *
+ * That last point is the honest model of self-reported confidence. An agent is
+ * confident when its inputs looked complete and tidy — which is a fact about the
+ * inputs, not about whether the money is right. A settlement with a clean, fresh,
+ * fully-populated pack and a Rs 200 fee overcharge will score 0.95. That is
+ * exactly the failure mode worth measuring, and it only becomes measurable once
+ * the score is derived from something real.
  */
-function mockConfidence(settlementId: string): number {
-  const spread = stableIndex(`${settlementId}:conf`, 27)
-  return Math.round((0.72 + spread * 0.01) * 100) / 100
+
+/** Stable per-settlement draw in [0,1). Deterministic across runs. */
+function draw(key: string): number {
+  return stableIndex(key, 10_000) / 10_000
+}
+
+/**
+ * Confidence from evidence completeness — never from correctness.
+ *
+ * The agent cannot see the verdict, so it scores what it can: is every leg of
+ * the recomputation present, is it fresh, do the sources agree with each other.
+ * All three can be true of a settlement that is financially wrong.
+ */
+function assessConfidence(pack: EvidencePack): number {
+  const kinds = new Set(pack.evidence.map((e) => e.kind))
+  const settlements = pack.evidence.filter((e) => e.kind === 'settlement')
+  const distinctVersions = new Set(settlements.map((e) => e.hash)).size
+  const maxAge = pack.policy_snapshot.evidence_freshness_max_hours || 24
+  const stale = pack.evidence.some(
+    (e) => Number.isFinite(e.freshness_hours) && e.freshness_hours > maxAge,
+  )
+
+  if (!kinds.has('payment') || !kinds.has('bank_credit') || !kinds.has('settlement')) return 0.4
+  if (distinctVersions > 1) return 0.4
+  if (stale) return 0.6
+  return 0.95
 }
 
 const MOCK_RATIONALES = [
@@ -140,20 +177,60 @@ const MOCK_RATIONALES = [
   'Verified the UTR against the bank feed and the totals line up. Safe to close.',
 ]
 
-export async function proposeClaim(pack: EvidencePack): Promise<AgentProposal> {
-  const allIds = pack.evidence.map((e) => e.evidence_id)
+const HEDGED_RATIONALES = [
+  'Could not tie the credited amount back to the captured payments. Not closing this one.',
+  'The bank leg does not look complete to me. Routing for review rather than closing.',
+  'Something is off between the settlement total and what landed. Needs a human.',
+]
 
+interface MockProposal {
+  proposed_status: ProposedStatus
+  evidence_ids: string[]
+  agent_reason: string
+  confidence: number
+}
+
+function mockPropose(pack: EvidencePack): MockProposal {
+  const allIds = pack.evidence.map((e) => e.evidence_id)
+  const roll = draw(`${pack.settlement_id}:status`)
+
+  // 70 / 20 / 10. An agent that never hedges is not an agent, and an agent that
+  // hedges often would never have needed a verifier.
+  const proposed_status: ProposedStatus =
+    roll < 0.7 ? 'RECONCILED' : roll < 0.9 ? 'NOT_RECONCILED' : 'NEEDS_REVIEW'
+
+  let evidence_ids = allIds
+
+  // 15%: drop the row most likely to sink the claim. Not malice — an agent
+  // summarising "the relevant evidence" discards what looks redundant, and a
+  // duplicate bank credit looks exactly like a redundant bank credit.
+  if (draw(`${pack.settlement_id}:omit`) < 0.15) {
+    const inconvenient =
+      pack.evidence.filter((e) => e.kind === 'bank_credit')[1] ??
+      pack.evidence.filter((e) => e.kind === 'settlement')[1]
+    if (inconvenient) evidence_ids = allIds.filter((id) => id !== inconvenient.evidence_id)
+  }
+
+  // 10%: cite a row that does not exist. This is what makes
+  // `agent_citation_coverage` a check that can actually fail.
+  if (draw(`${pack.settlement_id}:halluc`) < 0.1) {
+    evidence_ids = [...evidence_ids, `bank_statement:bnk-${pack.settlement_id.slice(-4)}X`]
+  }
+
+  const agent_reason =
+    proposed_status === 'RECONCILED'
+      ? MOCK_RATIONALES[stableIndex(pack.settlement_id, MOCK_RATIONALES.length)]
+      : HEDGED_RATIONALES[stableIndex(pack.settlement_id, HEDGED_RATIONALES.length)]
+
+  return { proposed_status, evidence_ids, agent_reason, confidence: assessConfidence(pack) }
+}
+
+export async function proposeClaim(pack: EvidencePack): Promise<AgentProposal> {
   const { value, used_mock, model_version } = await generateStructured({
     system: SYSTEM,
     prompt: renderPack(pack),
     schema: ClaimSchema,
-    mock: () => ({
-      // Over-closing is the realistic prior, and the workload AVOS is for.
-      proposed_status: 'RECONCILED' as ProposedStatus,
-      evidence_ids: allIds,
-      agent_reason: MOCK_RATIONALES[stableIndex(pack.settlement_id, MOCK_RATIONALES.length)],
-      confidence: mockConfidence(pack.settlement_id),
-    }),
+    mock: () => mockPropose(pack),
   })
 
   // ---------------------------------------------------------------------

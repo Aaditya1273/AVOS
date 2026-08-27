@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-26T16:03:51.924Z",
+  "generated_at": "2026-08-27T11:44:44.484Z",
   "verifier_version": "deterministic-v2.1",
   "model_version": "avos-mock-deterministic-1.0",
   "using_mock": true,
@@ -28,13 +28,13 @@
     "abstention_n": 10,
     "reason_code_accuracy": 1,
     "reason_code_n": 40,
-    "mean_confidence_accepted": 0.84,
-    "mean_confidence_refused": 0.838,
-    "confidence_discrimination": 0.002,
-    "high_confidence_refusals": 17,
+    "mean_confidence_accepted": 0.95,
+    "mean_confidence_refused": 0.666,
+    "confidence_discrimination": 0.284,
+    "high_confidence_refusals": 14,
     "confidence_threshold": 0.85,
-    "throughput_records_per_sec": 11764,
-    "verify_elapsed_ms": 10,
+    "throughput_records_per_sec": 11157,
+    "verify_elapsed_ms": 11,
     "confusion": {},
     "mismatches": []
   },
@@ -64,12 +64,12 @@
     "reason_code_accuracy": 1,
     "reason_code_n": 30,
     "mean_confidence_accepted": 0,
-    "mean_confidence_refused": 0.837,
-    "confidence_discrimination": -0.837,
+    "mean_confidence_refused": 0.74,
+    "confidence_discrimination": -0.74,
     "high_confidence_refusals": 13,
     "confidence_threshold": 0.85,
-    "throughput_records_per_sec": 15427,
-    "verify_elapsed_ms": 2,
+    "throughput_records_per_sec": 10549,
+    "verify_elapsed_ms": 3,
     "confusion": {},
     "mismatches": []
   },
@@ -227,7 +227,7 @@
       "id": "ledger_parses_without_loss",
       "name": "Every row of the real ledger parses exactly",
       "passed": true,
-      "detail": "148 bank rows and 150 case rows parsed to exact paise and ISO-8601"
+      "detail": "177 bank rows and 150 case rows parsed to exact paise and ISO-8601"
     },
     {
       "id": "summary_disagrees_where_it_should",
@@ -382,6 +382,443 @@
       "detail": "deterministic-v2.1 under test-policy-v1, evaluated as of 2026-08-11T06:00:00Z"
     }
   ],
+  "hard_slice": {
+    "n": 28,
+    "verdict_accuracy_hard_slice": 0.8571428571428571,
+    "reason_accuracy_hard_slice": 0.8214285714285714,
+    "by_family": {
+      "boundary": {
+        "n": 4,
+        "correct": 4
+      },
+      "compound": {
+        "n": 4,
+        "correct": 4
+      },
+      "epoch": {
+        "n": 4,
+        "correct": 4
+      },
+      "stale": {
+        "n": 4,
+        "correct": 4
+      },
+      "negative": {
+        "n": 4,
+        "correct": 4
+      },
+      "semantic": {
+        "n": 8,
+        "correct": 3
+      }
+    },
+    "by_verdict": {
+      "VERIFIED": 12,
+      "UNCERTAIN": 4,
+      "FAILED": 12
+    },
+    "failures": [
+      {
+        "case_id": "H21",
+        "settlement_id": "S-80021",
+        "family": "semantic",
+        "note": "",
+        "expected": "VERIFIED",
+        "got": "FAILED/AMOUNT_MISMATCH",
+        "correct": false,
+        "verdict_only": false,
+        "difference_paise": -90000,
+        "tolerance_paise": 5000
+      },
+      {
+        "case_id": "H22",
+        "settlement_id": "S-80022",
+        "family": "semantic",
+        "note": "",
+        "expected": "VERIFIED",
+        "got": "FAILED/AMOUNT_MISMATCH",
+        "correct": false,
+        "verdict_only": false,
+        "difference_paise": 146460,
+        "tolerance_paise": 5000
+      },
+      {
+        "case_id": "H23",
+        "settlement_id": "S-80023",
+        "family": "semantic",
+        "note": "",
+        "expected": "FAILED/CONTRADICTORY_SOURCE",
+        "got": "FAILED/AMOUNT_MISMATCH",
+        "correct": false,
+        "verdict_only": true,
+        "difference_paise": 234336,
+        "tolerance_paise": 5000
+      },
+      {
+        "case_id": "H25",
+        "settlement_id": "S-80025",
+        "family": "semantic",
+        "note": "",
+        "expected": "VERIFIED",
+        "got": "FAILED/TEMPORAL_INCONSISTENCY",
+        "correct": false,
+        "verdict_only": false,
+        "difference_paise": 0,
+        "tolerance_paise": 5000
+      },
+      {
+        "case_id": "H27",
+        "settlement_id": "S-80027",
+        "family": "semantic",
+        "note": "",
+        "expected": "FAILED/CONTRADICTORY_SOURCE",
+        "got": "VERIFIED",
+        "correct": false,
+        "verdict_only": false,
+        "difference_paise": 0,
+        "tolerance_paise": 5000
+      }
+    ],
+    "results": [
+      {
+        "case_id": "H01",
+        "settlement_id": "S-80001",
+        "family": "boundary",
+        "note": "",
+        "expected": "VERIFIED",
+        "got": "VERIFIED",
+        "correct": true,
+        "verdict_only": false,
+        "difference_paise": 5000,
+        "tolerance_paise": 5000
+      },
+      {
+        "case_id": "H02",
+        "settlement_id": "S-80002",
+        "family": "boundary",
+        "note": "",
+        "expected": "FAILED/FEE_MISMATCH",
+        "got": "FAILED/FEE_MISMATCH",
+        "correct": true,
+        "verdict_only": false,
+        "difference_paise": 5001,
+        "tolerance_paise": 5000
+      },
+      {
+        "case_id": "H03",
+        "settlement_id": "S-80003",
+        "family": "boundary",
+        "note": "",
+        "expected": "VERIFIED",
+        "got": "VERIFIED",
+        "correct": true,
+        "verdict_only": false,
+        "difference_paise": -5000,
+        "tolerance_paise": 5000
+      },
+      {
+        "case_id": "H04",
+        "settlement_id": "S-80004",
+        "family": "boundary",
+        "note": "",
+        "expected": "FAILED/FEE_MISMATCH",
+        "got": "FAILED/FEE_MISMATCH",
+        "correct": true,
+        "verdict_only": false,
+        "difference_paise": -5001,
+        "tolerance_paise": 5000
+      },
+      {
+        "case_id": "H05",
+        "settlement_id": "S-80005",
+        "family": "compound",
+        "note": "",
+        "expected": "FAILED/DUPLICATE_UTR",
+        "got": "FAILED/DUPLICATE_UTR",
+        "correct": true,
+        "verdict_only": false,
+        "difference_paise": 20000,
+        "tolerance_paise": 5000
+      },
+      {
+        "case_id": "H06",
+        "settlement_id": "S-80006",
+        "family": "compound",
+        "note": "",
+        "expected": "FAILED/CONTRADICTORY_SOURCE",
+        "got": "FAILED/CONTRADICTORY_SOURCE",
+        "correct": true,
+        "verdict_only": false,
+        "difference_paise": 20000,
+        "tolerance_paise": 5000
+      },
+      {
+        "case_id": "H07",
+        "settlement_id": "S-80007",
+        "family": "compound",
+        "note": "",
+        "expected": "FAILED/DUPLICATE_UTR",
+        "got": "FAILED/DUPLICATE_UTR",
+        "correct": true,
+        "verdict_only": false,
+        "difference_paise": 0,
+        "tolerance_paise": 5000
+      },
+      {
+        "case_id": "H08",
+        "settlement_id": "S-80008",
+        "family": "compound",
+        "note": "",
+        "expected": "FAILED/FEE_MISMATCH",
+        "got": "FAILED/FEE_MISMATCH",
+        "correct": true,
+        "verdict_only": false,
+        "difference_paise": 20000,
+        "tolerance_paise": 5000
+      },
+      {
+        "case_id": "H09",
+        "settlement_id": "S-80009",
+        "family": "epoch",
+        "note": "",
+        "expected": "VERIFIED",
+        "got": "VERIFIED",
+        "correct": true,
+        "verdict_only": false,
+        "difference_paise": 0,
+        "tolerance_paise": 5000
+      },
+      {
+        "case_id": "H10",
+        "settlement_id": "S-80010",
+        "family": "epoch",
+        "note": "",
+        "expected": "FAILED/FEE_MISMATCH",
+        "got": "FAILED/FEE_MISMATCH",
+        "correct": true,
+        "verdict_only": false,
+        "difference_paise": -6015,
+        "tolerance_paise": 5000
+      },
+      {
+        "case_id": "H11",
+        "settlement_id": "S-80011",
+        "family": "epoch",
+        "note": "",
+        "expected": "VERIFIED",
+        "got": "VERIFIED",
+        "correct": true,
+        "verdict_only": false,
+        "difference_paise": 0,
+        "tolerance_paise": 5000
+      },
+      {
+        "case_id": "H12",
+        "settlement_id": "S-80012",
+        "family": "epoch",
+        "note": "",
+        "expected": "VERIFIED",
+        "got": "VERIFIED",
+        "correct": true,
+        "verdict_only": false,
+        "difference_paise": 0,
+        "tolerance_paise": 5000
+      },
+      {
+        "case_id": "H13",
+        "settlement_id": "S-80013",
+        "family": "stale",
+        "note": "",
+        "expected": "UNCERTAIN/STALE_EVIDENCE",
+        "got": "UNCERTAIN/STALE_EVIDENCE",
+        "correct": true,
+        "verdict_only": false,
+        "difference_paise": 0,
+        "tolerance_paise": 5000
+      },
+      {
+        "case_id": "H14",
+        "settlement_id": "S-80014",
+        "family": "stale",
+        "note": "",
+        "expected": "UNCERTAIN/STALE_EVIDENCE",
+        "got": "UNCERTAIN/STALE_EVIDENCE",
+        "correct": true,
+        "verdict_only": false,
+        "difference_paise": 0,
+        "tolerance_paise": 5000
+      },
+      {
+        "case_id": "H15",
+        "settlement_id": "S-80015",
+        "family": "stale",
+        "note": "",
+        "expected": "UNCERTAIN/STALE_EVIDENCE",
+        "got": "UNCERTAIN/STALE_EVIDENCE",
+        "correct": true,
+        "verdict_only": false,
+        "difference_paise": 20000,
+        "tolerance_paise": 5000
+      },
+      {
+        "case_id": "H16",
+        "settlement_id": "S-80016",
+        "family": "stale",
+        "note": "",
+        "expected": "VERIFIED",
+        "got": "VERIFIED",
+        "correct": true,
+        "verdict_only": false,
+        "difference_paise": 0,
+        "tolerance_paise": 5000
+      },
+      {
+        "case_id": "H17",
+        "settlement_id": "S-80017",
+        "family": "negative",
+        "note": "",
+        "expected": "FAILED/AMOUNT_MISMATCH",
+        "got": "FAILED/AMOUNT_MISMATCH",
+        "correct": true,
+        "verdict_only": false,
+        "difference_paise": -14231,
+        "tolerance_paise": 5000
+      },
+      {
+        "case_id": "H18",
+        "settlement_id": "S-80018",
+        "family": "negative",
+        "note": "",
+        "expected": "VERIFIED",
+        "got": "VERIFIED",
+        "correct": true,
+        "verdict_only": false,
+        "difference_paise": 0,
+        "tolerance_paise": 5000
+      },
+      {
+        "case_id": "H19",
+        "settlement_id": "S-80019",
+        "family": "negative",
+        "note": "",
+        "expected": "VERIFIED",
+        "got": "VERIFIED",
+        "correct": true,
+        "verdict_only": false,
+        "difference_paise": 0,
+        "tolerance_paise": 5000
+      },
+      {
+        "case_id": "H20",
+        "settlement_id": "S-80020",
+        "family": "negative",
+        "note": "",
+        "expected": "VERIFIED",
+        "got": "VERIFIED",
+        "correct": true,
+        "verdict_only": false,
+        "difference_paise": 0,
+        "tolerance_paise": 5000
+      },
+      {
+        "case_id": "H21",
+        "settlement_id": "S-80021",
+        "family": "semantic",
+        "note": "",
+        "expected": "VERIFIED",
+        "got": "FAILED/AMOUNT_MISMATCH",
+        "correct": false,
+        "verdict_only": false,
+        "difference_paise": -90000,
+        "tolerance_paise": 5000
+      },
+      {
+        "case_id": "H22",
+        "settlement_id": "S-80022",
+        "family": "semantic",
+        "note": "",
+        "expected": "VERIFIED",
+        "got": "FAILED/AMOUNT_MISMATCH",
+        "correct": false,
+        "verdict_only": false,
+        "difference_paise": 146460,
+        "tolerance_paise": 5000
+      },
+      {
+        "case_id": "H23",
+        "settlement_id": "S-80023",
+        "family": "semantic",
+        "note": "",
+        "expected": "FAILED/CONTRADICTORY_SOURCE",
+        "got": "FAILED/AMOUNT_MISMATCH",
+        "correct": false,
+        "verdict_only": true,
+        "difference_paise": 234336,
+        "tolerance_paise": 5000
+      },
+      {
+        "case_id": "H24",
+        "settlement_id": "S-80024",
+        "family": "semantic",
+        "note": "",
+        "expected": "VERIFIED",
+        "got": "VERIFIED",
+        "correct": true,
+        "verdict_only": false,
+        "difference_paise": 0,
+        "tolerance_paise": 5000
+      },
+      {
+        "case_id": "H25",
+        "settlement_id": "S-80025",
+        "family": "semantic",
+        "note": "",
+        "expected": "VERIFIED",
+        "got": "FAILED/TEMPORAL_INCONSISTENCY",
+        "correct": false,
+        "verdict_only": false,
+        "difference_paise": 0,
+        "tolerance_paise": 5000
+      },
+      {
+        "case_id": "H26",
+        "settlement_id": "S-80026",
+        "family": "semantic",
+        "note": "",
+        "expected": "VERIFIED",
+        "got": "VERIFIED",
+        "correct": true,
+        "verdict_only": false,
+        "difference_paise": 0,
+        "tolerance_paise": 5000
+      },
+      {
+        "case_id": "H27",
+        "settlement_id": "S-80027",
+        "family": "semantic",
+        "note": "",
+        "expected": "FAILED/CONTRADICTORY_SOURCE",
+        "got": "VERIFIED",
+        "correct": false,
+        "verdict_only": false,
+        "difference_paise": 0,
+        "tolerance_paise": 5000
+      },
+      {
+        "case_id": "H28",
+        "settlement_id": "S-80028",
+        "family": "semantic",
+        "note": "",
+        "expected": "UNCERTAIN/MISSING_EVIDENCE",
+        "got": "UNCERTAIN/MISSING_EVIDENCE",
+        "correct": true,
+        "verdict_only": false,
+        "difference_paise": null,
+        "tolerance_paise": 5000
+      }
+    ],
+    "elapsed_ms": 2
+  },
   "isolation": [
     {
       "id": "verifier_has_zero_runtime_imports",

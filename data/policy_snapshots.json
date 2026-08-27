@@ -24,5 +24,18 @@
       "processed",
       "settled"
     ]
+  },
+  {
+    "version": "finance-policy-v14",
+    "effective_at": "2026-09-01T00:00:00Z",
+    "fee_tolerance_paise": 5000,
+    "fee_rate_bps": 250,
+    "gst_rate_bps": 1800,
+    "max_settlement_lag_days": 3,
+    "evidence_freshness_max_hours": 24,
+    "closeable_statuses": [
+      "processed",
+      "settled"
+    ]
   }
 ]

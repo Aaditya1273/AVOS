@@ -127,6 +127,18 @@ export interface EvidenceItem {
   /** Settlement lifecycle start. Typed, because the verifier needs to order it. */
   created_at?: string
   /**
+   * The rate card in force when THIS row's fact occurred, resolved at pack-build
+   * time.
+   *
+   * A platform fee is levied when a payment is captured, not when the settlement
+   * is decided. A settlement whose payments straddle a repricing therefore has no
+   * single correct fee rate — only a per-payment one. Stamping the rate onto the
+   * row is what lets the verifier get that right while staying importless: it
+   * cannot call `resolvePolicy` itself, so the pack builder resolves it here.
+   */
+  fee_rate_bps?: number
+  gst_rate_bps?: number
+  /**
    * Free text from the source row: bank narration, hold reason, event type.
    *
    * THE VERIFIER MUST NEVER READ THIS FIELD, and `evals/isolation.ts` fails the
@@ -332,7 +344,7 @@ export interface GroundTruth {
 /** One fully-assembled decision: claim, evidence, verdict. What a Proof Card renders. */
 export interface Decision {
   case_id: string
-  suite: 'batch_120' | 'adversarial_30'
+  suite: 'batch_120' | 'adversarial_30' | 'hard_slice_20'
   proposal: AgentProposal
   pack: EvidencePack
   result: VerificationResult

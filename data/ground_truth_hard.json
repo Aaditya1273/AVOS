@@ -1,0 +1,201 @@
+{
+  "_comment": "EVAL ONLY. Expectations are hand-reasoned from what a competent finance reviewer would conclude, written BEFORE the cases were run, and deliberately not tuned to match verifier output. A hard slice that scores 100% was not hard.",
+  "hard_slice_20": {
+    "H01": {
+      "settlement_id": "S-80001",
+      "family": "boundary",
+      "note": "difference == tolerance exactly (+5000p)",
+      "expected_status": "VERIFIED",
+      "expected_reason": ""
+    },
+    "H02": {
+      "settlement_id": "S-80002",
+      "family": "boundary",
+      "note": "difference == tolerance + 1 (+5001p)",
+      "expected_status": "FAILED",
+      "expected_reason": "FEE_MISMATCH"
+    },
+    "H03": {
+      "settlement_id": "S-80003",
+      "family": "boundary",
+      "note": "difference == -tolerance exactly (bank overpaid)",
+      "expected_status": "VERIFIED",
+      "expected_reason": ""
+    },
+    "H04": {
+      "settlement_id": "S-80004",
+      "family": "boundary",
+      "note": "difference == -(tolerance + 1)",
+      "expected_status": "FAILED",
+      "expected_reason": "FEE_MISMATCH"
+    },
+    "H05": {
+      "settlement_id": "S-80005",
+      "family": "compound",
+      "note": "fee mismatch + duplicate UTR -> UTR owns it",
+      "expected_status": "FAILED",
+      "expected_reason": "DUPLICATE_UTR"
+    },
+    "H06": {
+      "settlement_id": "S-80006",
+      "family": "compound",
+      "note": "fee mismatch + contradictory source -> contradiction owns it",
+      "expected_status": "FAILED",
+      "expected_reason": "CONTRADICTORY_SOURCE"
+    },
+    "H07": {
+      "settlement_id": "S-80007",
+      "family": "compound",
+      "note": "duplicate UTR + contradictory source -> UTR outranks",
+      "expected_status": "FAILED",
+      "expected_reason": "DUPLICATE_UTR"
+    },
+    "H08": {
+      "settlement_id": "S-80008",
+      "family": "compound",
+      "note": "fee mismatch + stale policy stamp -> the money is definitely wrong",
+      "expected_status": "FAILED",
+      "expected_reason": "FEE_MISMATCH"
+    },
+    "H09": {
+      "settlement_id": "S-80009",
+      "family": "epoch",
+      "note": "payments span the rate change, settlement priced correctly",
+      "expected_status": "VERIFIED",
+      "expected_reason": ""
+    },
+    "H10": {
+      "settlement_id": "S-80010",
+      "family": "epoch",
+      "note": "settlement priced every payment at the OLD rate",
+      "expected_status": "FAILED",
+      "expected_reason": "FEE_MISMATCH"
+    },
+    "H11": {
+      "settlement_id": "S-80011",
+      "family": "epoch",
+      "note": "all payments after the change, decided under v14",
+      "expected_status": "VERIFIED",
+      "expected_reason": ""
+    },
+    "H12": {
+      "settlement_id": "S-80012",
+      "family": "epoch",
+      "note": "spans the change, with a refund netted out",
+      "expected_status": "VERIFIED",
+      "expected_reason": ""
+    },
+    "H13": {
+      "settlement_id": "S-80013",
+      "family": "stale",
+      "note": "evidence 25h old at decision",
+      "expected_status": "UNCERTAIN",
+      "expected_reason": "STALE_EVIDENCE"
+    },
+    "H14": {
+      "settlement_id": "S-80014",
+      "family": "stale",
+      "note": "evidence 48h old at decision",
+      "expected_status": "UNCERTAIN",
+      "expected_reason": "STALE_EVIDENCE"
+    },
+    "H15": {
+      "settlement_id": "S-80015",
+      "family": "stale",
+      "note": "evidence 72h old, and a fee mismatch as well",
+      "expected_status": "UNCERTAIN",
+      "expected_reason": "STALE_EVIDENCE"
+    },
+    "H16": {
+      "settlement_id": "S-80016",
+      "family": "stale",
+      "note": "evidence exactly 24.0h old \u2014 the boundary is INSIDE the limit",
+      "expected_status": "VERIFIED",
+      "expected_reason": ""
+    },
+    "H17": {
+      "settlement_id": "S-80017",
+      "family": "negative",
+      "note": "refunds exceed gross, nothing credited \u2014 carry-forward unmatched",
+      "expected_status": "FAILED",
+      "expected_reason": "AMOUNT_MISMATCH"
+    },
+    "H18": {
+      "settlement_id": "S-80018",
+      "family": "negative",
+      "note": "refunds + hold net the settlement to exactly zero",
+      "expected_status": "VERIFIED",
+      "expected_reason": ""
+    },
+    "H19": {
+      "settlement_id": "S-80019",
+      "family": "negative",
+      "note": "hold absorbs the entire net, zero credited",
+      "expected_status": "VERIFIED",
+      "expected_reason": ""
+    },
+    "H20": {
+      "settlement_id": "S-80020",
+      "family": "negative",
+      "note": "refunds exceed gross and the bank debits the difference",
+      "expected_status": "VERIFIED",
+      "expected_reason": ""
+    },
+    "H21": {
+      "settlement_id": "S-80021",
+      "family": "semantic",
+      "note": "refund processed AFTER decision_time \u2014 the decision could not have known",
+      "expected_status": "VERIFIED",
+      "expected_reason": ""
+    },
+    "H22": {
+      "settlement_id": "S-80022",
+      "family": "semantic",
+      "note": "a payment captured after the settlement was cut does not belong to it",
+      "expected_status": "VERIFIED",
+      "expected_reason": ""
+    },
+    "H23": {
+      "settlement_id": "S-80023",
+      "family": "semantic",
+      "note": "same payment_id twice with different amounts \u2014 a restatement, not a second payment",
+      "expected_status": "FAILED",
+      "expected_reason": "CONTRADICTORY_SOURCE"
+    },
+    "H24": {
+      "settlement_id": "S-80024",
+      "family": "semantic",
+      "note": "one settlement credited in two legitimate bank tranches",
+      "expected_status": "VERIFIED",
+      "expected_reason": ""
+    },
+    "H25": {
+      "settlement_id": "S-80025",
+      "family": "semantic",
+      "note": "date-only bank value_date parses to 00:00Z, before same-day settled_at",
+      "expected_status": "VERIFIED",
+      "expected_reason": ""
+    },
+    "H26": {
+      "settlement_id": "S-80026",
+      "family": "semantic",
+      "note": "a released hold arrives as a negative row and should increase the net",
+      "expected_status": "VERIFIED",
+      "expected_reason": ""
+    },
+    "H27": {
+      "settlement_id": "S-80027",
+      "family": "semantic",
+      "note": "a refund larger than the payment it refunds \u2014 impossible, not merely unbalanced",
+      "expected_status": "FAILED",
+      "expected_reason": "CONTRADICTORY_SOURCE"
+    },
+    "H28": {
+      "settlement_id": "S-80028",
+      "family": "semantic",
+      "note": "no payment rows at all, only a hold and a zero credit",
+      "expected_status": "UNCERTAIN",
+      "expected_reason": "MISSING_EVIDENCE"
+    }
+  }
+}
