@@ -38,6 +38,11 @@ closure conditional on evidence, not on confidence.**
 
 ## The architecture
 
+![Guard · Prove · Verify · Measure](docs/architecture.png)
+
+*One-page walkthrough: [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) · full
+rationale and precedence table: [`ARCHITECTURE.md`](ARCHITECTURE.md)*
+
 The load-bearing decision is a boundary, and it is enforced by the type system
 rather than by discipline:
 
@@ -92,10 +97,10 @@ The verifier never reads `agent_reason`. It only recomputes.
 
 | Pillar | What it does | Where |
 |---|---|---|
-| **Guard** | Is closure permissible under the policy in force **at decision time** — not today's policy? Catches anachronistic judgement, freshness breaches, impermissible settlement states. | `lib/policy/snapshots.ts`, guard checks in `deterministic.ts` |
-| **Prove** | Every row carries source file, row id, timestamp, content hash and freshness. Re-hashed on replay, so a mutated source is caught rather than silently re-verified. | `lib/evidence/pack.ts`, `lib/evidence/hash.ts` |
-| **Verify** | Recomputes the financial claim. Fees derived from the policy rate card, never from a recorded fee. Integer paise. No LLM anywhere on the path. | `lib/verifier/deterministic.ts` |
-| **Measure** | Precision, false closure, value coverage, exception detection, abstention accuracy, throughput — over two labelled fixtures. | `lib/metrics.ts`, `evals/eval.ts` |
+| **Guard** (6 checks) | Is closure permissible under the policy in force **at decision time** — not today's policy? Catches anachronistic judgement, freshness breaches, impermissible settlement states. | `lib/policy/snapshots.ts`, guard checks in `deterministic.ts` |
+| **Prove** (6 checks) | Every row carries source file, row id, timestamp, content hash and freshness. Re-hashed on replay, so a mutated source is caught rather than silently re-verified. | `lib/evidence/pack.ts`, `lib/evidence/hash.ts` |
+| **Verify** (9 checks) | Recomputes the financial claim. Fees derived from the policy rate card, never from a recorded fee. Integer paise. No LLM anywhere on the path. | `lib/verifier/deterministic.ts` |
+| **Measure** (8 gates) | Precision, false closure, value coverage, exception detection, abstention accuracy, throughput — plus a hard slice that is reported and never gated. | `lib/metrics.ts`, `evals/eval.ts` |
 
 ### Verdict semantics
 
@@ -336,27 +341,38 @@ Full write-up in [`evals/report.md`](evals/report.md); raw per-case output in
 The agent proposed `RECONCILED` on **all 120**. AVOS cleared 80, refused 30 and
 abstained on 10.
 
-### Hard slice — 28 cases, 100.0%
+### Hard slice — 28 cases · before 85.7% → after 100.0%
 
 The 120 above scores 100% and always will. Every scenario in it maps 1:1 onto
 exactly one detector, and the script that injects each fault also authored the
-label. **That number measures construction, not capability.**
+label. **It measures construction, not capability.**
 
 The hard slice exists to be failable: expected verdicts reasoned by hand, per
-case, before the cases were run, kept in a separate file. It is **reported, not
+case, before the cases were run, kept in a separate file. **Reported, never
 gated** — a gate creates pressure to tune it green.
 
-| | Verdict | With reason code |
+| | Verdict accuracy | With correct reason code |
 |---|---|---|
-| **Before fixes** | 85.7% | 82.1% |
-| **After fixes** | **100.0%** | **100.0%** |
+| **Before fixes** — commit [`4c170da`](../../commit/4c170da) | 85.7% | 82.1% |
+| **After fixes** — commit [`9fd3715`](../../commit/9fd3715) | **100.0%** | **100.0%** |
 
-**These fixes were applied after seeing the benchmark. That is the honest
-description of what happened**, and it is only defensible because the failures
-were published first, in a commit that predates the fixes. The first twenty
-cases scored 20/20 on their initial run — which was not a pass mark but a signal
-they had been designed with the implementation in view. Eight `semantic` cases
-were added to probe behaviour the verifier did not implement; five failed.
+> **These fixes were applied after seeing the benchmark.** That is the honest
+> description of what happened, and it is defensible for one specific reason: the
+> failing state was committed first, unfixed, with all five failures enumerated
+> in its own `evals/raw/metrics.json`. It is independently inspectable —
+>
+> ```bash
+> git show 4c170da:evals/raw/metrics.json | python3 -c \
+>   "import json,sys; print(json.load(sys.stdin)['hard_slice']['failures'])"
+> ```
+>
+> The before/after rests on that artifact existing, not on anyone's word. Without
+> it, "we scored 100%" would be indistinguishable from a benchmark that was
+> always going to.
+
+The first twenty cases scored 20/20 on their initial run — not a pass mark, a
+signal they had been designed with the implementation in view. Eight `semantic`
+cases were added to probe behaviour the verifier did not implement; five failed.
 
 | Family | Score | What it probes |
 |---|---|---|
@@ -371,21 +387,22 @@ were added to probe behaviour the verifier did not implement; five failed.
 
 | Case | The defect | The fix |
 |---|---|---|
-| H21 | A refund processed **after** `decision_time` was netted into expected — grading a historical decision against its own future | `isEvidenceAvailableAtDecisionTime()` partitions the pack; anything dated later is excluded and reported |
-| H22 | A payment captured after the settlement was cut counted toward its gross | Payments are filtered against `settlement.created_at`; late captures belong to a later settlement |
-| H23 | The same `payment_id` twice at different amounts silently double-counted, and routed to settlements ops | New `DUPLICATE_PAYMENT_ID_CONFLICT`, highest of the integrity codes; gross deduplicates by `payment_id` |
-| H25 | A date-only bank `value_date` parsed to `00:00Z` and tripped the lifecycle check on clean money | `lib/evidence/normalize.ts`: date-only reads as **end** of day, precision is recorded, ordering drops to calendar-day granularity |
-| H27 | A refund larger than the payment it refunds passed unremarked | Refunds now carry `payment_id`; new `OVER_REFUND` compares each against its parent |
+| **H21** | A refund processed **after** `decision_time` was netted into expected — grading a historical decision against its own future | `isEvidenceAvailableAtDecisionTime()` partitions the pack; later-dated rows are excluded and reported |
+| **H22** | A payment captured after the settlement was cut counted toward its gross | Payments filtered against `settlement.created_at`; late captures belong to a later settlement |
+| **H23** | The same `payment_id` twice at different amounts silently double-counted, and routed to settlements ops | New `DUPLICATE_PAYMENT_ID_CONFLICT`, highest of the integrity codes; gross deduplicates by `payment_id` |
+| **H25** | A date-only bank `value_date` parsed to `00:00Z` and tripped the lifecycle check on clean money | `lib/evidence/normalize.ts` — date-only reads as **end** of day, precision recorded, ordering drops to calendar-day granularity |
+| **H27** | A refund larger than the payment it refunds passed unremarked | Refunds carry `payment_id`; new `OVER_REFUND` compares each against its parent |
 
-Plus one found by the adversarial agent rather than the slice: a payment
-captured before the earliest policy snapshot was priced at a **zero** rate,
-manufacturing `FEE_MISMATCH` on clean settlements. Zero is never a safe default
-for a rate.
+Plus one the adversarial agent found rather than the slice: a payment captured
+before the earliest policy snapshot was priced at a **zero** rate, manufacturing
+`FEE_MISMATCH` on clean settlements. Zero is never a safe default for a rate.
 
-A note on the 100%: every case now passes, which means this slice has
-stopped being a measurement and become a regression suite. Both are useful; only
-one tells you something new. It needs harder cases before the number is quotable
-as evidence again.
+> **On the 100%.** Every case now passes, which means this slice has stopped
+> being a measurement and become a **regression suite**. Both are useful; only one
+> tells you something new. It needs harder cases before the number is quotable as
+> evidence again. Next two: a bank credit in a currency the ledger does not
+> declare, and a policy snapshot retroactively amended after decisions were taken
+> under it.
 
 ### Adversarial 30
 
@@ -519,6 +536,40 @@ Two further constraints on the AI surfaces:
   generated. An injection can make the model write something odd; it cannot make
   the card say VERIFIED, because that string comes from a verdict the model was
   never asked to produce.
+
+---
+
+## Production grade
+
+| | Status |
+|---|---|
+| `npm run build` | **PASS** — 0 TypeScript errors, 0 lint errors |
+| `npm run eval` | **PASS** — 8/8 acceptance gates |
+| `npm run test:verifier` | **PASS** — 24/24 |
+| `npm run test:ingest` | **PASS** — 10/10 |
+| `npm run test:adversarial` | **PASS** — 15/15 |
+| `npm run test:api` | **PASS** — 8/8 (vitest, no network) |
+| `npm run check:isolation` | **PASS** — 16/16 |
+| `npm run test:hard` | **100.0%** — reported, never gated |
+
+**Runs with no API key.** `USING_MOCK=true`, model `avos-mock-deterministic-1.0`.
+Clone, `npm install`, `npm run eval` — the full evaluation, free, offline,
+byte-identical to the numbers above.
+
+**Docker: not verified.** The Dockerfile is multi-stage, non-root, with a
+healthcheck against `/api/decision` — but the daemon was inactive in every
+environment this was built in, so the image has never been built or run. What
+*was* verified is the exact file layout it ships: the standalone bundle plus
+`data/` and `evals/raw/` assembled by hand and served with `node server.js`,
+returning 200 on the page and every API route. CI covers build and evaluation on
+clean runners instead.
+
+**Screenshots** in [`docs/`](docs/), captured from a production build via
+Playwright after the final rebuild — [`proof-card-failed.png`](docs/proof-card-failed.png),
+[`replay-demo.png`](docs/replay-demo.png), [`architecture.png`](docs/architecture.png).
+
+**Demo script**: [`docs/DEMO_SCRIPT.md`](docs/DEMO_SCRIPT.md) — 5 minutes, every
+figure reproducible from a cold clone.
 
 ---
 

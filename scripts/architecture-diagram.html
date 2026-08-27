@@ -1,0 +1,63 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+:root{--bg:#0d1017;--card:#141821;--bd:#242b38;--fg:#e6eaf0;--mut:#8b94a6;--pri:#38bdf8;
+--ok:#2fbe80;--warn:#e0a020;--bad:#e8506e}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--fg);font:14px/1.5 ui-sans-serif,system-ui,-apple-system,sans-serif;padding:44px 48px;width:1500px}
+h1{font-size:23px;letter-spacing:-.3px;margin-bottom:4px}
+.sub{color:var(--mut);font-size:13px;margin-bottom:26px}
+.row{display:flex;align-items:stretch;gap:0}
+.box{background:var(--card);border:1px solid var(--bd);border-radius:9px;padding:15px 17px;flex:1}
+.box h3{font-size:13.5px;margin-bottom:7px}
+.box p{color:var(--mut);font-size:11.8px;line-height:1.55}
+.arrow{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 15px;min-width:172px}
+.arrow .lbl{font:600 9.5px/1.35 ui-monospace,monospace;color:var(--pri);text-align:center;letter-spacing:.3px}
+.arrow .gl{font-size:21px;color:var(--mut);margin:5px 0}
+.arrow .cut{font-size:10px;color:var(--bad);font-weight:700;text-align:center;letter-spacing:.4px}
+.band{margin:26px 0 0;border:1px solid var(--bd);border-radius:9px;overflow:hidden}
+.band .hd{background:#101520;padding:9px 16px;font:700 10.5px ui-monospace,monospace;letter-spacing:1.1px;color:var(--mut);border-bottom:1px solid var(--bd)}
+.pill{display:grid;grid-template-columns:repeat(4,1fr)}
+.pill>div{padding:14px 16px;border-right:1px solid var(--bd)}
+.pill>div:last-child{border-right:0}
+.pill b{color:var(--pri);font-size:12.5px;display:block;margin-bottom:5px}
+.pill span{color:var(--mut);font-size:11.3px;line-height:1.5;display:block}
+.pill code{font:11px ui-monospace,monospace;color:var(--fg);background:#1b2130;padding:1px 5px;border-radius:3px}
+.verd{display:flex;gap:11px;margin-top:22px}
+.v{flex:1;border-radius:8px;padding:12px 15px;border:1px solid}
+.v b{font-size:13.5px;display:block;margin-bottom:4px}
+.v span{font-size:11.3px;line-height:1.5;display:block;color:var(--mut)}
+.ok{border-color:rgba(47,190,128,.4);background:rgba(47,190,128,.08)} .ok b{color:var(--ok)}
+.wn{border-color:rgba(224,160,32,.4);background:rgba(224,160,32,.08)} .wn b{color:var(--warn)}
+.bd2{border-color:rgba(232,80,110,.4);background:rgba(232,80,110,.08)} .bd2 b{color:var(--bad)}
+.iso{margin-top:22px;border:1px dashed var(--bd);border-radius:8px;padding:13px 17px;color:var(--mut);font-size:11.8px;line-height:1.6}
+.iso b{color:var(--fg)}
+mark{background:none;color:var(--pri);font-weight:600}
+</style></head><body>
+<h1>AVOS Verify — Guard · Prove · Verify · Measure</h1>
+<div class="sub">Razorpay Buildathon Track 04 · Settlement Assurance · verifier <code style="font:11px ui-monospace,monospace">deterministic-v2.1</code></div>
+
+<div class="row">
+  <div class="box"><h3>Reconciliation Agent</h3><p>LLM. Reads the evidence pack, selects rows, proposes a status, writes a rationale and a confidence score.</p></div>
+  <div class="arrow"><div class="lbl">StructuredClaim ONLY<br>{ settlement_id,<br>proposed_status,<br>evidence_ids }</div><div class="gl">→</div><div class="cut">✂ prose + confidence<br>SEVERED HERE</div></div>
+  <div class="box"><h3>Evidence Pack Builder</h3><p>Retrieves by settlement_id <b>and</b> by UTR. Stamps source, row_id, timestamp, sha256, freshness. Resolves the policy in force at decision_time. Quarantines all free text.</p></div>
+  <div class="arrow"><div class="lbl">EvidencePack<br>+ PolicySnapshot</div><div class="gl">→</div></div>
+  <div class="box"><h3>Deterministic Verifier</h3><p><b>One <code style="font:11px ui-monospace,monospace">import type</code>. Zero runtime imports.</b> No model, network, filesystem, clock or randomness. 21 checks across three pillars, integer paise.</p></div>
+</div>
+
+<div class="verd">
+  <div class="v ok"><b>✓ VERIFIED</b><span>Recomputed state supports the claim under the policy in force when the decision was taken.</span></div>
+  <div class="v wn"><b>? UNCERTAIN</b><span>Evidence incomplete, stale or unenforceable. AVOS does not know, and says so.</span></div>
+  <div class="v bd2"><b>✕ FAILED</b><span>Evidence refutes the claim, or integrity is broken. Closing would move money wrongly.</span></div>
+</div>
+
+<div class="band">
+  <div class="hd">THE FOUR PILLARS</div>
+  <div class="pill">
+    <div><b>GUARD — 6 checks</b><span>Permissible under the policy in force at <code>decision_time</code>, not today's. Catches anachronistic judgement, freshness breaches, impermissible states.</span></div>
+    <div><b>PROVE — 6 checks</b><span>Every row carries source file, row id, content hash and freshness. Re-hashed on replay, so a mutated source is caught rather than silently re-verified.</span></div>
+    <div><b>VERIFY — 9 checks</b><span><code>expected = gross − refunds − calcFees(policy) − holds</code> against the bank credit. Fees from the rate card, never from a recorded fee.</span></div>
+    <div><b>MEASURE — 8 gates</b><span>Precision, false closure, value coverage, exception detection, abstention accuracy — plus a hard slice that is reported, never gated.</span></div>
+  </div>
+</div>
+
+<div class="iso"><b>Why the boundary is the product.</b> <mark>StructuredClaim</mark> has three fields. There is no slot an agent's rationale or confidence could occupy, so passing one is a compile error rather than a review comment. <mark>evals/isolation.ts</mark> asserts on every run that the verifier has zero runtime imports and never names the quarantined free-text field. A prompt injected into a bank memo is therefore not filtered — it is on a data path that does not reach a verdict, and the adversarial suite proves it by asserting the verdict object is <b>byte-identical</b> with the attacker's text present and blanked.</div>
+</body></html>
