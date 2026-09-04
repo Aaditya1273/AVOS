@@ -1,6 +1,7 @@
 'use client'
 
 import { Badge } from '@/components/ui/primitives'
+import { IconCheck, IconCross, IconHold } from '@/components/ui/icon'
 import { cn } from '@/lib/utils'
 import type { Verdict } from '@/lib/types'
 
@@ -10,7 +11,8 @@ const VARIANT = {
   FAILED: 'failed',
 } as const
 
-const GLYPH = { VERIFIED: '✓', UNCERTAIN: '?', FAILED: '✕' } as const
+/** One icon per verdict, sized to the type it sits beside. */
+const ICON = { VERIFIED: IconCheck, UNCERTAIN: IconHold, FAILED: IconCross } as const
 
 export function VerdictBadge({
   verdict,
@@ -37,7 +39,7 @@ export function VerdictBadge({
               'border-[hsl(var(--verdict-failed)/0.4)] bg-[hsl(var(--verdict-failed)/0.12)] text-[hsl(var(--verdict-failed))]',
           )}
         >
-          <span className="text-lg leading-none">{GLYPH[verdict]}</span>
+          {(() => { const I = ICON[verdict]; return <I className="h-[18px] w-[18px]" strokeWidth={2.25} /> })()}
           <span className="text-lg font-bold tracking-tight">{verdict}</span>
         </div>
         {reason ? (
@@ -48,8 +50,9 @@ export function VerdictBadge({
   }
 
   return (
-    <Badge variant={VARIANT[verdict]} className={className}>
-      {GLYPH[verdict]} {verdict}
+    <Badge variant={VARIANT[verdict]} className={cn('gap-0', className)}>
+      {(() => { const I = ICON[verdict]; return <I className="mr-1 h-3 w-3" strokeWidth={2.5} /> })()}
+      {verdict}
       {reason ? <span className="ml-1.5 font-mono font-normal opacity-80">{reason}</span> : null}
     </Badge>
   )

@@ -72,3 +72,56 @@
     background: transparent;
   }
 }
+
+/* ---------------------------------------------------------------------------
+ * Surfaces, focus and motion — the tokens the component layer reaches for.
+ *
+ * Elevation here is carried by surface contrast and a single hairline border,
+ * not by shadow. Shadows on a dark ground read as plastic: they simulate a light
+ * source the interface does not otherwise have, and three stacked cards each
+ * with their own shadow is how a dashboard starts looking like floating debris.
+ * A finance console wants layers of information, not objects in a room.
+ * ------------------------------------------------------------------------- */
+@layer base {
+  :root {
+    --surface: 222 22% 10%;
+    --surface-raised: 222 20% 12.5%;
+    --surface-sunken: 222 26% 8%;
+    --hairline: 220 16% 20%;
+    --focus: 199 89% 55%;
+  }
+
+  /* One focus treatment, everywhere, keyboard-only. A ring that also fires on
+   * mouse click trains people to ignore it, which defeats the point. */
+  :focus-visible {
+    outline: 2px solid hsl(var(--focus));
+    outline-offset: 2px;
+    border-radius: 3px;
+  }
+
+  /* Respect the OS setting. Motion here is decoration on top of state that is
+   * already legible without it, so removing it costs nothing. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer utilities {
+  .surface { background-color: hsl(var(--surface)); }
+  .surface-raised { background-color: hsl(var(--surface-raised)); }
+  .surface-sunken { background-color: hsl(var(--surface-sunken)); }
+  /* Horizontal scroll without a visible bar, for pill rows that must not clip. */
+  .scroll-x-clean {
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .scroll-x-clean::-webkit-scrollbar { display: none; }
+}

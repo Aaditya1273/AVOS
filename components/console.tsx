@@ -5,6 +5,7 @@ import * as Tabs from '@radix-ui/react-tabs'
 import { Badge, Card } from '@/components/ui/primitives'
 import { ProofCard, type DecisionPayload } from '@/components/proof-card'
 import { formatCompact, formatDelta } from '@/lib/money'
+import { IconFlag } from '@/components/ui/icon'
 import { cn, fmtDate } from '@/lib/utils'
 import type { Verdict } from '@/lib/types'
 
@@ -144,7 +145,18 @@ export function Console({
     return () => window.removeEventListener('keydown', onKey)
   }, [move])
 
+  // Keep the selected row in view when the user moves — but NOT on mount.
+  //
+  // Without the guard this fires during first paint and scrolls the whole page,
+  // so someone opening the app lands halfway down it with the product identity
+  // and the metrics already off screen. An interface that scrolls itself before
+  // the reader has done anything has taken a decision that was not its to take.
+  const mounted = useRef(false)
   useEffect(() => {
+    if (!mounted.current) {
+      mounted.current = true
+      return
+    }
     listRef.current
       ?.querySelector<HTMLElement>(`[data-case="${CSS.escape(selected)}"]`)
       ?.scrollIntoView({ block: 'nearest' })
@@ -153,7 +165,7 @@ export function Console({
   return (
     <div className="grid gap-4 xl:grid-cols-[minmax(0,400px)_minmax(0,1fr)]">
       {/* --- exception queue -------------------------------------------------- */}
-      <Card className="flex h-[calc(100vh-2rem)] flex-col overflow-hidden xl:sticky xl:top-4">
+      <Card className="flex max-h-[70vh] flex-col overflow-hidden xl:sticky xl:top-4 xl:max-h-[calc(100vh-2rem)]">
         <Tabs.Root
           value={suite}
           onValueChange={(v) => setSuite(v as typeof suite)}
@@ -187,14 +199,16 @@ export function Console({
               placeholder="Search settlement, case, merchant, reason code"
               className="h-8 rounded-md border border-border bg-background px-2.5 text-compact outline-none placeholder:text-muted-foreground/70 focus-visible:ring-1 focus-visible:ring-ring"
             />
-            <div className="flex gap-1">
+            {/* Scrolls rather than clips. At 390px these four pills do not fit,
+                and the previous flex row silently cut "Verified" in half. */}
+            <div className="scroll-x-clean -mx-1 flex gap-1 px-1">
               {(['ALL', 'FAILED', 'UNCERTAIN', 'VERIFIED'] as const).map((f) => (
                 <button
                   key={f}
                   type="button"
                   onClick={() => setFilter(f)}
                   className={cn(
-                    'flex-1 rounded border px-1.5 py-1 text-micro font-medium transition-colors',
+                    'shrink-0 flex-1 whitespace-nowrap rounded border px-2 py-1 text-micro font-medium transition-colors',
                     filter === f
                       ? 'border-primary bg-primary/15 text-primary'
                       : 'border-border text-muted-foreground hover:bg-accent',

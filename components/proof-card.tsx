@@ -7,6 +7,7 @@ import { VerdictBadge, VERDICT_MEANING } from '@/components/verdict'
 import { EvidenceInspector } from '@/components/evidence-inspector'
 import { ReplayView } from '@/components/replay-view'
 import { QaPanel } from '@/components/qa-panel'
+import { IconCheck, IconCross, IconDash, IconFlag, IconHold } from '@/components/ui/icon'
 import { formatDelta, formatPaise } from '@/lib/money'
 import { cn, fmtTime } from '@/lib/utils'
 import type { ExceptionNarration } from '@/lib/ai/classify'
@@ -90,7 +91,11 @@ export function ProofCard({
           <Badge variant="outline">
             {decision.suite === 'batch_120' ? 'batch 120' : 'adversarial 30'}
           </Badge>
-          {injection.found ? <Badge variant="uncertain">⚑ injection in evidence</Badge> : null}
+          {injection.found ? (
+            <Badge variant="uncertain" className="gap-1">
+              <IconFlag className="h-3 w-3" /> injection in evidence
+            </Badge>
+          ) : null}
         </div>
       </div>
 
@@ -168,6 +173,13 @@ export function ProofCard({
                 'border-[hsl(var(--verdict-failed)/0.45)] bg-[hsl(var(--verdict-failed)/0.10)]',
             )}
           >
+            {decision.closure.status === 'CLOSED' ? (
+              <IconCheck className="h-4 w-4 text-[hsl(var(--verdict-verified))]" strokeWidth={2.5} />
+            ) : decision.closure.status === 'REFUSED_TO_CLOSE' ? (
+              <IconHold className="h-4 w-4 text-[hsl(var(--verdict-uncertain))]" strokeWidth={2.25} />
+            ) : (
+              <IconCross className="h-4 w-4 text-[hsl(var(--verdict-failed))]" strokeWidth={2.5} />
+            )}
             <span
               className={cn(
                 'text-body font-bold tracking-tight',
@@ -182,10 +194,10 @@ export function ProofCard({
                   them tells a finance operator the wrong thing about what to do
                   next — chase evidence, or chase the money. */}
               {decision.closure.status === 'CLOSED'
-                ? '✓ CLOSED'
+                ? 'CLOSED'
                 : decision.closure.status === 'REFUSED_TO_CLOSE'
-                  ? '⛔ REFUSED TO CLOSE'
-                  : '✕ EXCEPTION — NOT CLOSED'}
+                  ? 'REFUSED TO CLOSE'
+                  : 'EXCEPTION — NOT CLOSED'}
             </span>
             <span className="tnum text-mini text-muted-foreground">
               {decision.closure.status === 'CLOSED'
@@ -447,7 +459,7 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
 }
 
 function CheckRow({ check }: { check: CheckResult }) {
-  const glyph = check.status === 'pass' ? '✓' : check.status === 'fail' ? '✕' : '–'
+  const Glyph = check.status === 'pass' ? IconCheck : check.status === 'fail' ? IconCross : IconDash
   const tone =
     check.status === 'pass'
       ? 'text-[hsl(var(--verdict-verified))]'
@@ -462,7 +474,7 @@ function CheckRow({ check }: { check: CheckResult }) {
         check.status === 'skipped' && 'opacity-70',
       )}
     >
-      <span className={cn('mt-px w-3 shrink-0 text-center font-bold', tone)}>{glyph}</span>
+      <Glyph className={cn('mt-[3px] h-3 w-3', tone)} strokeWidth={2.5} />
       <div className="min-w-0 flex-1">
         <span className="font-mono text-mini text-foreground/80">{check.id}</span>
         <p className="mt-0.5 break-words leading-relaxed text-muted-foreground">{check.detail}</p>

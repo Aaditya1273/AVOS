@@ -12,7 +12,7 @@
  */
 import { chromium } from 'playwright'
 
-const BASE = process.env.AVOS_SHOT_URL ?? 'http://localhost:4700'
+const BASE = process.env.AVOS_SHOT_URL ?? 'http://localhost:5300'
 
 const browser = await chromium.launch()
 const page = await browser.newPage({ viewport: { width: 1600, height: 1150 }, deviceScaleFactor: 2 })

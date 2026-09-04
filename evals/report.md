@@ -1,6 +1,6 @@
 # AVOS Verify — evaluation report
 
-Generated: 2026-09-04T11:30:35.240Z
+Generated: 2026-09-04T11:45:33.977Z
 Verifier: `deterministic-v2.1` · Model: `avos-mock-deterministic-1.0` (offline deterministic mock — no API key required)
 Fixture seed: 20260826 · money unit: paise (integer)
 
@@ -37,7 +37,7 @@ Fixture seed: 20260826 · money unit: paise (integer)
 | Exception detection | 100.0% (45/45) |
 | Abstention accuracy | 100.0% (16 cases) |
 | Reason-code accuracy | 97.8% (45 cases) |
-| Throughput (verify only) | 3,836 records/sec |
+| Throughput (verify only) | 4,812 records/sec |
 | Agent confidence — accepted closures | 0.950 |
 | Agent confidence — refused closures | 0.617 |
 | **Confidence discrimination** | **+0.333** |
@@ -84,7 +84,7 @@ Fixture seed: 20260826 · money unit: paise (integer)
 | Exception detection | 100.0% (30/30) |
 | Abstention accuracy | 100.0% (13 cases) |
 | Reason-code accuracy | 100.0% (30 cases) |
-| Throughput (verify only) | 6,497 records/sec |
+| Throughput (verify only) | 5,005 records/sec |
 | Agent confidence — accepted closures | 0.000 |
 | Agent confidence — refused closures | 0.688 |
 | **Confidence discrimination** | **-0.688** |
@@ -248,9 +248,9 @@ much as the function.
 
 ## Notes on the numbers
 
-- **Throughput** is deterministic verification only: 3,836 records/sec over 120 cases
-  (31 ms). Agent proposal for all 150 cases took
-  50 ms on the offline mock. The two are reported
+- **Throughput** is deterministic verification only: 4,812 records/sec over 120 cases
+  (25 ms). Agent proposal for all 150 cases took
+  57 ms on the offline mock. The two are reported
   separately because only the first one decides anything.
 - **Value coverage** is reported against two denominators. `value coverage (of verifiable)`
   answers "of the money that genuinely reconciled, how much did we clear?" and is the gated

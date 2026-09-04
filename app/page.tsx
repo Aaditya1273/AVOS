@@ -13,7 +13,8 @@
  * `evals/isolation.ts` fails the build if that boundary is ever crossed.
  */
 
-import { Badge, Card, Mono, Separator, Stat } from '@/components/ui/primitives'
+import { Badge, Card, Mono, Separator } from '@/components/ui/primitives'
+import { Metric, MetricGroup } from '@/components/ui/metrics'
 import { Console, type CaseRow } from '@/components/console'
 import { materializeSuite, findCaseBySettlement } from '@/lib/decisions'
 import { policyChangePoints } from '@/lib/replay'
@@ -106,42 +107,54 @@ export default function Page() {
 
         {/* --- measured results ---------------------------------------------- */}
         {m ? (
-          <div className="grid grid-cols-2 gap-5 px-6 py-5 sm:grid-cols-3 lg:grid-cols-6">
-            <Stat
-              label="Match rate"
-              value={formatPct(m.match_rate)}
-              hint={`${m.matched_count} matched · ${m.ambiguous_count} ambiguous · ${m.unmatched_count} unmatched`}
-            />
-            <Stat
-              label="Match precision"
-              value={formatPct(m.match_precision)}
-              hint="paired to the right money"
-              tone={m.match_precision === 1 ? 'verified' : 'failed'}
-            />
-            <Stat
-              label="Closed"
-              value={String(m.closure.closed)}
-              hint={`${formatCompact(m.closure.closed_value_paise)} posted`}
-              tone="verified"
-            />
-            <Stat
-              label="Value withheld"
-              value={formatCompact(m.closure.withheld_value_paise)}
-              hint={`${m.closure.refused} refused · ${m.closure.failed} failed`}
-              tone="uncertain"
-            />
-            <Stat
-              label="False closure rate"
-              value={formatPct(m.false_closure_rate)}
-              hint={`0 of ${m.n} on fixture`}
-              tone={m.false_closure_rate === 0 ? 'verified' : 'failed'}
-            />
-            <Stat
-              label="Throughput"
-              value={`${m.throughput_records_per_sec.toLocaleString()}/s`}
-              hint="deterministic verify"
-            />
-          </div>
+          <dl className="grid gap-x-8 gap-y-6 px-6 py-5 md:grid-cols-2 xl:grid-cols-3">
+            <MetricGroup label="Control — what the system did">
+              <Metric
+                label="Closed"
+                value={m.closure.closed}
+                hint={`of ${m.n} presented`}
+                tone="verified"
+              />
+              <Metric label="Refused" value={m.closure.refused} hint="held for review" tone="uncertain" />
+              <Metric label="Exceptions" value={m.closure.failed} hint="routed to an owner" tone="failed" />
+            </MetricGroup>
+
+            <MetricGroup label="Assurance — whether it can be trusted">
+              <Metric label="Match rate" value={formatPct(m.match_rate)} hint={`${m.ambiguous_count} ambiguous`} />
+              <Metric
+                label="Match precision"
+                value={formatPct(m.match_precision)}
+                hint="paired correctly"
+                tone={m.match_precision === 1 ? 'verified' : 'failed'}
+              />
+              <Metric
+                label="False closure"
+                value={formatPct(m.false_closure_rate)}
+                hint={`0 of ${m.n} on fixture`}
+                tone={m.false_closure_rate === 0 ? 'verified' : 'failed'}
+              />
+            </MetricGroup>
+
+            <MetricGroup label="Impact — what it was worth">
+              <Metric
+                label="Value withheld"
+                value={formatCompact(m.closure.withheld_value_paise)}
+                hint="from incorrect closure"
+                tone="uncertain"
+              />
+              <Metric
+                label="Value posted"
+                value={formatCompact(m.closure.closed_value_paise)}
+                hint={`${m.closure.closed} settlements`}
+                tone="verified"
+              />
+              <Metric
+                label="Throughput"
+                value={`${(m.throughput_records_per_sec / 1000).toFixed(1)}k/s`}
+                hint="deterministic verify"
+              />
+            </MetricGroup>
+          </dl>
         ) : (
           <div className="px-6 py-5 text-body text-muted-foreground">
             No evaluation on record. Run <Mono>npm run eval</Mono> to populate metrics and the
