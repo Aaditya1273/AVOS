@@ -45,6 +45,19 @@ ship it. Two things here are less common, and they are what the pitch rests on:
    imports, asserted on every run — so the system can *prove* the model took no
    part in the financial decision rather than assert it.
 
+### Track 04, requirement by requirement
+
+The brief asks for *"an agent that **closes** one finance-ops loop across a 50+
+record batch of synthetic data, reporting its **match rate** and the exceptions it
+could not resolve."* Three verbs, each with somewhere to look:
+
+| Required | Where it lives | Measured |
+|---|---|---|
+| **Closes** a finance-ops loop | `lib/closure.ts` — only VERIFIED may become CLOSED, no override parameter | 75 closed · 17 refused · 28 exceptions |
+| **50+ record batch** | `data/settlement_batch_120.csv` + 30 adversarial + 28 hard slice | 178 records |
+| Reports its **match rate** | `lib/matching/engine.ts` → `lib/metrics.ts` | **90.8%**, precision 100% |
+| **Exceptions it could not resolve** | Every one carries a reason code, an owner and a money value | 45 exceptions, ₹4054.7L withheld |
+
 ---
 
 ## The architecture
@@ -378,20 +391,20 @@ whatever the engine happened to do.
 | Metric | Result |
 |---|---|
 | Verdict accuracy | **99.2%** (1 disagreement, published unfitted) |
-| Verification precision | **100%** (80/80 VERIFIED were correct) |
+| Verification precision | **100%** (75/75 VERIFIED were correct) |
 | **False closure rate** | **0%** |
 | Reason-code accuracy | **97.8%** |
-| Value coverage (of verifiable value) | **100%** — ₹73,05,506.42 of ₹73,05,506.42 |
-| Auto-clear rate (of whole batch) | 66.8% |
+| Value coverage (of verifiable value) | **100%** — ₹6,876,582.01 of ₹6,876,582.01 |
+| Auto-clear rate (of whole batch) | 62.9% |
 | Exception detection | **100%** (40/40 injected) |
 | Abstention accuracy | **100%** (10/10) |
-| Throughput (deterministic verify) | ~11,000 records/sec (120 cases in ~11 ms) |
-| Verdicts | 80 VERIFIED · 10 UNCERTAIN · 30 FAILED |
+| Throughput (deterministic verify) | ~5,001 records/sec (120 cases in 24 ms) |
+| Verdicts | 75 VERIFIED · 17 UNCERTAIN · 28 FAILED |
 
 The agent proposed `RECONCILED` on **all 120**. AVOS cleared 80, refused 30 and
 abstained on 10.
 
-### Hard slice — 28 cases · before 85.7% → after 100.0%
+### Hard slice — 28 cases · before 85.7% → after 96.4%
 
 The 120 above scores 100% and always will. Every scenario in it maps 1:1 onto
 exactly one detector, and the script that injects each fault also authored the
@@ -404,7 +417,7 @@ gated** — a gate creates pressure to tune it green.
 | | Verdict accuracy | With correct reason code |
 |---|---|---|
 | **Before fixes** — commit [`4c170da`](../../commit/4c170da) | 85.7% | 82.1% |
-| **After fixes** — commit [`9fd3715`](../../commit/9fd3715) | **100.0%** | **100.0%** |
+| **After fixes** — commit [`9fd3715`](../../commit/9fd3715) | **96.4%** | **96.4%** |
 
 > **These fixes were applied after seeing the benchmark.** That is the honest
 > description of what happened, and it is defensible for one specific reason: the
@@ -431,7 +444,7 @@ cases were added to probe behaviour the verifier did not implement; five failed.
 | `epoch` | 4/4 | payments captured across a rate-card change |
 | `stale` | 4/4 | the freshness limit, including the boundary itself |
 | `negative` | 4/4 | refunds and holds driving expected to or below zero |
-| `semantic` | 8/8 | what a settlement *means*, not what arithmetic it produces |
+| `semantic` | 7/8 | what a settlement *means*, not what arithmetic it produces |
 
 #### The five defects, and what fixed them
 
@@ -447,12 +460,13 @@ Plus one the adversarial agent found rather than the slice: a payment captured
 before the earliest policy snapshot was priced at a **zero** rate, manufacturing
 `FEE_MISMATCH` on clean settlements. Zero is never a safe default for a rate.
 
-> **On the 100%.** Every case now passes, which means this slice has stopped
-> being a measurement and become a **regression suite**. Both are useful; only one
-> tells you something new. It needs harder cases before the number is quotable as
-> evidence again. Next two: a bank credit in a currency the ledger does not
-> declare, and a policy snapshot retroactively amended after decisions were taken
-> under it.
+> **On the 96.4%.** Adding the matching stage put one case back into
+> failure: **H24** credits a single settlement in two legitimate bank tranches,
+> and the engine is one-to-one — it cannot express "these two credits together
+> are the counterpart". That is a real limitation, published rather than patched
+> out of the fixture. Next cases to add: a credit in a currency the ledger does
+> not declare, and a policy snapshot retroactively amended after decisions were
+> taken under it.
 
 ### Adversarial 30
 
@@ -488,7 +502,7 @@ numbers are reported and named for what they measure:
 - **Value coverage (of verifiable value) — 100%.** *Of the money that genuinely
   reconciled, how much did we clear?* This is the honest test of the verifier:
   anything below 100% means we abstained on good money. This is the gated number.
-- **Auto-clear rate (of whole batch) — 66.8%.** *What share of the batch closed
+- **Auto-clear rate (of whole batch) — 62.9%.** *What share of the batch closed
   without a human?* On a fixture that is one-third deliberately broken, near
   two-thirds is the **correct** answer. A batch containing 40 real exceptions
   *should* route 40 cases to a human.
@@ -628,7 +642,9 @@ figure reproducible from a cold clone.
 ```
 lib/types.ts                   the one contract every layer binds to
 lib/csv.ts                     the ingest boundary — dirty exports stop here
+lib/matching/engine.ts         derives the pairing. deterministic, importless.
 lib/verifier/deterministic.ts  PURE. zero runtime imports. the verdict.
+lib/closure.ts                 the closing step. only VERIFIED may become CLOSED.
 lib/evidence/pack.ts           retrieval + hashing + freshness  (Prove)
 lib/evidence/hash.ts           sha256 over canonical content, row_id excluded
 lib/policy/snapshots.ts        policy as a function of a timestamp  (Guard)
@@ -669,12 +685,12 @@ data/                          the CSV ledger + policy snapshots + decision log
 | Gate | Status |
 |---|---|
 | False closure rate = 0% on fixture | **PASS** — 0 of 120 |
-| Verification precision = 100% | **PASS** — 80/80 |
+| Verification precision = 100% | **PASS** — 75/75 |
 | Value coverage of verifiable > 95% | **PASS** — 100.00% |
 | All 6 adversarial attack classes | **PASS** — 9/9 assertions |
 | Verifier isolation intact | **PASS** — 16/16 |
 | Verifier unit checks | **PASS** — 6/6 |
-| Ingest boundary parses dirty exports exactly | **PASS** — 9/9 |
+| Ingest boundary parses dirty exports exactly | **PASS** — 10/10 |
 | Verifier unit tests | **PASS** — 24/24 |
 | API boundary tests | **PASS** — 8/8 |
 
@@ -682,7 +698,9 @@ And one number that is deliberately **not** a gate:
 
 | Reported | Result |
 |---|---|
-| Hard-slice verdict accuracy | **100.0%** (was 85.7%; 5 defects fixed) |
+| **Match rate** | **90.8%** — operational, not scored against a label |
+| **Match precision** | **100%** — the safety number, and it *is* labelled |
+| Hard-slice verdict accuracy | **96.4%** (1 open: one-to-many credit splitting) |
 
 ### Does the agent's confidence mean anything?
 
@@ -694,12 +712,12 @@ because an agent cannot see the verdict.
 | | |
 |---|---|
 | Mean confidence, closures AVOS **accepted** | 0.950 |
-| Mean confidence, closures AVOS **refused** | 0.666 |
-| Discrimination | +0.284 |
-| **Closures refused at ≥0.85 confidence** | **14** |
+| Mean confidence, closures AVOS **refused** | 0.617 |
+| Discrimination | +0.333 |
+| **Closures refused at ≥0.85 confidence** | **13** |
 
 It discriminates, but not nearly well enough to route on. The last row is the
-one that matters: **14 settlements where the pack looked complete, fresh and
+one that matters: **13 settlements where the pack looked complete, fresh and
 self-consistent — so the agent scored them 0.95 — and the money was wrong
 anyway.** Completeness is not correctness, and a system that auto-closed above a
 confidence threshold would have closed every one of them.
@@ -710,15 +728,6 @@ confidence threshold would have closed every one of them.
 > `evals/raw/metrics.live.json`, which currently records `skipped_no_key`.
 
 ---
-|---|
-| Mean confidence, closures AVOS **accepted** | 0.840 |
-| Mean confidence, closures AVOS **refused** | 0.838 |
-| **Discrimination** | **+0.002** |
-| Closures refused at ≥0.85 confidence | **17** |
-
-The score separates nothing. Any system that routed on it was routing on noise —
-which is the argument for making closure conditional on evidence, stated as a
-number instead of an opinion.
 
 Plus `npm run build` with no TypeScript errors, and `npm run check:isolation`
 `npm run test:ingest` and `npm run test:verifier` as standalone gates.
