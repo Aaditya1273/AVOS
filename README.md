@@ -697,6 +697,11 @@ Playwright after the final rebuild — [`proof-card-failed.png`](docs/proof-card
 **Demo script**: [`docs/DEMO_SCRIPT.md`](docs/DEMO_SCRIPT.md) — 5 minutes, every
 figure reproducible from a cold clone.
 
+**Deploying**: [`docs/DEPLOY.md`](docs/DEPLOY.md) — Vercel needs no keys and no
+configuration; the one thing that had to be fixed is documented there, because a
+runtime-built file path is invisible to the serverless bundler and produces a
+deployment that goes green and then 404s on its own evidence.
+
 ---
 
 ## Layout
