@@ -35,7 +35,35 @@ figure on screen disagrees with this script, trust the screen and say so.
 
 ---
 
-## 0:40 – 2:00 · Live demo
+## 0:40 – 1:10 · Matching — the loop actually starts here
+
+*(Point at the MATCH row on the Proof Card.)*
+
+> Before anything is verified, something has to decide **which bank credit belongs
+> to which settlement**. On this one the bank reference is *blank* — the export
+> dropped it, which happens constantly.
+>
+> `MATCHED bnk-000100 · score 0.60 · REFERENCE_ABSENT · AMOUNT_EXACT · DATE_SAME_DAY`
+>
+> Five candidates scored on reference, amount and date. No reference, so it earned
+> the match on amount and date alone.
+>
+> This is deterministic, not a model. A model would be good at it and would make
+> the pairing unauditable — "these two look alike" cannot be replayed or explained
+> to a regulator.
+
+*(Filter the queue to Uncertain, find an AMBIGUOUS case.)*
+
+> And here is the one I care about more. Two credits, same amount, same window,
+> no reference. The engine returns **AMBIGUOUS** and supplies no bank evidence at
+> all.
+>
+> It could have picked one. Two identical credits is the classic double payout,
+> and guessing turns a detectable problem into an undetectable one.
+
+---
+
+## 1:10 – 2:00 · Live demo
 
 *(Screen: Proof Card for S-10092.)*
 
@@ -128,7 +156,21 @@ npm run test:adversarial
 
 *(Show `evals/report.md`.)*
 
-> The 120-case batch: **100% precision, 0% false closure, 100% value coverage.**
+> The loop, end to end, on 120 records:
+>
+> **Match rate 90.8%.** 109 matched, 9 ambiguous, 2 unmatched.
+> **Match precision 100%** — not one settlement paired to another
+> settlement's money. That is the safety number: a low match rate costs a human
+> some time, but a bad pairing reconciles against the wrong money and nothing
+> downstream would catch it, because every check after that point takes the
+> pairing as given.
+>
+> **75 closed. 17 refused to close. 28 exceptions.** ₹4054.7 lakh held back
+> from incorrect closure. **0% false closure.**
+>
+> Verification accuracy is 99.2%, not 100% — and it went *down* when we added
+> real matching, which is the point. The fixture now contains reconciliation work
+> that can actually be got wrong.
 >
 > And that number is close to meaningless, so let me say why before someone else
 > does. Every scenario in that batch maps 1:1 onto exactly one detector, and the

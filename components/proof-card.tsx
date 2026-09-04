@@ -160,20 +160,32 @@ export function ProofCard({
           <div
             className={cn(
               'flex items-center gap-2 rounded-md border px-3 py-2',
-              decision.closure.status === 'CLOSED'
-                ? 'border-[hsl(var(--verdict-verified)/0.4)] bg-[hsl(var(--verdict-verified)/0.10)]'
-                : 'border-[hsl(var(--verdict-uncertain)/0.45)] bg-[hsl(var(--verdict-uncertain)/0.10)]',
+              decision.closure.status === 'CLOSED' &&
+                'border-[hsl(var(--verdict-verified)/0.4)] bg-[hsl(var(--verdict-verified)/0.10)]',
+              decision.closure.status === 'REFUSED_TO_CLOSE' &&
+                'border-[hsl(var(--verdict-uncertain)/0.45)] bg-[hsl(var(--verdict-uncertain)/0.10)]',
+              decision.closure.status === 'FAILED' &&
+                'border-[hsl(var(--verdict-failed)/0.45)] bg-[hsl(var(--verdict-failed)/0.10)]',
             )}
           >
             <span
               className={cn(
                 'text-[13px] font-bold tracking-tight',
-                decision.closure.status === 'CLOSED'
-                  ? 'text-[hsl(var(--verdict-verified))]'
-                  : 'text-[hsl(var(--verdict-uncertain))]',
+                decision.closure.status === 'CLOSED' && 'text-[hsl(var(--verdict-verified))]',
+                decision.closure.status === 'REFUSED_TO_CLOSE' &&
+                  'text-[hsl(var(--verdict-uncertain))]',
+                decision.closure.status === 'FAILED' && 'text-[hsl(var(--verdict-failed))]',
               )}
             >
-              {decision.closure.status === 'CLOSED' ? '✓ CLOSED' : '⛔ REFUSED TO CLOSE'}
+              {/* Three states, not two. A refusal means AVOS could not tell; an
+                  exception means it could, and the answer was no. Collapsing
+                  them tells a finance operator the wrong thing about what to do
+                  next — chase evidence, or chase the money. */}
+              {decision.closure.status === 'CLOSED'
+                ? '✓ CLOSED'
+                : decision.closure.status === 'REFUSED_TO_CLOSE'
+                  ? '⛔ REFUSED TO CLOSE'
+                  : '✕ EXCEPTION — NOT CLOSED'}
             </span>
             <span className="tnum text-[11.5px] text-muted-foreground">
               {decision.closure.status === 'CLOSED'

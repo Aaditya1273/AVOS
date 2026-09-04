@@ -9,9 +9,10 @@
 key configured — because "it passes locally" is precisely the evidence a
 zero-runtime-imports claim cannot rest on.*
 
-> Agents can act. AVOS Verify independently proves whether the financial claim is
-> correct, traces it to source evidence, and refuses to close when the evidence
-> will not carry it.
+> **A finance controller that reconciles settlements and refuses to close
+> anything it cannot independently prove.**
+>
+> AI proposes. Evidence proves. AVOS decides whether the books can close.
 
 ---
 
@@ -34,11 +35,21 @@ control in the first list is satisfied and the money is still off by ₹120.
 **An agent can be policy-compliant and still be financially wrong. AVOS makes
 closure conditional on evidence, not on confidence.**
 
+Deterministic verification of model output is not, on its own, a differentiator —
+it is documented best practice in this market, and BlackLine, Ledge and others
+ship it. Two things here are less common, and they are what the pitch rests on:
+
+1. **Every closure replays** against the exact evidence and the exact policy
+   version that existed when it happened, not against today's rules.
+2. **The verifier is mechanically isolated** from the AI runtime — zero runtime
+   imports, asserted on every run — so the system can *prove* the model took no
+   part in the financial decision rather than assert it.
+
 ---
 
 ## The architecture
 
-![Guard · Prove · Verify · Measure](docs/architecture.png)
+![Match · Prove · Verify · Close](docs/architecture.png)
 
 *One-page walkthrough: [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) · full
 rationale and precedence table: [`ARCHITECTURE.md`](ARCHITECTURE.md)*
@@ -47,6 +58,14 @@ The load-bearing decision is a boundary, and it is enforced by the type system
 rather than by discipline:
 
 ```
+┌─────────────────────────┐
+│  MATCHING ENGINE        │  Deterministic. Scores every credit in the window on
+│  lib/matching/engine.ts │  reference, amount and date.
+│                         │  MATCHED · AMBIGUOUS · UNMATCHED
+└───────────┬─────────────┘
+            │  Not a model. "These two look alike" cannot be replayed, explained
+            │  to a regulator, or shown to have answered the same last quarter.
+            ▼
 ┌─────────────────────────┐
 │  Reconciliation Agent   │  LLM. Reads evidence, selects rows, writes prose.
 └───────────┬─────────────┘
@@ -89,6 +108,17 @@ rather than by discipline:
 └───────────┬─────────────────────────────────────────────────────┘
             ▼
       VERIFIED  ·  UNCERTAIN  ·  FAILED     + reason code + evidence trail
+            │            │             │
+            ▼            ▼             ▼
+       ┌─────────┐  ┌──────────┐  ┌───────────┐
+       │ CLOSED  │  │ REFUSED  │  │ EXCEPTION │
+       │         │  │ TO CLOSE │  │           │
+       └─────────┘  └──────────┘  └───────────┘
+
+  THE INVARIANT, stated once and enforced in lib/closure.ts:
+  only VERIFIED may become CLOSED. closeRecord() takes no override flag —
+  a force parameter appears for one urgent case and is load-bearing by the
+  next quarter.
 ```
 
 The verifier never reads `agent_reason`. It only recomputes.
@@ -323,14 +353,34 @@ reading its memo. It reaches the verifier not at all.
 Full write-up in [`evals/report.md`](evals/report.md); raw per-case output in
 [`evals/raw/`](evals/raw/).
 
-### Batch of 120
+### The loop, end to end — 120 records
+
+| | |
+|---|---|
+| **Match rate** | **90.8%** — 109 matched · 9 ambiguous · 2 unmatched |
+| **Match precision** | **100.0%** — no settlement paired to another settlement's money |
+| **CLOSED** | 75 records · ₹6876.6L posted |
+| **REFUSED TO CLOSE** | 17 records |
+| **FAILED** | 28 records |
+| **Value withheld** | ₹4054.7L held back from incorrect closure |
+
+Match precision is the safety number, and it is the one that is labelled. A low
+match rate costs a human some time; a low match precision reconciles a settlement
+against another settlement's money, and **nothing downstream would catch it**,
+because every check after the pairing takes the pairing as given.
+
+Match *rate* is deliberately not scored against a label. Ambiguity arises from
+collisions nobody planted, so a "correct status" label would end up fitted to
+whatever the engine happened to do.
+
+### Verification quality
 
 | Metric | Result |
 |---|---|
-| Verdict accuracy | **100%** (120/120) |
+| Verdict accuracy | **99.2%** (1 disagreement, published unfitted) |
 | Verification precision | **100%** (80/80 VERIFIED were correct) |
 | **False closure rate** | **0%** |
-| Reason-code accuracy | **100%** — right verdict *and* right routing |
+| Reason-code accuracy | **97.8%** |
 | Value coverage (of verifiable value) | **100%** — ₹73,05,506.42 of ₹73,05,506.42 |
 | Auto-clear rate (of whole batch) | 66.8% |
 | Exception detection | **100%** (40/40 injected) |

@@ -1,6 +1,6 @@
-# AVOS Verify — architecture in one page
+# AVOS — architecture in one page
 
-![Guard · Prove · Verify · Measure](architecture.png)
+![Match · Prove · Verify · Close](architecture.png)
 
 *Depth, rationale and the precedence table live in [`../ARCHITECTURE.md`](../ARCHITECTURE.md).
 This page is the shape of the thing.*
@@ -10,6 +10,19 @@ This page is the shape of the thing.*
 ## The workflow
 
 ```
+  ┌──────────────────┐
+  │ 0. MATCHING      │  Deterministic. Scores every credit inside the settlement
+  │    ENGINE        │  window on reference, amount and date.
+  └────────┬─────────┘  MATCHED · AMBIGUOUS · UNMATCHED
+           │
+           │  Not a model. "These two look alike" cannot be replayed, explained
+           │  to a regulator, or shown to have answered the same last quarter.
+           │
+           │  AMBIGUOUS is the one that matters: two indistinguishable credits
+           │  is the classic double payout. The engine contributes NO bank
+           │  evidence rather than break the tie, so the verifier abstains
+           │  instead of closing against a coin flip.
+           ▼
   ┌──────────────────┐
   │ 1. AGENT         │  An LLM reads the evidence pack, picks the rows it thinks
   │    proposes      │  matter, proposes a status, and writes a confident sentence.
@@ -48,10 +61,30 @@ This page is the shape of the thing.*
   └────────┬─────────┘  file, row locator, full hash, and the checks that read it.
            ▼
   ┌──────────────────┐
-  │ 6. REPLAY        │  Re-evaluate under a different policy epoch, or with a
+  │ 6. CLOSURE       │  CLOSED · REFUSED_TO_CLOSE · EXCEPTION
+  │                  │  Only VERIFIED may become CLOSED. Enforced in
+  └────────┬─────────┘  lib/closure.ts, with no override parameter.
+           ▼
+  ┌──────────────────┐
+  │ 7. REPLAY        │  Re-evaluate under a different policy epoch, or with a
   │                  │  source row perturbed. Same evidence, dated rules.
   └──────────────────┘
 ```
+
+## The closing invariant
+
+```ts
+// lib/closure.ts
+const status =
+  d.result.verdict === 'VERIFIED'    ? 'CLOSED'
+: d.result.verdict === 'UNCERTAIN'   ? 'REFUSED_TO_CLOSE'
+:                                      'FAILED'
+```
+
+`closeRecord()` takes no `force` or `override` parameter, deliberately. A flag
+like that appears for one urgent case and is load-bearing by the next quarter. If
+a human needs to close something AVOS refused, that belongs in a separate,
+separately-audited action — not as an argument to this function.
 
 ---
 
@@ -59,6 +92,7 @@ This page is the shape of the thing.*
 
 | Pillar | Checks | What it answers |
 |---|---|---|
+| **Match** | 3 outcomes | Which credit belongs to this settlement — derived, never assumed. Rate 90.8%, precision 100%. |
 | **Guard** | 6 | Is closure permissible under the policy that was in force **at `decision_time`** — not today's? |
 | **Prove** | 6 | Is the evidence complete, unchanged since it was recorded, and did it exist when the decision was taken? |
 | **Verify** | 9 | Does the money actually reconcile, recomputed from the rate card rather than from any recorded fee? |

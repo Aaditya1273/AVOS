@@ -32,10 +32,12 @@ h1{font-size:23px;letter-spacing:-.3px;margin-bottom:4px}
 .iso b{color:var(--fg)}
 mark{background:none;color:var(--pri);font-weight:600}
 </style></head><body>
-<h1>AVOS Verify — Guard · Prove · Verify · Measure</h1>
-<div class="sub">Razorpay Buildathon · Track 04 — AI Finance Controller · Settlement Assurance · verifier <code style="font:11px ui-monospace,monospace">deterministic-v2.1</code></div>
+<h1>AVOS — Autonomous Finance Assurance</h1>
+<div class="sub">Razorpay Buildathon · Track 04 — AI Finance Controller · <b>Match → Prove → Verify → Close</b> · verifier <code style="font:11px ui-monospace,monospace">deterministic-v2.1</code></div>
 
 <div class="row">
+  <div class="box"><h3>Matching Engine</h3><p><b>Deterministic, not a model.</b> Scores every credit in the window on reference, amount and date. Returns MATCHED, AMBIGUOUS or UNMATCHED — and refuses to break a tie, because two identical credits is a double payout.</p></div>
+  <div class="arrow"><div class="lbl">MATCHED only</div><div class="gl">→</div></div>
   <div class="box"><h3>Reconciliation Agent</h3><p>LLM. Reads the evidence pack, selects rows, proposes a status, writes a rationale and a confidence score.</p></div>
   <div class="arrow"><div class="lbl">StructuredClaim ONLY<br>{ settlement_id,<br>proposed_status,<br>evidence_ids }</div><div class="gl">→</div><div class="cut">✂ prose + confidence<br>SEVERED HERE</div></div>
   <div class="box"><h3>Evidence Pack Builder</h3><p>Retrieves by settlement_id <b>and</b> by UTR. Stamps source, row_id, timestamp, sha256, freshness. Resolves the policy in force at decision_time. Quarantines all free text.</p></div>
@@ -48,14 +50,19 @@ mark{background:none;color:var(--pri);font-weight:600}
   <div class="v wn"><b>? UNCERTAIN</b><span>Evidence incomplete, stale or unenforceable. AVOS does not know, and says so.</span></div>
   <div class="v bd2"><b>✕ FAILED</b><span>Evidence refutes the claim, or integrity is broken. Closing would move money wrongly.</span></div>
 </div>
+<div class="verd">
+  <div class="v ok"><b>CLOSED</b><span>Posted to the books. Only a VERIFIED verdict may reach this state — enforced in lib/closure.ts, with no override flag.</span></div>
+  <div class="v wn"><b>REFUSED TO CLOSE</b><span>Money held back, with the exact evidence that would make it closeable.</span></div>
+  <div class="v bd2"><b>EXCEPTION</b><span>Routed to an owner, queued by value × severity.</span></div>
+</div>
 
 <div class="band">
   <div class="hd">THE FOUR PILLARS</div>
   <div class="pill">
-    <div><b>GUARD — 6 checks</b><span>Permissible under the policy in force at <code>decision_time</code>, not today's. Catches anachronistic judgement, freshness breaches, impermissible states.</span></div>
+    <div><b>MATCH + GUARD</b><span>Derive the pairing, then ask whether closure is permissible under the policy in force at <code>decision_time</code>, not today's. 6 guard checks.</span></div>
     <div><b>PROVE — 6 checks</b><span>Every row carries source file, row id, content hash and freshness. Re-hashed on replay, so a mutated source is caught rather than silently re-verified.</span></div>
     <div><b>VERIFY — 9 checks</b><span><code>expected = gross − refunds − calcFees(policy) − holds</code> against the bank credit. Fees from the rate card, never from a recorded fee.</span></div>
-    <div><b>MEASURE — 8 gates</b><span>Precision, false closure, value coverage, exception detection, abstention accuracy — plus a hard slice that is reported, never gated.</span></div>
+    <div><b>MEASURE — 8 gates</b><span>Match rate 90.8%, match precision 100%, false closure 0%, 75 closed / 17 refused / 28 failed — plus a hard slice that is reported, never gated.</span></div>
   </div>
 </div>
 
