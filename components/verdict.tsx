@@ -41,7 +41,7 @@ export function VerdictBadge({
           <span className="text-lg font-bold tracking-tight">{verdict}</span>
         </div>
         {reason ? (
-          <span className="font-mono text-[11px] tracking-wide text-muted-foreground">{reason}</span>
+          <span className="font-mono text-mini tracking-wide text-muted-foreground">{reason}</span>
         ) : null}
       </div>
     )

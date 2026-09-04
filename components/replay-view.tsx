@@ -69,10 +69,10 @@ export function ReplayView({
       {/* --- the control ---------------------------------------------------- */}
       <div className="rounded-lg border border-border bg-muted/25 p-4">
         <div className="mb-3 flex items-baseline justify-between gap-3">
-          <h4 className="text-[11px] font-semibold uppercase tracking-[0.1em] text-muted-foreground">
+          <h4 className="text-mini font-semibold uppercase tracking-label text-muted-foreground">
             Evaluate under policy
           </h4>
-          <span className="text-[11px] text-muted-foreground">
+          <span className="text-mini text-muted-foreground">
             decided {fmtTime(decisionTime)}
           </span>
         </div>
@@ -93,15 +93,15 @@ export function ReplayView({
                     : 'border-border hover:border-primary/50 hover:bg-accent',
                 )}
               >
-                <span className="font-mono text-[12px] font-semibold">{p.label}</span>
-                <span className="tnum text-[11px] text-muted-foreground">
+                <span className="font-mono text-compact font-semibold">{p.label}</span>
+                <span className="tnum text-mini text-muted-foreground">
                   fee tolerance {formatPaise(p.tolerance_paise)}
                 </span>
-                <span className="text-[10px] text-muted-foreground">
+                <span className="text-micro text-muted-foreground">
                   effective {fmtTime(p.at)}
                 </span>
                 {busy === p.at ? (
-                  <span className="text-[10px] text-primary">evaluating…</span>
+                  <span className="text-micro text-primary">evaluating…</span>
                 ) : null}
               </button>
             )
@@ -118,20 +118,20 @@ export function ReplayView({
                 : 'border-border hover:border-[hsl(var(--verdict-failed)/0.6)] hover:bg-accent',
             )}
           >
-            <span className="text-[12px] font-semibold text-[hsl(var(--verdict-failed))]">
+            <span className="text-compact font-semibold text-[hsl(var(--verdict-failed))]">
               Modify a source row
             </span>
-            <span className="text-[11px] text-muted-foreground">
+            <span className="text-mini text-muted-foreground">
               perturb one credit by ₹0.01
             </span>
-            <span className="text-[10px] text-muted-foreground">in memory; CSVs untouched</span>
+            <span className="text-micro text-muted-foreground">in memory; CSVs untouched</span>
             {busy === 'tamper' ? (
-              <span className="text-[10px] text-primary">evaluating…</span>
+              <span className="text-micro text-primary">evaluating…</span>
             ) : null}
           </button>
         </div>
 
-        <p className="mt-3 border-l-2 border-primary/60 pl-2.5 text-[11.5px] leading-relaxed text-muted-foreground">
+        <p className="mt-3 border-l-2 border-primary/60 pl-2.5 text-mini leading-relaxed text-muted-foreground">
           Historical decisions are evaluated using the policy that existed when the decision
           occurred. Replaying under a later policy answers a different question — &ldquo;would we
           take this today?&rdquo; — and AVOS keeps the two apart rather than quietly conflating them.
@@ -139,14 +139,22 @@ export function ReplayView({
       </div>
 
       {error ? (
-        <div className="rounded-md border border-[hsl(var(--verdict-failed)/0.4)] bg-[hsl(var(--verdict-failed)/0.08)] px-3 py-2 text-[12px] text-[hsl(var(--verdict-failed))]">
+        <div className="rounded-md border border-[hsl(var(--verdict-failed)/0.4)] bg-[hsl(var(--verdict-failed)/0.08)] px-3 py-2 text-compact text-[hsl(var(--verdict-failed))]">
           {error}
         </div>
       ) : null}
 
       {/* --- the transition -------------------------------------------------- */}
       {result ? (
-        <div className="overflow-hidden rounded-lg border border-border">
+        // Replaying flips a verdict with no visual transition a screen reader can
+        // follow, so the region announces itself. `polite` rather than
+        // `assertive`: the result is important, not urgent, and interrupting
+        // someone mid-sentence to say so is worse than waiting a beat.
+        <div
+          role="status"
+          aria-live="polite"
+          className="overflow-hidden rounded-lg border border-border"
+        >
           <div className="grid gap-px bg-border md:grid-cols-[1fr_auto_1fr]">
             <VerdictColumn
               label="As recorded"
@@ -158,11 +166,11 @@ export function ReplayView({
               <div className="flex flex-col items-center gap-1">
                 <span className="text-2xl leading-none text-muted-foreground">→</span>
                 {result.verdict_changed ? (
-                  <span className="text-[10px] font-semibold uppercase tracking-wide text-[hsl(var(--verdict-uncertain))]">
+                  <span className="text-micro font-semibold uppercase tracking-wide text-[hsl(var(--verdict-uncertain))]">
                     verdict changed
                   </span>
                 ) : (
-                  <span className="text-[10px] uppercase tracking-wide text-muted-foreground">
+                  <span className="text-micro uppercase tracking-wide text-muted-foreground">
                     unchanged
                   </span>
                 )}
@@ -179,7 +187,7 @@ export function ReplayView({
 
           {/* the column that did NOT change */}
           <div className="border-t border-border bg-muted/30 px-4 py-3">
-            <div className="mb-2 text-[10px] font-semibold uppercase tracking-[0.1em] text-muted-foreground">
+            <div className="mb-2 text-micro font-semibold uppercase tracking-label text-muted-foreground">
               Unchanged by replay
             </div>
             <div className="grid grid-cols-2 gap-x-6 gap-y-1.5 sm:grid-cols-4">
@@ -206,7 +214,7 @@ export function ReplayView({
           <Separator />
 
           <div className="px-4 py-3">
-            <p className="text-[12.5px] leading-relaxed text-foreground/90">{result.narrative}</p>
+            <p className="text-compact leading-relaxed text-foreground/90">{result.narrative}</p>
             {result.changed_evidence_ids.length > 0 ? (
               <div className="mt-2 flex flex-wrap gap-1.5">
                 {result.changed_evidence_ids.map((id) => (
@@ -220,10 +228,10 @@ export function ReplayView({
         </div>
       ) : (
         <div className="rounded-lg border border-dashed border-border px-4 py-10 text-center">
-          <p className="text-[12.5px] text-muted-foreground">
+          <p className="text-compact text-muted-foreground">
             Pick a policy epoch above to re-evaluate {caseId}.
           </p>
-          <p className="mt-1 text-[11.5px] text-muted-foreground">
+          <p className="mt-1 text-mini text-muted-foreground">
             Current verdict:{' '}
             <span className="font-semibold">{current.verdict}</span>
             {current.reason_code ? ` · ${current.reason_code}` : ''} under{' '}
@@ -249,13 +257,13 @@ function VerdictColumn({
   return (
     <div className={cn('bg-card px-4 py-4', highlight && 'bg-accent/40')}>
       <div className="mb-2 flex items-baseline justify-between gap-2">
-        <span className="text-[10px] font-semibold uppercase tracking-[0.1em] text-muted-foreground">
+        <span className="text-micro font-semibold uppercase tracking-label text-muted-foreground">
           {label}
         </span>
-        <span className="text-[10px] text-muted-foreground">{sublabel}</span>
+        <span className="text-micro text-muted-foreground">{sublabel}</span>
       </div>
       <VerdictBadge verdict={result.verdict} reason={result.reason_code} size="lg" />
-      <div className="mt-3 flex flex-col gap-1 text-[11.5px]">
+      <div className="mt-3 flex flex-col gap-1 text-mini">
         <div className="flex justify-between gap-3">
           <span className="text-muted-foreground">Policy</span>
           <Mono>{result.policy_version}</Mono>
@@ -272,10 +280,10 @@ function VerdictColumn({
 function Fact({ label, value }: { label: string; value: React.ReactNode }) {
   return (
     <div className="flex flex-col gap-0.5">
-      <span className="text-[9.5px] font-medium uppercase tracking-[0.09em] text-muted-foreground">
+      <span className="text-micro font-medium uppercase tracking-label text-muted-foreground">
         {label}
       </span>
-      <span className="tnum text-[12.5px]">{value}</span>
+      <span className="tnum text-compact">{value}</span>
     </div>
   )
 }

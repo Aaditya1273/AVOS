@@ -63,7 +63,7 @@ const buttonVariants = cva(
       size: {
         default: 'h-9 px-4 py-2',
         sm: 'h-8 rounded-md px-3 text-xs',
-        xs: 'h-7 rounded px-2 text-[11px]',
+        xs: 'h-7 rounded px-2 text-mini',
         icon: 'h-9 w-9',
       },
     },
@@ -85,7 +85,7 @@ Button.displayName = 'Button'
 // --- Badge ------------------------------------------------------------------
 
 const badgeVariants = cva(
-  'inline-flex items-center rounded-full border px-2.5 py-0.5 text-[11px] font-semibold tracking-wide transition-colors',
+  'inline-flex items-center rounded-full border px-2.5 py-0.5 text-mini font-semibold tracking-wide transition-colors',
   {
     variants: {
       variant: {
@@ -141,11 +141,11 @@ export function Stat({
           : 'text-foreground'
   return (
     <div className={cn('flex flex-col gap-0.5', className)}>
-      <span className="text-[10px] font-medium uppercase tracking-[0.09em] text-muted-foreground">
+      <span className="text-micro font-medium uppercase tracking-label text-muted-foreground">
         {label}
       </span>
       <span className={cn('tnum text-lg font-semibold leading-tight', toneClass)}>{value}</span>
-      {hint ? <span className="text-[11px] leading-tight text-muted-foreground">{hint}</span> : null}
+      {hint ? <span className="text-mini leading-tight text-muted-foreground">{hint}</span> : null}
     </div>
   )
 }
@@ -153,7 +153,7 @@ export function Stat({
 /** Monospace inline code, for ids, hashes and versions. */
 export function Mono({ children, className }: { children: React.ReactNode; className?: string }) {
   return (
-    <code className={cn('rounded bg-muted px-1.5 py-0.5 font-mono text-[11px]', className)}>
+    <code className={cn('rounded bg-muted px-1.5 py-0.5 font-mono text-mini', className)}>
       {children}
     </code>
   )

@@ -51,7 +51,7 @@ Let them read the two columns.)*
 
 *(Now scroll to the batch strip.)*
 
-> 120 settlements. **75 closed. 17 refused. 28 exceptions.** ₹40.5 lakh held back from
+> 120 settlements. **75 closed. 17 refused. 28 exceptions.** ₹40.55 lakh held back from
 > incorrect closure, and **zero** false closures.
 
 ---

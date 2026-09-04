@@ -74,7 +74,7 @@ export function EvidenceInspector({
             <Badge variant="uncertain">{injectionRows.length} injected cell</Badge>
           ) : null}
         </div>
-        <div className="flex items-center gap-3 text-[11px]">
+        <div className="flex items-center gap-3 text-mini">
           {payments.length > 0 ? (
             <button
               type="button"
@@ -96,8 +96,8 @@ export function EvidenceInspector({
 
       <div className="overflow-hidden rounded-md border border-border">
         <div className="overflow-x-auto scrollbar-thin">
-          <table className="w-full min-w-[720px] text-left text-[12px]">
-            <thead className="bg-muted/60 text-[10px] uppercase tracking-[0.08em] text-muted-foreground">
+          <table className="w-full min-w-[720px] text-left text-compact">
+            <thead className="bg-muted/60 text-micro uppercase tracking-label text-muted-foreground">
               <tr>
                 <th className="px-3 py-2 font-medium">Source</th>
                 <th className="px-3 py-2 font-medium">Row</th>
@@ -129,11 +129,11 @@ export function EvidenceInspector({
                       isFlagged && 'bg-[hsl(var(--verdict-uncertain)/0.08)]',
                     )}
                   >
-                    <td className="px-3 py-2 font-mono text-[11px] text-muted-foreground">
+                    <td className="px-3 py-2 font-mono text-mini text-muted-foreground">
                       {SOURCE_LABEL[e.source] ?? e.source}
                     </td>
                     <td className="px-3 py-2">
-                      <span className="font-mono text-[11px] text-primary underline decoration-primary/30 underline-offset-2">
+                      <span className="font-mono text-mini text-primary underline decoration-primary/30 underline-offset-2">
                         {e.row_id}
                       </span>
                     </td>
@@ -141,7 +141,7 @@ export function EvidenceInspector({
                       <span>{KIND_LABEL[e.kind] ?? e.kind}</span>
                       {!cited.has(e.evidence_id) ? (
                         <span
-                          className="ml-1.5 text-[10px] text-muted-foreground"
+                          className="ml-1.5 text-micro text-muted-foreground"
                           title="Retrieved by AVOS but not cited by the agent. Scored anyway."
                         >
                           uncited
@@ -149,7 +149,7 @@ export function EvidenceInspector({
                       ) : null}
                       {isFlagged ? (
                         <span
-                          className="ml-1.5 text-[10px] text-[hsl(var(--verdict-uncertain))]"
+                          className="ml-1.5 text-micro text-[hsl(var(--verdict-uncertain))]"
                           title="Instruction-shaped text in a free-text cell"
                         >
                           ⚑
@@ -157,16 +157,16 @@ export function EvidenceInspector({
                       ) : null}
                     </td>
                     <td className="tnum px-3 py-2 text-right">{formatPaise(e.amount_paise)}</td>
-                    <td className="px-3 py-2 text-[11px] text-muted-foreground">
+                    <td className="px-3 py-2 text-mini text-muted-foreground">
                       {fmtTime(e.timestamp)}
                     </td>
-                    <td className="tnum px-3 py-2 text-right text-[11px] text-muted-foreground">
+                    <td className="tnum px-3 py-2 text-right text-mini text-muted-foreground">
                       {Number.isFinite(e.freshness_hours) ? `${e.freshness_hours}h` : '—'}
                     </td>
                     <td className="px-3 py-2">
                       <span
                         className={cn(
-                          'font-mono text-[10px]',
+                          'font-mono text-micro',
                           e.hash_matches_recorded
                             ? 'text-muted-foreground'
                             : 'font-semibold text-[hsl(var(--verdict-failed))]',
@@ -175,7 +175,7 @@ export function EvidenceInspector({
                         {e.hash.slice(0, 12)}
                       </span>
                       {!e.hash_matches_recorded ? (
-                        <span className="ml-1.5 text-[10px] font-semibold text-[hsl(var(--verdict-failed))]">
+                        <span className="ml-1.5 text-micro font-semibold text-[hsl(var(--verdict-failed))]">
                           ≠ baseline
                         </span>
                       ) : null}
@@ -193,13 +193,13 @@ export function EvidenceInspector({
             </tbody>
           </table>
         </div>
-        <div className="border-t border-border bg-muted/30 px-3 py-1.5 text-[10.5px] text-muted-foreground">
+        <div className="border-t border-border bg-muted/30 px-3 py-1.5 text-micro text-muted-foreground">
           Click any row to open its source file, full hash, and the checks that read it.
         </div>
       </div>
 
       {showRaw ? (
-        <pre className="max-h-96 overflow-auto rounded-md border border-border bg-muted/40 p-3 font-mono text-[10.5px] leading-relaxed scrollbar-thin">
+        <pre className="max-h-96 overflow-auto rounded-md border border-border bg-muted/40 p-3 font-mono text-micro leading-relaxed scrollbar-thin">
           {JSON.stringify(pack, null, 2)}
         </pre>
       ) : null}

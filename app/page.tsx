@@ -22,7 +22,7 @@ import { loadManifest } from '@/lib/data/ledger'
 import { loadEvalReport } from '@/lib/eval-report'
 import { USING_MOCK, MODEL_VERSION } from '@/lib/ai/provider'
 import { VERIFIER_VERSION } from '@/lib/verifier/deterministic'
-import { formatPaise, formatPct } from '@/lib/money'
+import { formatCompact, formatPaise, formatPct } from '@/lib/money'
 import { tallyVerdicts } from '@/lib/metrics'
 import type { Decision } from '@/lib/types'
 
@@ -72,10 +72,10 @@ export default function Page() {
           <div className="flex flex-wrap items-start justify-between gap-4">
             <div>
               <div className="flex items-center gap-2.5">
-                <h1 className="text-2xl font-bold tracking-tight">AVOS Verify</h1>
-                <Badge variant="outline">Track 04 · Settlement Assurance</Badge>
+                <h1 className="text-2xl font-bold tracking-tight">AVOS</h1>
+                <Badge variant="outline">Track 04 · AI Finance Controller</Badge>
               </div>
-              <p className="mt-1.5 max-w-3xl text-[13.5px] leading-relaxed text-muted-foreground">
+              <p className="mt-1.5 max-w-3xl text-body leading-relaxed text-muted-foreground">
                 Evidence-backed verification for AI-operated finance. Razorpay governs what an agent
                 is allowed to do. AVOS is the independent check on whether the agent&rsquo;s financial
                 conclusion is actually supported — it recomputes every claim from source evidence
@@ -98,7 +98,7 @@ export default function Page() {
             </div>
           </div>
 
-          <p className="mt-4 max-w-4xl border-l-2 border-primary pl-3 text-[13px] font-medium leading-relaxed">
+          <p className="mt-4 max-w-4xl border-l-2 border-primary pl-3 text-body font-medium leading-relaxed">
             An agent can be policy-compliant and still be financially wrong. AVOS makes closure
             conditional on evidence, not on confidence.
           </p>
@@ -106,7 +106,7 @@ export default function Page() {
 
         {/* --- measured results ---------------------------------------------- */}
         {m ? (
-          <div className="grid grid-cols-2 gap-5 px-6 py-5 sm:grid-cols-4 lg:grid-cols-4 xl:grid-cols-8">
+          <div className="grid grid-cols-2 gap-5 px-6 py-5 sm:grid-cols-3 lg:grid-cols-6">
             <Stat
               label="Match rate"
               value={formatPct(m.match_rate)}
@@ -121,12 +121,12 @@ export default function Page() {
             <Stat
               label="Closed"
               value={String(m.closure.closed)}
-              hint={`${formatPaise(m.closure.closed_value_paise)} posted`}
+              hint={`${formatCompact(m.closure.closed_value_paise)} posted`}
               tone="verified"
             />
             <Stat
               label="Value withheld"
-              value={formatPaise(m.closure.withheld_value_paise)}
+              value={formatCompact(m.closure.withheld_value_paise)}
               hint={`${m.closure.refused} refused · ${m.closure.failed} failed`}
               tone="uncertain"
             />
@@ -137,41 +137,39 @@ export default function Page() {
               tone={m.false_closure_rate === 0 ? 'verified' : 'failed'}
             />
             <Stat
-              label="Verification precision"
-              value={formatPct(m.verification_precision)}
-              hint={`${m.by_verdict.VERIFIED} verdicts`}
-              tone="verified"
-            />
-            <Stat
-              label="Exception detection"
-              value={formatPct(m.exception_detection_rate)}
-              hint={`${m.exceptions_caught}/${m.exceptions_injected} injected`}
-              tone="verified"
-            />
-            <Stat
               label="Throughput"
               value={`${m.throughput_records_per_sec.toLocaleString()}/s`}
               hint="deterministic verify"
             />
-            <Stat
-              label="Confidence signal"
-              value={`${m.confidence_discrimination >= 0 ? '+' : ''}${m.confidence_discrimination.toFixed(3)}`}
-              hint={`${m.high_confidence_refusals} high-confidence refusals`}
-              tone={Math.abs(m.confidence_discrimination) < 0.05 ? 'failed' : undefined}
-            />
           </div>
         ) : (
-          <div className="px-6 py-5 text-[13px] text-muted-foreground">
+          <div className="px-6 py-5 text-body text-muted-foreground">
             No evaluation on record. Run <Mono>npm run eval</Mono> to populate metrics and the
             decision log.
           </div>
         )}
       </header>
 
+      {/* --- verdict tally --------------------------------------------------- */}
+      <div className="mb-4 flex flex-wrap items-center gap-3">
+        <span className="text-xs font-semibold uppercase tracking-label text-muted-foreground">
+          Batch of 120
+        </span>
+        <Badge variant="failed">{tally.FAILED} refused</Badge>
+        <Badge variant="uncertain">{tally.UNCERTAIN} abstained</Badge>
+        <Badge variant="verified">{tally.VERIFIED} cleared</Badge>
+        <span className="text-mini text-muted-foreground">
+          Matched, verified and closed on every request from source — nothing is read back from the
+          decision log.
+        </span>
+      </div>
+
+      <Console rows={rows} policyPoints={policyPoints} initialCaseId={heroCaseId} />
+
       {/* --- pillars + honesty note ------------------------------------------ */}
-      <div className="mb-6 grid gap-4 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
+      <div className="mt-6 grid gap-4 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
         <Card className="p-5">
-          <h2 className="mb-3 text-xs font-semibold uppercase tracking-[0.09em] text-muted-foreground">
+          <h2 className="mb-3 text-xs font-semibold uppercase tracking-label text-muted-foreground">
             Guard · Prove · Verify · Measure
           </h2>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -193,7 +191,7 @@ export default function Page() {
             />
           </div>
           <Separator className="my-4" />
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[11.5px] text-muted-foreground">
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-mini text-muted-foreground">
             <span>
               Ledger: <Mono>{manifest.evidence_rows.razorpay_payments}</Mono> payments ·{' '}
               <Mono>{manifest.evidence_rows.razorpay_settlements}</Mono> settlements ·{' '}
@@ -210,10 +208,10 @@ export default function Page() {
         </Card>
 
         <Card className="p-5">
-          <h2 className="mb-2 text-xs font-semibold uppercase tracking-[0.09em] text-muted-foreground">
+          <h2 className="mb-2 text-xs font-semibold uppercase tracking-label text-muted-foreground">
             What these numbers do and do not claim
           </h2>
-          <ul className="flex flex-col gap-2 text-[12px] leading-relaxed text-muted-foreground">
+          <ul className="flex flex-col gap-2 text-compact leading-relaxed text-muted-foreground">
             <li>
               <span className="text-foreground">Value coverage</span> is measured against verifiable
               value — of the money that genuinely reconciled, how much we cleared. Auto-clear rate
@@ -244,23 +242,8 @@ export default function Page() {
         </Card>
       </div>
 
-      {/* --- verdict tally --------------------------------------------------- */}
-      <div className="mb-4 flex flex-wrap items-center gap-3">
-        <span className="text-xs font-semibold uppercase tracking-[0.09em] text-muted-foreground">
-          Batch of 120
-        </span>
-        <Badge variant="failed">{tally.FAILED} refused</Badge>
-        <Badge variant="uncertain">{tally.UNCERTAIN} abstained</Badge>
-        <Badge variant="verified">{tally.VERIFIED} cleared</Badge>
-        <span className="text-[11.5px] text-muted-foreground">
-          Matched, verified and closed on every request from source — nothing is read back from the
-          decision log.
-        </span>
-      </div>
 
-      <Console rows={rows} policyPoints={policyPoints} initialCaseId={heroCaseId} />
-
-      <footer className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-border pt-5 text-[11.5px] text-muted-foreground">
+      <footer className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-border pt-5 text-mini text-muted-foreground">
         <span>
           Verifier <Mono>{VERIFIER_VERSION}</Mono> — zero runtime imports, asserted on every eval run
         </span>
@@ -276,8 +259,8 @@ export default function Page() {
 function Pillar({ name, body }: { name: string; body: string }) {
   return (
     <div className="rounded-md border border-border bg-muted/25 p-3">
-      <div className="mb-1 text-[12px] font-semibold text-primary">{name}</div>
-      <p className="text-[11.5px] leading-relaxed text-muted-foreground">{body}</p>
+      <div className="mb-1 text-compact font-semibold text-primary">{name}</div>
+      <p className="text-mini leading-relaxed text-muted-foreground">{body}</p>
     </div>
   )
 }

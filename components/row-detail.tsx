@@ -65,7 +65,7 @@ export function RowDetail({
       >
         <header className="sticky top-0 z-10 flex items-start justify-between gap-3 border-b border-border bg-card/95 px-5 py-4 backdrop-blur">
           <div>
-            <div className="text-[10px] uppercase tracking-[0.1em] text-muted-foreground">
+            <div className="text-micro uppercase tracking-label text-muted-foreground">
               Evidence row
             </div>
             <div className="mt-0.5 font-mono text-base font-semibold">{item.row_id}</div>
@@ -89,8 +89,8 @@ export function RowDetail({
             <dl className="divide-y divide-border/60 rounded-md border border-border">
               {fields.map(([k, v]) => (
                 <div key={k} className="flex items-baseline justify-between gap-4 px-3 py-2">
-                  <dt className="text-[11.5px] text-muted-foreground">{k}</dt>
-                  <dd className="text-right text-[12.5px]">{v}</dd>
+                  <dt className="text-mini text-muted-foreground">{k}</dt>
+                  <dd className="text-right text-compact">{v}</dd>
                 </div>
               ))}
             </dl>
@@ -101,13 +101,13 @@ export function RowDetail({
               <SectionLabel>Join keys</SectionLabel>
               <div className="flex flex-wrap gap-1.5">
                 {keyEntries.map(([k, v]) => (
-                  <span key={k} className="rounded border border-border px-2 py-1 text-[11px]">
+                  <span key={k} className="rounded border border-border px-2 py-1 text-mini">
                     <span className="text-muted-foreground">{k}</span>{' '}
                     <span className="font-mono">{v}</span>
                   </span>
                 ))}
               </div>
-              <p className="mt-1.5 text-[11px] leading-relaxed text-muted-foreground">
+              <p className="mt-1.5 text-mini leading-relaxed text-muted-foreground">
                 Retrieval follows these. The UTR key is why a settlement claiming another
                 settlement&rsquo;s bank reference ends up in this pack at all.
               </p>
@@ -116,10 +116,10 @@ export function RowDetail({
 
           <section>
             <SectionLabel>Content hash</SectionLabel>
-            <div className="break-all rounded-md border border-border bg-muted/40 p-2.5 font-mono text-[10.5px] leading-relaxed">
+            <div className="break-all rounded-md border border-border bg-muted/40 p-2.5 font-mono text-micro leading-relaxed">
               {item.hash}
             </div>
-            <p className="mt-1.5 text-[11px] leading-relaxed text-muted-foreground">
+            <p className="mt-1.5 text-mini leading-relaxed text-muted-foreground">
               sha256 over the normalised content, excluding <Mono>row_id</Mono>. Two rows with the
               same content therefore collide — which is how a re-ingested file is detected rather
               than double-counted.
@@ -131,7 +131,7 @@ export function RowDetail({
               Read by {referencedBy.length} check{referencedBy.length === 1 ? '' : 's'}
             </SectionLabel>
             {referencedBy.length === 0 ? (
-              <p className="text-[11.5px] text-muted-foreground">
+              <p className="text-mini text-muted-foreground">
                 No check names this row specifically. It still contributed to the totals — the
                 arithmetic check reads every payment, refund, hold and credit in the pack.
               </p>
@@ -141,7 +141,7 @@ export function RowDetail({
                   <div
                     key={c.id}
                     className={cn(
-                      'rounded px-2.5 py-1.5 text-[11.5px]',
+                      'rounded px-2.5 py-1.5 text-mini',
                       c.status === 'fail'
                         ? 'bg-[hsl(var(--verdict-failed)/0.08)]'
                         : 'bg-muted/40',
@@ -157,7 +157,7 @@ export function RowDetail({
                     >
                       {c.status === 'pass' ? '✓' : c.status === 'fail' ? '✕' : '–'}
                     </span>
-                    <span className="font-mono text-[11px]">{c.id}</span>
+                    <span className="font-mono text-mini">{c.id}</span>
                   </div>
                 ))}
               </div>
@@ -170,14 +170,14 @@ export function RowDetail({
               <div className="rounded-md border border-dashed border-[hsl(var(--verdict-uncertain)/0.45)] bg-[hsl(var(--verdict-uncertain)/0.06)] p-3">
                 {displayEntries.map(([k, v]) => (
                   <div key={k} className="mb-1.5 last:mb-0">
-                    <div className="text-[10px] uppercase tracking-[0.09em] text-muted-foreground">
+                    <div className="text-micro uppercase tracking-label text-muted-foreground">
                       {k}
                     </div>
-                    <div className="break-words font-mono text-[11.5px]">{v}</div>
+                    <div className="break-words font-mono text-mini">{v}</div>
                   </div>
                 ))}
               </div>
-              <p className="mt-1.5 text-[11px] leading-relaxed text-muted-foreground">
+              <p className="mt-1.5 text-mini leading-relaxed text-muted-foreground">
                 This is the only attacker-controlled surface in the row. It is passed to the Q&amp;A
                 model as delimited data and is not a field the verifier is permitted to name.
               </p>
@@ -199,7 +199,7 @@ function SectionLabel({
   return (
     <h4
       className={cn(
-        'mb-1.5 text-[10px] font-semibold uppercase tracking-[0.1em]',
+        'mb-1.5 text-micro font-semibold uppercase tracking-label',
         tone === 'warn' ? 'text-[hsl(var(--verdict-uncertain))]' : 'text-muted-foreground',
       )}
     >

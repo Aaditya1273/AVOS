@@ -170,12 +170,12 @@ export function Console({
                 key={value}
                 value={value}
                 className={cn(
-                  'relative flex-1 px-4 py-2.5 text-[12px] font-medium text-muted-foreground transition-colors hover:text-foreground',
+                  'relative flex-1 px-4 py-2.5 text-compact font-medium text-muted-foreground transition-colors hover:text-foreground',
                   'data-[state=active]:text-foreground',
                   'data-[state=active]:after:absolute data-[state=active]:after:inset-x-0 data-[state=active]:after:-bottom-px data-[state=active]:after:h-0.5 data-[state=active]:after:bg-primary',
                 )}
               >
-                {label} <span className="text-[10px] text-muted-foreground">{n}</span>
+                {label} <span className="text-micro text-muted-foreground">{n}</span>
               </Tabs.Trigger>
             ))}
           </Tabs.List>
@@ -185,7 +185,7 @@ export function Console({
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search settlement, case, merchant, reason code"
-              className="h-8 rounded-md border border-border bg-background px-2.5 text-[12px] outline-none placeholder:text-muted-foreground/70 focus-visible:ring-1 focus-visible:ring-ring"
+              className="h-8 rounded-md border border-border bg-background px-2.5 text-compact outline-none placeholder:text-muted-foreground/70 focus-visible:ring-1 focus-visible:ring-ring"
             />
             <div className="flex gap-1">
               {(['ALL', 'FAILED', 'UNCERTAIN', 'VERIFIED'] as const).map((f) => (
@@ -194,7 +194,7 @@ export function Console({
                   type="button"
                   onClick={() => setFilter(f)}
                   className={cn(
-                    'flex-1 rounded border px-1.5 py-1 text-[10px] font-medium transition-colors',
+                    'flex-1 rounded border px-1.5 py-1 text-micro font-medium transition-colors',
                     filter === f
                       ? 'border-primary bg-primary/15 text-primary'
                       : 'border-border text-muted-foreground hover:bg-accent',
@@ -230,34 +230,34 @@ export function Console({
                 <span className="flex min-w-0 flex-1 items-center gap-2 px-3 py-2">
                   <span className="min-w-0 flex-1">
                     <span className="flex items-baseline gap-1.5">
-                      <span className="font-mono text-[12.5px] font-semibold">
+                      <span className="font-mono text-compact font-semibold">
                         {r.settlement_id}
                       </span>
                       {r.injection ? (
                         <span
-                          className="text-[10px] text-[hsl(var(--verdict-uncertain))]"
+                          className="text-micro text-[hsl(var(--verdict-uncertain))]"
                           title="instruction-shaped text in a free-text cell"
                         >
                           ⚑
                         </span>
                       ) : null}
                     </span>
-                    <span className="mt-0.5 flex items-center gap-1.5 truncate font-mono text-[10px] text-muted-foreground">
+                    <span className="mt-0.5 flex items-center gap-1.5 truncate font-mono text-micro text-muted-foreground">
                       <span className="truncate">{r.reason_code ?? 'clean'}</span>
                       <span className="opacity-50">·</span>
                       <span>{fmtDate(r.decision_time)}</span>
                     </span>
                   </span>
                   <span className="shrink-0 text-right">
-                    <span className="tnum block text-[11.5px]">
+                    <span className="tnum block text-mini">
                       {formatCompact(r.value_paise)}
                     </span>
                     {r.difference_paise ? (
-                      <span className="tnum block text-[10px] text-[hsl(var(--verdict-failed))]">
+                      <span className="tnum block text-micro text-[hsl(var(--verdict-failed))]">
                         {formatDelta(r.difference_paise)}
                       </span>
                     ) : (
-                      <span className="tnum block text-[10px] text-muted-foreground">
+                      <span className="tnum block text-micro text-muted-foreground">
                         {r.confidence.toFixed(2)}
                       </span>
                     )}
@@ -266,13 +266,13 @@ export function Console({
               </button>
             ))}
             {visible.length === 0 ? (
-              <div className="p-8 text-center text-[12px] text-muted-foreground">
+              <div className="p-8 text-center text-compact text-muted-foreground">
                 No cases match.
               </div>
             ) : null}
           </div>
 
-          <div className="shrink-0 border-t border-border px-3 py-1.5 text-[10px] text-muted-foreground">
+          <div className="shrink-0 border-t border-border px-3 py-1.5 text-micro text-muted-foreground">
             {visible.length} shown · <kbd className="font-mono">↑</kbd>{' '}
             <kbd className="font-mono">↓</kbd> to move
           </div>
@@ -283,7 +283,7 @@ export function Console({
       <div className="min-w-0">
         {error ? (
           <Card className="p-6">
-            <p className="text-[13px] text-[hsl(var(--verdict-failed))]">{error}</p>
+            <p className="text-body text-[hsl(var(--verdict-failed))]">{error}</p>
           </Card>
         ) : payload ? (
           <div className={cn('transition-opacity', loading && 'opacity-50')}>

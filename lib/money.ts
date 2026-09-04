@@ -27,11 +27,12 @@ export function formatDelta(paise: Paise | null | undefined): string {
   return `${sign}${INR.format(Math.abs(paise) / 100)}`
 }
 
-/** Compact form for dense tables: ₹1.09 Cr, ₹4.8 L, ₹4,800. */
+/** Compact form for dense tables: ₹1.09Cr, ₹4.80L, ₹4,800. Two decimals, no space —
+ *  a finance column that rounds ₹1.76L to ₹1.8L drops a digit a reader is scanning for. */
 export function formatCompact(paise: Paise): string {
   const rupees = paise / 100
-  if (Math.abs(rupees) >= 1e7) return `₹${(rupees / 1e7).toFixed(2)} Cr`
-  if (Math.abs(rupees) >= 1e5) return `₹${(rupees / 1e5).toFixed(2)} L`
+  if (Math.abs(rupees) >= 1e7) return `₹${(rupees / 1e7).toFixed(2)}Cr`
+  if (Math.abs(rupees) >= 1e5) return `₹${(rupees / 1e5).toFixed(2)}L`
   return INR.format(rupees)
 }
 

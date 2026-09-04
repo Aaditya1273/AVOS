@@ -80,8 +80,8 @@ export function ProofCard({
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border bg-gradient-to-r from-muted/60 to-transparent px-5 py-3">
         <div className="flex items-baseline gap-3">
           <h2 className="font-mono text-lg font-bold tracking-tight">{result.settlement_id}</h2>
-          <span className="text-[12px] text-muted-foreground">{pack.merchant_id}</span>
-          <span className="tnum text-[12px] font-medium">
+          <span className="text-compact text-muted-foreground">{pack.merchant_id}</span>
+          <span className="tnum text-compact font-medium">
             {formatPaise(decision.batch_value_paise)}
           </span>
         </div>
@@ -98,7 +98,7 @@ export function ProofCard({
       <div className="grid gap-0 md:grid-cols-2">
         <div className="flex flex-col gap-2.5 border-b border-border p-5 md:border-b-0 md:border-r">
           <div className="flex items-center justify-between gap-2">
-            <span className="text-[10px] font-semibold uppercase tracking-[0.1em] text-muted-foreground">
+            <span className="text-micro font-semibold uppercase tracking-label text-muted-foreground">
               Agent claim
             </span>
             <Badge variant="outline">{proposal.used_mock ? 'offline mock' : 'live model'}</Badge>
@@ -106,7 +106,7 @@ export function ProofCard({
 
           <div className="flex items-baseline gap-3">
             <span className="font-mono text-xl font-bold">{proposal.claim.proposed_status}</span>
-            <span className="tnum text-[12px] text-muted-foreground">
+            <span className="tnum text-compact text-muted-foreground">
               confidence {proposal.confidence.toFixed(2)}
             </span>
           </div>
@@ -120,20 +120,20 @@ export function ProofCard({
           </div>
 
           <div className="rounded-md border border-dashed border-border bg-muted/25 p-3">
-            <div className="mb-1.5 text-[9.5px] font-semibold uppercase tracking-[0.1em] text-muted-foreground">
+            <div className="mb-1.5 text-micro font-semibold uppercase tracking-label text-muted-foreground">
               Severed at the boundary — not inputs to the verdict
             </div>
-            <p className="text-[12px] italic leading-relaxed text-muted-foreground line-through decoration-muted-foreground/40">
+            <p className="text-compact italic leading-relaxed text-muted-foreground line-through decoration-muted-foreground/40">
               &ldquo;{proposal.agent_reason}&rdquo;
             </p>
-            <p className="mt-1.5 text-[11px] leading-relaxed text-muted-foreground">
+            <p className="mt-1.5 text-mini leading-relaxed text-muted-foreground">
               The rationale and the confidence score both travel on the proposal.
               <code className="mx-1 font-mono">StructuredClaim</code> has three fields and neither
               is one of them.
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-1.5 text-[10px] text-muted-foreground">
+          <div className="flex flex-wrap items-center gap-1.5 text-micro text-muted-foreground">
             <Mono>{proposal.agent_version}</Mono>
             <Mono>{proposal.model_version}</Mono>
             <span>{proposal.claim.evidence_ids.length} ids cited</span>
@@ -142,10 +142,10 @@ export function ProofCard({
 
         <div className="flex flex-col gap-2.5 p-5">
           <div className="flex items-center justify-between gap-2">
-            <span className="text-[10px] font-semibold uppercase tracking-[0.1em] text-muted-foreground">
+            <span className="text-micro font-semibold uppercase tracking-label text-muted-foreground">
               AVOS verdict
             </span>
-            <span className="text-[10px] text-muted-foreground">
+            <span className="text-micro text-muted-foreground">
               {failedChecks > 0
                 ? `${failedChecks} of ${result.checks.length} checks failed`
                 : `${result.checks.length} checks`}
@@ -170,7 +170,7 @@ export function ProofCard({
           >
             <span
               className={cn(
-                'text-[13px] font-bold tracking-tight',
+                'text-body font-bold tracking-tight',
                 decision.closure.status === 'CLOSED' && 'text-[hsl(var(--verdict-verified))]',
                 decision.closure.status === 'REFUSED_TO_CLOSE' &&
                   'text-[hsl(var(--verdict-uncertain))]',
@@ -187,19 +187,19 @@ export function ProofCard({
                   ? '⛔ REFUSED TO CLOSE'
                   : '✕ EXCEPTION — NOT CLOSED'}
             </span>
-            <span className="tnum text-[11.5px] text-muted-foreground">
+            <span className="tnum text-mini text-muted-foreground">
               {decision.closure.status === 'CLOSED'
                 ? `${formatPaise(decision.closure.value_paise)} posted`
                 : `${formatPaise(decision.closure.value_paise)} held back`}
             </span>
           </div>
 
-          <p className="text-[11.5px] leading-relaxed text-muted-foreground">
+          <p className="text-mini leading-relaxed text-muted-foreground">
             {decision.closure.summary}
           </p>
 
           {avosDisagrees ? (
-            <div className="rounded-md border border-[hsl(var(--verdict-failed)/0.35)] bg-[hsl(var(--verdict-failed)/0.08)] px-3 py-2 text-[12px] font-medium text-[hsl(var(--verdict-failed))]">
+            <div className="rounded-md border border-[hsl(var(--verdict-failed)/0.35)] bg-[hsl(var(--verdict-failed)/0.08)] px-3 py-2 text-compact font-medium text-[hsl(var(--verdict-failed))]">
               The agent proposed closure at {proposal.confidence.toFixed(2)} confidence. AVOS
               refused it.
             </div>
@@ -207,12 +207,12 @@ export function ProofCard({
 
           {decision.closure.required_evidence.length > 0 ? (
             <div className="rounded-md border border-dashed border-[hsl(var(--verdict-uncertain)/0.45)] bg-[hsl(var(--verdict-uncertain)/0.06)] p-3">
-              <div className="mb-1.5 text-[9.5px] font-semibold uppercase tracking-[0.1em] text-[hsl(var(--verdict-uncertain))]">
+              <div className="mb-1.5 text-micro font-semibold uppercase tracking-label text-[hsl(var(--verdict-uncertain))]">
                 What would make this closeable
               </div>
               <ul className="flex flex-col gap-1">
                 {decision.closure.required_evidence.map((r) => (
-                  <li key={r} className="flex gap-2 text-[11.5px] leading-relaxed text-foreground/85">
+                  <li key={r} className="flex gap-2 text-mini leading-relaxed text-foreground/85">
                     <span className="text-muted-foreground">→</span>
                     <span>{r}</span>
                   </li>
@@ -224,14 +224,14 @@ export function ProofCard({
           {result.reason_code ? (
             <div className="mt-auto rounded-md border border-border bg-muted/25 p-3">
               <div className="mb-1 flex flex-wrap items-center gap-1.5">
-                <span className="text-[9.5px] font-semibold uppercase tracking-[0.1em] text-muted-foreground">
+                <span className="text-micro font-semibold uppercase tracking-label text-muted-foreground">
                   Exception note
                 </span>
                 <Badge variant="outline">AI · describes, never decides</Badge>
                 <Badge variant="default">{narration.suggested_owner.replace('_', ' ')}</Badge>
               </div>
-              <p className="text-[12px] leading-relaxed text-foreground/90">{narration.summary}</p>
-              <p className="mt-1 text-[11.5px] text-muted-foreground">→ {narration.next_action}</p>
+              <p className="text-compact leading-relaxed text-foreground/90">{narration.summary}</p>
+              <p className="mt-1 text-mini text-muted-foreground">→ {narration.next_action}</p>
             </div>
           ) : null}
         </div>
@@ -273,8 +273,8 @@ export function ProofCard({
           Shown because "which credit belongs here" is a decision someone made,
           and a decision nobody wrote down is a decision nobody can audit. */}
       {pack.match ? (
-        <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 border-b border-border bg-muted/20 px-5 py-2.5 text-[11.5px]">
-          <span className="text-[9.5px] font-semibold uppercase tracking-[0.09em] text-muted-foreground">
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 border-b border-border bg-muted/20 px-5 py-2.5 text-mini">
+          <span className="text-micro font-semibold uppercase tracking-label text-muted-foreground">
             Match
           </span>
           <Badge
@@ -289,22 +289,22 @@ export function ProofCard({
             {pack.match.status}
           </Badge>
           {pack.match.matched_row_ids.length > 0 ? (
-            <span className="font-mono text-[11px]">{pack.match.matched_row_ids.join(', ')}</span>
+            <span className="font-mono text-mini">{pack.match.matched_row_ids.join(', ')}</span>
           ) : null}
           <span className="tnum text-muted-foreground">
             score {pack.match.confidence.toFixed(2)}
           </span>
-          <span className="font-mono text-[10px] text-muted-foreground">
+          <span className="font-mono text-micro text-muted-foreground">
             {pack.match.reasons.join(' · ')}
           </span>
-          <span className="ml-auto font-mono text-[10px] text-muted-foreground">
+          <span className="ml-auto font-mono text-micro text-muted-foreground">
             {pack.match.matcher_version} · {pack.match.candidates.length} candidates scored
           </span>
         </div>
       ) : null}
 
       {/* --- provenance ------------------------------------------------------- */}
-      <div className="grid gap-x-6 gap-y-3 border-b border-border px-5 py-4 text-[11.5px] sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-x-6 gap-y-3 border-b border-border px-5 py-4 text-mini sm:grid-cols-2 lg:grid-cols-3">
         <Field label="Policy applied">
           <Mono>{result.policy_version}</Mono>
           <span className="ml-1.5 text-muted-foreground">
@@ -347,14 +347,14 @@ export function ProofCard({
               key={value}
               value={value}
               className={cn(
-                'relative px-4 py-2.5 text-[12px] font-medium text-muted-foreground transition-colors hover:text-foreground',
+                'relative px-4 py-2.5 text-compact font-medium text-muted-foreground transition-colors hover:text-foreground',
                 'data-[state=active]:text-foreground',
                 'data-[state=active]:after:absolute data-[state=active]:after:inset-x-0 data-[state=active]:after:-bottom-px data-[state=active]:after:h-0.5 data-[state=active]:after:bg-primary',
               )}
             >
               {label}
               {value === 'evidence' ? (
-                <span className="ml-1.5 text-[10px] text-muted-foreground">
+                <span className="ml-1.5 text-micro text-muted-foreground">
                   {pack.evidence.length}
                 </span>
               ) : null}
@@ -366,7 +366,7 @@ export function ProofCard({
           <div className="flex flex-col gap-4">
             {byPillar.map(({ pillar, checks }) => (
               <div key={pillar}>
-                <div className="mb-1.5 text-[11px] font-medium text-foreground/70">
+                <div className="mb-1.5 text-mini font-medium text-foreground/70">
                   {PILLAR_LABEL[pillar]}
                 </div>
                 <div className="flex flex-col gap-0.5">
@@ -418,19 +418,19 @@ function Figure({
 }) {
   return (
     <div className="px-4 py-3">
-      <div className="text-[9.5px] font-medium uppercase tracking-[0.09em] text-muted-foreground">
+      <div className="text-micro font-medium uppercase tracking-label text-muted-foreground">
         {label}
       </div>
       <div
         className={cn(
-          'tnum mt-0.5 text-[15px] font-semibold leading-tight',
+          'tnum mt-0.5 text-figure font-semibold leading-tight',
           tone === 'ok' && 'text-[hsl(var(--verdict-verified))]',
           tone === 'bad' && 'text-[hsl(var(--verdict-failed))]',
         )}
       >
         {value}
       </div>
-      {hint ? <div className="mt-0.5 text-[10px] text-muted-foreground">{hint}</div> : null}
+      {hint ? <div className="mt-0.5 text-micro text-muted-foreground">{hint}</div> : null}
     </div>
   )
 }
@@ -438,7 +438,7 @@ function Figure({
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div className="flex flex-col gap-0.5">
-      <span className="text-[9.5px] font-medium uppercase tracking-[0.09em] text-muted-foreground">
+      <span className="text-micro font-medium uppercase tracking-label text-muted-foreground">
         {label}
       </span>
       <span className="leading-snug">{children}</span>
@@ -457,14 +457,14 @@ function CheckRow({ check }: { check: CheckResult }) {
   return (
     <div
       className={cn(
-        'flex gap-2.5 rounded px-2 py-1.5 text-[11.5px]',
+        'flex gap-2.5 rounded px-2 py-1.5 text-mini',
         check.status === 'fail' && 'bg-[hsl(var(--verdict-failed)/0.07)]',
         check.status === 'skipped' && 'opacity-70',
       )}
     >
       <span className={cn('mt-px w-3 shrink-0 text-center font-bold', tone)}>{glyph}</span>
       <div className="min-w-0 flex-1">
-        <span className="font-mono text-[11px] text-foreground/80">{check.id}</span>
+        <span className="font-mono text-mini text-foreground/80">{check.id}</span>
         <p className="mt-0.5 break-words leading-relaxed text-muted-foreground">{check.detail}</p>
       </div>
     </div>

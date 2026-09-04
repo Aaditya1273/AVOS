@@ -33,7 +33,7 @@ than a code review comment.
 | | | | | |
 |---|---|---|---|---|
 | **Match rate** | **Match precision** | **False closure** | **Value withheld** | **Throughput** |
-| 90.8% | 100% | 0% | ₹40.5L | 4,982/sec |
+| 90.8% | 100% | 0% | ₹40.55L | 4,982/sec |
 | 109 matched · 9 ambiguous · 2 unmatched | nothing paired to the wrong money | on a labelled fixture | held back from incorrect closure | deterministic verify |
 
 ![The Proof Card — agent claim struck through, beside the refusal](docs/proof-card-failed.png)
@@ -90,7 +90,7 @@ could not resolve."* Three verbs, each with somewhere to look:
 | **Closes** a finance-ops loop | `lib/closure.ts` — only VERIFIED may become CLOSED, no override parameter | 75 closed · 17 refused · 28 exceptions |
 | **50+ record batch** | `data/settlement_batch_120.csv` + 30 adversarial + 28 hard slice | 178 records |
 | Reports its **match rate** | `lib/matching/engine.ts` → `lib/metrics.ts` | **90.8%**, precision 100% |
-| **Exceptions it could not resolve** | Every one carries a reason code, an owner and a money value | 45 exceptions, ₹40.5L withheld |
+| **Exceptions it could not resolve** | Every one carries a reason code, an owner and a money value | 45 exceptions, ₹40.55L withheld |
 
 ---
 
@@ -433,10 +433,10 @@ Full write-up in [`evals/report.md`](evals/report.md); raw per-case output in
 |---|---|
 | **Match rate** | **90.8%** — 109 matched · 9 ambiguous · 2 unmatched |
 | **Match precision** | **100.0%** — no settlement paired to another settlement's money |
-| **CLOSED** | 75 records · ₹68.8L posted |
+| **CLOSED** | 75 records · ₹68.77L posted |
 | **REFUSED TO CLOSE** | 17 records |
 | **FAILED** | 28 records |
-| **Value withheld** | ₹40.5L held back from incorrect closure |
+| **Value withheld** | ₹40.55L held back from incorrect closure |
 
 Match precision is the safety number, and it is the one that is labelled. A low
 match rate costs a human some time; a low match precision reconciles a settlement
