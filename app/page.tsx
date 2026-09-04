@@ -23,6 +23,8 @@ import { loadManifest } from '@/lib/data/ledger'
 import { loadEvalReport } from '@/lib/eval-report'
 import { USING_MOCK, MODEL_VERSION } from '@/lib/ai/provider'
 import { VERIFIER_VERSION } from '@/lib/verifier/deterministic'
+import { ProvenanceStrip } from '@/components/provenance'
+import { razorpayStatus } from '@/lib/connectors/razorpay'
 import { formatCompact, formatPaise, formatPct } from '@/lib/money'
 import { tallyVerdicts } from '@/lib/metrics'
 import type { Decision } from '@/lib/types'
@@ -89,6 +91,10 @@ export default function Page() {
                 {USING_MOCK ? 'offline mock model — no API key needed' : `live · ${MODEL_VERSION}`}
               </Badge>
               <Mono>{VERIFIER_VERSION}</Mono>
+              {/* Provenance. The console renders the committed ledger, so this
+                  says `AVOS fixture` even when a connector is configured — the
+                  badge describes the data, never the configuration. */}
+              <ProvenanceStrip source="fixture" connector={razorpayStatus()} />
               {report ? (
                 <Badge variant={gatesPassed ? 'verified' : 'failed'}>
                   {gatesPassed ? 'all acceptance gates pass' : 'gates failing'}

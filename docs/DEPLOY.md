@@ -52,6 +52,15 @@ either already correct by default or better set in the project UI.
 | `AVOS_LLM_MODEL` | `gpt-4o-mini` | Which model those surfaces use. |
 | `AVOS_USE_MOCK` | `0` | Set to `1` to force the mock even when a key is present. Useful for reproducing the committed numbers exactly. |
 | `AVOS_RUN_STAMP` | *(now)* | Pins the timestamp in `evals/report.md`. Local eval harness only; irrelevant to a deployment. |
+| `RAZORPAY_KEY_ID` | *(empty)* | Enables `npm run test:razorpay:live` only. Read-only, server-side, never read by the build, the benchmark or any page. |
+| `RAZORPAY_KEY_SECRET` | *(empty)* | As above. Never reaches the client bundle — verified against the built output, not assumed. |
+
+Setting the Razorpay pair changes nothing about the deployed console: it renders
+the committed fixtures either way, and its provenance badge continues to read
+**source · AVOS fixture**. The connector line beside it will change from
+`not configured` to `configured · test`, which describes your configuration, not
+the data. There is no reason to set these on Vercel at all — the live path is a
+local script.
 
 ### Do not set this one
 

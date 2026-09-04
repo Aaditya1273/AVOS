@@ -26,7 +26,7 @@
 import { hashContent, hashPack } from '@/lib/evidence/hash'
 import { NULL_POLICY, resolvePolicy } from '@/lib/policy/snapshots'
 import { matchSettlement } from '@/lib/matching/engine'
-import { loadLedger } from '@/lib/data/ledger'
+import { loadLedger, type Ledger } from '@/lib/data/ledger'
 import type {
   PackMatch,
   EvidenceItem,
@@ -64,6 +64,20 @@ export interface BuildPackOptions {
   tamperEvidenceId?: string
   agentVersion?: string
   modelVersion?: string
+  /**
+   * Ingest a ledger from somewhere other than the committed CSVs — currently
+   * only `lib/connectors/razorpay.ts`.
+   *
+   * This is the seam that makes "the verifier cannot tell the sources apart" a
+   * checkable statement rather than a slogan. Everything below this line runs
+   * identically whichever source filled the ledger; if the two produced
+   * different verdicts from equivalent facts, the difference could only come
+   * from the adapter, because there is no other code that differs.
+   *
+   * Defaults to the CSV ledger, so the benchmark is untouched and needs no
+   * credentials, no network and no configuration.
+   */
+  ledger?: Ledger
 }
 
 function hoursBetween(later: string, earlier: string): number {
@@ -96,7 +110,7 @@ export function buildEvidencePack(
   c: SettlementCase,
   opts: BuildPackOptions = {},
 ): EvidencePack {
-  const ledger = loadLedger()
+  const ledger = opts.ledger ?? loadLedger()
   const drafts: Draft[] = []
 
   // --- settlement rows, by id ------------------------------------------------
