@@ -16,22 +16,43 @@ figure on screen disagrees with this script, trust the screen and say so.
 
 ---
 
-## 0:00 – 0:40 · The problem
+## 0:00 – 0:15 · Open on the failure
 
-> Razorpay already has agent controls: spend limits, approval gates,
-> review-first mode, full audit trails. This does not rebuild any of that.
->
-> Track 04 asks the right question — **verification capacity, not generation
-> speed, is the bottleneck.** Razorpay governs what an agent is *allowed* to do.
-> Nothing checks whether what it *concluded* is actually true.
->
-> Those are different jobs. An agent can be perfectly policy-compliant — inside
-> its limits, correctly approved, fully logged — and still be financially wrong.
-> Every control fires green and the money is still off.
->
-> **AVOS Verify makes closure conditional on evidence, not on confidence.**
+*(Screen: Proof Card for S-10092, already selected. Say nothing for two seconds.
+Let them read the two columns.)*
 
-*(On screen: the console header. Do not scroll yet.)*
+> An AI agent looked at this settlement and said **RECONCILED**, at 0.95
+> confidence, with a specific and completely plausible reason.
+>
+> It was wrong by **₹120**. AVOS refused to close it, and it never read the
+> reason — it can't.
+
+*(Beat. Then:)*
+
+> That is the whole product. Everything else is how.
+
+---
+
+## 0:15 – 0:40 · Why that is the problem
+
+> Razorpay already has spend limits, approval gates, review-first mode, full
+> audit trails. This rebuilds none of it, because none of it would have caught
+> that ₹120.
+>
+> Every control fired green. The agent was inside its limits, correctly approved,
+> fully logged — **and the money was still wrong.** Policy compliance and
+> financial correctness are different questions, and only one of them was being
+> asked.
+>
+> Track 04 says it directly: **verification capacity, not generation speed, is
+> the bottleneck.**
+>
+> So: **AI proposes. Evidence proves. Only what is proven closes.**
+
+*(Now scroll to the batch strip.)*
+
+> 120 settlements. **75 closed. 17 refused. 28 exceptions.** ₹40.5 lakh held back from
+> incorrect closure, and **zero** false closures.
 
 ---
 

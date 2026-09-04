@@ -1,18 +1,46 @@
-# AVOS Verify
+# AVOS — Autonomous Finance Assurance
 
-### Evidence-backed verification for AI-operated finance
 **Razorpay Buildathon · Track 04 — AI Finance Controller** · *Settlement Assurance*
 
 [![CI](https://github.com/Aaditya1273/AVOS/actions/workflows/ci.yml/badge.svg)](../../actions/workflows/ci.yml)
 
-*Every gate below runs in CI on a machine that is not the author's, with no API
-key configured — because "it passes locally" is precisely the evidence a
-zero-runtime-imports claim cannot rest on.*
+> ### An AI agent reconciles 120 settlements.
+> ### AVOS closes 75, refuses 17, and raises 28 exceptions — and can prove, row by row, why each one.
 
-> **A finance controller that reconciles settlements and refuses to close
-> anything it cannot independently prove.**
->
-> AI proposes. Evidence proves. AVOS decides whether the books can close.
+**AI proposes. Evidence proves. Only what is proven closes.**
+
+---
+
+### The 30-second version
+
+On settlement **S-10092** the agent proposed `RECONCILED` at **0.95 confidence**,
+with this:
+
+> *"Refunds and the rolling reserve fully explain the gap between gross and the
+> deposit. Closing."*
+
+Fluent, specific, and impossible to check without redoing the arithmetic — the
+kind of sentence that ends a discussion in a finance review.
+
+AVOS recomputed from source and **refused to close**: the settlement declared
+**₹120** more in platform fees than the rate card allows, against a ₹50 tolerance.
+₹94,385.56 held back.
+
+**It never read that sentence.** It cannot — `StructuredClaim` has three fields
+and the rationale is not one of them, so passing it is a compile error rather
+than a code review comment.
+
+| | | | | |
+|---|---|---|---|---|
+| **Match rate** | **Match precision** | **False closure** | **Value withheld** | **Throughput** |
+| 90.8% | 100% | 0% | ₹40.5L | 4,982/sec |
+| 109 matched · 9 ambiguous · 2 unmatched | nothing paired to the wrong money | on a labelled fixture | held back from incorrect closure | deterministic verify |
+
+![The Proof Card — agent claim struck through, beside the refusal](docs/proof-card-failed.png)
+
+```bash
+npm install && npm run eval     # 178 records, 8 gates, no API key, ~20 seconds
+```
 
 ---
 
@@ -35,6 +63,8 @@ control in the first list is satisfied and the money is still off by ₹120.
 **An agent can be policy-compliant and still be financially wrong. AVOS makes
 closure conditional on evidence, not on confidence.**
 
+### What is actually differentiated here
+
 Deterministic verification of model output is not, on its own, a differentiator —
 it is documented best practice in this market, and BlackLine, Ledge and others
 ship it. Two things here are less common, and they are what the pitch rests on:
@@ -44,6 +74,10 @@ ship it. Two things here are less common, and they are what the pitch rests on:
 2. **The verifier is mechanically isolated** from the AI runtime — zero runtime
    imports, asserted on every run — so the system can *prove* the model took no
    part in the financial decision rather than assert it.
+
+Every gate below runs in CI on a machine that is not the author's, with no API key
+configured — because "it passes locally" is precisely the evidence a
+zero-runtime-imports claim cannot rest on.
 
 ### Track 04, requirement by requirement
 
@@ -56,7 +90,7 @@ could not resolve."* Three verbs, each with somewhere to look:
 | **Closes** a finance-ops loop | `lib/closure.ts` — only VERIFIED may become CLOSED, no override parameter | 75 closed · 17 refused · 28 exceptions |
 | **50+ record batch** | `data/settlement_batch_120.csv` + 30 adversarial + 28 hard slice | 178 records |
 | Reports its **match rate** | `lib/matching/engine.ts` → `lib/metrics.ts` | **90.8%**, precision 100% |
-| **Exceptions it could not resolve** | Every one carries a reason code, an owner and a money value | 45 exceptions, ₹4054.7L withheld |
+| **Exceptions it could not resolve** | Every one carries a reason code, an owner and a money value | 45 exceptions, ₹40.5L withheld |
 
 ---
 
@@ -399,10 +433,10 @@ Full write-up in [`evals/report.md`](evals/report.md); raw per-case output in
 |---|---|
 | **Match rate** | **90.8%** — 109 matched · 9 ambiguous · 2 unmatched |
 | **Match precision** | **100.0%** — no settlement paired to another settlement's money |
-| **CLOSED** | 75 records · ₹6876.6L posted |
+| **CLOSED** | 75 records · ₹68.8L posted |
 | **REFUSED TO CLOSE** | 17 records |
 | **FAILED** | 28 records |
-| **Value withheld** | ₹4054.7L held back from incorrect closure |
+| **Value withheld** | ₹40.5L held back from incorrect closure |
 
 Match precision is the safety number, and it is the one that is labelled. A low
 match rate costs a human some time; a low match precision reconciles a settlement
