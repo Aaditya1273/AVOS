@@ -1,9 +1,9 @@
 # AVOS Verify
 
 ### Evidence-backed verification for AI-operated finance
-**Razorpay Buildathon · Track 04 — Settlement Assurance**
+**Razorpay Buildathon · Track 04 — AI Finance Controller** · *Settlement Assurance*
 
-[![CI](https://github.com/Aaditya1273/avos-verify/actions/workflows/ci.yml/badge.svg)](../../actions/workflows/ci.yml)
+[![CI](https://github.com/Aaditya1273/AVOS/actions/workflows/ci.yml/badge.svg)](../../actions/workflows/ci.yml)
 
 *Every gate below runs in CI on a machine that is not the author's, with no API
 key configured — because "it passes locally" is precisely the evidence a

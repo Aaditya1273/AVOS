@@ -1,6 +1,6 @@
 # AVOS Verify — 5 minute demo script
 
-**Track 04 · Settlement Assurance**
+**Track 04 — AI Finance Controller** · *Settlement Assurance*
 
 Setup before recording:
 
