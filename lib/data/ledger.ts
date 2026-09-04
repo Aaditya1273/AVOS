@@ -118,6 +118,8 @@ export interface Ledger {
   settlementsById: Map<string, SettlementRow[]>
   settlementsByUtr: Map<string, SettlementRow[]>
   bankByUtr: Map<string, BankRow[]>
+  /** Flat list. The matcher scans a date window rather than looking up a reference. */
+  bankAll: BankRow[]
   refundsBySettlement: Map<string, RefundRow[]>
   holdsBySettlement: Map<string, HoldRow[]>
   webhooksBySettlement: Map<string, WebhookRow[]>
@@ -209,6 +211,7 @@ export function loadLedger(): Ledger {
     settlementsById: new Map(),
     settlementsByUtr: new Map(),
     bankByUtr: new Map(),
+    bankAll: bank,
     refundsBySettlement: new Map(),
     holdsBySettlement: new Map(),
     webhooksBySettlement: new Map(),
@@ -291,6 +294,7 @@ interface GroundTruthEntry {
   attack?: string
   expected_status: string
   expected_reason: string
+  true_bank_row?: string
 }
 
 interface GroundTruthEntryHard extends GroundTruthEntry {
@@ -327,6 +331,7 @@ export function loadGroundTruth(suite: Suite): Map<string, GroundTruth> {
       scenario: e.scenario ?? e.attack ?? e.family ?? '',
       expected_verdict: e.expected_status as Verdict,
       expected_reason: e.expected_reason,
+      true_bank_row: e.true_bank_row ?? '',
     })
   }
   return out

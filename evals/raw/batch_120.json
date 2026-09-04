@@ -20,7 +20,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-02T05:45:00Z",
     "decision_time": "2026-08-02T17:45:00Z",
-    "pack_hash": "310612a39e42ec6ccb96a0f2c989f36af0a7bd015119177e220386f3dbf0d3e6",
+    "pack_hash": "9f16aaa4268dfe3ada02158bd9e3590d11b143cf28c3b3fb5f02e79ffc1f7ab3",
     "reproducible": true,
     "checks": [
       {
@@ -39,7 +39,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 7 rows hash to their recorded values (pack 310612a39e42)"
+        "detail": "all 7 rows hash to their recorded values (pack 9f16aaa4268d)"
       },
       {
         "id": "policy_in_force",
@@ -214,7 +214,7 @@
         "amount_paise": 6184092,
         "timestamp": "2026-08-02T15:45:00Z",
         "freshness_hours": 5.13,
-        "hash": "2203feb0f746ca229ecfb75a989975b8465736689ca2829525b8576ffc7cdf37",
+        "hash": "0881515af0c7e4586780f6c9f39b25aeeff2f23b14c06edc5969f6f35c2b0353",
         "hash_matches_recorded": true
       },
       {
@@ -251,7 +251,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-03T17:51:00Z",
     "decision_time": "2026-08-04T03:51:00Z",
-    "pack_hash": "5fc26387c4f75be4b2fca13560d9cac1a045e67fbbfd0db6082ffea224edb28c",
+    "pack_hash": "b8398dc0a0fb33a4aab7f537ce240c5b39438f2aba2fa2fce131596c2329f3f4",
     "reproducible": true,
     "checks": [
       {
@@ -270,7 +270,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 8 rows hash to their recorded values (pack 5fc26387c4f7)"
+        "detail": "all 8 rows hash to their recorded values (pack b8398dc0a0fb)"
       },
       {
         "id": "policy_in_force",
@@ -456,7 +456,7 @@
         "amount_paise": 6852902,
         "timestamp": "2026-08-04T01:51:00Z",
         "freshness_hours": 6.42,
-        "hash": "1f80c6b31b5c4c83225b82cd670d17d4c2d786616c93d26c748681fa601e9585",
+        "hash": "81d0de197d462de9dd1c18e5f639672e01a351c9990d2816a0b7bf0969a87030",
         "hash_matches_recorded": true
       },
       {
@@ -1252,7 +1252,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-07T19:10:00Z",
     "decision_time": "2026-08-08T13:10:00Z",
-    "pack_hash": "28030dc99ba70850cd23b7c8ddd66bf2cfb2dff40e843db250d52c81f8f10189",
+    "pack_hash": "73f1cc278ee51c817cc0ecf66bc8e142b1adfd81f007a17e62d36e46648d2aa8",
     "reproducible": true,
     "checks": [
       {
@@ -1271,7 +1271,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 9 rows hash to their recorded values (pack 28030dc99ba7)"
+        "detail": "all 9 rows hash to their recorded values (pack 73f1cc278ee5)"
       },
       {
         "id": "policy_in_force",
@@ -1468,7 +1468,7 @@
         "amount_paise": 7274246,
         "timestamp": "2026-08-08T02:10:00Z",
         "freshness_hours": 15.02,
-        "hash": "0c26e73550825d61e9359b588d22d60d2c9ada9699122eb20a1a24575fb48a01",
+        "hash": "c3f8bfb15dbfb0d6442d7db390214d34a1511dd313ea7e8bd85c61896f71ccd3",
         "hash_matches_recorded": true
       },
       {
@@ -1505,7 +1505,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-08T03:12:00Z",
     "decision_time": "2026-08-08T17:12:00Z",
-    "pack_hash": "1b4b8b367df3cc162639d2e7c052dcfc580cacf475c3d08932e5fe55120ffa9f",
+    "pack_hash": "853e950f08a643276e42805e0fb06ec9e628eac9c2511bcaa2daa3712f2c4330",
     "reproducible": true,
     "checks": [
       {
@@ -1524,7 +1524,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 11 rows hash to their recorded values (pack 1b4b8b367df3)"
+        "detail": "all 11 rows hash to their recorded values (pack 853e950f08a6)"
       },
       {
         "id": "policy_in_force",
@@ -1743,7 +1743,7 @@
         "amount_paise": 5788778,
         "timestamp": "2026-08-08T15:12:00Z",
         "freshness_hours": 5.78,
-        "hash": "2f27f14e39670344735531c044c7857e7c26e29977534ab6a59d6c573d841fe3",
+        "hash": "62e65e9d78e90440ce4e767084980e394674840951062599dec617670e2e2e78",
         "hash_matches_recorded": true
       },
       {
@@ -2407,7 +2407,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-11T07:07:00Z",
     "decision_time": "2026-08-12T04:07:00Z",
-    "pack_hash": "2e2b852bd59153eb9adc4096beb40d0a651385b65031badd5f8c50d520c04107",
+    "pack_hash": "8932be2f8b319fc2dcad5a190e5702f9a0f322566ba17ca61baf1a714ef25df5",
     "reproducible": true,
     "checks": [
       {
@@ -2426,7 +2426,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 16 rows hash to their recorded values (pack 2e2b852bd591)"
+        "detail": "all 16 rows hash to their recorded values (pack 8932be2f8b31)"
       },
       {
         "id": "policy_in_force",
@@ -2667,7 +2667,7 @@
         "amount_paise": 11559741,
         "timestamp": "2026-08-11T15:07:00Z",
         "freshness_hours": 12.62,
-        "hash": "37f89f203cc12ece2bd115690294e1482bef796308227e2076084024fea5b364",
+        "hash": "e9310d3faa5cb813fa517a006c4b20844cfd1f570401e07a63777cc594d16413",
         "hash_matches_recorded": true
       },
       {
@@ -2737,7 +2737,7 @@
     "decision_policy_version": "finance-policy-v13",
     "event_time": "2026-08-12T15:45:00Z",
     "decision_time": "2026-08-15T15:45:00Z",
-    "pack_hash": "74470ec15399e997c4a46127a6eeb1431c2b05e7df1da7b5bfec0ca5f7b69f7b",
+    "pack_hash": "ac60b72bc9347f7fc1c334d78f06cd0b0872f1d2d9e34cc5e4b4eb7df1f5d4fa",
     "reproducible": true,
     "checks": [
       {
@@ -2756,7 +2756,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 12 rows hash to their recorded values (pack 74470ec15399)"
+        "detail": "all 12 rows hash to their recorded values (pack ac60b72bc934)"
       },
       {
         "id": "policy_in_force",
@@ -2986,7 +2986,7 @@
         "amount_paise": 14703061,
         "timestamp": "2026-08-15T02:45:00Z",
         "freshness_hours": 17.22,
-        "hash": "72d69b32a7b7ae5e99adc4402964e665affb60b9a696942f652a75598c475af4",
+        "hash": "d04dd1a442137ef85f62a34d659ffa75d1bcd8c098f6ce741e5f1756b0a484e4",
         "hash_matches_recorded": true
       },
       {
@@ -3798,24 +3798,24 @@
     "case_id": "B015",
     "settlement_id": "S-10015",
     "scenario": "stale_policy",
-    "ground_truth": "UNCERTAIN/STALE_POLICY",
+    "ground_truth": "UNCERTAIN/MISSING_EVIDENCE",
     "agent_claim": "RECONCILED",
     "agent_reason_ignored_by_verifier": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
-    "agent_confidence_ignored_by_verifier": 0.95,
+    "agent_confidence_ignored_by_verifier": 0.4,
     "avos_verdict": "UNCERTAIN",
-    "reason_code": "STALE_POLICY",
+    "reason_code": "MISSING_EVIDENCE",
     "correct": true,
-    "expected_paise": 4976847,
-    "observed_paise": 4976847,
-    "difference_paise": 0,
-    "fee_delta_paise": 0,
+    "expected_paise": null,
+    "observed_paise": null,
+    "difference_paise": null,
+    "fee_delta_paise": null,
     "tolerance_paise": 15000,
     "policy_version": "finance-policy-v12",
     "recorded_policy_version": "finance-policy-v13",
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-02T13:27:00Z",
     "decision_time": "2026-08-03T01:27:00Z",
-    "pack_hash": "56aa5ed045638b011339311f4295422b124d420a75aae2ba14045110c62bbef6",
+    "pack_hash": "ed874dad654b8fbb62239f9f249c9f1c3359ac482718d0a176a7effc24e31c0f",
     "reproducible": true,
     "checks": [
       {
@@ -3828,13 +3828,13 @@
         "id": "evidence_well_formed",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 7 rows carry integer paise and a parseable timestamp"
+        "detail": "all 6 rows carry integer paise and a parseable timestamp"
       },
       {
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 7 rows hash to their recorded values (pack 56aa5ed04563)"
+        "detail": "all 6 rows hash to their recorded values (pack ed874dad654b)"
       },
       {
         "id": "policy_in_force",
@@ -3852,7 +3852,7 @@
         "id": "evidence_available_at_decision_time",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 7 rows were already facts at 2026-08-03T01:27:00Z"
+        "detail": "all 6 rows were already facts at 2026-08-03T01:27:00Z"
       },
       {
         "id": "payments_predate_settlement_cut",
@@ -3875,14 +3875,14 @@
       {
         "id": "evidence_complete",
         "pillar": "prove",
-        "status": "pass",
-        "detail": "4 payment(s), 0 refund(s), 0 hold(s), 1 bank credit(s), 1 webhook event(s)"
+        "status": "fail",
+        "detail": "cannot recompute: no bank_credit evidence retrieved"
       },
       {
         "id": "agent_citation_coverage",
         "pillar": "guard",
         "status": "pass",
-        "detail": "agent cited 7/7 retrieved rows"
+        "detail": "agent cited 6/6 retrieved rows"
       },
       {
         "id": "evidence_fresh",
@@ -3935,14 +3935,8 @@
       {
         "id": "arithmetic_reconciles",
         "pillar": "verify",
-        "status": "pass",
-        "detail": "expected 4976847p = gross 5097140p - refunds 0p - fees 101943p - tax 18350p (recomputed from finance-policy-v12 rate card at 200bps + 1800bps GST) - holds 0p; observed 4976847p; difference 0p; tolerance 15000p"
-      },
-      {
-        "id": "recorded_fees_match_rate_card",
-        "pillar": "verify",
-        "status": "pass",
-        "detail": "payment-level fee columns agree with the finance-policy-v12 rate card to the paisa"
+        "status": "skipped",
+        "detail": "cannot recompute without both payment-level and bank evidence"
       }
     ],
     "evidence": [
@@ -4002,17 +3996,6 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000015",
-        "source": "bank_statement",
-        "row_id": "bnk-000015",
-        "kind": "bank_credit",
-        "amount_paise": 4976847,
-        "timestamp": "2026-08-02T22:27:00Z",
-        "freshness_hours": 5.27,
-        "hash": "eeaa2b2c42b2d4c2003b2d311256f1bed1b054f368e3ca3003654c64626c48f4",
-        "hash_matches_recorded": true
-      },
-      {
         "evidence_id": "webhook_events:whk-000015",
         "source": "webhook_events",
         "row_id": "whk-000015",
@@ -4046,7 +4029,7 @@
     "decision_policy_version": "finance-policy-v13",
     "event_time": "2026-08-17T09:03:00Z",
     "decision_time": "2026-08-18T05:03:00Z",
-    "pack_hash": "ecbd7eda70da248e8804a3326eb408c3d0d673a2b4f0945f3aaf932b7449b76e",
+    "pack_hash": "2590e574023d6a92985cec66044505655474a8415024c2f7cf8446578949a42b",
     "reproducible": true,
     "checks": [
       {
@@ -4065,7 +4048,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 16 rows hash to their recorded values (pack ecbd7eda70da)"
+        "detail": "all 16 rows hash to their recorded values (pack 2590e574023d)"
       },
       {
         "id": "policy_in_force",
@@ -4299,14 +4282,14 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000016",
+        "evidence_id": "bank_statement:bnk-000017",
         "source": "bank_statement",
-        "row_id": "bnk-000016",
+        "row_id": "bnk-000017",
         "kind": "bank_credit",
         "amount_paise": 11806182,
         "timestamp": "2026-08-17T13:03:00Z",
         "freshness_hours": 17.7,
-        "hash": "b21b462870ae1d194a2f60246d138db1d5a176541fc1b505a0a045e993410434",
+        "hash": "5eb97c6a7f9db6514b3844b9c938b77efea01885a3838e50c6b6f23af4211681",
         "hash_matches_recorded": true
       },
       {
@@ -4574,9 +4557,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000017",
+        "evidence_id": "bank_statement:bnk-000018",
         "source": "bank_statement",
-        "row_id": "bnk-000017",
+        "row_id": "bnk-000018",
         "kind": "bank_credit",
         "amount_paise": 7917927,
         "timestamp": "2026-08-19T05:48:00Z",
@@ -4816,9 +4799,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000018",
+        "evidence_id": "bank_statement:bnk-000019",
         "source": "bank_statement",
-        "row_id": "bnk-000018",
+        "row_id": "bnk-000019",
         "kind": "bank_credit",
         "amount_paise": 8469846,
         "timestamp": "2026-08-19T09:58:00Z",
@@ -4997,9 +4980,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000019",
+        "evidence_id": "bank_statement:bnk-000020",
         "source": "bank_statement",
-        "row_id": "bnk-000019",
+        "row_id": "bnk-000020",
         "kind": "bank_credit",
         "amount_paise": 7869057,
         "timestamp": "2026-08-20T12:43:00Z",
@@ -5041,7 +5024,7 @@
     "decision_policy_version": "finance-policy-v13",
     "event_time": "2026-08-21T16:03:00Z",
     "decision_time": "2026-08-22T15:03:00Z",
-    "pack_hash": "eff8caa18165e17ed651fff9e2b0601ab430b4ce57f42da92422e562a61820dd",
+    "pack_hash": "24514245e14eb5b3ffbc02090fc54551a0b8f65cd58f0121153e3db5acf78ec1",
     "reproducible": true,
     "checks": [
       {
@@ -5060,7 +5043,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 10 rows hash to their recorded values (pack eff8caa18165)"
+        "detail": "all 10 rows hash to their recorded values (pack 24514245e14e)"
       },
       {
         "id": "policy_in_force",
@@ -5132,7 +5115,7 @@
         "id": "no_duplicate_ingestion",
         "pillar": "verify",
         "status": "fail",
-        "detail": "the same source content was ingested more than once: bank_statement rows [bnk-000020, bnk-000021] share content hash eb2a8f3d6f4b"
+        "detail": "the same source content was ingested more than once: bank_statement rows [bnk-000021, bnk-000022] share content hash 7b8cf852ae7c"
       },
       {
         "id": "utr_unique",
@@ -5250,17 +5233,6 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000020",
-        "source": "bank_statement",
-        "row_id": "bnk-000020",
-        "kind": "bank_credit",
-        "amount_paise": 6962115,
-        "timestamp": "2026-08-22T01:03:00Z",
-        "freshness_hours": 17.25,
-        "hash": "eb2a8f3d6f4b2183f43bc068c0a9ec52f01dd1cea8f02f0532e93bf21eb02e53",
-        "hash_matches_recorded": true
-      },
-      {
         "evidence_id": "bank_statement:bnk-000021",
         "source": "bank_statement",
         "row_id": "bnk-000021",
@@ -5268,7 +5240,18 @@
         "amount_paise": 6962115,
         "timestamp": "2026-08-22T01:03:00Z",
         "freshness_hours": 17.25,
-        "hash": "eb2a8f3d6f4b2183f43bc068c0a9ec52f01dd1cea8f02f0532e93bf21eb02e53",
+        "hash": "7b8cf852ae7c0621c697be6125ee6baac3f6d8ef738aab4fecc1ce901e32f301",
+        "hash_matches_recorded": true
+      },
+      {
+        "evidence_id": "bank_statement:bnk-000022",
+        "source": "bank_statement",
+        "row_id": "bnk-000022",
+        "kind": "bank_credit",
+        "amount_paise": 6962115,
+        "timestamp": "2026-08-22T01:03:00Z",
+        "freshness_hours": 17.25,
+        "hash": "7b8cf852ae7c0621c697be6125ee6baac3f6d8ef738aab4fecc1ce901e32f301",
         "hash_matches_recorded": true
       },
       {
@@ -5492,9 +5475,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000022",
+        "evidence_id": "bank_statement:bnk-000023",
         "source": "bank_statement",
-        "row_id": "bnk-000022",
+        "row_id": "bnk-000023",
         "kind": "bank_credit",
         "amount_paise": 4816244,
         "timestamp": "2026-08-22T10:00:00Z",
@@ -5745,9 +5728,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000023",
+        "evidence_id": "bank_statement:bnk-000024",
         "source": "bank_statement",
-        "row_id": "bnk-000023",
+        "row_id": "bnk-000024",
         "kind": "bank_credit",
         "amount_paise": 5603766,
         "timestamp": "2026-08-23T21:11:00Z",
@@ -5998,9 +5981,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000024",
+        "evidence_id": "bank_statement:bnk-000025",
         "source": "bank_statement",
-        "row_id": "bnk-000024",
+        "row_id": "bnk-000025",
         "kind": "bank_credit",
         "amount_paise": 7155536,
         "timestamp": "2026-08-25T11:57:00Z",
@@ -6029,20 +6012,20 @@
     "agent_claim": "RECONCILED",
     "agent_reason_ignored_by_verifier": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
     "agent_confidence_ignored_by_verifier": 0.4,
-    "avos_verdict": "FAILED",
-    "reason_code": "DUPLICATE_UTR",
-    "correct": true,
-    "expected_paise": 4966270,
-    "observed_paise": 4966270,
-    "difference_paise": 0,
-    "fee_delta_paise": 0,
+    "avos_verdict": "UNCERTAIN",
+    "reason_code": "MISSING_EVIDENCE",
+    "correct": false,
+    "expected_paise": null,
+    "observed_paise": null,
+    "difference_paise": null,
+    "fee_delta_paise": null,
     "tolerance_paise": 15000,
     "policy_version": "finance-policy-v12",
     "recorded_policy_version": "finance-policy-v12",
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-02T22:00:00Z",
     "decision_time": "2026-08-03T08:00:00Z",
-    "pack_hash": "bee93e04a195d725aa54db334b37649244840da09436bed58b9492cbb0e623b7",
+    "pack_hash": "d7a54ac015b36fa208a7c80d44a3990f39b4f2ee1bd4f1716e6cc0ae666cc388",
     "reproducible": true,
     "checks": [
       {
@@ -6055,13 +6038,13 @@
         "id": "evidence_well_formed",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 7 rows carry integer paise and a parseable timestamp"
+        "detail": "all 6 rows carry integer paise and a parseable timestamp"
       },
       {
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 7 rows hash to their recorded values (pack bee93e04a195)"
+        "detail": "all 6 rows hash to their recorded values (pack d7a54ac015b3)"
       },
       {
         "id": "policy_in_force",
@@ -6079,7 +6062,7 @@
         "id": "evidence_available_at_decision_time",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 7 rows were already facts at 2026-08-03T08:00:00Z"
+        "detail": "all 6 rows were already facts at 2026-08-03T08:00:00Z"
       },
       {
         "id": "payments_predate_settlement_cut",
@@ -6102,14 +6085,14 @@
       {
         "id": "evidence_complete",
         "pillar": "prove",
-        "status": "pass",
-        "detail": "3 payment(s), 0 refund(s), 0 hold(s), 1 bank credit(s), 1 webhook event(s)"
+        "status": "fail",
+        "detail": "cannot recompute: no bank_credit evidence retrieved"
       },
       {
         "id": "agent_citation_coverage",
         "pillar": "guard",
         "status": "pass",
-        "detail": "agent cited 7/7 retrieved rows"
+        "detail": "agent cited 6/6 retrieved rows"
       },
       {
         "id": "evidence_fresh",
@@ -6162,14 +6145,8 @@
       {
         "id": "arithmetic_reconciles",
         "pillar": "verify",
-        "status": "pass",
-        "detail": "expected 4966270p = gross 5086307p - refunds 0p - fees 101726p - tax 18311p (recomputed from finance-policy-v12 rate card at 200bps + 1800bps GST) - holds 0p; observed 4966270p; difference 0p; tolerance 15000p"
-      },
-      {
-        "id": "recorded_fees_match_rate_card",
-        "pillar": "verify",
-        "status": "pass",
-        "detail": "payment-level fee columns agree with the finance-policy-v12 rate card to the paisa"
+        "status": "skipped",
+        "detail": "cannot recompute without both payment-level and bank evidence"
       }
     ],
     "evidence": [
@@ -6229,17 +6206,6 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000025",
-        "source": "bank_statement",
-        "row_id": "bnk-000025",
-        "kind": "bank_credit",
-        "amount_paise": 4966270,
-        "timestamp": "2026-08-03T02:00:00Z",
-        "freshness_hours": 7.9,
-        "hash": "472b031e2055c20cb6c57ffb3d03189dd97eb6b1d030d2e4b4bb02f9dbcca4da",
-        "hash_matches_recorded": true
-      },
-      {
         "evidence_id": "webhook_events:whk-000024",
         "source": "webhook_events",
         "row_id": "whk-000024",
@@ -6273,7 +6239,7 @@
     "decision_policy_version": "finance-policy-v13",
     "event_time": "2026-08-13T21:45:00Z",
     "decision_time": "2026-08-14T16:45:00Z",
-    "pack_hash": "72c55eb7459f4385a8062a989bace129b2b7dc51f142ec3936004397062c922f",
+    "pack_hash": "abf81841025afb47fc6ec603114cce17fb2ce59dd6948a9ad915700f78cdcbc2",
     "reproducible": true,
     "checks": [
       {
@@ -6292,7 +6258,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 10 rows hash to their recorded values (pack 72c55eb7459f)"
+        "detail": "all 10 rows hash to their recorded values (pack abf81841025a)"
       },
       {
         "id": "policy_in_force",
@@ -6493,14 +6459,14 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000026",
+        "evidence_id": "bank_statement:bnk-000027",
         "source": "bank_statement",
-        "row_id": "bnk-000026",
+        "row_id": "bnk-000027",
         "kind": "bank_credit",
         "amount_paise": 9109161,
         "timestamp": "2026-08-14T10:45:00Z",
         "freshness_hours": 11.68,
-        "hash": "661c4e6520f35dd77e13ee680f8cbafc9de70339ed80961f610a1391a8db2a52",
+        "hash": "31ae3b7e489222e168c24ff4f0bc10ef04bcf9225452fdecff7d2b3fe3e0a7bc",
         "hash_matches_recorded": true
       },
       {
@@ -6779,9 +6745,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000027",
+        "evidence_id": "bank_statement:bnk-000028",
         "source": "bank_statement",
-        "row_id": "bnk-000027",
+        "row_id": "bnk-000028",
         "kind": "bank_credit",
         "amount_paise": 10892176,
         "timestamp": "2026-08-07T03:14:00Z",
@@ -7065,9 +7031,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000028",
+        "evidence_id": "bank_statement:bnk-000029",
         "source": "bank_statement",
-        "row_id": "bnk-000028",
+        "row_id": "bnk-000029",
         "kind": "bank_credit",
         "amount_paise": 9112419,
         "timestamp": "2026-08-05T22:33:00Z",
@@ -7373,9 +7339,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000029",
+        "evidence_id": "bank_statement:bnk-000030",
         "source": "bank_statement",
-        "row_id": "bnk-000029",
+        "row_id": "bnk-000030",
         "kind": "bank_credit",
         "amount_paise": 11899845,
         "timestamp": "2026-08-06T22:22:00Z",
@@ -7417,7 +7383,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-07T04:47:00Z",
     "decision_time": "2026-08-08T07:47:00Z",
-    "pack_hash": "89f9f389bf4ff6bd6635d0cc5d7577a51dec559a4c28f0184e64dcbfddffc780",
+    "pack_hash": "7726b766d60254432712c4727e89d6ce389253b8cd25a7274577d76aaa996d2f",
     "reproducible": true,
     "checks": [
       {
@@ -7436,7 +7402,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 9 rows hash to their recorded values (pack 89f9f389bf4f)"
+        "detail": "all 9 rows hash to their recorded values (pack 7726b766d602)"
       },
       {
         "id": "policy_in_force",
@@ -7626,14 +7592,14 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000030",
+        "evidence_id": "bank_statement:bnk-000031",
         "source": "bank_statement",
-        "row_id": "bnk-000030",
+        "row_id": "bnk-000031",
         "kind": "bank_credit",
         "amount_paise": 7007693,
         "timestamp": "2026-08-07T12:47:00Z",
         "freshness_hours": 21.63,
-        "hash": "3218acc94dc074db14ecf2cc4521ea2b88ac223c6274cc58924499f7a2dc3822",
+        "hash": "b5e19f82ef5a24f21b9a63638cf1b320139dbafa2a49b81914dfcb54ab21957d",
         "hash_matches_recorded": true
       },
       {
@@ -7846,9 +7812,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000031",
+        "evidence_id": "bank_statement:bnk-000032",
         "source": "bank_statement",
-        "row_id": "bnk-000031",
+        "row_id": "bnk-000032",
         "kind": "bank_credit",
         "amount_paise": 2514887,
         "timestamp": "2026-08-08T12:30:00Z",
@@ -8165,9 +8131,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000032",
+        "evidence_id": "bank_statement:bnk-000033",
         "source": "bank_statement",
-        "row_id": "bnk-000032",
+        "row_id": "bnk-000033",
         "kind": "bank_credit",
         "amount_paise": 14554856,
         "timestamp": "2026-08-19T22:13:00Z",
@@ -8462,9 +8428,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000033",
+        "evidence_id": "bank_statement:bnk-000034",
         "source": "bank_statement",
-        "row_id": "bnk-000033",
+        "row_id": "bnk-000034",
         "kind": "bank_credit",
         "amount_paise": 8836888,
         "timestamp": "2026-08-10T17:37:00Z",
@@ -8489,24 +8455,24 @@
     "case_id": "B033",
     "settlement_id": "S-10033",
     "scenario": "stale_policy",
-    "ground_truth": "UNCERTAIN/STALE_POLICY",
+    "ground_truth": "UNCERTAIN/MISSING_EVIDENCE",
     "agent_claim": "NOT_RECONCILED",
     "agent_reason_ignored_by_verifier": "The bank leg does not look complete to me. Routing for review rather than closing.",
-    "agent_confidence_ignored_by_verifier": 0.95,
+    "agent_confidence_ignored_by_verifier": 0.4,
     "avos_verdict": "UNCERTAIN",
-    "reason_code": "STALE_POLICY",
+    "reason_code": "MISSING_EVIDENCE",
     "correct": true,
-    "expected_paise": 12227533,
-    "observed_paise": 12227533,
-    "difference_paise": 0,
-    "fee_delta_paise": 0,
+    "expected_paise": null,
+    "observed_paise": null,
+    "difference_paise": null,
+    "fee_delta_paise": null,
     "tolerance_paise": 15000,
     "policy_version": "finance-policy-v12",
     "recorded_policy_version": "finance-policy-v13",
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-06T19:41:00Z",
     "decision_time": "2026-08-07T14:41:00Z",
-    "pack_hash": "8224a05c5a36a6917deb1770384651be0986d87b4f4441aa523ab7a10e6ec3b8",
+    "pack_hash": "e1461eca5db6a8206f245d16045acf7d5c77fd451e8ea4a4b6be0db6235dbcd2",
     "reproducible": true,
     "checks": [
       {
@@ -8519,13 +8485,13 @@
         "id": "evidence_well_formed",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 13 rows carry integer paise and a parseable timestamp"
+        "detail": "all 12 rows carry integer paise and a parseable timestamp"
       },
       {
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 13 rows hash to their recorded values (pack 8224a05c5a36)"
+        "detail": "all 12 rows hash to their recorded values (pack e1461eca5db6)"
       },
       {
         "id": "policy_in_force",
@@ -8543,7 +8509,7 @@
         "id": "evidence_available_at_decision_time",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 13 rows were already facts at 2026-08-07T14:41:00Z"
+        "detail": "all 12 rows were already facts at 2026-08-07T14:41:00Z"
       },
       {
         "id": "payments_predate_settlement_cut",
@@ -8566,8 +8532,8 @@
       {
         "id": "evidence_complete",
         "pillar": "prove",
-        "status": "pass",
-        "detail": "10 payment(s), 0 refund(s), 0 hold(s), 1 bank credit(s), 1 webhook event(s)"
+        "status": "fail",
+        "detail": "cannot recompute: no bank_credit evidence retrieved"
       },
       {
         "id": "agent_citation_coverage",
@@ -8626,14 +8592,8 @@
       {
         "id": "arithmetic_reconciles",
         "pillar": "verify",
-        "status": "pass",
-        "detail": "expected 12227533p = gross 12523078p - refunds 0p - fees 250462p - tax 45083p (recomputed from finance-policy-v12 rate card at 200bps + 1800bps GST) - holds 0p; observed 12227533p; difference 0p; tolerance 15000p"
-      },
-      {
-        "id": "recorded_fees_match_rate_card",
-        "pillar": "verify",
-        "status": "pass",
-        "detail": "payment-level fee columns agree with the finance-policy-v12 rate card to the paisa"
+        "status": "skipped",
+        "detail": "cannot recompute without both payment-level and bank evidence"
       }
     ],
     "evidence": [
@@ -8759,17 +8719,6 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000034",
-        "source": "bank_statement",
-        "row_id": "bnk-000034",
-        "kind": "bank_credit",
-        "amount_paise": 12227533,
-        "timestamp": "2026-08-07T04:41:00Z",
-        "freshness_hours": 11.1,
-        "hash": "9a2f4a1eb0d4e548fdd4cceb7fca524e90ffbabd30ae4da8c77ba3711083b927",
-        "hash_matches_recorded": true
-      },
-      {
         "evidence_id": "webhook_events:whk-000033",
         "source": "webhook_events",
         "row_id": "whk-000033",
@@ -8803,7 +8752,7 @@
     "decision_policy_version": "finance-policy-v13",
     "event_time": "2026-08-12T11:37:00Z",
     "decision_time": "2026-08-13T13:37:00Z",
-    "pack_hash": "875f777d1f9f8b37e6228efc7e4d043e1dfe467803cc4ee4b76373922d780f9d",
+    "pack_hash": "942b6545891ba37f272fb7de5823e634f61895881b9cdacbf47e8a36a58f91cc",
     "reproducible": true,
     "checks": [
       {
@@ -8822,7 +8771,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 10 rows hash to their recorded values (pack 875f777d1f9f)"
+        "detail": "all 10 rows hash to their recorded values (pack 942b6545891b)"
       },
       {
         "id": "policy_in_force",
@@ -9023,14 +8972,14 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000035",
+        "evidence_id": "bank_statement:bnk-000037",
         "source": "bank_statement",
-        "row_id": "bnk-000035",
+        "row_id": "bnk-000037",
         "kind": "bank_credit",
         "amount_paise": 10514484,
         "timestamp": "2026-08-12T18:37:00Z",
         "freshness_hours": 19.23,
-        "hash": "334d6f8b0d7b6d354379056def4369e9f0e71bc86d33f19f5307328367504d81",
+        "hash": "93ed710c236c03138aba0ae5137aba2b1eee311fffd8f12f2026ae4651ed45ed",
         "hash_matches_recorded": true
       },
       {
@@ -9158,7 +9107,7 @@
         "id": "no_duplicate_ingestion",
         "pillar": "verify",
         "status": "fail",
-        "detail": "the same source content was ingested more than once: bank_statement rows [bnk-000036, bnk-000037] share content hash 98bd535d8a75"
+        "detail": "the same source content was ingested more than once: bank_statement rows [bnk-000038, bnk-000039] share content hash 98bd535d8a75"
       },
       {
         "id": "utr_unique",
@@ -9276,9 +9225,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000036",
+        "evidence_id": "bank_statement:bnk-000038",
         "source": "bank_statement",
-        "row_id": "bnk-000036",
+        "row_id": "bnk-000038",
         "kind": "bank_credit",
         "amount_paise": 7077451,
         "timestamp": "2026-08-13T11:58:00Z",
@@ -9287,9 +9236,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000037",
+        "evidence_id": "bank_statement:bnk-000039",
         "source": "bank_statement",
-        "row_id": "bnk-000037",
+        "row_id": "bnk-000039",
         "kind": "bank_credit",
         "amount_paise": 7077451,
         "timestamp": "2026-08-13T11:58:00Z",
@@ -9606,9 +9555,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000038",
+        "evidence_id": "bank_statement:bnk-000040",
         "source": "bank_statement",
-        "row_id": "bnk-000038",
+        "row_id": "bnk-000040",
         "kind": "bank_credit",
         "amount_paise": 15285372,
         "timestamp": "2026-08-15T02:47:00Z",
@@ -9870,9 +9819,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000039",
+        "evidence_id": "bank_statement:bnk-000041",
         "source": "bank_statement",
-        "row_id": "bnk-000039",
+        "row_id": "bnk-000041",
         "kind": "bank_credit",
         "amount_paise": 6340171,
         "timestamp": "2026-08-16T05:39:00Z",
@@ -9914,7 +9863,7 @@
     "decision_policy_version": "finance-policy-v13",
     "event_time": "2026-08-16T08:42:00Z",
     "decision_time": "2026-08-16T22:42:00Z",
-    "pack_hash": "1e79bd2e2638a143efb24e0397b176879a14484dc12cc4611e2b0d2e9a9dd45c",
+    "pack_hash": "b1b42086b4344b2636196127300998320250e7f6e19e729140c08bc5833b5001",
     "reproducible": true,
     "checks": [
       {
@@ -9933,7 +9882,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 16 rows hash to their recorded values (pack 1e79bd2e2638)"
+        "detail": "all 16 rows hash to their recorded values (pack b1b42086b434)"
       },
       {
         "id": "policy_in_force",
@@ -10167,14 +10116,14 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000040",
+        "evidence_id": "bank_statement:bnk-000042",
         "source": "bank_statement",
-        "row_id": "bnk-000040",
+        "row_id": "bnk-000042",
         "kind": "bank_credit",
         "amount_paise": 15235426,
         "timestamp": "2026-08-16T16:42:00Z",
         "freshness_hours": 7.87,
-        "hash": "ac13e36248feba7b11d46f944c00e2a296a04a7f32b94b79b2f98965bf34ef94",
+        "hash": "c19e5b6662bd5add42434e6d829780a6eef7eba589b8bc150cf082d94e11b243",
         "hash_matches_recorded": true
       },
       {
@@ -10244,7 +10193,7 @@
     "decision_policy_version": "finance-policy-v13",
     "event_time": "2026-08-17T18:56:00Z",
     "decision_time": "2026-08-18T06:56:00Z",
-    "pack_hash": "2f01a4a80513a8ad7238cc2ba41c77a185f80ba9edad3ced6057158eb68dab91",
+    "pack_hash": "4d806c638d277b8432cbf884774d8ae46ba5cafc3976fc51a4164fdf0399fd78",
     "reproducible": true,
     "checks": [
       {
@@ -10263,7 +10212,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 8 rows hash to their recorded values (pack 2f01a4a80513)"
+        "detail": "all 8 rows hash to their recorded values (pack 4d806c638d27)"
       },
       {
         "id": "policy_in_force",
@@ -10420,14 +10369,14 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000041",
+        "evidence_id": "bank_statement:bnk-000043",
         "source": "bank_statement",
-        "row_id": "bnk-000041",
+        "row_id": "bnk-000043",
         "kind": "bank_credit",
         "amount_paise": 2409080,
         "timestamp": "2026-08-18T01:56:00Z",
         "freshness_hours": 9.13,
-        "hash": "db36bc5f69cdf945e7c9e9f973dfc183edde5b3fab6d49cd7f52fc3d2a9f6882",
+        "hash": "5c907fb32677efeb7f7b51e3ca6100ee2a10f775f3a2c46bfe29d5e508c17063",
         "hash_matches_recorded": true
       },
       {
@@ -10684,9 +10633,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000042",
+        "evidence_id": "bank_statement:bnk-000044",
         "source": "bank_statement",
-        "row_id": "bnk-000042",
+        "row_id": "bnk-000044",
         "kind": "bank_credit",
         "amount_paise": 6570165,
         "timestamp": "2026-08-19T06:33:00Z",
@@ -10819,7 +10768,7 @@
         "id": "no_duplicate_ingestion",
         "pillar": "verify",
         "status": "fail",
-        "detail": "the same source content was ingested more than once: bank_statement rows [bnk-000043, bnk-000044] share content hash 056cd73d3c81"
+        "detail": "the same source content was ingested more than once: bank_statement rows [bnk-000045, bnk-000046] share content hash 056cd73d3c81"
       },
       {
         "id": "utr_unique",
@@ -10959,9 +10908,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000043",
+        "evidence_id": "bank_statement:bnk-000045",
         "source": "bank_statement",
-        "row_id": "bnk-000043",
+        "row_id": "bnk-000045",
         "kind": "bank_credit",
         "amount_paise": 10360335,
         "timestamp": "2026-08-19T07:00:00Z",
@@ -10970,9 +10919,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000044",
+        "evidence_id": "bank_statement:bnk-000046",
         "source": "bank_statement",
-        "row_id": "bnk-000044",
+        "row_id": "bnk-000046",
         "kind": "bank_credit",
         "amount_paise": 10360335,
         "timestamp": "2026-08-19T07:00:00Z",
@@ -11014,7 +10963,7 @@
     "decision_policy_version": "finance-policy-v13",
     "event_time": "2026-08-20T17:37:00Z",
     "decision_time": "2026-08-21T11:37:00Z",
-    "pack_hash": "4306242d426e3c3a2cf288371fce957b5d5a728273ca23176306e9ba7733b078",
+    "pack_hash": "b8b643c6dff30088c70b5b4f9d40e0df3b7dde0b7ad66fe77f449b5e3ab59e29",
     "reproducible": true,
     "checks": [
       {
@@ -11033,7 +10982,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 13 rows hash to their recorded values (pack 4306242d426e)"
+        "detail": "all 13 rows hash to their recorded values (pack b8b643c6dff3)"
       },
       {
         "id": "policy_in_force",
@@ -11267,14 +11216,14 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000045",
+        "evidence_id": "bank_statement:bnk-000047",
         "source": "bank_statement",
-        "row_id": "bnk-000045",
+        "row_id": "bnk-000047",
         "kind": "bank_credit",
         "amount_paise": 13347453,
         "timestamp": "2026-08-21T03:37:00Z",
         "freshness_hours": 11.12,
-        "hash": "e7006ac1a4ae35170381c6ebd158c4a3c7903cc7b74b8a7366d0ec919e4ee203",
+        "hash": "0332cf27d4c380c05d1507436a4c6c6accc5f63a8ff7e350a8b78031af4ac908",
         "hash_matches_recorded": true
       },
       {
@@ -11311,7 +11260,7 @@
     "decision_policy_version": "finance-policy-v13",
     "event_time": "2026-08-21T19:44:00Z",
     "decision_time": "2026-08-22T10:44:00Z",
-    "pack_hash": "ce87055aed687b46fded0e4355b09804569ef7bc933bd753bb770aa6cd18e267",
+    "pack_hash": "5dff12b03a58828a66d11657edb9701ff782295808995e095b8a4db462f9b0fb",
     "reproducible": true,
     "checks": [
       {
@@ -11330,7 +11279,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 11 rows hash to their recorded values (pack ce87055aed68)"
+        "detail": "all 11 rows hash to their recorded values (pack 5dff12b03a58)"
       },
       {
         "id": "policy_in_force",
@@ -11542,14 +11491,14 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000046",
+        "evidence_id": "bank_statement:bnk-000048",
         "source": "bank_statement",
-        "row_id": "bnk-000046",
+        "row_id": "bnk-000048",
         "kind": "bank_credit",
         "amount_paise": 9963768,
         "timestamp": "2026-08-22T05:44:00Z",
         "freshness_hours": 7.65,
-        "hash": "1dccf300f11b0b5047f42f70ee14702d727a7e54759c49e273ab7c2fdfb066de",
+        "hash": "09502606517cd176a2d0ff4c7c00491c89cf305936290ae9247dac7b03733190",
         "hash_matches_recorded": true
       },
       {
@@ -11817,9 +11766,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000047",
+        "evidence_id": "bank_statement:bnk-000049",
         "source": "bank_statement",
-        "row_id": "bnk-000047",
+        "row_id": "bnk-000049",
         "kind": "bank_credit",
         "amount_paise": 11511887,
         "timestamp": "2026-08-22T12:54:00Z",
@@ -12306,9 +12255,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000048",
+        "evidence_id": "bank_statement:bnk-000050",
         "source": "bank_statement",
-        "row_id": "bnk-000048",
+        "row_id": "bnk-000050",
         "kind": "bank_credit",
         "amount_paise": 14026673,
         "timestamp": "2026-08-24T15:35:00Z",
@@ -12350,7 +12299,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-02T19:02:00Z",
     "decision_time": "2026-08-05T15:02:00Z",
-    "pack_hash": "6c0d111ebbee5e1d01abbab602d97145aa43c7dc4455fce4a02a1922205fd561",
+    "pack_hash": "07c45a88f182b74d4470594b2365de5659f777e574f2538622e2da907cd3c6be",
     "reproducible": true,
     "checks": [
       {
@@ -12369,7 +12318,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 15 rows hash to their recorded values (pack 6c0d111ebbee)"
+        "detail": "all 15 rows hash to their recorded values (pack 07c45a88f182)"
       },
       {
         "id": "policy_in_force",
@@ -12625,14 +12574,14 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000049",
+        "evidence_id": "bank_statement:bnk-000051",
         "source": "bank_statement",
-        "row_id": "bnk-000049",
+        "row_id": "bnk-000051",
         "kind": "bank_credit",
         "amount_paise": 15179632,
         "timestamp": "2026-08-05T00:02:00Z",
         "freshness_hours": 14.22,
-        "hash": "7dd1f5e93ce211186e7c94eac379add9384b76ad5bafd592e3670d4e4c6f1d0e",
+        "hash": "60f0465d1690c453e579a281e5b5935ada3d70e1540811121c6bf0a7e483d088",
         "hash_matches_recorded": true
       },
       {
@@ -12652,24 +12601,24 @@
     "case_id": "B048",
     "settlement_id": "S-10048",
     "scenario": "clean_match",
-    "ground_truth": "VERIFIED",
+    "ground_truth": "UNCERTAIN/MISSING_EVIDENCE",
     "agent_claim": "NOT_RECONCILED",
     "agent_reason_ignored_by_verifier": "The bank leg does not look complete to me. Routing for review rather than closing.",
-    "agent_confidence_ignored_by_verifier": 0.95,
-    "avos_verdict": "VERIFIED",
-    "reason_code": null,
+    "agent_confidence_ignored_by_verifier": 0.4,
+    "avos_verdict": "UNCERTAIN",
+    "reason_code": "MISSING_EVIDENCE",
     "correct": true,
-    "expected_paise": 18996694,
-    "observed_paise": 18996694,
-    "difference_paise": 0,
-    "fee_delta_paise": 0,
+    "expected_paise": null,
+    "observed_paise": null,
+    "difference_paise": null,
+    "fee_delta_paise": null,
     "tolerance_paise": 15000,
     "policy_version": "finance-policy-v12",
     "recorded_policy_version": "finance-policy-v12",
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-03T07:17:00Z",
     "decision_time": "2026-08-04T07:17:00Z",
-    "pack_hash": "1865e151f3ee7c3bec69ff9749d0164c6bc1d2f045a65ead4cc13ff0b63ca7f8",
+    "pack_hash": "4abd591e37cb5b7ca58ecf7b4fd85512ff175aaf23274b8e6b92812c08718c8e",
     "reproducible": true,
     "checks": [
       {
@@ -12682,13 +12631,13 @@
         "id": "evidence_well_formed",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 15 rows carry integer paise and a parseable timestamp"
+        "detail": "all 14 rows carry integer paise and a parseable timestamp"
       },
       {
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 15 rows hash to their recorded values (pack 1865e151f3ee)"
+        "detail": "all 14 rows hash to their recorded values (pack 4abd591e37cb)"
       },
       {
         "id": "policy_in_force",
@@ -12706,7 +12655,7 @@
         "id": "evidence_available_at_decision_time",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 15 rows were already facts at 2026-08-04T07:17:00Z"
+        "detail": "all 14 rows were already facts at 2026-08-04T07:17:00Z"
       },
       {
         "id": "payments_predate_settlement_cut",
@@ -12729,8 +12678,8 @@
       {
         "id": "evidence_complete",
         "pillar": "prove",
-        "status": "pass",
-        "detail": "12 payment(s), 0 refund(s), 0 hold(s), 1 bank credit(s), 1 webhook event(s)"
+        "status": "fail",
+        "detail": "cannot recompute: no bank_credit evidence retrieved"
       },
       {
         "id": "agent_citation_coverage",
@@ -12789,14 +12738,8 @@
       {
         "id": "arithmetic_reconciles",
         "pillar": "verify",
-        "status": "pass",
-        "detail": "expected 18996694p = gross 19455851p - refunds 0p - fees 389117p - tax 70040p (recomputed from finance-policy-v12 rate card at 200bps + 1800bps GST) - holds 0p; observed 18996694p; difference 0p; tolerance 15000p"
-      },
-      {
-        "id": "recorded_fees_match_rate_card",
-        "pillar": "verify",
-        "status": "pass",
-        "detail": "payment-level fee columns agree with the finance-policy-v12 rate card to the paisa"
+        "status": "skipped",
+        "detail": "cannot recompute without both payment-level and bank evidence"
       }
     ],
     "evidence": [
@@ -12941,17 +12884,6 @@
         "timestamp": "2026-08-03T11:17:00Z",
         "freshness_hours": 18.43,
         "hash": "bedb562095cce68a4f361b8e31b1cf590c1336fbdb2a81c1228018ad7ded7c82",
-        "hash_matches_recorded": true
-      },
-      {
-        "evidence_id": "bank_statement:bnk-000050",
-        "source": "bank_statement",
-        "row_id": "bnk-000050",
-        "kind": "bank_credit",
-        "amount_paise": 18996694,
-        "timestamp": "2026-08-03T16:17:00Z",
-        "freshness_hours": 18.43,
-        "hash": "95876894f922a45189099370589751a62c586e3ba287944e856c5bcafd49940d",
         "hash_matches_recorded": true
       },
       {
@@ -13241,9 +13173,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000051",
+        "evidence_id": "bank_statement:bnk-000054",
         "source": "bank_statement",
-        "row_id": "bnk-000051",
+        "row_id": "bnk-000054",
         "kind": "bank_credit",
         "amount_paise": 14430183,
         "timestamp": "2026-08-05T01:37:00Z",
@@ -13494,9 +13426,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000052",
+        "evidence_id": "bank_statement:bnk-000055",
         "source": "bank_statement",
-        "row_id": "bnk-000052",
+        "row_id": "bnk-000055",
         "kind": "bank_credit",
         "amount_paise": 4039149,
         "timestamp": "2026-08-07T14:38:00Z",
@@ -13521,24 +13453,24 @@
     "case_id": "B051",
     "settlement_id": "S-10051",
     "scenario": "partial_settlement",
-    "ground_truth": "VERIFIED",
+    "ground_truth": "UNCERTAIN/MISSING_EVIDENCE",
     "agent_claim": "RECONCILED",
     "agent_reason_ignored_by_verifier": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
-    "agent_confidence_ignored_by_verifier": 0.95,
-    "avos_verdict": "VERIFIED",
-    "reason_code": null,
+    "agent_confidence_ignored_by_verifier": 0.4,
+    "avos_verdict": "UNCERTAIN",
+    "reason_code": "MISSING_EVIDENCE",
     "correct": true,
-    "expected_paise": 3913591,
-    "observed_paise": 3913591,
-    "difference_paise": 0,
-    "fee_delta_paise": 0,
+    "expected_paise": null,
+    "observed_paise": null,
+    "difference_paise": null,
+    "fee_delta_paise": null,
     "tolerance_paise": 15000,
     "policy_version": "finance-policy-v12",
     "recorded_policy_version": "finance-policy-v12",
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-06T08:27:00Z",
     "decision_time": "2026-08-07T04:27:00Z",
-    "pack_hash": "c76d9a2a637fa725fb327d0bd928b48f55b1c7555a17b7ec81a10ce97f5c4c18",
+    "pack_hash": "5fae42ca2dcd43f73dc52251abc9394e69c671492841d16fff0d73ebfc6cf1ad",
     "reproducible": true,
     "checks": [
       {
@@ -13551,13 +13483,13 @@
         "id": "evidence_well_formed",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 9 rows carry integer paise and a parseable timestamp"
+        "detail": "all 8 rows carry integer paise and a parseable timestamp"
       },
       {
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 9 rows hash to their recorded values (pack c76d9a2a637f)"
+        "detail": "all 8 rows hash to their recorded values (pack 5fae42ca2dcd)"
       },
       {
         "id": "policy_in_force",
@@ -13575,7 +13507,7 @@
         "id": "evidence_available_at_decision_time",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 9 rows were already facts at 2026-08-07T04:27:00Z"
+        "detail": "all 8 rows were already facts at 2026-08-07T04:27:00Z"
       },
       {
         "id": "payments_predate_settlement_cut",
@@ -13598,14 +13530,14 @@
       {
         "id": "evidence_complete",
         "pillar": "prove",
-        "status": "pass",
-        "detail": "5 payment(s), 0 refund(s), 1 hold(s), 1 bank credit(s), 1 webhook event(s)"
+        "status": "fail",
+        "detail": "cannot recompute: no bank_credit evidence retrieved"
       },
       {
         "id": "agent_citation_coverage",
         "pillar": "guard",
         "status": "pass",
-        "detail": "agent cited 9/9 retrieved rows"
+        "detail": "agent cited 8/8 retrieved rows"
       },
       {
         "id": "evidence_fresh",
@@ -13658,14 +13590,8 @@
       {
         "id": "arithmetic_reconciles",
         "pillar": "verify",
-        "status": "pass",
-        "detail": "expected 3913591p = gross 4224516p - refunds 0p - fees 84490p - tax 15209p (recomputed from finance-policy-v12 rate card at 200bps + 1800bps GST) - holds 211226p; observed 3913591p; difference 0p; tolerance 15000p"
-      },
-      {
-        "id": "recorded_fees_match_rate_card",
-        "pillar": "verify",
-        "status": "pass",
-        "detail": "payment-level fee columns agree with the finance-policy-v12 rate card to the paisa"
+        "status": "skipped",
+        "detail": "cannot recompute without both payment-level and bank evidence"
       }
     ],
     "evidence": [
@@ -13736,17 +13662,6 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000053",
-        "source": "bank_statement",
-        "row_id": "bnk-000053",
-        "kind": "bank_credit",
-        "amount_paise": 3913591,
-        "timestamp": "2026-08-06T17:27:00Z",
-        "freshness_hours": 12.45,
-        "hash": "7e37770fd6e062a441e55ff0e2737434f5c4ddee728bfc113b4abb052399aa75",
-        "hash_matches_recorded": true
-      },
-      {
         "evidence_id": "holds:hld-000002",
         "source": "holds",
         "row_id": "hld-000002",
@@ -13791,7 +13706,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-04T04:13:00Z",
     "decision_time": "2026-08-04T16:13:00Z",
-    "pack_hash": "e4f4e919ec6265a14ac12c3ba1c22af9ae424b70f63de328e5f7ea4f956e53e1",
+    "pack_hash": "a686dbc3d8453059426d653eb61583ca60d97f1dae4c25826222e4b8802ad583",
     "reproducible": true,
     "checks": [
       {
@@ -13810,7 +13725,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 7 rows hash to their recorded values (pack e4f4e919ec62)"
+        "detail": "all 7 rows hash to their recorded values (pack a686dbc3d845)"
       },
       {
         "id": "policy_in_force",
@@ -13978,14 +13893,14 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000054",
+        "evidence_id": "bank_statement:bnk-000058",
         "source": "bank_statement",
-        "row_id": "bnk-000054",
+        "row_id": "bnk-000058",
         "kind": "bank_credit",
         "amount_paise": 6093153,
         "timestamp": "2026-08-04T16:13:00Z",
         "freshness_hours": 4.95,
-        "hash": "3d2a50f098059a88680e457c35d32fe023f5a4200cd9bf0f82285dfd1c81cf30",
+        "hash": "294802aa4f189c06dd9b5946a36f173f7062f2de91832eec972eeae973d83be3",
         "hash_matches_recorded": true
       },
       {
@@ -14275,9 +14190,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000055",
+        "evidence_id": "bank_statement:bnk-000059",
         "source": "bank_statement",
-        "row_id": "bnk-000055",
+        "row_id": "bnk-000059",
         "kind": "bank_credit",
         "amount_paise": 13290499,
         "timestamp": "2026-08-18T02:25:00Z",
@@ -14550,9 +14465,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000056",
+        "evidence_id": "bank_statement:bnk-000060",
         "source": "bank_statement",
-        "row_id": "bnk-000056",
+        "row_id": "bnk-000060",
         "kind": "bank_credit",
         "amount_paise": 8118010,
         "timestamp": "2026-08-09T21:34:00Z",
@@ -14858,9 +14773,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000057",
+        "evidence_id": "bank_statement:bnk-000061",
         "source": "bank_statement",
-        "row_id": "bnk-000057",
+        "row_id": "bnk-000061",
         "kind": "bank_credit",
         "amount_paise": 12532318,
         "timestamp": "2026-08-10T21:03:00Z",
@@ -14902,7 +14817,7 @@
     "decision_policy_version": "finance-policy-v13",
     "event_time": "2026-08-11T19:40:00Z",
     "decision_time": "2026-08-12T15:40:00Z",
-    "pack_hash": "3405c4f04e698a012249f6670e90d0a9d430ee856b05bee5b8e00e34ab7fc54e",
+    "pack_hash": "5f70b1ea2707abe56c32b5468e366814d097ed7fe33136f900cc13456aaa615b",
     "reproducible": true,
     "checks": [
       {
@@ -14921,7 +14836,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 9 rows hash to their recorded values (pack 3405c4f04e69)"
+        "detail": "all 9 rows hash to their recorded values (pack 5f70b1ea2707)"
       },
       {
         "id": "policy_in_force",
@@ -15111,14 +15026,14 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000058",
+        "evidence_id": "bank_statement:bnk-000062",
         "source": "bank_statement",
-        "row_id": "bnk-000058",
+        "row_id": "bnk-000062",
         "kind": "bank_credit",
         "amount_paise": 6585726,
         "timestamp": "2026-08-12T05:40:00Z",
         "freshness_hours": 12.85,
-        "hash": "9ce3142ed12d3ebe4677d89c984631bca30cafea7daeff7543fd54181c98226c",
+        "hash": "a0fbdaedd75cae8cd0c3382c4a170790405102a6520b466c187aff894898d02b",
         "hash_matches_recorded": true
       },
       {
@@ -15155,7 +15070,7 @@
     "decision_policy_version": "finance-policy-v13",
     "event_time": "2026-08-12T12:38:00Z",
     "decision_time": "2026-08-13T15:38:00Z",
-    "pack_hash": "3486a72c6d2c167922de51acaa6c349b6b28fcb89e1064ddbdd642dfee5defc1",
+    "pack_hash": "6b70f5f4b946271074429adeadf5a27884bc0f8f6eb241f47568014c0d9a948d",
     "reproducible": true,
     "checks": [
       {
@@ -15174,7 +15089,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 16 rows hash to their recorded values (pack 3486a72c6d2c)"
+        "detail": "all 16 rows hash to their recorded values (pack 6b70f5f4b946)"
       },
       {
         "id": "policy_in_force",
@@ -15430,14 +15345,14 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000059",
+        "evidence_id": "bank_statement:bnk-000063",
         "source": "bank_statement",
-        "row_id": "bnk-000059",
+        "row_id": "bnk-000063",
         "kind": "bank_credit",
         "amount_paise": 16024887,
         "timestamp": "2026-08-12T21:38:00Z",
         "freshness_hours": 19.12,
-        "hash": "9b66a520848554ccceb55383b4ef79736d3e5074771c2e1c8728efedbe567f09",
+        "hash": "f0c3a5ae5ee5a095051729783e626678b1e6c40f43f946ade18c7d6b5a0f403c",
         "hash_matches_recorded": true
       },
       {
@@ -15705,9 +15620,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000060",
+        "evidence_id": "bank_statement:bnk-000064",
         "source": "bank_statement",
-        "row_id": "bnk-000060",
+        "row_id": "bnk-000064",
         "kind": "bank_credit",
         "amount_paise": 7553286,
         "timestamp": "2026-08-14T00:28:00Z",
@@ -16013,9 +15928,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000061",
+        "evidence_id": "bank_statement:bnk-000065",
         "source": "bank_statement",
-        "row_id": "bnk-000061",
+        "row_id": "bnk-000065",
         "kind": "bank_credit",
         "amount_paise": 14176143,
         "timestamp": "2026-08-15T03:25:00Z",
@@ -16057,7 +15972,7 @@
     "decision_policy_version": "finance-policy-v13",
     "event_time": "2026-08-24T19:32:00Z",
     "decision_time": "2026-08-25T17:32:00Z",
-    "pack_hash": "94221001d384fefb6ccfe3e97be610d3ed1ec5dfe77024526ea61a26885b2eb6",
+    "pack_hash": "5df9f3ff620cfed236b87614ff7079cbcacc432291d7868221f175d7d40fdc0d",
     "reproducible": true,
     "checks": [
       {
@@ -16076,7 +15991,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 15 rows hash to their recorded values (pack 94221001d384)"
+        "detail": "all 15 rows hash to their recorded values (pack 5df9f3ff620c)"
       },
       {
         "id": "policy_in_force",
@@ -16332,14 +16247,14 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000062",
+        "evidence_id": "bank_statement:bnk-000066",
         "source": "bank_statement",
-        "row_id": "bnk-000062",
+        "row_id": "bnk-000066",
         "kind": "bank_credit",
         "amount_paise": 17378693,
         "timestamp": "2026-08-25T06:32:00Z",
         "freshness_hours": 14.77,
-        "hash": "d514c88b5c06c90a5892411a8c7354c48310566b06517c5a9f61ef211f86ab0a",
+        "hash": "4cc0ae91239c828578572b5c1ca4d02f8c377f01de1eae1e086a6b53153ebc76",
         "hash_matches_recorded": true
       },
       {
@@ -16376,7 +16291,7 @@
     "decision_policy_version": "finance-policy-v13",
     "event_time": "2026-08-16T04:13:00Z",
     "decision_time": "2026-08-16T23:13:00Z",
-    "pack_hash": "9e6effed29239a8b58563b11d03dc0c9a910ee3344bd1951c29810cbd1e2f783",
+    "pack_hash": "c75098d05ac02bea5fe2c9dd0a692eb650166929f64e343093ea4c2c09c429eb",
     "reproducible": true,
     "checks": [
       {
@@ -16395,7 +16310,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 3 rows hash to their recorded values (pack 9e6effed2923)"
+        "detail": "all 3 rows hash to their recorded values (pack c75098d05ac0)"
       },
       {
         "id": "policy_in_force",
@@ -16513,14 +16428,14 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000063",
+        "evidence_id": "bank_statement:bnk-000067",
         "source": "bank_statement",
-        "row_id": "bnk-000063",
+        "row_id": "bnk-000067",
         "kind": "bank_credit",
         "amount_paise": 6056559,
         "timestamp": "2026-08-16T10:13:00Z",
         "freshness_hours": 16.35,
-        "hash": "f44af9181a5798efa106982f92f1e92bc0168cbed94c17d8c7895810415d79a6",
+        "hash": "05fd24a2441f63be64dc70b05824b244ce5bfd6fa1a1a4ec1db5314599d5fef8",
         "hash_matches_recorded": true
       },
       {
@@ -16821,9 +16736,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000064",
+        "evidence_id": "bank_statement:bnk-000068",
         "source": "bank_statement",
-        "row_id": "bnk-000064",
+        "row_id": "bnk-000068",
         "kind": "bank_credit",
         "amount_paise": 16683134,
         "timestamp": "2026-08-17T10:14:00Z",
@@ -17074,9 +16989,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000065",
+        "evidence_id": "bank_statement:bnk-000069",
         "source": "bank_statement",
-        "row_id": "bnk-000065",
+        "row_id": "bnk-000069",
         "kind": "bank_credit",
         "amount_paise": 4742922,
         "timestamp": "2026-08-18T19:44:00Z",
@@ -17316,9 +17231,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000066",
+        "evidence_id": "bank_statement:bnk-000070",
         "source": "bank_statement",
-        "row_id": "bnk-000066",
+        "row_id": "bnk-000070",
         "kind": "bank_credit",
         "amount_paise": 1901388,
         "timestamp": "2026-08-19T21:31:00Z",
@@ -17579,24 +17494,24 @@
     "case_id": "B066",
     "settlement_id": "S-10066",
     "scenario": "clean_match",
-    "ground_truth": "VERIFIED",
+    "ground_truth": "UNCERTAIN/MISSING_EVIDENCE",
     "agent_claim": "RECONCILED",
     "agent_reason_ignored_by_verifier": "Verified the UTR against the bank feed and the totals line up. Safe to close.",
-    "agent_confidence_ignored_by_verifier": 0.95,
-    "avos_verdict": "VERIFIED",
-    "reason_code": null,
+    "agent_confidence_ignored_by_verifier": 0.4,
+    "avos_verdict": "UNCERTAIN",
+    "reason_code": "MISSING_EVIDENCE",
     "correct": true,
-    "expected_paise": 4727042,
-    "observed_paise": 4727042,
-    "difference_paise": 0,
-    "fee_delta_paise": 0,
+    "expected_paise": null,
+    "observed_paise": null,
+    "difference_paise": null,
+    "fee_delta_paise": null,
     "tolerance_paise": 5000,
     "policy_version": "finance-policy-v13",
     "recorded_policy_version": "finance-policy-v13",
     "decision_policy_version": "finance-policy-v13",
     "event_time": "2026-08-21T17:02:00Z",
     "decision_time": "2026-08-22T21:02:00Z",
-    "pack_hash": "3a691f7a356428642a2b8522c65b64cbc036fc632e9198e652571f26bd87d4cb",
+    "pack_hash": "0747531fef83184c98cd967b02dd4cca62d387282a1dacafb47928bc1a5bb701",
     "reproducible": true,
     "checks": [
       {
@@ -17609,13 +17524,13 @@
         "id": "evidence_well_formed",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 7 rows carry integer paise and a parseable timestamp"
+        "detail": "all 6 rows carry integer paise and a parseable timestamp"
       },
       {
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 7 rows hash to their recorded values (pack 3a691f7a3564)"
+        "detail": "all 6 rows hash to their recorded values (pack 0747531fef83)"
       },
       {
         "id": "policy_in_force",
@@ -17633,7 +17548,7 @@
         "id": "evidence_available_at_decision_time",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 7 rows were already facts at 2026-08-22T21:02:00Z"
+        "detail": "all 6 rows were already facts at 2026-08-22T21:02:00Z"
       },
       {
         "id": "payments_predate_settlement_cut",
@@ -17656,14 +17571,14 @@
       {
         "id": "evidence_complete",
         "pillar": "prove",
-        "status": "pass",
-        "detail": "4 payment(s), 0 refund(s), 0 hold(s), 1 bank credit(s), 1 webhook event(s)"
+        "status": "fail",
+        "detail": "cannot recompute: no bank_credit evidence retrieved"
       },
       {
         "id": "agent_citation_coverage",
         "pillar": "guard",
         "status": "pass",
-        "detail": "agent cited 7/7 retrieved rows"
+        "detail": "agent cited 6/6 retrieved rows"
       },
       {
         "id": "evidence_fresh",
@@ -17716,14 +17631,8 @@
       {
         "id": "arithmetic_reconciles",
         "pillar": "verify",
-        "status": "pass",
-        "detail": "expected 4727042p = gross 4841297p - refunds 0p - fees 96826p - tax 17429p (recomputed from finance-policy-v13 rate card at 200bps + 1800bps GST) - holds 0p; observed 4727042p; difference 0p; tolerance 5000p"
-      },
-      {
-        "id": "recorded_fees_match_rate_card",
-        "pillar": "verify",
-        "status": "pass",
-        "detail": "payment-level fee columns agree with the finance-policy-v13 rate card to the paisa"
+        "status": "skipped",
+        "detail": "cannot recompute without both payment-level and bank evidence"
       }
     ],
     "evidence": [
@@ -17780,17 +17689,6 @@
         "timestamp": "2026-08-21T23:02:00Z",
         "freshness_hours": 21.57,
         "hash": "8273862da880b8b00d9fef2ab361de1cee9f77f753d8bc4a0f39c70186b345e6",
-        "hash_matches_recorded": true
-      },
-      {
-        "evidence_id": "bank_statement:bnk-000067",
-        "source": "bank_statement",
-        "row_id": "bnk-000067",
-        "kind": "bank_credit",
-        "amount_paise": 4727042,
-        "timestamp": "2026-08-22T05:02:00Z",
-        "freshness_hours": 21.57,
-        "hash": "ccf34229bd2079e14ba94ccf674931d8d2162bbafaf7063af03b9581d913189b",
         "hash_matches_recorded": true
       },
       {
@@ -18080,9 +17978,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000068",
+        "evidence_id": "bank_statement:bnk-000073",
         "source": "bank_statement",
-        "row_id": "bnk-000068",
+        "row_id": "bnk-000073",
         "kind": "bank_credit",
         "amount_paise": 9518705,
         "timestamp": "2026-08-19T21:03:00Z",
@@ -18355,9 +18253,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000069",
+        "evidence_id": "bank_statement:bnk-000074",
         "source": "bank_statement",
-        "row_id": "bnk-000069",
+        "row_id": "bnk-000074",
         "kind": "bank_credit",
         "amount_paise": 8822389,
         "timestamp": "2026-08-23T17:18:00Z",
@@ -18685,9 +18583,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000070",
+        "evidence_id": "bank_statement:bnk-000075",
         "source": "bank_statement",
-        "row_id": "bnk-000070",
+        "row_id": "bnk-000075",
         "kind": "bank_credit",
         "amount_paise": 19367718,
         "timestamp": "2026-08-24T11:50:00Z",
@@ -18740,7 +18638,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-02T11:40:00Z",
     "decision_time": "2026-08-03T02:40:00Z",
-    "pack_hash": "d9dc00247a922cdb0a57fcb11243f0aa2c21ef0f698e05f1914eb00abcb6e609",
+    "pack_hash": "1a9d27718ed39b16fe346c9462af4bcfc923d6cad1cec833bfdafa0c664841c3",
     "reproducible": true,
     "checks": [
       {
@@ -18759,7 +18657,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 13 rows hash to their recorded values (pack d9dc00247a92)"
+        "detail": "all 13 rows hash to their recorded values (pack 1a9d27718ed3)"
       },
       {
         "id": "policy_in_force",
@@ -18993,14 +18891,14 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000071",
+        "evidence_id": "bank_statement:bnk-000076",
         "source": "bank_statement",
-        "row_id": "bnk-000071",
+        "row_id": "bnk-000076",
         "kind": "bank_credit",
         "amount_paise": 14766243,
         "timestamp": "2026-08-02T18:40:00Z",
         "freshness_hours": 10.4,
-        "hash": "bc433e5f038580a5127285fa2367ce6249202ca3e1a1f5aa858cd6583eda010a",
+        "hash": "99df3bc8d484056064898f1cd0b019f4ee6adce6c8683f0ff32c7882a00d7d5e",
         "hash_matches_recorded": true
       },
       {
@@ -19246,9 +19144,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000072",
+        "evidence_id": "bank_statement:bnk-000077",
         "source": "bank_statement",
-        "row_id": "bnk-000072",
+        "row_id": "bnk-000077",
         "kind": "bank_credit",
         "amount_paise": 9420063,
         "timestamp": "2026-08-04T03:56:00Z",
@@ -19510,9 +19408,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000073",
+        "evidence_id": "bank_statement:bnk-000078",
         "source": "bank_statement",
-        "row_id": "bnk-000073",
+        "row_id": "bnk-000078",
         "kind": "bank_credit",
         "amount_paise": 7710604,
         "timestamp": "2026-08-04T11:14:00Z",
@@ -19774,9 +19672,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000074",
+        "evidence_id": "bank_statement:bnk-000079",
         "source": "bank_statement",
-        "row_id": "bnk-000074",
+        "row_id": "bnk-000079",
         "kind": "bank_credit",
         "amount_paise": 5643435,
         "timestamp": "2026-08-08T18:46:00Z",
@@ -19818,7 +19716,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-06T06:47:00Z",
     "decision_time": "2026-08-06T22:47:00Z",
-    "pack_hash": "b9b0a5cec54dd3f2dda3756749163a31195ca5e8919d5105d46fa3e77cc31901",
+    "pack_hash": "558853e77c91e0e56b18a6c1667c5558e9f21c2eee17036cabf60df29fd9e986",
     "reproducible": true,
     "checks": [
       {
@@ -19837,7 +19735,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 13 rows hash to their recorded values (pack b9b0a5cec54d)"
+        "detail": "all 13 rows hash to their recorded values (pack 558853e77c91)"
       },
       {
         "id": "policy_in_force",
@@ -20071,14 +19969,14 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000075",
+        "evidence_id": "bank_statement:bnk-000080",
         "source": "bank_statement",
-        "row_id": "bnk-000075",
+        "row_id": "bnk-000080",
         "kind": "bank_credit",
         "amount_paise": 8817652,
         "timestamp": "2026-08-06T19:47:00Z",
         "freshness_hours": 7.27,
-        "hash": "904ab11b733837d999d1b247fb7f0967d6741eca031eb1cca6a19d11c49ea79e",
+        "hash": "c65f46ebd64484e7e8935ef124d1e7e360b7c19ea51c964e87c1b96b9286f18b",
         "hash_matches_recorded": true
       },
       {
@@ -20115,7 +20013,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-07T04:24:00Z",
     "decision_time": "2026-08-08T08:24:00Z",
-    "pack_hash": "19e8ac8efcdab50a9985f55c2e934955806238f007dbfe6233ce3aaf1323d908",
+    "pack_hash": "b7df47bb219af6bcac23f57601b76ce737fad61ee46cf013778196fe6e247fe2",
     "reproducible": true,
     "checks": [
       {
@@ -20134,7 +20032,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 11 rows hash to their recorded values (pack 19e8ac8efcda)"
+        "detail": "all 11 rows hash to their recorded values (pack b7df47bb219a)"
       },
       {
         "id": "policy_in_force",
@@ -20346,14 +20244,14 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000076",
+        "evidence_id": "bank_statement:bnk-000081",
         "source": "bank_statement",
-        "row_id": "bnk-000076",
+        "row_id": "bnk-000081",
         "kind": "bank_credit",
         "amount_paise": 8185573,
         "timestamp": "2026-08-07T11:24:00Z",
         "freshness_hours": 21.07,
-        "hash": "cc110b542fb347345387339ba8625c30647ae4e6064972f12a190375db64dea5",
+        "hash": "5c6bbbd98fdbcd7e22c33182fd8187f196f97713080734d66b5500b18407b533",
         "hash_matches_recorded": true
       },
       {
@@ -20577,9 +20475,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000077",
+        "evidence_id": "bank_statement:bnk-000082",
         "source": "bank_statement",
-        "row_id": "bnk-000077",
+        "row_id": "bnk-000082",
         "kind": "bank_credit",
         "amount_paise": 4248336,
         "timestamp": "2026-08-08T20:21:00Z",
@@ -20769,9 +20667,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000078",
+        "evidence_id": "bank_statement:bnk-000083",
         "source": "bank_statement",
-        "row_id": "bnk-000078",
+        "row_id": "bnk-000083",
         "kind": "bank_credit",
         "amount_paise": 10290267,
         "timestamp": "2026-08-10T10:45:00Z",
@@ -21044,9 +20942,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000079",
+        "evidence_id": "bank_statement:bnk-000084",
         "source": "bank_statement",
-        "row_id": "bnk-000079",
+        "row_id": "bnk-000084",
         "kind": "bank_credit",
         "amount_paise": 9323797,
         "timestamp": "2026-08-10T14:11:00Z",
@@ -21088,7 +20986,7 @@
     "decision_policy_version": "finance-policy-v13",
     "event_time": "2026-08-11T22:05:00Z",
     "decision_time": "2026-08-12T20:05:00Z",
-    "pack_hash": "cd3cc8acd0eb0273eb8ab0df474f83d393d254263c783d105f7831c77796251b",
+    "pack_hash": "4704fb15df5fb6263ea78db1d0814ff82d8df6b4d2ed1b6f64dc17cf06533cc6",
     "reproducible": true,
     "checks": [
       {
@@ -21107,7 +21005,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 9 rows hash to their recorded values (pack cd3cc8acd0eb)"
+        "detail": "all 9 rows hash to their recorded values (pack 4704fb15df5f)"
       },
       {
         "id": "policy_in_force",
@@ -21297,14 +21195,14 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000080",
+        "evidence_id": "bank_statement:bnk-000085",
         "source": "bank_statement",
-        "row_id": "bnk-000080",
+        "row_id": "bnk-000085",
         "kind": "bank_credit",
         "amount_paise": 5670197,
         "timestamp": "2026-08-12T09:05:00Z",
         "freshness_hours": 15.62,
-        "hash": "f3b8d2faa6da45780f52b3d4c03c75e13c17f12496260d30e1e80053ce72d7f1",
+        "hash": "4089426aca8d865f15c61b387c8d5945aeca68c84e83bb7488b27d23cd7ed8cc",
         "hash_matches_recorded": true
       },
       {
@@ -21594,9 +21492,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000081",
+        "evidence_id": "bank_statement:bnk-000086",
         "source": "bank_statement",
-        "row_id": "bnk-000081",
+        "row_id": "bnk-000086",
         "kind": "bank_credit",
         "amount_paise": 12700301,
         "timestamp": "2026-08-12T10:27:00Z",
@@ -21858,9 +21756,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000082",
+        "evidence_id": "bank_statement:bnk-000087",
         "source": "bank_statement",
-        "row_id": "bnk-000082",
+        "row_id": "bnk-000087",
         "kind": "bank_credit",
         "amount_paise": 9649600,
         "timestamp": "2026-08-14T01:07:00Z",
@@ -22133,9 +22031,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000083",
+        "evidence_id": "bank_statement:bnk-000088",
         "source": "bank_statement",
-        "row_id": "bnk-000083",
+        "row_id": "bnk-000088",
         "kind": "bank_credit",
         "amount_paise": 12238100,
         "timestamp": "2026-08-17T09:38:00Z",
@@ -22177,7 +22075,7 @@
     "decision_policy_version": "finance-policy-v13",
     "event_time": "2026-08-15T01:09:00Z",
     "decision_time": "2026-08-16T02:09:00Z",
-    "pack_hash": "f41b0fd4d76401d6c5cd4d84820fde5e74b44bab0105bcfc62d61e75e098c228",
+    "pack_hash": "66956dbecea7993b5e5c5056383eddd10797851c2e50dfb19125b5b2911ec522",
     "reproducible": true,
     "checks": [
       {
@@ -22196,7 +22094,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 9 rows hash to their recorded values (pack f41b0fd4d764)"
+        "detail": "all 9 rows hash to their recorded values (pack 66956dbecea7)"
       },
       {
         "id": "policy_in_force",
@@ -22386,14 +22284,14 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000084",
+        "evidence_id": "bank_statement:bnk-000089",
         "source": "bank_statement",
-        "row_id": "bnk-000084",
+        "row_id": "bnk-000089",
         "kind": "bank_credit",
         "amount_paise": 7881962,
         "timestamp": "2026-08-15T08:09:00Z",
         "freshness_hours": 21.87,
-        "hash": "ea9dfbbc7e3fe1639968eec18682724dfd92391f859c4560fa0c6cb362d5ee60",
+        "hash": "bd4d34acc7b7a9cdfa12c28fa5741d3d565d8161165312004029d80ada8f87a9",
         "hash_matches_recorded": true
       },
       {
@@ -22413,24 +22311,24 @@
     "case_id": "B084",
     "settlement_id": "S-10084",
     "scenario": "duplicate_utr",
-    "ground_truth": "FAILED/DUPLICATE_UTR",
+    "ground_truth": "UNCERTAIN/MISSING_EVIDENCE",
     "agent_claim": "RECONCILED",
     "agent_reason_ignored_by_verifier": "Verified the UTR against the bank feed and the totals line up. Safe to close.",
     "agent_confidence_ignored_by_verifier": 0.4,
-    "avos_verdict": "FAILED",
-    "reason_code": "DUPLICATE_UTR",
+    "avos_verdict": "UNCERTAIN",
+    "reason_code": "MISSING_EVIDENCE",
     "correct": true,
-    "expected_paise": 6091913,
-    "observed_paise": 6091913,
-    "difference_paise": 0,
-    "fee_delta_paise": 0,
+    "expected_paise": null,
+    "observed_paise": null,
+    "difference_paise": null,
+    "fee_delta_paise": null,
     "tolerance_paise": 5000,
     "policy_version": "finance-policy-v13",
     "recorded_policy_version": "finance-policy-v13",
     "decision_policy_version": "finance-policy-v13",
     "event_time": "2026-08-16T03:31:00Z",
     "decision_time": "2026-08-16T20:31:00Z",
-    "pack_hash": "065b0ef003b8ab87b7a5189984a47c41e7318e259d7303aa186f7140786e65e2",
+    "pack_hash": "d6ab006e4c5a76b84363277be95916d842e493949fa857f187d9dec87f9c7028",
     "reproducible": true,
     "checks": [
       {
@@ -22443,13 +22341,13 @@
         "id": "evidence_well_formed",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 8 rows carry integer paise and a parseable timestamp"
+        "detail": "all 7 rows carry integer paise and a parseable timestamp"
       },
       {
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 8 rows hash to their recorded values (pack 065b0ef003b8)"
+        "detail": "all 7 rows hash to their recorded values (pack d6ab006e4c5a)"
       },
       {
         "id": "policy_in_force",
@@ -22467,7 +22365,7 @@
         "id": "evidence_available_at_decision_time",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 8 rows were already facts at 2026-08-16T20:31:00Z"
+        "detail": "all 7 rows were already facts at 2026-08-16T20:31:00Z"
       },
       {
         "id": "payments_predate_settlement_cut",
@@ -22490,14 +22388,14 @@
       {
         "id": "evidence_complete",
         "pillar": "prove",
-        "status": "pass",
-        "detail": "4 payment(s), 0 refund(s), 0 hold(s), 1 bank credit(s), 1 webhook event(s)"
+        "status": "fail",
+        "detail": "cannot recompute: no bank_credit evidence retrieved"
       },
       {
         "id": "agent_citation_coverage",
         "pillar": "guard",
         "status": "pass",
-        "detail": "agent cited 8/8 retrieved rows"
+        "detail": "agent cited 7/7 retrieved rows"
       },
       {
         "id": "evidence_fresh",
@@ -22550,14 +22448,8 @@
       {
         "id": "arithmetic_reconciles",
         "pillar": "verify",
-        "status": "pass",
-        "detail": "expected 6091913p = gross 6239159p - refunds 0p - fees 124784p - tax 22462p (recomputed from finance-policy-v13 rate card at 200bps + 1800bps GST) - holds 0p; observed 6091913p; difference 0p; tolerance 5000p"
-      },
-      {
-        "id": "recorded_fees_match_rate_card",
-        "pillar": "verify",
-        "status": "pass",
-        "detail": "payment-level fee columns agree with the finance-policy-v13 rate card to the paisa"
+        "status": "skipped",
+        "detail": "cannot recompute without both payment-level and bank evidence"
       }
     ],
     "evidence": [
@@ -22625,17 +22517,6 @@
         "timestamp": "2026-08-16T11:31:00Z",
         "freshness_hours": 8.05,
         "hash": "c7da5cad3676e7f0cbe5cd8cd8acde8cdfcb2e515941af9a12785bda775be8cd",
-        "hash_matches_recorded": true
-      },
-      {
-        "evidence_id": "bank_statement:bnk-000085",
-        "source": "bank_statement",
-        "row_id": "bnk-000085",
-        "kind": "bank_credit",
-        "amount_paise": 6091913,
-        "timestamp": "2026-08-16T14:31:00Z",
-        "freshness_hours": 8.05,
-        "hash": "8290122e7f19e76455d6d99f2b6aa55b4f070cebb0541b1770d5aec7a698a1d8",
         "hash_matches_recorded": true
       },
       {
@@ -22947,9 +22828,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000086",
+        "evidence_id": "bank_statement:bnk-000092",
         "source": "bank_statement",
-        "row_id": "bnk-000086",
+        "row_id": "bnk-000092",
         "kind": "bank_credit",
         "amount_paise": 15834686,
         "timestamp": "2026-08-18T08:46:00Z",
@@ -23167,9 +23048,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000087",
+        "evidence_id": "bank_statement:bnk-000093",
         "source": "bank_statement",
-        "row_id": "bnk-000087",
+        "row_id": "bnk-000093",
         "kind": "bank_credit",
         "amount_paise": 3296647,
         "timestamp": "2026-08-21T07:05:00Z",
@@ -23431,9 +23312,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000088",
+        "evidence_id": "bank_statement:bnk-000094",
         "source": "bank_statement",
-        "row_id": "bnk-000088",
+        "row_id": "bnk-000094",
         "kind": "bank_credit",
         "amount_paise": 8908102,
         "timestamp": "2026-08-19T16:17:00Z",
@@ -23486,7 +23367,7 @@
     "decision_policy_version": "finance-policy-v13",
     "event_time": "2026-08-16T16:40:00Z",
     "decision_time": "2026-08-17T06:40:00Z",
-    "pack_hash": "a3e58ac133cd91b28cbf83437326f236a3d29db1979feaabddd38884403207bc",
+    "pack_hash": "6d3c5a2ad4fed5ac6a6e5165ff557b698831273ea45c512b5c9c681017901c79",
     "reproducible": true,
     "checks": [
       {
@@ -23505,7 +23386,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 9 rows hash to their recorded values (pack a3e58ac133cd)"
+        "detail": "all 9 rows hash to their recorded values (pack 6d3c5a2ad4fe)"
       },
       {
         "id": "policy_in_force",
@@ -23695,14 +23576,14 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000089",
+        "evidence_id": "bank_statement:bnk-000095",
         "source": "bank_statement",
-        "row_id": "bnk-000089",
+        "row_id": "bnk-000095",
         "kind": "bank_credit",
         "amount_paise": 6435387,
         "timestamp": "2026-08-17T01:40:00Z",
         "freshness_hours": 5.72,
-        "hash": "0df722547554415e5c49f8bce9a4025c85675e80253ed9b43a9895e75bbc9b14",
+        "hash": "7ec2b3922beebce4d9beac1cdfba17d8069ff1699b6b19b6bb72df89aa0eb128",
         "hash_matches_recorded": true
       },
       {
@@ -23739,7 +23620,7 @@
     "decision_policy_version": "finance-policy-v13",
     "event_time": "2026-08-17T15:47:00Z",
     "decision_time": "2026-08-18T06:47:00Z",
-    "pack_hash": "89c430f0a87a630adcc99fa886d4058b43c0c727b778190c91737f8f7e82d9fb",
+    "pack_hash": "2051f77c85122ae135ddfdec28fc4bfc9aa83b30a19b4f294ab96854391d7681",
     "reproducible": true,
     "checks": [
       {
@@ -23758,7 +23639,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 15 rows hash to their recorded values (pack 89c430f0a87a)"
+        "detail": "all 15 rows hash to their recorded values (pack 2051f77c8512)"
       },
       {
         "id": "policy_in_force",
@@ -24014,14 +23895,14 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000090",
+        "evidence_id": "bank_statement:bnk-000096",
         "source": "bank_statement",
-        "row_id": "bnk-000090",
+        "row_id": "bnk-000096",
         "kind": "bank_credit",
         "amount_paise": 17596411,
         "timestamp": "2026-08-17T22:47:00Z",
         "freshness_hours": 9.93,
-        "hash": "39c99fb44a883fcf173128ec367cfe8ed18b9a767c653578f8f0616321433255",
+        "hash": "12f4ec7e4bb3bfef489ee073c913a7f3c4a18f6dfcbdf6c8cf9e888b5ab6a832",
         "hash_matches_recorded": true
       },
       {
@@ -24149,7 +24030,7 @@
         "id": "no_duplicate_ingestion",
         "pillar": "verify",
         "status": "fail",
-        "detail": "the same source content was ingested more than once: bank_statement rows [bnk-000091, bnk-000092] share content hash 998052cf2912"
+        "detail": "the same source content was ingested more than once: bank_statement rows [bnk-000097, bnk-000098] share content hash 998052cf2912"
       },
       {
         "id": "utr_unique",
@@ -24333,9 +24214,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000091",
+        "evidence_id": "bank_statement:bnk-000097",
         "source": "bank_statement",
-        "row_id": "bnk-000091",
+        "row_id": "bnk-000097",
         "kind": "bank_credit",
         "amount_paise": 13536039,
         "timestamp": "2026-08-23T07:43:00Z",
@@ -24344,9 +24225,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000092",
+        "evidence_id": "bank_statement:bnk-000098",
         "source": "bank_statement",
-        "row_id": "bnk-000092",
+        "row_id": "bnk-000098",
         "kind": "bank_credit",
         "amount_paise": 13536039,
         "timestamp": "2026-08-23T07:43:00Z",
@@ -24608,9 +24489,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000093",
+        "evidence_id": "bank_statement:bnk-000099",
         "source": "bank_statement",
-        "row_id": "bnk-000093",
+        "row_id": "bnk-000099",
         "kind": "bank_credit",
         "amount_paise": 6181381,
         "timestamp": "2026-08-27T03:37:00Z",
@@ -24652,7 +24533,7 @@
     "decision_policy_version": "finance-policy-v13",
     "event_time": "2026-08-11T10:00:00Z",
     "decision_time": "2026-08-12T09:15:00Z",
-    "pack_hash": "f549e9c2bc874c723426c179ca165a94da701d39908d64b3f0eb1899a5f6ebc0",
+    "pack_hash": "e72861d5243e00718290810032af375bb2462db1b479ee6319ef340f5161940d",
     "reproducible": true,
     "checks": [
       {
@@ -24671,7 +24552,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 13 rows hash to their recorded values (pack f549e9c2bc87)"
+        "detail": "all 13 rows hash to their recorded values (pack e72861d5243e)"
       },
       {
         "id": "policy_in_force",
@@ -24905,14 +24786,14 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000094",
+        "evidence_id": "bank_statement:bnk-000100",
         "source": "bank_statement",
-        "row_id": "bnk-000094",
+        "row_id": "bnk-000100",
         "kind": "bank_credit",
         "amount_paise": 9438556,
         "timestamp": "2026-08-11T22:40:00Z",
         "freshness_hours": 16.17,
-        "hash": "837b47fe29a950dd48f70d3a1acb7a883e692fc42c0def1b22a4a1e193d466cf",
+        "hash": "7a44bc975822ca5d8e38d0d26d81a7cafc0c483db61c65f608aa9b3dfc460724",
         "hash_matches_recorded": true
       },
       {
@@ -24949,7 +24830,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-02T02:13:00Z",
     "decision_time": "2026-08-02T17:13:00Z",
-    "pack_hash": "1cbc1760a13e0e497f2cec84c5db6e45986a5ded1016b6a1d7970199f0e7e3ba",
+    "pack_hash": "5fc4c3871550c0a87855faaf11ed950d9433b7f24a265bd9cde2152a4729276b",
     "reproducible": true,
     "checks": [
       {
@@ -24968,7 +24849,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 8 rows hash to their recorded values (pack 1cbc1760a13e)"
+        "detail": "all 8 rows hash to their recorded values (pack 5fc4c3871550)"
       },
       {
         "id": "policy_in_force",
@@ -25147,14 +25028,14 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000095",
+        "evidence_id": "bank_statement:bnk-000101",
         "source": "bank_statement",
-        "row_id": "bnk-000095",
+        "row_id": "bnk-000101",
         "kind": "bank_credit",
         "amount_paise": 3937602,
         "timestamp": "2026-08-02T11:13:00Z",
         "freshness_hours": 10.28,
-        "hash": "4b73979fb9212d932082b13cf6e7430e8e25d350fdc4a0fa34b4f144da40a4ec",
+        "hash": "75a8eb2937c6ee77c308a8a2ba76a328705a755d153de1b150509d4548e517de",
         "hash_matches_recorded": true
       },
       {
@@ -25422,9 +25303,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000096",
+        "evidence_id": "bank_statement:bnk-000102",
         "source": "bank_statement",
-        "row_id": "bnk-000096",
+        "row_id": "bnk-000102",
         "kind": "bank_credit",
         "amount_paise": 7986334,
         "timestamp": "2026-08-23T03:40:00Z",
@@ -25730,9 +25611,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000097",
+        "evidence_id": "bank_statement:bnk-000103",
         "source": "bank_statement",
-        "row_id": "bnk-000097",
+        "row_id": "bnk-000103",
         "kind": "bank_credit",
         "amount_paise": 13114325,
         "timestamp": "2026-08-04T18:06:00Z",
@@ -26060,9 +25941,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000098",
+        "evidence_id": "bank_statement:bnk-000104",
         "source": "bank_statement",
-        "row_id": "bnk-000098",
+        "row_id": "bnk-000104",
         "kind": "bank_credit",
         "amount_paise": 13392644,
         "timestamp": "2026-08-06T07:23:00Z",
@@ -26104,7 +25985,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-06T08:42:00Z",
     "decision_time": "2026-08-06T21:42:00Z",
-    "pack_hash": "84b4cc5ae58ee45681ca5c05ed5d07cda3917fef2a3f0f71724aac240ea78e99",
+    "pack_hash": "2bf0347484059800efeb87121b65296c44c686abeeac2609519e6ffb358cd842",
     "reproducible": true,
     "checks": [
       {
@@ -26123,7 +26004,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 11 rows hash to their recorded values (pack 84b4cc5ae58e)"
+        "detail": "all 11 rows hash to their recorded values (pack 2bf034748405)"
       },
       {
         "id": "policy_in_force",
@@ -26335,14 +26216,14 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000099",
+        "evidence_id": "bank_statement:bnk-000105",
         "source": "bank_statement",
-        "row_id": "bnk-000099",
+        "row_id": "bnk-000105",
         "kind": "bank_credit",
         "amount_paise": 9166517,
         "timestamp": "2026-08-06T18:42:00Z",
         "freshness_hours": 7.18,
-        "hash": "25eb1f48e54a66f0432b454b0285fa349acc3f591fb228ab95cfeb38197ca2ee",
+        "hash": "0d5385beda84428d6cb54146e473ea1cf50b0447401e19ec679387306ff622cb",
         "hash_matches_recorded": true
       },
       {
@@ -26379,7 +26260,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-07T05:08:00Z",
     "decision_time": "2026-08-08T05:08:00Z",
-    "pack_hash": "9ef9e737b97d84587a8769365b7d41f4cdbe937c3527c738dfcdbd91da163a95",
+    "pack_hash": "ee7e5e0321c6837e2146eeda9571fe37037f122c6449eaa80d4ce8ee4ff29fef",
     "reproducible": true,
     "checks": [
       {
@@ -26398,7 +26279,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 10 rows hash to their recorded values (pack 9ef9e737b97d)"
+        "detail": "all 10 rows hash to their recorded values (pack ee7e5e0321c6)"
       },
       {
         "id": "policy_in_force",
@@ -26599,14 +26480,14 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000100",
+        "evidence_id": "bank_statement:bnk-000106",
         "source": "bank_statement",
-        "row_id": "bnk-000100",
+        "row_id": "bnk-000106",
         "kind": "bank_credit",
         "amount_paise": 9775782,
         "timestamp": "2026-08-07T12:08:00Z",
         "freshness_hours": 19.75,
-        "hash": "41c9898cc0f4eae20ca3916d11adc3786bd048f5785ab42fd57540d1bfeef541",
+        "hash": "faeac0a69078cf83cc0f0deb25ef42ee2a3bc91cf09036c8fdb70226baee0403",
         "hash_matches_recorded": true
       },
       {
@@ -26626,24 +26507,24 @@
     "case_id": "B099",
     "settlement_id": "S-10099",
     "scenario": "clean_match",
-    "ground_truth": "VERIFIED",
+    "ground_truth": "UNCERTAIN/MISSING_EVIDENCE",
     "agent_claim": "RECONCILED",
     "agent_reason_ignored_by_verifier": "Settlement matches the bank credit once fees and GST are accounted for. Nothing outstanding.",
-    "agent_confidence_ignored_by_verifier": 0.95,
-    "avos_verdict": "VERIFIED",
-    "reason_code": null,
+    "agent_confidence_ignored_by_verifier": 0.4,
+    "avos_verdict": "UNCERTAIN",
+    "reason_code": "MISSING_EVIDENCE",
     "correct": true,
-    "expected_paise": 8368613,
-    "observed_paise": 8368613,
-    "difference_paise": 0,
-    "fee_delta_paise": 0,
+    "expected_paise": null,
+    "observed_paise": null,
+    "difference_paise": null,
+    "fee_delta_paise": null,
     "tolerance_paise": 15000,
     "policy_version": "finance-policy-v12",
     "recorded_policy_version": "finance-policy-v12",
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-08T11:48:00Z",
     "decision_time": "2026-08-08T21:48:00Z",
-    "pack_hash": "7b98319f142b498b053b6be3d55a31ce6302ee7250eb132bf47d7005ca5652e2",
+    "pack_hash": "8e68182e7e1d07d4d82dd0bcebee1cd23e3b23b6d9864bcdca6ce323fcbb42fd",
     "reproducible": true,
     "checks": [
       {
@@ -26656,13 +26537,13 @@
         "id": "evidence_well_formed",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 8 rows carry integer paise and a parseable timestamp"
+        "detail": "all 7 rows carry integer paise and a parseable timestamp"
       },
       {
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 8 rows hash to their recorded values (pack 7b98319f142b)"
+        "detail": "all 7 rows hash to their recorded values (pack 8e68182e7e1d)"
       },
       {
         "id": "policy_in_force",
@@ -26680,7 +26561,7 @@
         "id": "evidence_available_at_decision_time",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 8 rows were already facts at 2026-08-08T21:48:00Z"
+        "detail": "all 7 rows were already facts at 2026-08-08T21:48:00Z"
       },
       {
         "id": "payments_predate_settlement_cut",
@@ -26703,14 +26584,14 @@
       {
         "id": "evidence_complete",
         "pillar": "prove",
-        "status": "pass",
-        "detail": "5 payment(s), 0 refund(s), 0 hold(s), 1 bank credit(s), 1 webhook event(s)"
+        "status": "fail",
+        "detail": "cannot recompute: no bank_credit evidence retrieved"
       },
       {
         "id": "agent_citation_coverage",
         "pillar": "guard",
         "status": "pass",
-        "detail": "agent cited 8/8 retrieved rows"
+        "detail": "agent cited 7/7 retrieved rows"
       },
       {
         "id": "evidence_fresh",
@@ -26763,14 +26644,8 @@
       {
         "id": "arithmetic_reconciles",
         "pillar": "verify",
-        "status": "pass",
-        "detail": "expected 8368613p = gross 8570886p - refunds 0p - fees 171418p - tax 30855p (recomputed from finance-policy-v12 rate card at 200bps + 1800bps GST) - holds 0p; observed 8368613p; difference 0p; tolerance 15000p"
-      },
-      {
-        "id": "recorded_fees_match_rate_card",
-        "pillar": "verify",
-        "status": "pass",
-        "detail": "payment-level fee columns agree with the finance-policy-v12 rate card to the paisa"
+        "status": "skipped",
+        "detail": "cannot recompute without both payment-level and bank evidence"
       }
     ],
     "evidence": [
@@ -26841,17 +26716,6 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000101",
-        "source": "bank_statement",
-        "row_id": "bnk-000101",
-        "kind": "bank_credit",
-        "amount_paise": 8368613,
-        "timestamp": "2026-08-08T19:48:00Z",
-        "freshness_hours": 5.82,
-        "hash": "a61a99ce84a7f540cd47e30a550ad2dc1d93b310e7c481a42ee6b8709e86ad5f",
-        "hash_matches_recorded": true
-      },
-      {
         "evidence_id": "webhook_events:whk-000099",
         "source": "webhook_events",
         "row_id": "whk-000099",
@@ -26885,7 +26749,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-09T09:47:00Z",
     "decision_time": "2026-08-09T22:47:00Z",
-    "pack_hash": "94202bdd98fbe91f8fb49a10993b774f66b4f9b8578bb285806a5c99ba640d8e",
+    "pack_hash": "0e7d38681081c939fcec25631d6b428bcf37eb95943fc43cbf5fdca2ecf670d1",
     "reproducible": true,
     "checks": [
       {
@@ -26904,7 +26768,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 8 rows hash to their recorded values (pack 94202bdd98fb)"
+        "detail": "all 8 rows hash to their recorded values (pack 0e7d38681081)"
       },
       {
         "id": "policy_in_force",
@@ -27083,14 +26947,14 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000102",
+        "evidence_id": "bank_statement:bnk-000109",
         "source": "bank_statement",
-        "row_id": "bnk-000102",
+        "row_id": "bnk-000109",
         "kind": "bank_credit",
         "amount_paise": 6590973,
         "timestamp": "2026-08-09T22:47:00Z",
         "freshness_hours": 4.3,
-        "hash": "ce720b246bba360604fb921d52d1c659a66e975a0895c3c75e2067c16990e181",
+        "hash": "87873df8609e3cbd4dda853bdcae4495907086b92dc6410fe77eab92c7f4f471",
         "hash_matches_recorded": true
       },
       {
@@ -27127,7 +26991,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-10T04:52:00Z",
     "decision_time": "2026-08-10T22:52:00Z",
-    "pack_hash": "9638184275487e7d73735d77d46d2456f9935b707b9df7fbf49142d7f9b23a5a",
+    "pack_hash": "10ab0378c0d54036562baa335f6768efd8a8412b0724d621b125da50bf46f102",
     "reproducible": true,
     "checks": [
       {
@@ -27146,7 +27010,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 12 rows hash to their recorded values (pack 963818427548)"
+        "detail": "all 12 rows hash to their recorded values (pack 10ab0378c0d5)"
       },
       {
         "id": "policy_in_force",
@@ -27369,14 +27233,14 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000103",
+        "evidence_id": "bank_statement:bnk-000110",
         "source": "bank_statement",
-        "row_id": "bnk-000103",
+        "row_id": "bnk-000110",
         "kind": "bank_credit",
         "amount_paise": 12590552,
         "timestamp": "2026-08-10T09:52:00Z",
         "freshness_hours": 15.45,
-        "hash": "a9457d71e50aa92e388ea5b1027aae7383ae179eb87fb12388a194c750c14232",
+        "hash": "afa1ec6a958d6e6b41dd1b3de6888d32a5df0bf3c969259c4bae576c8b6fa08e",
         "hash_matches_recorded": true
       },
       {
@@ -27504,7 +27368,7 @@
         "id": "no_duplicate_ingestion",
         "pillar": "verify",
         "status": "fail",
-        "detail": "the same source content was ingested more than once: bank_statement rows [bnk-000104, bnk-000105] share content hash 853790f53aff"
+        "detail": "the same source content was ingested more than once: bank_statement rows [bnk-000111, bnk-000112] share content hash 853790f53aff"
       },
       {
         "id": "utr_unique",
@@ -27677,9 +27541,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000104",
+        "evidence_id": "bank_statement:bnk-000111",
         "source": "bank_statement",
-        "row_id": "bnk-000104",
+        "row_id": "bnk-000111",
         "kind": "bank_credit",
         "amount_paise": 10899373,
         "timestamp": "2026-08-11T16:41:00Z",
@@ -27688,9 +27552,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000105",
+        "evidence_id": "bank_statement:bnk-000112",
         "source": "bank_statement",
-        "row_id": "bnk-000105",
+        "row_id": "bnk-000112",
         "kind": "bank_credit",
         "amount_paise": 10899373,
         "timestamp": "2026-08-11T16:41:00Z",
@@ -27963,9 +27827,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000106",
+        "evidence_id": "bank_statement:bnk-000113",
         "source": "bank_statement",
-        "row_id": "bnk-000106",
+        "row_id": "bnk-000113",
         "kind": "bank_credit",
         "amount_paise": 9557159,
         "timestamp": "2026-08-14T23:27:00Z",
@@ -28271,9 +28135,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000107",
+        "evidence_id": "bank_statement:bnk-000114",
         "source": "bank_statement",
-        "row_id": "bnk-000107",
+        "row_id": "bnk-000114",
         "kind": "bank_credit",
         "amount_paise": 14631953,
         "timestamp": "2026-08-13T15:17:00Z",
@@ -28315,7 +28179,7 @@
     "decision_policy_version": "finance-policy-v13",
     "event_time": "2026-08-14T11:16:00Z",
     "decision_time": "2026-08-14T22:16:00Z",
-    "pack_hash": "962fb375a98a2445b7ac6923463351370fdbaf8ca0b047f59c0e7e49b8c5f1e1",
+    "pack_hash": "c23fab2c7aa2c6ef0af135d4fea12bbdfc1e67e6f3a16b5c68df2e8c4da798ef",
     "reproducible": true,
     "checks": [
       {
@@ -28334,7 +28198,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 8 rows hash to their recorded values (pack 962fb375a98a)"
+        "detail": "all 8 rows hash to their recorded values (pack c23fab2c7aa2)"
       },
       {
         "id": "policy_in_force",
@@ -28513,14 +28377,14 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000108",
+        "evidence_id": "bank_statement:bnk-000115",
         "source": "bank_statement",
-        "row_id": "bnk-000108",
+        "row_id": "bnk-000115",
         "kind": "bank_credit",
         "amount_paise": 5287948,
         "timestamp": "2026-08-14T16:16:00Z",
         "freshness_hours": 7.63,
-        "hash": "04f272e85c036fa77e5b7774661b20113c067b0e2d8dd959eb05b15d70a0d64a",
+        "hash": "923b05359b8529b528a93734f7347ddfcbe094f48d236e1643fa971088108e2c",
         "hash_matches_recorded": true
       },
       {
@@ -28557,7 +28421,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-02T10:14:00Z",
     "decision_time": "2026-08-03T07:14:00Z",
-    "pack_hash": "c0b620cabc4a79e42a3d442e118fe49b431198e662b55001c15e1756731d2722",
+    "pack_hash": "7c434ea0b8aeb9ce02acd2240762e752bcecfa6016e8887d5694e110f259d19e",
     "reproducible": true,
     "checks": [
       {
@@ -28576,7 +28440,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 14 rows hash to their recorded values (pack c0b620cabc4a)"
+        "detail": "all 14 rows hash to their recorded values (pack 7c434ea0b8ae)"
       },
       {
         "id": "policy_in_force",
@@ -28821,14 +28685,14 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000109",
+        "evidence_id": "bank_statement:bnk-000116",
         "source": "bank_statement",
-        "row_id": "bnk-000109",
+        "row_id": "bnk-000116",
         "kind": "bank_credit",
         "amount_paise": 10707771,
         "timestamp": "2026-08-02T18:14:00Z",
         "freshness_hours": 17.33,
-        "hash": "8676224f4d96a2a56137c485adb2d88f787152b30565aa74e65725471603f380",
+        "hash": "8aa9c626a681d2fdaaf325a9e0e7e7708588ffa1c440960c77f45e4697a031a0",
         "hash_matches_recorded": true
       },
       {
@@ -29041,9 +28905,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000110",
+        "evidence_id": "bank_statement:bnk-000117",
         "source": "bank_statement",
-        "row_id": "bnk-000110",
+        "row_id": "bnk-000117",
         "kind": "bank_credit",
         "amount_paise": 2275971,
         "timestamp": "2026-08-16T11:47:00Z",
@@ -29305,9 +29169,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000111",
+        "evidence_id": "bank_statement:bnk-000118",
         "source": "bank_statement",
-        "row_id": "bnk-000111",
+        "row_id": "bnk-000118",
         "kind": "bank_credit",
         "amount_paise": 7732979,
         "timestamp": "2026-08-17T08:21:00Z",
@@ -29525,9 +29389,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000112",
+        "evidence_id": "bank_statement:bnk-000119",
         "source": "bank_statement",
-        "row_id": "bnk-000112",
+        "row_id": "bnk-000119",
         "kind": "bank_credit",
         "amount_paise": 3465758,
         "timestamp": "2026-08-18T23:18:00Z",
@@ -29569,7 +29433,7 @@
     "decision_policy_version": "finance-policy-v13",
     "event_time": "2026-08-19T03:23:00Z",
     "decision_time": "2026-08-20T08:23:00Z",
-    "pack_hash": "be085e69222457e67d55ee91ddc8894323e7b5e73b1e53f5e1192b5839a48ccc",
+    "pack_hash": "a489a127b775effcc14dad8f340a100620507e2950a89bc895479f5b4f9f77d3",
     "reproducible": true,
     "checks": [
       {
@@ -29588,7 +29452,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 13 rows hash to their recorded values (pack be085e692224)"
+        "detail": "all 13 rows hash to their recorded values (pack a489a127b775)"
       },
       {
         "id": "policy_in_force",
@@ -29822,14 +29686,14 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000113",
+        "evidence_id": "bank_statement:bnk-000120",
         "source": "bank_statement",
-        "row_id": "bnk-000113",
+        "row_id": "bnk-000120",
         "kind": "bank_credit",
         "amount_paise": 13467826,
         "timestamp": "2026-08-19T14:23:00Z",
         "freshness_hours": 19.18,
-        "hash": "f86508edf3f9eff4379e06296ce3d66138f94f003236fd2eeffd45d915781ed0",
+        "hash": "57ad9948ba5a0a3e523aaf3bcea43f6cf80603123306860f29eb2358ccd571b9",
         "hash_matches_recorded": true
       },
       {
@@ -30075,9 +29939,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000114",
+        "evidence_id": "bank_statement:bnk-000121",
         "source": "bank_statement",
-        "row_id": "bnk-000114",
+        "row_id": "bnk-000121",
         "kind": "bank_credit",
         "amount_paise": 5626249,
         "timestamp": "2026-08-20T23:52:00Z",
@@ -30306,9 +30170,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000115",
+        "evidence_id": "bank_statement:bnk-000122",
         "source": "bank_statement",
-        "row_id": "bnk-000115",
+        "row_id": "bnk-000122",
         "kind": "bank_credit",
         "amount_paise": 5660890,
         "timestamp": "2026-08-21T19:01:00Z",
@@ -30614,9 +30478,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000116",
+        "evidence_id": "bank_statement:bnk-000123",
         "source": "bank_statement",
-        "row_id": "bnk-000116",
+        "row_id": "bnk-000123",
         "kind": "bank_credit",
         "amount_paise": 13300155,
         "timestamp": "2026-08-23T03:40:00Z",
@@ -30641,24 +30505,24 @@
     "case_id": "B114",
     "settlement_id": "S-10114",
     "scenario": "t1_delay",
-    "ground_truth": "VERIFIED",
+    "ground_truth": "UNCERTAIN/MISSING_EVIDENCE",
     "agent_claim": "RECONCILED",
     "agent_reason_ignored_by_verifier": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
-    "agent_confidence_ignored_by_verifier": 0.95,
-    "avos_verdict": "VERIFIED",
-    "reason_code": null,
+    "agent_confidence_ignored_by_verifier": 0.4,
+    "avos_verdict": "UNCERTAIN",
+    "reason_code": "MISSING_EVIDENCE",
     "correct": true,
-    "expected_paise": 6886501,
-    "observed_paise": 6886501,
-    "difference_paise": 0,
-    "fee_delta_paise": 0,
+    "expected_paise": null,
+    "observed_paise": null,
+    "difference_paise": null,
+    "fee_delta_paise": null,
     "tolerance_paise": 5000,
     "policy_version": "finance-policy-v13",
     "recorded_policy_version": "finance-policy-v13",
     "decision_policy_version": "finance-policy-v13",
     "event_time": "2026-08-23T12:11:00Z",
     "decision_time": "2026-08-25T11:11:00Z",
-    "pack_hash": "812217c37f9d4b31e48a4249b689803cfd9b8bf9c0cd0a0db922141656c97cf3",
+    "pack_hash": "673dccc849affabea93c265a569b4a8e4966d2af49426ebdf85a5a33417c82cd",
     "reproducible": true,
     "checks": [
       {
@@ -30671,13 +30535,13 @@
         "id": "evidence_well_formed",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 7 rows carry integer paise and a parseable timestamp"
+        "detail": "all 6 rows carry integer paise and a parseable timestamp"
       },
       {
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 7 rows hash to their recorded values (pack 812217c37f9d)"
+        "detail": "all 6 rows hash to their recorded values (pack 673dccc849af)"
       },
       {
         "id": "policy_in_force",
@@ -30695,7 +30559,7 @@
         "id": "evidence_available_at_decision_time",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 7 rows were already facts at 2026-08-25T11:11:00Z"
+        "detail": "all 6 rows were already facts at 2026-08-25T11:11:00Z"
       },
       {
         "id": "payments_predate_settlement_cut",
@@ -30718,14 +30582,14 @@
       {
         "id": "evidence_complete",
         "pillar": "prove",
-        "status": "pass",
-        "detail": "4 payment(s), 0 refund(s), 0 hold(s), 1 bank credit(s), 1 webhook event(s)"
+        "status": "fail",
+        "detail": "cannot recompute: no bank_credit evidence retrieved"
       },
       {
         "id": "agent_citation_coverage",
         "pillar": "guard",
         "status": "pass",
-        "detail": "agent cited 7/7 retrieved rows"
+        "detail": "agent cited 6/6 retrieved rows"
       },
       {
         "id": "evidence_fresh",
@@ -30778,14 +30642,8 @@
       {
         "id": "arithmetic_reconciles",
         "pillar": "verify",
-        "status": "pass",
-        "detail": "expected 6886501p = gross 7052950p - refunds 0p - fees 141059p - tax 25390p (recomputed from finance-policy-v13 rate card at 200bps + 1800bps GST) - holds 0p; observed 6886501p; difference 0p; tolerance 5000p"
-      },
-      {
-        "id": "recorded_fees_match_rate_card",
-        "pillar": "verify",
-        "status": "pass",
-        "detail": "payment-level fee columns agree with the finance-policy-v13 rate card to the paisa"
+        "status": "skipped",
+        "detail": "cannot recompute without both payment-level and bank evidence"
       }
     ],
     "evidence": [
@@ -30845,17 +30703,6 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000117",
-        "source": "bank_statement",
-        "row_id": "bnk-000117",
-        "kind": "bank_credit",
-        "amount_paise": 6886501,
-        "timestamp": "2026-08-24T21:11:00Z",
-        "freshness_hours": 19.67,
-        "hash": "30a8faa83c0bbaa5dc45f15af193f8701ffe4323fc86570276464326b3de6658",
-        "hash_matches_recorded": true
-      },
-      {
         "evidence_id": "webhook_events:whk-000114",
         "source": "webhook_events",
         "row_id": "whk-000114",
@@ -30889,7 +30736,7 @@
     "decision_policy_version": "finance-policy-v13",
     "event_time": "2026-08-24T10:45:00Z",
     "decision_time": "2026-08-24T23:45:00Z",
-    "pack_hash": "92b4629e865435e2ec9eaef9d73303368ea0a2c42b67d71c8ac0150489376b0f",
+    "pack_hash": "ad49c10cfe3cde9e43e237ce5f6cbd35bd570015ebfc051df26cfef67dc5bbf0",
     "reproducible": true,
     "checks": [
       {
@@ -30908,7 +30755,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 8 rows hash to their recorded values (pack 92b4629e8654)"
+        "detail": "all 8 rows hash to their recorded values (pack ad49c10cfe3c)"
       },
       {
         "id": "policy_in_force",
@@ -31087,14 +30934,14 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000118",
+        "evidence_id": "bank_statement:bnk-000126",
         "source": "bank_statement",
-        "row_id": "bnk-000118",
+        "row_id": "bnk-000126",
         "kind": "bank_credit",
         "amount_paise": 4482369,
         "timestamp": "2026-08-24T21:45:00Z",
         "freshness_hours": 6.82,
-        "hash": "65e5a87bf1d95c5bd5d8122ab604144c68e235bcbc5e473165be641da86552f4",
+        "hash": "6106a130210ee0b3ec12c51a9fb540d7955fc09bd8be2b43c84020d66e605cf7",
         "hash_matches_recorded": true
       },
       {
@@ -31417,9 +31264,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000119",
+        "evidence_id": "bank_statement:bnk-000127",
         "source": "bank_statement",
-        "row_id": "bnk-000119",
+        "row_id": "bnk-000127",
         "kind": "bank_credit",
         "amount_paise": 14394220,
         "timestamp": "2026-08-02T09:43:00Z",
@@ -31648,9 +31495,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000120",
+        "evidence_id": "bank_statement:bnk-000128",
         "source": "bank_statement",
-        "row_id": "bnk-000120",
+        "row_id": "bnk-000128",
         "kind": "bank_credit",
         "amount_paise": 3348476,
         "timestamp": "2026-08-04T07:26:00Z",
@@ -31923,9 +31770,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000121",
+        "evidence_id": "bank_statement:bnk-000129",
         "source": "bank_statement",
-        "row_id": "bnk-000121",
+        "row_id": "bnk-000129",
         "kind": "bank_credit",
         "amount_paise": 9483396,
         "timestamp": "2026-08-05T22:46:00Z",
@@ -31967,7 +31814,7 @@
     "decision_policy_version": "finance-policy-v12",
     "event_time": "2026-08-05T10:45:00Z",
     "decision_time": "2026-08-06T16:45:00Z",
-    "pack_hash": "a9c3d33e4b9f8d1ae124a8b4f0984a6ef1183dd5d5d3755cf123585dd8c44ccb",
+    "pack_hash": "1af307dde9895c491d6af6a90ea4999678b5800c7e299268ecadb48dda01d425",
     "reproducible": true,
     "checks": [
       {
@@ -31986,7 +31833,7 @@
         "id": "evidence_reproducible",
         "pillar": "prove",
         "status": "pass",
-        "detail": "all 13 rows hash to their recorded values (pack a9c3d33e4b9f)"
+        "detail": "all 13 rows hash to their recorded values (pack 1af307dde989)"
       },
       {
         "id": "policy_in_force",
@@ -32220,14 +32067,14 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000122",
+        "evidence_id": "bank_statement:bnk-000130",
         "source": "bank_statement",
-        "row_id": "bnk-000122",
+        "row_id": "bnk-000130",
         "kind": "bank_credit",
         "amount_paise": 11580056,
         "timestamp": "2026-08-05T22:45:00Z",
         "freshness_hours": 21.07,
-        "hash": "1a7f73e8e7fe339f8acde379c15e7c73e1ebaa00f2471c5d38b2510d64741558",
+        "hash": "27390fbc87a91f8043df53178729d6a061b61c4b9aaae675b2e2a1cb07e58701",
         "hash_matches_recorded": true
       },
       {
@@ -32473,9 +32320,9 @@
         "hash_matches_recorded": true
       },
       {
-        "evidence_id": "bank_statement:bnk-000123",
+        "evidence_id": "bank_statement:bnk-000131",
         "source": "bank_statement",
-        "row_id": "bnk-000123",
+        "row_id": "bnk-000131",
         "kind": "bank_credit",
         "amount_paise": 8066328,
         "timestamp": "2026-08-24T19:11:00Z",

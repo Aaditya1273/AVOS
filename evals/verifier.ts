@@ -145,6 +145,15 @@ function hold(rowId: string, amount: number): EvidenceItem {
 
 function makePack(evidence: EvidenceItem[]): EvidencePack {
   return {
+    // Unit packs are built post-match, so they assert a decided pairing.
+    match: {
+      status: 'MATCHED',
+      matched_row_ids: evidence.filter((e) => e.kind === 'bank_credit').map((e) => e.row_id),
+      confidence: 1,
+      reasons: ['REFERENCE_EXACT', 'AMOUNT_EXACT', 'DATE_SAME_DAY'],
+      matcher_version: 'matcher-v1.0',
+      candidates: [],
+    },
     decision_id: 'dec_test',
     settlement_id: SID,
     merchant_id: 'MERCH-TEST',

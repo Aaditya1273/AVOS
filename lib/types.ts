@@ -185,8 +185,27 @@ export interface PolicySnapshot {
 // Evidence Pack — the "Prove" pillar
 // ---------------------------------------------------------------------------
 
+/**
+ * How the bank credit in this pack was arrived at.
+ *
+ * Recorded on the pack rather than assumed, because "which credit belongs to
+ * this settlement" is a decision someone made, and a decision nobody wrote down
+ * is a decision nobody can audit.
+ */
+export interface PackMatch {
+  status: 'MATCHED' | 'AMBIGUOUS' | 'UNMATCHED'
+  matched_row_ids: string[]
+  confidence: number
+  reasons: string[]
+  matcher_version: string
+  /** Every candidate the engine considered, with its score. */
+  candidates: { row_id: string; score: number; amount_delta_paise: number; date_delta_days: number }[]
+}
+
 export interface EvidencePack {
   decision_id: string
+  /** Result of the matching stage. Null only when there is no settlement to match. */
+  match: PackMatch | null
   settlement_id: string
   merchant_id: string
   /** When the money moved. */
@@ -346,6 +365,38 @@ export interface GroundTruth {
   scenario: string
   expected_verdict: Verdict
   expected_reason: string
+  /** The bank row that genuinely belongs to this settlement. '' when none exists. */
+  true_bank_row: string
+}
+
+/**
+ * What actually happened to the record, as opposed to what was concluded about it.
+ *
+ * A verdict is an opinion about evidence; a closure is a state change to the
+ * books. Keeping them as separate types is what lets one invariant be stated and
+ * enforced rather than hoped for:
+ *
+ *   **Only VERIFIED may become CLOSED.**
+ *
+ * `REFUSED_TO_CLOSE` is deliberately not called UNCERTAIN here. Uncertainty is
+ * the verifier's internal state; refusal is what the system did about it, and a
+ * finance operator needs the second one. It is also the honest word: the system
+ * was asked to close a record and declined.
+ */
+export type ClosureStatus = 'CLOSED' | 'REFUSED_TO_CLOSE' | 'FAILED'
+
+export interface Closure {
+  status: ClosureStatus
+  /** Set only on CLOSED. Null everywhere else — nothing was closed. */
+  closed_at: string | null
+  /** Money this record represents. On a refusal, this is value held back. */
+  value_paise: Paise
+  /** Why, in the operator's vocabulary rather than the verifier's. */
+  summary: string
+  /** For a refusal: exactly what evidence would make it closeable. */
+  required_evidence: string[]
+  /** Value × severity, for queue ordering. Higher is more urgent. */
+  priority: number
 }
 
 /** One fully-assembled decision: claim, evidence, verdict. What a Proof Card renders. */
@@ -356,6 +407,8 @@ export interface Decision {
   pack: EvidencePack
   result: VerificationResult
   batch_value_paise: Paise
+  /** What actually happened to the record. Only VERIFIED may become CLOSED. */
+  closure: Closure
 }
 
 export interface ReplayResult {

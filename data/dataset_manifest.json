@@ -17,9 +17,9 @@
       "t1_delay": 10
     },
     "expected_verdicts": {
-      "FAILED": 30,
-      "UNCERTAIN": 10,
-      "VERIFIED": 80
+      "FAILED": 29,
+      "UNCERTAIN": 16,
+      "VERIFIED": 75
     },
     "total_value_paise": 1093126078
   },
@@ -34,14 +34,14 @@
       "stale_policy": 5
     },
     "expected_verdicts": {
-      "FAILED": 20,
-      "UNCERTAIN": 10
+      "FAILED": 17,
+      "UNCERTAIN": 13
     }
   },
   "evidence_rows": {
     "razorpay_payments": 1184,
     "razorpay_settlements": 207,
-    "bank_statement": 177,
+    "bank_statement": 188,
     "refunds": 29,
     "holds": 12,
     "webhook_events": 183

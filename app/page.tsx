@@ -106,7 +106,30 @@ export default function Page() {
 
         {/* --- measured results ---------------------------------------------- */}
         {m ? (
-          <div className="grid grid-cols-2 gap-5 px-6 py-5 sm:grid-cols-4 lg:grid-cols-7">
+          <div className="grid grid-cols-2 gap-5 px-6 py-5 sm:grid-cols-4 lg:grid-cols-4 xl:grid-cols-8">
+            <Stat
+              label="Match rate"
+              value={formatPct(m.match_rate)}
+              hint={`${m.matched_count} matched · ${m.ambiguous_count} ambiguous · ${m.unmatched_count} unmatched`}
+            />
+            <Stat
+              label="Match precision"
+              value={formatPct(m.match_precision)}
+              hint="paired to the right money"
+              tone={m.match_precision === 1 ? 'verified' : 'failed'}
+            />
+            <Stat
+              label="Closed"
+              value={String(m.closure.closed)}
+              hint={`${formatPaise(m.closure.closed_value_paise)} posted`}
+              tone="verified"
+            />
+            <Stat
+              label="Value withheld"
+              value={formatPaise(m.closure.withheld_value_paise)}
+              hint={`${m.closure.refused} refused · ${m.closure.failed} failed`}
+              tone="uncertain"
+            />
             <Stat
               label="False closure rate"
               value={formatPct(m.false_closure_rate)}
@@ -118,17 +141,6 @@ export default function Page() {
               value={formatPct(m.verification_precision)}
               hint={`${m.by_verdict.VERIFIED} verdicts`}
               tone="verified"
-            />
-            <Stat
-              label="Value coverage"
-              value={formatPct(m.value_coverage_of_verifiable)}
-              hint="of verifiable value"
-              tone="verified"
-            />
-            <Stat
-              label="Auto-clear rate"
-              value={formatPct(m.auto_clear_rate)}
-              hint="of whole batch"
             />
             <Stat
               label="Exception detection"
@@ -241,7 +253,8 @@ export default function Page() {
         <Badge variant="uncertain">{tally.UNCERTAIN} abstained</Badge>
         <Badge variant="verified">{tally.VERIFIED} cleared</Badge>
         <span className="text-[11.5px] text-muted-foreground">
-          Verdicts are recomputed from source on every request, not read from the decision log.
+          Matched, verified and closed on every request from source — nothing is read back from the
+          decision log.
         </span>
       </div>
 

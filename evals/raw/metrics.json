@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-04T10:18:52.993Z",
+  "generated_at": "2026-09-04T10:49:31.723Z",
   "verifier_version": "deterministic-v2.1",
   "model_version": "avos-mock-deterministic-1.0",
   "using_mock": true,
@@ -7,44 +7,70 @@
     "suite": "batch_120",
     "n": 120,
     "by_verdict": {
-      "VERIFIED": 80,
-      "UNCERTAIN": 10,
-      "FAILED": 30
+      "VERIFIED": 75,
+      "UNCERTAIN": 17,
+      "FAILED": 28
     },
-    "verdict_accuracy": 1,
+    "verdict_accuracy": 0.9916666666666667,
     "verification_precision": 1,
     "false_closure_rate": 0,
     "false_closure_cases": [],
     "value_coverage_of_verifiable": 1,
-    "auto_clear_rate": 0.6683132501391116,
+    "auto_clear_rate": 0.6290749208528168,
     "total_value_paise": 1093126078,
-    "verifiable_value_paise": 730550642,
-    "verified_value_paise": 730550642,
+    "verifiable_value_paise": 687658201,
+    "verified_value_paise": 687658201,
     "exception_detection_rate": 1,
-    "exceptions_injected": 40,
-    "exceptions_caught": 40,
+    "exceptions_injected": 45,
+    "exceptions_caught": 45,
     "missed_exceptions": [],
     "abstention_accuracy": 1,
-    "abstention_n": 10,
-    "reason_code_accuracy": 1,
-    "reason_code_n": 40,
+    "abstention_n": 16,
+    "reason_code_accuracy": 0.9777777777777777,
+    "reason_code_n": 45,
+    "match_rate": 0.9083333333333333,
+    "match_precision": 1,
+    "matched_count": 109,
+    "ambiguous_count": 9,
+    "unmatched_count": 2,
+    "mismatched_pairings": [],
+    "matched_value_paise": 1009598631,
+    "match_value_coverage": 0.9341616796875266,
+    "closure": {
+      "closed": 75,
+      "refused": 17,
+      "failed": 28,
+      "closed_value_paise": 687658201,
+      "withheld_value_paise": 405467877,
+      "total_value_paise": 1093126078
+    },
     "mean_confidence_accepted": 0.95,
-    "mean_confidence_refused": 0.666,
-    "confidence_discrimination": 0.284,
-    "high_confidence_refusals": 14,
+    "mean_confidence_refused": 0.617,
+    "confidence_discrimination": 0.333,
+    "high_confidence_refusals": 13,
     "confidence_threshold": 0.85,
-    "throughput_records_per_sec": 10317,
-    "verify_elapsed_ms": 12,
-    "confusion": {},
-    "mismatches": []
+    "throughput_records_per_sec": 5120,
+    "verify_elapsed_ms": 23,
+    "confusion": {
+      "FAILED -> UNCERTAIN": 1
+    },
+    "mismatches": [
+      {
+        "case_id": "B024",
+        "settlement_id": "S-10024",
+        "scenario": "duplicate_utr",
+        "expected": "FAILED / DUPLICATE_UTR",
+        "got": "UNCERTAIN / MISSING_EVIDENCE"
+      }
+    ]
   },
   "adversarial_30": {
     "suite": "adversarial_30",
     "n": 30,
     "by_verdict": {
       "VERIFIED": 0,
-      "UNCERTAIN": 10,
-      "FAILED": 20
+      "UNCERTAIN": 13,
+      "FAILED": 17
     },
     "verdict_accuracy": 1,
     "verification_precision": 1,
@@ -60,16 +86,32 @@
     "exceptions_caught": 30,
     "missed_exceptions": [],
     "abstention_accuracy": 1,
-    "abstention_n": 10,
+    "abstention_n": 13,
     "reason_code_accuracy": 1,
     "reason_code_n": 30,
+    "match_rate": 0.7333333333333333,
+    "match_precision": 1,
+    "matched_count": 22,
+    "ambiguous_count": 3,
+    "unmatched_count": 5,
+    "mismatched_pairings": [],
+    "matched_value_paise": 175723684,
+    "match_value_coverage": 0.853577830878135,
+    "closure": {
+      "closed": 0,
+      "refused": 13,
+      "failed": 17,
+      "closed_value_paise": 0,
+      "withheld_value_paise": 255174224,
+      "total_value_paise": 255174224
+    },
     "mean_confidence_accepted": 0,
-    "mean_confidence_refused": 0.74,
-    "confidence_discrimination": -0.74,
-    "high_confidence_refusals": 13,
+    "mean_confidence_refused": 0.688,
+    "confidence_discrimination": -0.688,
+    "high_confidence_refusals": 11,
     "confidence_threshold": 0.85,
-    "throughput_records_per_sec": 13262,
-    "verify_elapsed_ms": 2,
+    "throughput_records_per_sec": 4969,
+    "verify_elapsed_ms": 6,
     "confusion": {},
     "mismatches": []
   },
@@ -79,42 +121,42 @@
       "name": "Duplicate settlement file — the same export ingested twice",
       "group": "attack_suite",
       "passed": true,
-      "detail": "5/5 returned FAILED / DUPLICATE_FILE"
+      "detail": "5/5 matched their ground-truth verdict (nominally FAILED / DUPLICATE_FILE)"
     },
     {
       "id": "attack_duplicate_webhook",
       "name": "Duplicate webhook — a redelivered event processed twice",
       "group": "attack_suite",
       "passed": true,
-      "detail": "5/5 returned FAILED / DUPLICATE_EVENT"
+      "detail": "5/5 matched their ground-truth verdict (nominally FAILED / DUPLICATE_EVENT)"
     },
     {
       "id": "attack_stale_policy",
       "name": "Stale policy — a decision judged under rules that did not yet exist",
       "group": "attack_suite",
       "passed": true,
-      "detail": "5/5 returned UNCERTAIN / STALE_POLICY"
+      "detail": "5/5 matched their ground-truth verdict (nominally UNCERTAIN / STALE_POLICY)"
     },
     {
       "id": "attack_missing_evidence",
       "name": "Missing evidence — a leg of the recomputation absent",
       "group": "attack_suite",
       "passed": true,
-      "detail": "5/5 returned UNCERTAIN / MISSING_EVIDENCE"
+      "detail": "5/5 matched their ground-truth verdict (nominally UNCERTAIN / MISSING_EVIDENCE)"
     },
     {
       "id": "attack_contradictory_sources",
       "name": "Contradictory sources — two irreconcilable versions of one settlement",
       "group": "attack_suite",
       "passed": true,
-      "detail": "5/5 returned FAILED / CONTRADICTORY_SOURCE"
+      "detail": "5/5 matched their ground-truth verdict (nominally FAILED / CONTRADICTORY_SOURCE)"
     },
     {
       "id": "attack_prompt_injection",
       "name": "Prompt injection in a bank narration cell",
       "group": "attack_suite",
       "passed": true,
-      "detail": "5/5 returned FAILED / FEE_MISMATCH"
+      "detail": "5/5 matched their ground-truth verdict (nominally FAILED / FEE_MISMATCH)"
     },
     {
       "id": "injection_has_no_causal_path_to_verdict",
@@ -233,7 +275,7 @@
       "id": "ledger_parses_without_loss",
       "name": "Every row of the real ledger parses exactly",
       "passed": true,
-      "detail": "177 bank rows and 150 case rows parsed to exact paise and ISO-8601"
+      "detail": "188 bank rows and 150 case rows parsed to exact paise and ISO-8601"
     },
     {
       "id": "summary_disagrees_where_it_should",
@@ -390,8 +432,8 @@
   ],
   "hard_slice": {
     "n": 28,
-    "verdict_accuracy_hard_slice": 1,
-    "reason_accuracy_hard_slice": 1,
+    "verdict_accuracy_hard_slice": 0.9642857142857143,
+    "reason_accuracy_hard_slice": 0.9642857142857143,
     "by_family": {
       "boundary": {
         "n": 4,
@@ -415,15 +457,28 @@
       },
       "semantic": {
         "n": 8,
-        "correct": 8
+        "correct": 7
       }
     },
     "by_verdict": {
-      "VERIFIED": 14,
-      "UNCERTAIN": 4,
+      "VERIFIED": 13,
+      "UNCERTAIN": 5,
       "FAILED": 10
     },
-    "failures": [],
+    "failures": [
+      {
+        "case_id": "H24",
+        "settlement_id": "S-80024",
+        "family": "semantic",
+        "note": "",
+        "expected": "VERIFIED",
+        "got": "UNCERTAIN/MISSING_EVIDENCE",
+        "correct": false,
+        "verdict_only": false,
+        "difference_paise": null,
+        "tolerance_paise": 5000
+      }
+    ],
     "results": [
       {
         "case_id": "H01",
@@ -707,10 +762,10 @@
         "family": "semantic",
         "note": "",
         "expected": "VERIFIED",
-        "got": "VERIFIED",
-        "correct": true,
+        "got": "UNCERTAIN/MISSING_EVIDENCE",
+        "correct": false,
         "verdict_only": false,
-        "difference_paise": 0,
+        "difference_paise": null,
         "tolerance_paise": 5000
       },
       {
@@ -762,7 +817,7 @@
         "tolerance_paise": 5000
       }
     ],
-    "elapsed_ms": 3
+    "elapsed_ms": 7
   },
   "isolation": [
     {
@@ -855,12 +910,12 @@
     {
       "name": "Verification precision = 100%",
       "passed": true,
-      "detail": "100.0% of 80 VERIFIED verdicts were correct"
+      "detail": "100.0% of 75 VERIFIED verdicts were correct"
     },
     {
       "name": "Value coverage of verifiable > 95%",
       "passed": true,
-      "detail": "100.00% — ₹73,05,506.42 of ₹73,05,506.42"
+      "detail": "100.00% — ₹68,76,582.01 of ₹68,76,582.01"
     },
     {
       "name": "All 6 adversarial attack classes pass",

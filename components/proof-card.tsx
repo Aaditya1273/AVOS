@@ -154,14 +154,58 @@ export function ProofCard({
 
           <VerdictBadge verdict={result.verdict} reason={result.reason_code} size="lg" />
 
+          {/* What the system DID, as distinct from what it concluded. A verdict
+              is an opinion about evidence; a closure is a state change to the
+              books, and a finance operator needs the second one. */}
+          <div
+            className={cn(
+              'flex items-center gap-2 rounded-md border px-3 py-2',
+              decision.closure.status === 'CLOSED'
+                ? 'border-[hsl(var(--verdict-verified)/0.4)] bg-[hsl(var(--verdict-verified)/0.10)]'
+                : 'border-[hsl(var(--verdict-uncertain)/0.45)] bg-[hsl(var(--verdict-uncertain)/0.10)]',
+            )}
+          >
+            <span
+              className={cn(
+                'text-[13px] font-bold tracking-tight',
+                decision.closure.status === 'CLOSED'
+                  ? 'text-[hsl(var(--verdict-verified))]'
+                  : 'text-[hsl(var(--verdict-uncertain))]',
+              )}
+            >
+              {decision.closure.status === 'CLOSED' ? '✓ CLOSED' : '⛔ REFUSED TO CLOSE'}
+            </span>
+            <span className="tnum text-[11.5px] text-muted-foreground">
+              {decision.closure.status === 'CLOSED'
+                ? `${formatPaise(decision.closure.value_paise)} posted`
+                : `${formatPaise(decision.closure.value_paise)} held back`}
+            </span>
+          </div>
+
           <p className="text-[11.5px] leading-relaxed text-muted-foreground">
-            {VERDICT_MEANING[result.verdict]}
+            {decision.closure.summary}
           </p>
 
           {avosDisagrees ? (
             <div className="rounded-md border border-[hsl(var(--verdict-failed)/0.35)] bg-[hsl(var(--verdict-failed)/0.08)] px-3 py-2 text-[12px] font-medium text-[hsl(var(--verdict-failed))]">
               The agent proposed closure at {proposal.confidence.toFixed(2)} confidence. AVOS
               refused it.
+            </div>
+          ) : null}
+
+          {decision.closure.required_evidence.length > 0 ? (
+            <div className="rounded-md border border-dashed border-[hsl(var(--verdict-uncertain)/0.45)] bg-[hsl(var(--verdict-uncertain)/0.06)] p-3">
+              <div className="mb-1.5 text-[9.5px] font-semibold uppercase tracking-[0.1em] text-[hsl(var(--verdict-uncertain))]">
+                What would make this closeable
+              </div>
+              <ul className="flex flex-col gap-1">
+                {decision.closure.required_evidence.map((r) => (
+                  <li key={r} className="flex gap-2 text-[11.5px] leading-relaxed text-foreground/85">
+                    <span className="text-muted-foreground">→</span>
+                    <span>{r}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           ) : null}
 
@@ -212,6 +256,40 @@ export function ProofCard({
           tone={result.fee_delta_paise ? 'bad' : undefined}
         />
       </div>
+
+      {/* The matching stage — how the bank credit in this pack was arrived at.
+          Shown because "which credit belongs here" is a decision someone made,
+          and a decision nobody wrote down is a decision nobody can audit. */}
+      {pack.match ? (
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 border-b border-border bg-muted/20 px-5 py-2.5 text-[11.5px]">
+          <span className="text-[9.5px] font-semibold uppercase tracking-[0.09em] text-muted-foreground">
+            Match
+          </span>
+          <Badge
+            variant={
+              pack.match.status === 'MATCHED'
+                ? 'verified'
+                : pack.match.status === 'AMBIGUOUS'
+                  ? 'uncertain'
+                  : 'failed'
+            }
+          >
+            {pack.match.status}
+          </Badge>
+          {pack.match.matched_row_ids.length > 0 ? (
+            <span className="font-mono text-[11px]">{pack.match.matched_row_ids.join(', ')}</span>
+          ) : null}
+          <span className="tnum text-muted-foreground">
+            score {pack.match.confidence.toFixed(2)}
+          </span>
+          <span className="font-mono text-[10px] text-muted-foreground">
+            {pack.match.reasons.join(' · ')}
+          </span>
+          <span className="ml-auto font-mono text-[10px] text-muted-foreground">
+            {pack.match.matcher_version} · {pack.match.candidates.length} candidates scored
+          </span>
+        </div>
+      ) : null}
 
       {/* --- provenance ------------------------------------------------------- */}
       <div className="grid gap-x-6 gap-y-3 border-b border-border px-5 py-4 text-[11.5px] sm:grid-cols-2 lg:grid-cols-3">

@@ -30,6 +30,7 @@
  * ---------------------------------------------------------------------------
  */
 
+import { summariseBatch, type BatchClosure } from '@/lib/closure'
 import type { Decision, GroundTruth, Paise, Verdict } from '@/lib/types'
 
 export interface SuiteMetrics {
@@ -80,6 +81,35 @@ export interface SuiteMetrics {
   /** The dangerous quadrant: high self-confidence on a closure AVOS refused. */
   high_confidence_refusals: number
   confidence_threshold: number
+
+  /**
+   * THE MATCHING STAGE — the front half of the loop, and the number Track 04
+   * asks for by name.
+   *
+   * `match_rate` is operational: of the records presented, how many did the
+   * engine pair confidently enough to proceed. It is deliberately NOT scored
+   * against a label. Ambiguity arises from collisions nobody planted, so a
+   * "correct status" label would end up fitted to whatever the engine happened
+   * to do — the same circularity the hard slice exists to expose.
+   *
+   * `match_precision` is the safety number, and it IS labelled: of the pairings
+   * the engine committed to, how many were the true counterpart. A low match
+   * rate costs a human some time. A low match precision reconciles a settlement
+   * against another settlement's money, and nothing downstream would catch it,
+   * because every check after this point takes the pairing as given.
+   */
+  match_rate: number
+  match_precision: number
+  matched_count: number
+  ambiguous_count: number
+  unmatched_count: number
+  mismatched_pairings: string[]
+  matched_value_paise: Paise
+  /** Matched value as a share of the value that had a counterpart to find. */
+  match_value_coverage: number
+
+  /** The closing step: what actually happened to the books. */
+  closure: BatchClosure
 
   /** Deterministic verification only. Model latency is reported separately. */
   throughput_records_per_sec: number
@@ -136,6 +166,15 @@ export function computeMetrics(
   let confRefusedN = 0
   let highConfidenceRefusals = 0
   const CONFIDENCE_THRESHOLD = 0.85
+  let matched = 0
+  let ambiguous = 0
+  let unmatched = 0
+  let matchedCorrect = 0
+  let matchedLabelled = 0
+  let matchedValue = 0
+  let matchableValue = 0
+  const mismatchedPairings: string[] = []
+  const closures: Decision['closure'][] = []
 
   for (const d of decisions) {
     const gt = truth.get(d.case_id)
@@ -185,6 +224,26 @@ export function computeMetrics(
       if (got === 'UNCERTAIN') abstentionCorrect += 1
     }
 
+    // --- matching stage ------------------------------------------------------
+    const m = d.pack.match
+    if (m?.status === 'MATCHED') {
+      matched += 1
+      matchedValue += d.batch_value_paise
+      if (gt.true_bank_row) {
+        matchedLabelled += 1
+        if (m.matched_row_ids.includes(gt.true_bank_row)) matchedCorrect += 1
+        else {
+          mismatchedPairings.push(
+            `${d.case_id}: paired ${m.matched_row_ids.join(',')} but ${gt.true_bank_row} is the true counterpart`,
+          )
+        }
+      }
+    } else if (m?.status === 'AMBIGUOUS') ambiguous += 1
+    else unmatched += 1
+    if (gt.true_bank_row) matchableValue += d.batch_value_paise
+
+    closures.push(d.closure)
+
     if (gt.expected_reason) {
       reasonN += 1
       if (got === want && d.result.reason_code === gt.expected_reason) reasonCorrect += 1
@@ -230,6 +289,15 @@ export function computeMetrics(
     abstention_n: abstentionN,
     reason_code_accuracy: ratio(reasonCorrect, reasonN),
     reason_code_n: reasonN,
+    match_rate: n === 0 ? 0 : matched / n,
+    match_precision: ratio(matchedCorrect, matchedLabelled),
+    matched_count: matched,
+    ambiguous_count: ambiguous,
+    unmatched_count: unmatched,
+    mismatched_pairings: mismatchedPairings,
+    matched_value_paise: matchedValue,
+    match_value_coverage: ratio(matchedValue, matchableValue),
+    closure: summariseBatch(closures),
     mean_confidence_accepted: Math.round(meanAccepted * 1000) / 1000,
     mean_confidence_refused: Math.round(meanRefused * 1000) / 1000,
     confidence_discrimination: Math.round((meanAccepted - meanRefused) * 1000) / 1000,

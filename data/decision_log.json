@@ -1,6 +1,6 @@
 {
   "verifier_version": "deterministic-v2.1",
-  "generated_at": "2026-09-04T10:18:52.993Z",
+  "generated_at": "2026-09-04T10:49:31.723Z",
   "entries": {
     "B001": {
       "case_id": "B001",
@@ -24,14 +24,14 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "310612a39e42ec6ccb96a0f2c989f36af0a7bd015119177e220386f3dbf0d3e6",
+      "pack_hash": "9f16aaa4268dfe3ada02158bd9e3590d11b143cf28c3b3fb5f02e79ffc1f7ab3",
       "evidence_hashes": {
         "razorpay_payments:pay-000001": "c350bed4233668a9e943edc1b251c743dd545d2a4e78550e3903223c6f99c77b",
         "razorpay_payments:pay-000002": "c1ea2c27fdc915bdd646fe93fa3fec7d0062af5b597fd7bd531aa55a097763a2",
         "razorpay_payments:pay-000003": "1ee520c6df118e116bf9ce032bfd449229e7bc570455e4aea2bf82d074ee1215",
         "razorpay_payments:pay-000004": "da734541ce373f80369eeccd5d9de03c12f36714e2cf6369ca9c75bab1472749",
         "razorpay_settlements:stl-000001": "97ed213de0781c77476bfa9921fc1dcfd2d1ad8484b90f16cf5c083ecd5d64f1",
-        "bank_statement:bnk-000001": "2203feb0f746ca229ecfb75a989975b8465736689ca2829525b8576ffc7cdf37",
+        "bank_statement:bnk-000001": "0881515af0c7e4586780f6c9f39b25aeeff2f23b14c06edc5969f6f35c2b0353",
         "webhook_events:whk-000001": "0c17a564836432105585617ff8770b103c885ab6ae3c8cceea5c4ce8c469b972"
       },
       "recorded_verdict": "VERIFIED",
@@ -61,7 +61,7 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "5fc26387c4f75be4b2fca13560d9cac1a045e67fbbfd0db6082ffea224edb28c",
+      "pack_hash": "b8398dc0a0fb33a4aab7f537ce240c5b39438f2aba2fa2fce131596c2329f3f4",
       "evidence_hashes": {
         "razorpay_payments:pay-000005": "d3f5363c4a47b8d35dc366f1b4203c677cc7801ab5e61fdc7f00e52d8000aef8",
         "razorpay_payments:pay-000006": "6025d7c9a25cc64cefd98fed85b7d895cec9d1de69dbad00bcc1584c93ea0111",
@@ -69,7 +69,7 @@
         "razorpay_payments:pay-000008": "10f2458bb0eca911ee7d384b45e78a206cb5100d0ad2f77cecc8673ff1837df8",
         "razorpay_payments:pay-000009": "f36c3979b014baf513f8ece5eaf5a4bc6bf7138c552f9b58982672a8b1b44722",
         "razorpay_settlements:stl-000002": "c95c24ded7cc76b4686eb122c33ebc9d7e8188a64172eabcf4b20e03db818a56",
-        "bank_statement:bnk-000002": "1f80c6b31b5c4c83225b82cd670d17d4c2d786616c93d26c748681fa601e9585",
+        "bank_statement:bnk-000002": "81d0de197d462de9dd1c18e5f639672e01a351c9990d2816a0b7bf0969a87030",
         "webhook_events:whk-000002": "163e39287ef25bc3c14c97d8b327124a84c3f351aa15e466283ea8b54c2eb258"
       },
       "recorded_verdict": "VERIFIED",
@@ -221,7 +221,7 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "28030dc99ba70850cd23b7c8ddd66bf2cfb2dff40e843db250d52c81f8f10189",
+      "pack_hash": "73f1cc278ee51c817cc0ecf66bc8e142b1adfd81f007a17e62d36e46648d2aa8",
       "evidence_hashes": {
         "razorpay_payments:pay-000028": "cde860a3f57dd264ba29c507cb7968a867434a826fed05feaba0acbe6b61121b",
         "razorpay_payments:pay-000029": "b18ae03cc0b064b09c23daf309a9b19d041ad9dec5bd8ebc846311fa519596d1",
@@ -230,7 +230,7 @@
         "razorpay_payments:pay-000032": "404369f2b89ff1fd0b91c3d3c13cb18e8d4bd9e7358ab5885b5e58e578ebf6f1",
         "razorpay_payments:pay-000033": "0b740feb7dcd32d6233cf473cbc3758e08a8b6311cdc4d8c766bdd913b2be21a",
         "razorpay_settlements:stl-000006": "d9113636ccccec937437f00808cf1e61e58fc108a0cadcee1c2b7a6bed6a75d6",
-        "bank_statement:bnk-000006": "0c26e73550825d61e9359b588d22d60d2c9ada9699122eb20a1a24575fb48a01",
+        "bank_statement:bnk-000006": "c3f8bfb15dbfb0d6442d7db390214d34a1511dd313ea7e8bd85c61896f71ccd3",
         "webhook_events:whk-000006": "c86761441c30d95ecd06af1d6d46a27a6c9e5b9d08e92797a129074d4d985209"
       },
       "recorded_verdict": "VERIFIED",
@@ -263,7 +263,7 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "1b4b8b367df3cc162639d2e7c052dcfc580cacf475c3d08932e5fe55120ffa9f",
+      "pack_hash": "853e950f08a643276e42805e0fb06ec9e628eac9c2511bcaa2daa3712f2c4330",
       "evidence_hashes": {
         "razorpay_payments:pay-000034": "99303b8c40a6c2bc3b1083204d99b87fc34dd15f1a7ee10e30fca1782f20006a",
         "razorpay_payments:pay-000035": "daddbe3c2963744f89477655ae0ab856ae1c773a049d5b3410f04f935dc8d2b1",
@@ -274,7 +274,7 @@
         "razorpay_payments:pay-000040": "25bc7087209b3e9f79462ec0bb7cce926e5626de73e1b791c736cbfc6dec4f91",
         "razorpay_settlements:stl-000007": "30b3f1adea8051860bb146725e53218e677f51c8d3e35cd42552dbfe23dbcdbf",
         "razorpay_settlements:stl-000008": "124a062a1e97bf78d58b647c6e10de9ab2780d262b1f5a2b61c55aaa44b485dd",
-        "bank_statement:bnk-000007": "2f27f14e39670344735531c044c7857e7c26e29977534ab6a59d6c573d841fe3",
+        "bank_statement:bnk-000007": "62e65e9d78e90440ce4e767084980e394674840951062599dec617670e2e2e78",
         "webhook_events:whk-000007": "80b8f6612c5b4b0ea5694a2c39c4046ed659bc7f62fe5ea40a6fe0e1ecf57703"
       },
       "recorded_verdict": "FAILED",
@@ -414,7 +414,7 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "2e2b852bd59153eb9adc4096beb40d0a651385b65031badd5f8c50d520c04107",
+      "pack_hash": "8932be2f8b319fc2dcad5a190e5702f9a0f322566ba17ca61baf1a714ef25df5",
       "evidence_hashes": {
         "razorpay_payments:pay-000059": "2770266889d3c2601c5e8b0bb9e0d1221639482bfb61e775acb8e8945225649a",
         "razorpay_payments:pay-000060": "021278a14f51feb0a631a76a422136b1619713c4edab5f2b3eec670f06d28b90",
@@ -427,7 +427,7 @@
         "razorpay_payments:pay-000067": "70da8c9eb7b7254d1c2efce5e38e36438c7ec41b814e6e5dfff7f2adda25d6c2",
         "razorpay_payments:pay-000068": "fb1750ccd6bfd6ca728ff442d62ba567b099913cfc5c0b603e641a354363bba7",
         "razorpay_settlements:stl-000011": "cf97bb31413441adad96fddb371cecf74b1faa9479eeaa416154f12a5a2c841d",
-        "bank_statement:bnk-000010": "37f89f203cc12ece2bd115690294e1482bef796308227e2076084024fea5b364",
+        "bank_statement:bnk-000010": "e9310d3faa5cb813fa517a006c4b20844cfd1f570401e07a63777cc594d16413",
         "refunds:ref-000006": "b66cc47fe1f05d5af6911b177337fa878a4d01df0cc27cc4250efb66a1e1076d",
         "refunds:ref-000007": "c38f21ab6d99f776930d486276ac50f2a8ec3db5d726cffbb25dabc138cabd75",
         "refunds:ref-000008": "b61b3994d55c71d5052704f3a3e683b32a91828b741d6eb72e26f63bf7e902ed",
@@ -464,7 +464,7 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "74470ec15399e997c4a46127a6eeb1431c2b05e7df1da7b5bfec0ca5f7b69f7b",
+      "pack_hash": "ac60b72bc9347f7fc1c334d78f06cd0b0872f1d2d9e34cc5e4b4eb7df1f5d4fa",
       "evidence_hashes": {
         "razorpay_payments:pay-000069": "e35dde94f973b4b9be9fcd08e2c992e39d68e31173a408b439d228ad710d9528",
         "razorpay_payments:pay-000070": "ee5c455e517dc5412b0b48f19fd123d0b9d6a7e11b12495614e08abd88c11409",
@@ -476,7 +476,7 @@
         "razorpay_payments:pay-000076": "032c69f1a1e032742f0955174701fa868711857249c9da8c91056f19fb40879d",
         "razorpay_payments:pay-000077": "b6a1aba51ce36022f770b3da1bf25606c38574eea315d8b557a6ec0841176da2",
         "razorpay_settlements:stl-000012": "1e905630ad32729035be3eabd1e70dfbbcf0f7f3105883b5807b3ff79fabb26a",
-        "bank_statement:bnk-000011": "72d69b32a7b7ae5e99adc4402964e665affb60b9a696942f652a75598c475af4",
+        "bank_statement:bnk-000011": "d04dd1a442137ef85f62a34d659ffa75d1bcd8c098f6ce741e5f1756b0a484e4",
         "webhook_events:whk-000011": "2af97c6cba4ac6f9753e2fc59e2dbaac00f87cca89d7e8e69a3b8f31f5c4d33e"
       },
       "recorded_verdict": "VERIFIED",
@@ -622,27 +622,25 @@
           "razorpay_payments:pay-000100",
           "razorpay_payments:pay-000101",
           "razorpay_settlements:stl-000016",
-          "bank_statement:bnk-000015",
           "webhook_events:whk-000015"
         ],
         "agent_reason": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
-        "confidence": 0.95,
+        "confidence": 0.4,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "56aa5ed045638b011339311f4295422b124d420a75aae2ba14045110c62bbef6",
+      "pack_hash": "ed874dad654b8fbb62239f9f249c9f1c3359ac482718d0a176a7effc24e31c0f",
       "evidence_hashes": {
         "razorpay_payments:pay-000098": "32deef8d221f41dcbd887a32fb89fb7d15c074f19a635756d65f8263738a3bf5",
         "razorpay_payments:pay-000099": "601ffbb55df0aa684b9c7509b7be1863032d12739006b62c9e1d51a95933ec34",
         "razorpay_payments:pay-000100": "7726182193faa34a48d5da1133f4a18d986a5e257a22fc81dabb30d357099bb5",
         "razorpay_payments:pay-000101": "d8ef962c983f6abb070415e59c3c44117689abb355f9bd5631e5f93dfba07af4",
         "razorpay_settlements:stl-000016": "fb027f6b2c4898bf4bbc4ba02acf2e79868ca1cb5fe1084908d99d7f66ffe074",
-        "bank_statement:bnk-000015": "eeaa2b2c42b2d4c2003b2d311256f1bed1b054f368e3ca3003654c64626c48f4",
         "webhook_events:whk-000015": "a06229d2186256ad420c5f0a635af97acb9017f06dbc386b1e429ed7d34b17d4"
       },
       "recorded_verdict": "UNCERTAIN",
-      "recorded_reason_code": "STALE_POLICY",
+      "recorded_reason_code": "MISSING_EVIDENCE",
       "policy_version": "finance-policy-v12"
     },
     "B016": {
@@ -664,7 +662,7 @@
           "razorpay_payments:pay-000110",
           "razorpay_payments:pay-000111",
           "razorpay_settlements:stl-000017",
-          "bank_statement:bnk-000016",
+          "bank_statement:bnk-000017",
           "refunds:ref-000009",
           "refunds:ref-000010",
           "refunds:ref-000011",
@@ -676,7 +674,7 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "ecbd7eda70da248e8804a3326eb408c3d0d673a2b4f0945f3aaf932b7449b76e",
+      "pack_hash": "2590e574023d6a92985cec66044505655474a8415024c2f7cf8446578949a42b",
       "evidence_hashes": {
         "razorpay_payments:pay-000102": "aa92e5d8424bdbbddbd76573cf58ceadbfbd34023e083807e8464c12b281791b",
         "razorpay_payments:pay-000103": "99b1624e41827fa9cffe58fb44898bfaceb811d036684e3073b9ef08f9cf8c94",
@@ -689,7 +687,7 @@
         "razorpay_payments:pay-000110": "f82652060a7af2fa2aead47ce741fedd51d638111148831bee5681bfdca610e7",
         "razorpay_payments:pay-000111": "6e364f73acd9d52b68068673a5b9257a1c810e50a4b338b6aadde18fe0b51d1b",
         "razorpay_settlements:stl-000017": "8c54279f89561243f366ea1d9876459b79ad822150ebe292a48017b8bded456d",
-        "bank_statement:bnk-000016": "b21b462870ae1d194a2f60246d138db1d5a176541fc1b505a0a045e993410434",
+        "bank_statement:bnk-000017": "5eb97c6a7f9db6514b3844b9c938b77efea01885a3838e50c6b6f23af4211681",
         "refunds:ref-000009": "d895d80c27c4988d5ff9245dcf5c3304ec7187ba4303fb39edfe1a459c52a9e4",
         "refunds:ref-000010": "77175e3cb464f94c3e29ce4eb839b72f7b1bc46107129504bce34e7291eed18d",
         "refunds:ref-000011": "4078e6f7ee0a13bf81785a2f3d1889073ecbaac84359f1c066823745aea4d21f",
@@ -713,7 +711,7 @@
           "razorpay_payments:pay-000115",
           "razorpay_payments:pay-000116",
           "razorpay_settlements:stl-000018",
-          "bank_statement:bnk-000017",
+          "bank_statement:bnk-000018",
           "webhook_events:whk-000017"
         ],
         "agent_reason": "Settlement matches the bank credit once fees and GST are accounted for. Nothing outstanding.",
@@ -730,7 +728,7 @@
         "razorpay_payments:pay-000115": "748b4f9f70bf975ccd0e7a762aea8f0efc97eb8acd8f4f0a6a03cc1a720077b0",
         "razorpay_payments:pay-000116": "74c3ef07142e409148b736166c039632e6e5d95b3c80ba9193f8ebe6ea2e7d89",
         "razorpay_settlements:stl-000018": "6834dc7bd6443aa1fdd89787aefc66e6319737ddc16189d0f04d4d014bfcad69",
-        "bank_statement:bnk-000017": "339ac57e54a484ab20d70c302d6ec68f622e9b7105bb1e1ee6fcba246e81fe7b",
+        "bank_statement:bnk-000018": "339ac57e54a484ab20d70c302d6ec68f622e9b7105bb1e1ee6fcba246e81fe7b",
         "webhook_events:whk-000017": "488affad54d5eddcbd8c5cd42c8ddc92fb0f056a5aea8fe6d4060d92c47ad167"
       },
       "recorded_verdict": "VERIFIED",
@@ -751,7 +749,7 @@
           "razorpay_payments:pay-000120",
           "razorpay_payments:pay-000121",
           "razorpay_settlements:stl-000019",
-          "bank_statement:bnk-000018",
+          "bank_statement:bnk-000019",
           "webhook_events:whk-000018"
         ],
         "agent_reason": "Fees were adjusted at settlement, so the small variance against gross is expected. Reconciled.",
@@ -768,7 +766,7 @@
         "razorpay_payments:pay-000120": "bca3ea90648b9be2046b015101fe3e84702fbc457e6a45cd129138425925fcc3",
         "razorpay_payments:pay-000121": "71b502829b684cdecba279c13625cc69fa8b95a587411f56cc1ef8bb489d59a5",
         "razorpay_settlements:stl-000019": "aaa824628c8c745734466a0afcb29c8f7e45511666bf8c40631aa363dc58accf",
-        "bank_statement:bnk-000018": "0288c8820f15a61bf108d7e18c5ec59e66f08ef6e9e88eacce2bef16c7f87248",
+        "bank_statement:bnk-000019": "0288c8820f15a61bf108d7e18c5ec59e66f08ef6e9e88eacce2bef16c7f87248",
         "webhook_events:whk-000018": "a2a33f5fc45f0c8da1799e15b82e42a14b1b1ad945b7fb17a9dadb3552c7a35e"
       },
       "recorded_verdict": "VERIFIED",
@@ -784,7 +782,7 @@
         "proposed_status": "RECONCILED",
         "evidence_ids": [
           "razorpay_settlements:stl-000020",
-          "bank_statement:bnk-000019",
+          "bank_statement:bnk-000020",
           "webhook_events:whk-000019"
         ],
         "agent_reason": "All captured payments net down to the credited amount and the UTR traces to the bank statement.",
@@ -796,7 +794,7 @@
       "pack_hash": "c6cfefdc3a4e800cfed6eb17b20a099da99523b75a4ce3130dbd050870b1fd98",
       "evidence_hashes": {
         "razorpay_settlements:stl-000020": "1153969dc0e8dbad4705a4e7e11de1de563068e724bd60e9f12a950a9e2cc2f4",
-        "bank_statement:bnk-000019": "5a630df15d8f0ef6d64cbbc581d34a28766365ddb880e06d15154344833e4e83",
+        "bank_statement:bnk-000020": "5a630df15d8f0ef6d64cbbc581d34a28766365ddb880e06d15154344833e4e83",
         "webhook_events:whk-000019": "9db45b1ec256a843feb7428b0da830061c3e7469e82a691a3a314cd64c2cd4c0"
       },
       "recorded_verdict": "UNCERTAIN",
@@ -818,8 +816,8 @@
           "razorpay_payments:pay-000126",
           "razorpay_payments:pay-000127",
           "razorpay_settlements:stl-000021",
-          "bank_statement:bnk-000020",
           "bank_statement:bnk-000021",
+          "bank_statement:bnk-000022",
           "webhook_events:whk-000020",
           "bank_statement:bnk-0020X"
         ],
@@ -829,7 +827,7 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "eff8caa18165e17ed651fff9e2b0601ab430b4ce57f42da92422e562a61820dd",
+      "pack_hash": "24514245e14eb5b3ffbc02090fc54551a0b8f65cd58f0121153e3db5acf78ec1",
       "evidence_hashes": {
         "razorpay_payments:pay-000122": "4cb3c3a58890728f7019e9fb2d6875ce44830eb8f051aa352664d8106ce0db44",
         "razorpay_payments:pay-000123": "15ce0c1f8f0e72c068031def71dc502228534a2a7951325151e2eb71e4656b91",
@@ -838,8 +836,8 @@
         "razorpay_payments:pay-000126": "1b7d8f5b3ffc4700ae66dfc9cfbab824fee7dd3790c6dccd00ebb7695b6d6b2b",
         "razorpay_payments:pay-000127": "cc25ca8bb940d78dcf42a0d5ad275101ee621032dc650ca99f83577d1e5f55a3",
         "razorpay_settlements:stl-000021": "bc36c0cd085efa0b7b26674e3d497870b416c52ae5ca7b411bd005e8c197ef3a",
-        "bank_statement:bnk-000020": "eb2a8f3d6f4b2183f43bc068c0a9ec52f01dd1cea8f02f0532e93bf21eb02e53",
-        "bank_statement:bnk-000021": "eb2a8f3d6f4b2183f43bc068c0a9ec52f01dd1cea8f02f0532e93bf21eb02e53",
+        "bank_statement:bnk-000021": "7b8cf852ae7c0621c697be6125ee6baac3f6d8ef738aab4fecc1ce901e32f301",
+        "bank_statement:bnk-000022": "7b8cf852ae7c0621c697be6125ee6baac3f6d8ef738aab4fecc1ce901e32f301",
         "webhook_events:whk-000020": "0e184e46f51df86d16ac622c44799538a327664226464fed96bf4ab5701bd5d5"
       },
       "recorded_verdict": "FAILED",
@@ -859,7 +857,7 @@
           "razorpay_payments:pay-000130",
           "razorpay_settlements:stl-000022",
           "razorpay_settlements:stl-000023",
-          "bank_statement:bnk-000022",
+          "bank_statement:bnk-000023",
           "webhook_events:whk-000021"
         ],
         "agent_reason": "The bank leg does not look complete to me. Routing for review rather than closing.",
@@ -875,7 +873,7 @@
         "razorpay_payments:pay-000130": "313f8fdb1bc225509b2475dee8a977aa837cd37a8cb498e29385a3315b259db0",
         "razorpay_settlements:stl-000022": "d1731352870f4d2eb68200e0580d3de8063057ea5bf2754e10580a190c4d22fa",
         "razorpay_settlements:stl-000023": "06db7cd4e73d680479541fffdeab061e86cba19cb64cd636c8757fa2ec6c4a8d",
-        "bank_statement:bnk-000022": "920488e415bf7b1e3d9be4c3aeeeed871d39426b68438545b8a0e8164640ead9",
+        "bank_statement:bnk-000023": "920488e415bf7b1e3d9be4c3aeeeed871d39426b68438545b8a0e8164640ead9",
         "webhook_events:whk-000021": "d4d0de2c56e11124e3b820809ae437407fbdb654cb635d99ce4bc51401d42171"
       },
       "recorded_verdict": "FAILED",
@@ -896,7 +894,7 @@
           "razorpay_payments:pay-000134",
           "razorpay_payments:pay-000135",
           "razorpay_settlements:stl-000024",
-          "bank_statement:bnk-000023",
+          "bank_statement:bnk-000024",
           "webhook_events:whk-000022"
         ],
         "agent_reason": "Fees were adjusted at settlement, so the small variance against gross is expected. Reconciled.",
@@ -914,7 +912,7 @@
         "razorpay_payments:pay-000135": "9ca0bc1cd781f284116539abd929af0f54c49164445b3ae6058a66444d6499aa",
         "razorpay_settlements:stl-000024": "423264119e032cbc882d2b3749e605207581a139e8664594f489df6ba49eb441",
         "razorpay_settlements:stl-000025": "0d483b3eea1a613248f6802a34a7206ac00f3bc6d0b678dc4c3cc33f2f14d31c",
-        "bank_statement:bnk-000023": "2a34f262d344f3ff8821aaa02b8599e605eb09787f284bf0cc2cb9be55fd5df5",
+        "bank_statement:bnk-000024": "2a34f262d344f3ff8821aaa02b8599e605eb09787f284bf0cc2cb9be55fd5df5",
         "webhook_events:whk-000022": "bbd2696f537de6a86a30d4bb88c8abe956f6a1065572af4702de7e9b18656a64"
       },
       "recorded_verdict": "FAILED",
@@ -936,7 +934,7 @@
           "razorpay_payments:pay-000140",
           "razorpay_payments:pay-000141",
           "razorpay_settlements:stl-000026",
-          "bank_statement:bnk-000024",
+          "bank_statement:bnk-000025",
           "webhook_events:whk-000023"
         ],
         "agent_reason": "All captured payments net down to the credited amount and the UTR traces to the bank statement.",
@@ -954,7 +952,7 @@
         "razorpay_payments:pay-000140": "7e2cba0d6be7944b367863217ffaebdf85ea1264ddd1f03f2299fa8f553d5b85",
         "razorpay_payments:pay-000141": "e450df05a49d7032c7b555afa7520691c3cc0f6a7e1bc86856c0a27c52fabf54",
         "razorpay_settlements:stl-000026": "07de9ac672057044cba22a0c4494714442c3ed39ab16fcac8cf3fc98cf2d9a62",
-        "bank_statement:bnk-000024": "2933a530593b43979a637b002d7b79268396e35dd1fd6df5e951ccd5ac4af038",
+        "bank_statement:bnk-000025": "2933a530593b43979a637b002d7b79268396e35dd1fd6df5e951ccd5ac4af038",
         "webhook_events:whk-000023": "e092514dfe6d8cfab4cdf73308ee8d2f908886c36b968b656954572697d49886"
       },
       "recorded_verdict": "VERIFIED",
@@ -974,7 +972,6 @@
           "razorpay_payments:pay-000144",
           "razorpay_settlements:stl-000027",
           "razorpay_settlements:stl-000028",
-          "bank_statement:bnk-000025",
           "webhook_events:whk-000024"
         ],
         "agent_reason": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
@@ -983,18 +980,17 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "bee93e04a195d725aa54db334b37649244840da09436bed58b9492cbb0e623b7",
+      "pack_hash": "d7a54ac015b36fa208a7c80d44a3990f39b4f2ee1bd4f1716e6cc0ae666cc388",
       "evidence_hashes": {
         "razorpay_payments:pay-000142": "239bbcf55cd66d9d1e683b80aa4c4910b9983c598c8761f3575d3d38db10c251",
         "razorpay_payments:pay-000143": "3640269305440fbaf2ede472146cef4946ab8597c4c93616b0eb2d6606ed264f",
         "razorpay_payments:pay-000144": "500fe6c6b092c9c53903833757d5d88e0addac9df783cd0ceb43e3fcd0ed76ff",
         "razorpay_settlements:stl-000027": "1a805e15b674afd063078a5e795a9f29dd9621235c3578be4084350e1193db88",
         "razorpay_settlements:stl-000028": "29a4b03ffa9e5d4a7a90dc8d810f9aeefcde921463dc280996a64d05c706c60d",
-        "bank_statement:bnk-000025": "472b031e2055c20cb6c57ffb3d03189dd97eb6b1d030d2e4b4bb02f9dbcca4da",
         "webhook_events:whk-000024": "89228c22577f8697982f66a15d13401dfadca783502ba475118ec5e9c7db514a"
       },
-      "recorded_verdict": "FAILED",
-      "recorded_reason_code": "DUPLICATE_UTR",
+      "recorded_verdict": "UNCERTAIN",
+      "recorded_reason_code": "MISSING_EVIDENCE",
       "policy_version": "finance-policy-v12"
     },
     "B025": {
@@ -1013,7 +1009,7 @@
           "razorpay_payments:pay-000150",
           "razorpay_payments:pay-000151",
           "razorpay_settlements:stl-000029",
-          "bank_statement:bnk-000026",
+          "bank_statement:bnk-000027",
           "webhook_events:whk-000025"
         ],
         "agent_reason": "Verified the UTR against the bank feed and the totals line up. Safe to close.",
@@ -1022,7 +1018,7 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "72c55eb7459f4385a8062a989bace129b2b7dc51f142ec3936004397062c922f",
+      "pack_hash": "abf81841025afb47fc6ec603114cce17fb2ce59dd6948a9ad915700f78cdcbc2",
       "evidence_hashes": {
         "razorpay_payments:pay-000145": "ae8339d72b9e1b5a21e365dba4a2f5ded8105794c7399bfd07d8c4816ae68270",
         "razorpay_payments:pay-000146": "6c207b627efc6be4c392bf77e2fe89b7ea8255920dbb08d98cf0964bd78b5eba",
@@ -1032,7 +1028,7 @@
         "razorpay_payments:pay-000150": "efa3c87bb3594c47f95c3bbc0b32918fcf1449412d52291ac052948fa8b7bb33",
         "razorpay_payments:pay-000151": "5e1b536fe680e6735a795fc6118d9a419de3d26db3291067aed76e6469d16f52",
         "razorpay_settlements:stl-000029": "eb7dccef046b2493bc62fc9723978897e90664ceab06b9218bce4ef0b5459ec8",
-        "bank_statement:bnk-000026": "661c4e6520f35dd77e13ee680f8cbafc9de70339ed80961f610a1391a8db2a52",
+        "bank_statement:bnk-000027": "31ae3b7e489222e168c24ff4f0bc10ef04bcf9225452fdecff7d2b3fe3e0a7bc",
         "webhook_events:whk-000025": "1e1ea48137da9e8865ac9a1482a0ea603413d6ce249db54df58eefa39dc2cd11"
       },
       "recorded_verdict": "FAILED",
@@ -1057,7 +1053,7 @@
           "razorpay_payments:pay-000159",
           "razorpay_payments:pay-000160",
           "razorpay_settlements:stl-000030",
-          "bank_statement:bnk-000027",
+          "bank_statement:bnk-000028",
           "webhook_events:whk-000026"
         ],
         "agent_reason": "Settlement matches the bank credit once fees and GST are accounted for. Nothing outstanding.",
@@ -1078,7 +1074,7 @@
         "razorpay_payments:pay-000159": "eb546e6467acd4fd13dbf3284e08ca5cf63c8a58ca2aeb77183c11bcbdbb3e4d",
         "razorpay_payments:pay-000160": "344dc540368e635e17481c4d772583115e6042a4f94f5408a049a5f69369ebb9",
         "razorpay_settlements:stl-000030": "c817ed8c6f14e150da5b90cb2980a5e9b34bf4b3eb133e6e5100be5ccd309183",
-        "bank_statement:bnk-000027": "8501ec9b780d93709592739f728b72d631482a8069584e501bec57c8d490b7f6",
+        "bank_statement:bnk-000028": "8501ec9b780d93709592739f728b72d631482a8069584e501bec57c8d490b7f6",
         "webhook_events:whk-000026": "bec96c2bb4a1fc0b84865a1a0856a87919721801f603639c56968ab1f988caa1"
       },
       "recorded_verdict": "UNCERTAIN",
@@ -1103,7 +1099,7 @@
           "razorpay_payments:pay-000168",
           "razorpay_payments:pay-000169",
           "razorpay_settlements:stl-000031",
-          "bank_statement:bnk-000028",
+          "bank_statement:bnk-000029",
           "webhook_events:whk-000027"
         ],
         "agent_reason": "The bank leg does not look complete to me. Routing for review rather than closing.",
@@ -1124,7 +1120,7 @@
         "razorpay_payments:pay-000168": "240c2c387cea3992704354f198b5a6ed7953831422b82777c1b9b8ed4200fae0",
         "razorpay_payments:pay-000169": "844435958ec5ca5e1c2d0ecdf8169706c717a286f411cb283b2f45c863dc3025",
         "razorpay_settlements:stl-000031": "9b3241481082fefab740b0cd62b6971d00b36b1a8f6c67c5b6d8ddd6de22c3e4",
-        "bank_statement:bnk-000028": "b76eacd0be1123daadccbac3808714118d1fee890974015bbc80c381b8e2d866",
+        "bank_statement:bnk-000029": "b76eacd0be1123daadccbac3808714118d1fee890974015bbc80c381b8e2d866",
         "webhook_events:whk-000027": "caee1586b616826ca7d2cae26209a38ccef53026462e83265a18ab5926348515"
       },
       "recorded_verdict": "VERIFIED",
@@ -1151,7 +1147,7 @@
           "razorpay_payments:pay-000179",
           "razorpay_payments:pay-000180",
           "razorpay_settlements:stl-000032",
-          "bank_statement:bnk-000029",
+          "bank_statement:bnk-000030",
           "webhook_events:whk-000028"
         ],
         "agent_reason": "Something is off between the settlement total and what landed. Needs a human.",
@@ -1174,7 +1170,7 @@
         "razorpay_payments:pay-000179": "67701e0047b473a93b36b24ab70b3e7e3e082ada2b8c04ce9348cd1e2ff4e591",
         "razorpay_payments:pay-000180": "1c10e96ce4911bd62529de701e09a099c88c5877f6a3041656cb14536cab13f5",
         "razorpay_settlements:stl-000032": "8355c03a0eeda4cb10ea29c909471ac0fe19cd9ad2f8248359faa4a61bec2417",
-        "bank_statement:bnk-000029": "663d995a453c5bc18f74f1f84923be3d24cbd7de06c217fa1f4e98b474eb5220",
+        "bank_statement:bnk-000030": "663d995a453c5bc18f74f1f84923be3d24cbd7de06c217fa1f4e98b474eb5220",
         "webhook_events:whk-000028": "519bd605c52bdeb0df4e41d654838540fc002a20768eda156c36de859d5820a3"
       },
       "recorded_verdict": "VERIFIED",
@@ -1196,7 +1192,7 @@
           "razorpay_payments:pay-000185",
           "razorpay_payments:pay-000186",
           "razorpay_settlements:stl-000033",
-          "bank_statement:bnk-000030",
+          "bank_statement:bnk-000031",
           "webhook_events:whk-000029"
         ],
         "agent_reason": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
@@ -1205,7 +1201,7 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "89f9f389bf4ff6bd6635d0cc5d7577a51dec559a4c28f0184e64dcbfddffc780",
+      "pack_hash": "7726b766d60254432712c4727e89d6ce389253b8cd25a7274577d76aaa996d2f",
       "evidence_hashes": {
         "razorpay_payments:pay-000181": "87c4c8094cd175e7f25a36dc936426a5f93925072acfd8fca3d62ae3ca26688c",
         "razorpay_payments:pay-000182": "b8b90531f20a17434d3ea20e4070065859dad78d9b598ae8d513ad4a041cde8c",
@@ -1214,7 +1210,7 @@
         "razorpay_payments:pay-000185": "8426d3cc68bed9f37886063841a348e4cfacd50cbe808d8d286da8b30337ce19",
         "razorpay_payments:pay-000186": "a9fdae424803d4c861d8504b04b50b1723d28a160ae97ed082335778f9d48009",
         "razorpay_settlements:stl-000033": "91a9cf79c750298760c93b0bde28917e36f943fd0897407afd396e18ef5b8dc3",
-        "bank_statement:bnk-000030": "3218acc94dc074db14ecf2cc4521ea2b88ac223c6274cc58924499f7a2dc3822",
+        "bank_statement:bnk-000031": "b5e19f82ef5a24f21b9a63638cf1b320139dbafa2a49b81914dfcb54ab21957d",
         "webhook_events:whk-000029": "212fd7f41ace991003a730c2e5f210d6b7406e4d4073140eef369db8e97069a5"
       },
       "recorded_verdict": "VERIFIED",
@@ -1233,7 +1229,7 @@
           "razorpay_payments:pay-000188",
           "razorpay_payments:pay-000189",
           "razorpay_settlements:stl-000034",
-          "bank_statement:bnk-000031",
+          "bank_statement:bnk-000032",
           "webhook_events:whk-000030"
         ],
         "agent_reason": "Settlement matches the bank credit once fees and GST are accounted for. Nothing outstanding.",
@@ -1248,7 +1244,7 @@
         "razorpay_payments:pay-000188": "2ae724239944d029050b1fbc8ff61c06d789dd1d3fc7525869ca74bf641ee922",
         "razorpay_payments:pay-000189": "c38181217b8ab5d9ae6824668d0042430ecd4924f6f085ec3f78a075da73d21a",
         "razorpay_settlements:stl-000034": "bfdfffc2bd430388c5053a44ff7a9cfe143e6d5ca66e90660f30d159e6348728",
-        "bank_statement:bnk-000031": "e0f363d280e534fcf48ede9c3c3d916bc985f153e5f6b509e8a36cbe35b285d9",
+        "bank_statement:bnk-000032": "e0f363d280e534fcf48ede9c3c3d916bc985f153e5f6b509e8a36cbe35b285d9",
         "webhook_events:whk-000030": "4c7a8cf2d876f2f780320b7ad70134227ef357dc983b969d1e52deaf76ca6117"
       },
       "recorded_verdict": "VERIFIED",
@@ -1276,7 +1272,7 @@
           "razorpay_payments:pay-000200",
           "razorpay_payments:pay-000201",
           "razorpay_settlements:stl-000035",
-          "bank_statement:bnk-000032",
+          "bank_statement:bnk-000033",
           "webhook_events:whk-000031"
         ],
         "agent_reason": "Fees were adjusted at settlement, so the small variance against gross is expected. Reconciled.",
@@ -1300,7 +1296,7 @@
         "razorpay_payments:pay-000200": "27a2357d57de69f1813b41b101da47579d9f5a1413d6f2f145dfb6b6ba2dbc93",
         "razorpay_payments:pay-000201": "b37119b577aa5f0b549105142d577f7cd3946629e16dd9f8611044811bde26da",
         "razorpay_settlements:stl-000035": "7ccc359864b3dbdbcb65df5ba0ae7627b6156c1f3b1da04a31c32d4c71be0e37",
-        "bank_statement:bnk-000032": "7737b2d701e78a41e377e3cbe4fa3d9a27cfbfdf620912f89bcfa6430442caa9",
+        "bank_statement:bnk-000033": "7737b2d701e78a41e377e3cbe4fa3d9a27cfbfdf620912f89bcfa6430442caa9",
         "webhook_events:whk-000031": "8c6d03fb4743ab3339e3995b30e7035160e436f76cb8de0968d3f005802bb784"
       },
       "recorded_verdict": "FAILED",
@@ -1326,7 +1322,7 @@
           "razorpay_payments:pay-000210",
           "razorpay_payments:pay-000211",
           "razorpay_settlements:stl-000036",
-          "bank_statement:bnk-000033",
+          "bank_statement:bnk-000034",
           "webhook_events:whk-000032"
         ],
         "agent_reason": "All captured payments net down to the credited amount and the UTR traces to the bank statement.",
@@ -1348,7 +1344,7 @@
         "razorpay_payments:pay-000210": "44173b0090fbc24736f8da4652519825947bd8f5b184ee7e2ae21dedcc87bcef",
         "razorpay_payments:pay-000211": "9ec358a781a27213f442c9c1963d04b4fac6f9f9fbe7b92a9564ef7b93d39506",
         "razorpay_settlements:stl-000036": "c1883ffefc2c3348b0705a0df91697c24400270858dcc9abb531d83a69fc6d13",
-        "bank_statement:bnk-000033": "4b3a2fc62f545b86b52a116ad0203936887ae788422136f2e845bfca9d33b4e2",
+        "bank_statement:bnk-000034": "4b3a2fc62f545b86b52a116ad0203936887ae788422136f2e845bfca9d33b4e2",
         "webhook_events:whk-000032": "3cb5d42c110602c115fef9de346fe649f0f2c1c351e00ec4e4e73ee47dc805a8"
       },
       "recorded_verdict": "VERIFIED",
@@ -1374,17 +1370,16 @@
           "razorpay_payments:pay-000220",
           "razorpay_payments:pay-000221",
           "razorpay_settlements:stl-000037",
-          "bank_statement:bnk-000034",
           "webhook_events:whk-000033",
           "bank_statement:bnk-0033X"
         ],
         "agent_reason": "The bank leg does not look complete to me. Routing for review rather than closing.",
-        "confidence": 0.95,
+        "confidence": 0.4,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "8224a05c5a36a6917deb1770384651be0986d87b4f4441aa523ab7a10e6ec3b8",
+      "pack_hash": "e1461eca5db6a8206f245d16045acf7d5c77fd451e8ea4a4b6be0db6235dbcd2",
       "evidence_hashes": {
         "razorpay_payments:pay-000212": "e3c8e6fcfaa937ee93d01c56dba2653cf4689315ec650c9c7074087d8f373e4d",
         "razorpay_payments:pay-000213": "504e8dc65c30234b0dc0da17c42bffdfe875a5524f30c0d63ed5de14b709a14f",
@@ -1397,11 +1392,10 @@
         "razorpay_payments:pay-000220": "0e8f64de7b0f009cfbac7b66949f725f1c0df375f0651bcffd18c75abfd30196",
         "razorpay_payments:pay-000221": "9a101d3828609533ca41616499da7c11c3b5715dbdaa6488bdf8f504cdda8a44",
         "razorpay_settlements:stl-000037": "233c17681d426fb72d80960287ef96b34568eafd011ac991bcfac2ddd7e8fedc",
-        "bank_statement:bnk-000034": "9a2f4a1eb0d4e548fdd4cceb7fca524e90ffbabd30ae4da8c77ba3711083b927",
         "webhook_events:whk-000033": "a76d1435f6034a4fb27fec1050e0ad796cca3d58ae8239d82e33fd5984baa49f"
       },
       "recorded_verdict": "UNCERTAIN",
-      "recorded_reason_code": "STALE_POLICY",
+      "recorded_reason_code": "MISSING_EVIDENCE",
       "policy_version": "finance-policy-v12"
     },
     "B034": {
@@ -1420,7 +1414,7 @@
           "razorpay_payments:pay-000227",
           "razorpay_payments:pay-000228",
           "razorpay_settlements:stl-000038",
-          "bank_statement:bnk-000035",
+          "bank_statement:bnk-000037",
           "webhook_events:whk-000034",
           "bank_statement:bnk-0034X"
         ],
@@ -1430,7 +1424,7 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "875f777d1f9f8b37e6228efc7e4d043e1dfe467803cc4ee4b76373922d780f9d",
+      "pack_hash": "942b6545891ba37f272fb7de5823e634f61895881b9cdacbf47e8a36a58f91cc",
       "evidence_hashes": {
         "razorpay_payments:pay-000222": "14000677ac1e48fc1d01969162233e6a2cb86db7f52a92df5b081dba08a57b34",
         "razorpay_payments:pay-000223": "8075b0e74e1d62c59e7f7726ecf1867bf5c766306e7cb0600035a7295fabf60d",
@@ -1440,7 +1434,7 @@
         "razorpay_payments:pay-000227": "1a737ce2ee1b33290568815670e999c2a4e97282e168d236cf91ba47137cf588",
         "razorpay_payments:pay-000228": "cf55081c0cf423891eb4a6112e9422dfccc21461a00a74be4cf0910debf658b0",
         "razorpay_settlements:stl-000038": "a41ba7f2ac734035271cbbe1d227b9a156f3e65990815fa88a535507b3251528",
-        "bank_statement:bnk-000035": "334d6f8b0d7b6d354379056def4369e9f0e71bc86d33f19f5307328367504d81",
+        "bank_statement:bnk-000037": "93ed710c236c03138aba0ae5137aba2b1eee311fffd8f12f2026ae4651ed45ed",
         "webhook_events:whk-000034": "44de67f379b1c94df0c38ddde92740547699343a0a998d70b087279f7f007221"
       },
       "recorded_verdict": "VERIFIED",
@@ -1462,8 +1456,8 @@
           "razorpay_payments:pay-000233",
           "razorpay_payments:pay-000234",
           "razorpay_settlements:stl-000039",
-          "bank_statement:bnk-000036",
-          "bank_statement:bnk-000037",
+          "bank_statement:bnk-000038",
+          "bank_statement:bnk-000039",
           "webhook_events:whk-000035"
         ],
         "agent_reason": "Settlement matches the bank credit once fees and GST are accounted for. Nothing outstanding.",
@@ -1481,8 +1475,8 @@
         "razorpay_payments:pay-000233": "50874589df0a4af0ff92fb0afd343f257835c53ed15cf298104f2c8f1f55eea4",
         "razorpay_payments:pay-000234": "d97e080dfeb4842622c8357bde68e7f9cba3514f0358fcf49fe09154ba8bb674",
         "razorpay_settlements:stl-000039": "f10aaef59349e9cb74d4d251b9bbdde6503783fb44f9622cc3cc115b725046b7",
-        "bank_statement:bnk-000036": "98bd535d8a757efbaef53434da9b9c37d37a7ae28abfaaccb35d030b9f02b6af",
-        "bank_statement:bnk-000037": "98bd535d8a757efbaef53434da9b9c37d37a7ae28abfaaccb35d030b9f02b6af",
+        "bank_statement:bnk-000038": "98bd535d8a757efbaef53434da9b9c37d37a7ae28abfaaccb35d030b9f02b6af",
+        "bank_statement:bnk-000039": "98bd535d8a757efbaef53434da9b9c37d37a7ae28abfaaccb35d030b9f02b6af",
         "webhook_events:whk-000035": "8b4ae3684234afbea37a5574d8a172897efdd206f7bae95c01895a68b657d78d"
       },
       "recorded_verdict": "FAILED",
@@ -1510,7 +1504,7 @@
           "razorpay_payments:pay-000245",
           "razorpay_payments:pay-000246",
           "razorpay_settlements:stl-000040",
-          "bank_statement:bnk-000038",
+          "bank_statement:bnk-000040",
           "webhook_events:whk-000036"
         ],
         "agent_reason": "Fees were adjusted at settlement, so the small variance against gross is expected. Reconciled.",
@@ -1534,7 +1528,7 @@
         "razorpay_payments:pay-000245": "42ba33477b5a88943d8d41d5617830059d0a57ad78cc858b8cac70feafd644e1",
         "razorpay_payments:pay-000246": "6e5b5e0ccef65c033c25ca4b5e0c597ae1c3b262c2ffc78c60fa6f7825995326",
         "razorpay_settlements:stl-000040": "8a47f63691d388864871dda2f745ef42abf7721bfe6bbda3f626bc9ad026075c",
-        "bank_statement:bnk-000038": "02d4bb6a1fa2b71cc6fff450a70cb50329899a17abb7aa84895594982781c4b3",
+        "bank_statement:bnk-000040": "02d4bb6a1fa2b71cc6fff450a70cb50329899a17abb7aa84895594982781c4b3",
         "webhook_events:whk-000036": "1ce059466870eb2acc65aff8df0cc62d14a4150dabfc14de135e7bf3ede39f8f"
       },
       "recorded_verdict": "VERIFIED",
@@ -1557,7 +1551,7 @@
           "razorpay_payments:pay-000252",
           "razorpay_payments:pay-000253",
           "razorpay_settlements:stl-000041",
-          "bank_statement:bnk-000039",
+          "bank_statement:bnk-000041",
           "webhook_events:whk-000037"
         ],
         "agent_reason": "All captured payments net down to the credited amount and the UTR traces to the bank statement.",
@@ -1576,7 +1570,7 @@
         "razorpay_payments:pay-000252": "2ad92389326fb324a24131a95c6121ec427bd0cf0bec2078150fc4828ce9a44b",
         "razorpay_payments:pay-000253": "92a29bdcddb05f8a7069691860326007c4a1250231371a7fe7b79a7e5a2a9f32",
         "razorpay_settlements:stl-000041": "c2b9248e17b6fb6f6b5fbb731ed4e51c649e3612770072b9e0c0eafdda8df611",
-        "bank_statement:bnk-000039": "0cdfa660ac276f20d93949945c72adf5878cab698841a8a10b57d55309ccffdd",
+        "bank_statement:bnk-000041": "0cdfa660ac276f20d93949945c72adf5878cab698841a8a10b57d55309ccffdd",
         "webhook_events:whk-000037": "ed1d00008b259968726351ac6e0a92f697db5237ac3e1d3a6b9442d4d214a960"
       },
       "recorded_verdict": "VERIFIED",
@@ -1602,7 +1596,7 @@
           "razorpay_payments:pay-000262",
           "razorpay_payments:pay-000263",
           "razorpay_settlements:stl-000042",
-          "bank_statement:bnk-000040",
+          "bank_statement:bnk-000042",
           "refunds:ref-000012",
           "refunds:ref-000013",
           "refunds:ref-000014",
@@ -1614,7 +1608,7 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "1e79bd2e2638a143efb24e0397b176879a14484dc12cc4611e2b0d2e9a9dd45c",
+      "pack_hash": "b1b42086b4344b2636196127300998320250e7f6e19e729140c08bc5833b5001",
       "evidence_hashes": {
         "razorpay_payments:pay-000254": "16374a1c039c4bba129c67eabd0c19bac135683d7edd358e87be328605b3f17b",
         "razorpay_payments:pay-000255": "f87945bb7163966d9eb54cb2b4d93fea4b17b698a9ac6fabd08a7b394e7b105d",
@@ -1627,7 +1621,7 @@
         "razorpay_payments:pay-000262": "df2df571fe30e87f7e01bd414ff3c329bc5e49903d797b592b56875c43187097",
         "razorpay_payments:pay-000263": "b34f0a96778a9ed75656e7dbc688728501fc48e3dbf15b044a143e91f3865220",
         "razorpay_settlements:stl-000042": "1a86e2940628b56dbdc92ed74dd85dbdcf9558ef5b988a45a4bd8c33a1b4175c",
-        "bank_statement:bnk-000040": "ac13e36248feba7b11d46f944c00e2a296a04a7f32b94b79b2f98965bf34ef94",
+        "bank_statement:bnk-000042": "c19e5b6662bd5add42434e6d829780a6eef7eba589b8bc150cf082d94e11b243",
         "refunds:ref-000012": "9db0a4c9d7e8165748f4356aac289aa6ded5390246f8731437c8a5d5aa458ba7",
         "refunds:ref-000013": "93faa027cdd93cbdbe8c7acbdebdecd9631faeb57cc1f23f750a0533cf830ac3",
         "refunds:ref-000014": "09e9f62c0a51c37efbceeb94a2001db4c8ee458a534791c737742a3527e43616",
@@ -1649,7 +1643,7 @@
           "razorpay_payments:pay-000265",
           "razorpay_payments:pay-000266",
           "razorpay_settlements:stl-000043",
-          "bank_statement:bnk-000041",
+          "bank_statement:bnk-000043",
           "refunds:ref-000015",
           "refunds:ref-000016",
           "webhook_events:whk-000039"
@@ -1660,13 +1654,13 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "2f01a4a80513a8ad7238cc2ba41c77a185f80ba9edad3ced6057158eb68dab91",
+      "pack_hash": "4d806c638d277b8432cbf884774d8ae46ba5cafc3976fc51a4164fdf0399fd78",
       "evidence_hashes": {
         "razorpay_payments:pay-000264": "07bcdf20d4c1a0d76742e742e7cbe9aec81f4bd3da77011905667e93d82f9215",
         "razorpay_payments:pay-000265": "c8393a93441059b2a1660faaf89e2922392a7e9a8ba291c015776093078053c5",
         "razorpay_payments:pay-000266": "42c6c959b9df9c36e8731300edab8c022c50d3fd3e2c44faff09e138d82a7cc3",
         "razorpay_settlements:stl-000043": "fd156f2e93c2e2725ef3ec2eb83ce3de6da316d009ee7f14d51404e53dbbf23d",
-        "bank_statement:bnk-000041": "db36bc5f69cdf945e7c9e9f973dfc183edde5b3fab6d49cd7f52fc3d2a9f6882",
+        "bank_statement:bnk-000043": "5c907fb32677efeb7f7b51e3ca6100ee2a10f775f3a2c46bfe29d5e508c17063",
         "refunds:ref-000015": "d8ebc4f380e52df9f3ed0f03328b8616c5392e3781cc243473f2b73981c1ef2e",
         "refunds:ref-000016": "26fc6379c7f6813b473740a94c91bc461806c2d1577b131f02d191bdf695ff15",
         "webhook_events:whk-000039": "3ff84d9c35ae1e301330162591f0981335a58c25fdea39e005f347fee221f6d9"
@@ -1688,7 +1682,7 @@
           "razorpay_payments:pay-000269",
           "razorpay_payments:pay-000270",
           "razorpay_settlements:stl-000044",
-          "bank_statement:bnk-000042",
+          "bank_statement:bnk-000044",
           "webhook_events:whk-000040"
         ],
         "agent_reason": "Fees were adjusted at settlement, so the small variance against gross is expected. Reconciled.",
@@ -1705,7 +1699,7 @@
         "razorpay_payments:pay-000270": "d884cf80c840d454aa8a8e66cb14de6bd1b5fc39d7ff07b83e66ebb2e2057a91",
         "razorpay_settlements:stl-000044": "980030450947d2f54250ae2b3d24e3170a8840da3bed05c4172453b528e1cb8d",
         "razorpay_settlements:stl-000045": "2048231859750668e30d56c2d94fef878da5513abaa2a5a821d95f492b06da55",
-        "bank_statement:bnk-000042": "e83f48fd6b8ca96915d3f333b2a2d1edd574c80a25b13e843b7e8de8ed51db51",
+        "bank_statement:bnk-000044": "e83f48fd6b8ca96915d3f333b2a2d1edd574c80a25b13e843b7e8de8ed51db51",
         "webhook_events:whk-000040": "8a8824bc5a08c2fe65b36c2f0751f541e308a30252da77cfbd2fd8ce2b1a8643"
       },
       "recorded_verdict": "FAILED",
@@ -1729,8 +1723,8 @@
           "razorpay_payments:pay-000277",
           "razorpay_payments:pay-000278",
           "razorpay_settlements:stl-000046",
-          "bank_statement:bnk-000043",
-          "bank_statement:bnk-000044",
+          "bank_statement:bnk-000045",
+          "bank_statement:bnk-000046",
           "webhook_events:whk-000041"
         ],
         "agent_reason": "Could not tie the credited amount back to the captured payments. Not closing this one.",
@@ -1750,8 +1744,8 @@
         "razorpay_payments:pay-000277": "3c93be96fdad797f74e90ece5c7e52c5be65a5a521a760e15a06d23f0769e9f5",
         "razorpay_payments:pay-000278": "3e63403988c8db5f0e8a6ec3a940c587e94c6cb56b330c5a8f5ffad7f1ac2264",
         "razorpay_settlements:stl-000046": "9baf84023bd0132b887459044eefcb21475f5c0809c40e0c54ce5ad09a6f5c9d",
-        "bank_statement:bnk-000043": "056cd73d3c812c07f9d2fd4b73dc4c97287c59d4e3ef968637a2080cd8977eea",
-        "bank_statement:bnk-000044": "056cd73d3c812c07f9d2fd4b73dc4c97287c59d4e3ef968637a2080cd8977eea",
+        "bank_statement:bnk-000045": "056cd73d3c812c07f9d2fd4b73dc4c97287c59d4e3ef968637a2080cd8977eea",
+        "bank_statement:bnk-000046": "056cd73d3c812c07f9d2fd4b73dc4c97287c59d4e3ef968637a2080cd8977eea",
         "webhook_events:whk-000041": "f834cb741972f44f16cdf4a13100bf3194e9f0b03f8152a78c9fba0bc8011166"
       },
       "recorded_verdict": "FAILED",
@@ -1777,7 +1771,7 @@
           "razorpay_payments:pay-000287",
           "razorpay_payments:pay-000288",
           "razorpay_settlements:stl-000047",
-          "bank_statement:bnk-000045",
+          "bank_statement:bnk-000047",
           "webhook_events:whk-000042"
         ],
         "agent_reason": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
@@ -1786,7 +1780,7 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "4306242d426e3c3a2cf288371fce957b5d5a728273ca23176306e9ba7733b078",
+      "pack_hash": "b8b643c6dff30088c70b5b4f9d40e0df3b7dde0b7ad66fe77f449b5e3ab59e29",
       "evidence_hashes": {
         "razorpay_payments:pay-000279": "2a527df111d6a65e004242727923c04aa544bc1d526224f0894497cd6c4c32fe",
         "razorpay_payments:pay-000280": "600b977668c6ad02cb84f43e7d74a41a64685f76248ec164ca84c0cf2ba828f0",
@@ -1799,7 +1793,7 @@
         "razorpay_payments:pay-000287": "a63ee7a0b3a3d4ff62bb8ddf3da85ec655b71aacbc1b51c58d27d8774fe22268",
         "razorpay_payments:pay-000288": "edd40f9cd5677ddf479c976fceec909167b607bb97de85cb7d6d597e047a2a62",
         "razorpay_settlements:stl-000047": "06f56e631622d5ce59f3f704bda3d07af4bd747d696ac421a522dd02e4ee2361",
-        "bank_statement:bnk-000045": "e7006ac1a4ae35170381c6ebd158c4a3c7903cc7b74b8a7366d0ec919e4ee203",
+        "bank_statement:bnk-000047": "0332cf27d4c380c05d1507436a4c6c6accc5f63a8ff7e350a8b78031af4ac908",
         "webhook_events:whk-000042": "0bf5a7022a124fb806ac7bf5960249eb7d7293e8b2bd066296be5b0e0c4b4d46"
       },
       "recorded_verdict": "VERIFIED",
@@ -1823,7 +1817,7 @@
           "razorpay_payments:pay-000295",
           "razorpay_payments:pay-000296",
           "razorpay_settlements:stl-000048",
-          "bank_statement:bnk-000046",
+          "bank_statement:bnk-000048",
           "webhook_events:whk-000043"
         ],
         "agent_reason": "Verified the UTR against the bank feed and the totals line up. Safe to close.",
@@ -1832,7 +1826,7 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "ce87055aed687b46fded0e4355b09804569ef7bc933bd753bb770aa6cd18e267",
+      "pack_hash": "5dff12b03a58828a66d11657edb9701ff782295808995e095b8a4db462f9b0fb",
       "evidence_hashes": {
         "razorpay_payments:pay-000289": "f1a6dd60ad5c0dd8390b78a8cce6de9dab1356a1ce6bad002d67842cf6086713",
         "razorpay_payments:pay-000290": "d64218daffa7358a2d6dc77d09c1bdbe7d71c511f538b3327485aa06019b0f97",
@@ -1843,7 +1837,7 @@
         "razorpay_payments:pay-000295": "463ed8512812d7ea90e7bae8c64817bd0d1bf598d8e889cc0daa1286a1fc9163",
         "razorpay_payments:pay-000296": "53def1e351fad0517663da7d5aded10c9e5f2f26767fbb23acb60614116d01ce",
         "razorpay_settlements:stl-000048": "2a0756fe124b9f9889cd14d6ab540b99b919957d95e84f68fa5cf2229a9d1a22",
-        "bank_statement:bnk-000046": "1dccf300f11b0b5047f42f70ee14702d727a7e54759c49e273ab7c2fdfb066de",
+        "bank_statement:bnk-000048": "09502606517cd176a2d0ff4c7c00491c89cf305936290ae9247dac7b03733190",
         "webhook_events:whk-000043": "3db7e0de35939de2ea8e6f7322b4af49612a4c2e73b133dd6cea65f00b389820"
       },
       "recorded_verdict": "VERIFIED",
@@ -1867,7 +1861,7 @@
           "razorpay_payments:pay-000303",
           "razorpay_payments:pay-000304",
           "razorpay_settlements:stl-000049",
-          "bank_statement:bnk-000047",
+          "bank_statement:bnk-000049",
           "webhook_events:whk-000044"
         ],
         "agent_reason": "Settlement matches the bank credit once fees and GST are accounted for. Nothing outstanding.",
@@ -1887,7 +1881,7 @@
         "razorpay_payments:pay-000303": "739e290c556874aa3a1b597eab55e26b80283a708b04978a1f397842f1f26926",
         "razorpay_payments:pay-000304": "9d2a6ace70ed935989f45319e1d533e3d40a530703d5c8604771798bd20daee7",
         "razorpay_settlements:stl-000049": "98469b05cb585199ea84b40baa35a4d46892b0bbc37a67c3d2d2f6b09a1e9587",
-        "bank_statement:bnk-000047": "86ae7faeaa75f46fd35b5c97534190db85d40230d44809ffa0412cc49d21892c",
+        "bank_statement:bnk-000049": "86ae7faeaa75f46fd35b5c97534190db85d40230d44809ffa0412cc49d21892c",
         "webhook_events:whk-000044": "b48f4d324f709427a84ef0fa4ac17317a37737b97ad46ecdcd861d665393a8d1"
       },
       "recorded_verdict": "VERIFIED",
@@ -1944,7 +1938,7 @@
           "razorpay_payments:pay-000315",
           "razorpay_payments:pay-000316",
           "razorpay_settlements:stl-000051",
-          "bank_statement:bnk-000048",
+          "bank_statement:bnk-000050",
           "webhook_events:whk-000046"
         ],
         "agent_reason": "Something is off between the settlement total and what landed. Needs a human.",
@@ -1965,7 +1959,7 @@
         "razorpay_payments:pay-000315": "10122c6842fd8f8398de5e5edf2d2be457e901fbaa8f6b043c217b9938cce0e1",
         "razorpay_payments:pay-000316": "c9fca5c7f7d707b3c0ef25c1f368e6a2fe07e4b6edca356e73073546da2b26c7",
         "razorpay_settlements:stl-000051": "5c97e092859d94304539decc57e2ab30c6889e522671fc63b99097c62f661cc8",
-        "bank_statement:bnk-000048": "1056cc44bdc174171e32d36fec6f310c174d26dd935e0afbe637bd09d6a0eb68",
+        "bank_statement:bnk-000050": "1056cc44bdc174171e32d36fec6f310c174d26dd935e0afbe637bd09d6a0eb68",
         "webhook_events:whk-000046": "7e96f1d55ed08f2f26242526694a295a88e762c65125086da12a183fd86e754b"
       },
       "recorded_verdict": "VERIFIED",
@@ -1993,7 +1987,7 @@
           "razorpay_payments:pay-000327",
           "razorpay_payments:pay-000328",
           "razorpay_settlements:stl-000052",
-          "bank_statement:bnk-000049",
+          "bank_statement:bnk-000051",
           "webhook_events:whk-000047"
         ],
         "agent_reason": "Could not tie the credited amount back to the captured payments. Not closing this one.",
@@ -2002,7 +1996,7 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "6c0d111ebbee5e1d01abbab602d97145aa43c7dc4455fce4a02a1922205fd561",
+      "pack_hash": "07c45a88f182b74d4470594b2365de5659f777e574f2538622e2da907cd3c6be",
       "evidence_hashes": {
         "razorpay_payments:pay-000317": "b5d86966a7d57e7224bade6e4733c8a2f6a2cad9bb383f915a2c5677fffc397d",
         "razorpay_payments:pay-000318": "3e18d6a8b3c85215111051a2093be676cc7fcf819ea828c8706c7082d229103a",
@@ -2017,7 +2011,7 @@
         "razorpay_payments:pay-000327": "0872c83e6916172b11e55934f85efee6f1370684f4e1904777995941e91cbbf0",
         "razorpay_payments:pay-000328": "c17a385ece7a49cfbc9e5556cf3157135111b7e78c6bc704804367eacaf94f4c",
         "razorpay_settlements:stl-000052": "0a256c38d40c3e5d4ceba3a88f500cf9fadbd97260b29e6a1bd16d90a34b6a06",
-        "bank_statement:bnk-000049": "7dd1f5e93ce211186e7c94eac379add9384b76ad5bafd592e3670d4e4c6f1d0e",
+        "bank_statement:bnk-000051": "60f0465d1690c453e579a281e5b5935ada3d70e1540811121c6bf0a7e483d088",
         "webhook_events:whk-000047": "a771aa76f6c3fca5b1fdc72d85d5937c6021f7205d1472c22041b6efed15507f"
       },
       "recorded_verdict": "VERIFIED",
@@ -2045,17 +2039,16 @@
           "razorpay_payments:pay-000339",
           "razorpay_payments:pay-000340",
           "razorpay_settlements:stl-000053",
-          "bank_statement:bnk-000050",
           "webhook_events:whk-000048",
           "bank_statement:bnk-0048X"
         ],
         "agent_reason": "The bank leg does not look complete to me. Routing for review rather than closing.",
-        "confidence": 0.95,
+        "confidence": 0.4,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "1865e151f3ee7c3bec69ff9749d0164c6bc1d2f045a65ead4cc13ff0b63ca7f8",
+      "pack_hash": "4abd591e37cb5b7ca58ecf7b4fd85512ff175aaf23274b8e6b92812c08718c8e",
       "evidence_hashes": {
         "razorpay_payments:pay-000329": "bbabb27ad845398880892848c198fbcc51245a454780bc3b0f01b350a17b2b29",
         "razorpay_payments:pay-000330": "905fbd9b44dfba4bdaaeaca98a010bf12af300c58c8ab7e8f4b004eaab6f71e6",
@@ -2070,11 +2063,10 @@
         "razorpay_payments:pay-000339": "41501479c93211d6b64fded09ba3552e9c204d3cc486a5fef81a0a6487d5af6d",
         "razorpay_payments:pay-000340": "3a278512abe1fd9cf0d6917111975b559a17c7655527b2db24c59291033332c0",
         "razorpay_settlements:stl-000053": "bedb562095cce68a4f361b8e31b1cf590c1336fbdb2a81c1228018ad7ded7c82",
-        "bank_statement:bnk-000050": "95876894f922a45189099370589751a62c586e3ba287944e856c5bcafd49940d",
         "webhook_events:whk-000048": "fd9a810ab21eaf851b3dcb21af0c872729bedf74f377daed5b7db0cd937335e9"
       },
-      "recorded_verdict": "VERIFIED",
-      "recorded_reason_code": null,
+      "recorded_verdict": "UNCERTAIN",
+      "recorded_reason_code": "MISSING_EVIDENCE",
       "policy_version": "finance-policy-v12"
     },
     "B049": {
@@ -2096,7 +2088,7 @@
           "razorpay_payments:pay-000349",
           "razorpay_payments:pay-000350",
           "razorpay_settlements:stl-000054",
-          "bank_statement:bnk-000051",
+          "bank_statement:bnk-000054",
           "webhook_events:whk-000049"
         ],
         "agent_reason": "Settlement matches the bank credit once fees and GST are accounted for. Nothing outstanding.",
@@ -2118,7 +2110,7 @@
         "razorpay_payments:pay-000349": "e7417d3cff03b5f65cf85847f34e0766c845612d22390922da0ba15a21dbc9bd",
         "razorpay_payments:pay-000350": "ff81616c7cd6f5aab2721cf62d63ada0b72fd26e22e58baa0c34dfd82d9986aa",
         "razorpay_settlements:stl-000054": "dfd53e7870c392be1bcf187bcd86c8107b22092fa6eea78f695e4e7bac1f35fc",
-        "bank_statement:bnk-000051": "a31a662b183477a6d0a4a72f5b1bbb625ba70f04e14e50f76142a1b7b4708c34",
+        "bank_statement:bnk-000054": "a31a662b183477a6d0a4a72f5b1bbb625ba70f04e14e50f76142a1b7b4708c34",
         "webhook_events:whk-000049": "84fbcbe14f390474e1f16faeb53267e9bdecccfb6c7079188680a1a6bdb78ce8"
       },
       "recorded_verdict": "VERIFIED",
@@ -2140,7 +2132,7 @@
           "razorpay_payments:pay-000355",
           "razorpay_payments:pay-000356",
           "razorpay_settlements:stl-000055",
-          "bank_statement:bnk-000052",
+          "bank_statement:bnk-000055",
           "webhook_events:whk-000050"
         ],
         "agent_reason": "All captured payments net down to the credited amount and the UTR traces to the bank statement.",
@@ -2158,7 +2150,7 @@
         "razorpay_payments:pay-000355": "99140b5abe8604db3b96ca4537de67c65f26b6ee47800ff2d0aa9da770d2510a",
         "razorpay_payments:pay-000356": "df312d668af4960f78f086e5dafdff766f901896d0f642d4e669a79aa0abc8ab",
         "razorpay_settlements:stl-000055": "964dab8e42b03796129c83bccdedebcb756de007140768370cd50757855aae07",
-        "bank_statement:bnk-000052": "cd6dc4dbba177690f3b6f96a1b2e2e12a95702d6e3b5d6213d8e144c5da1b185",
+        "bank_statement:bnk-000055": "cd6dc4dbba177690f3b6f96a1b2e2e12a95702d6e3b5d6213d8e144c5da1b185",
         "webhook_events:whk-000050": "792e5f77c78e3f01a83ac11653ae7742db2c416ac5c760d57ba3dda97b2cf72d"
       },
       "recorded_verdict": "VERIFIED",
@@ -2179,17 +2171,16 @@
           "razorpay_payments:pay-000360",
           "razorpay_payments:pay-000361",
           "razorpay_settlements:stl-000056",
-          "bank_statement:bnk-000053",
           "holds:hld-000002",
           "webhook_events:whk-000051"
         ],
         "agent_reason": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
-        "confidence": 0.95,
+        "confidence": 0.4,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "c76d9a2a637fa725fb327d0bd928b48f55b1c7555a17b7ec81a10ce97f5c4c18",
+      "pack_hash": "5fae42ca2dcd43f73dc52251abc9394e69c671492841d16fff0d73ebfc6cf1ad",
       "evidence_hashes": {
         "razorpay_payments:pay-000357": "5215d90bcc05e3384cf630664cb6e703b8eefbd52c25b120e940023927fab6a8",
         "razorpay_payments:pay-000358": "c7ab4dd640ff52da6bab7e5111c516e48ad50cc44b71b2d265ecbbbd123d9ee0",
@@ -2197,12 +2188,11 @@
         "razorpay_payments:pay-000360": "2d97bd27e4ed40f90fa4673fecf2a9051fa644f27456910687ff8e4a5b23d8c5",
         "razorpay_payments:pay-000361": "77fedd702e4ece4ad00fc48726f96c9c83e2ba8ac388c234e4386c6022165689",
         "razorpay_settlements:stl-000056": "d043c90e56bddc5a9cd1d36d5ee5170eb22da868c991d025659a3af0938a0e9e",
-        "bank_statement:bnk-000053": "7e37770fd6e062a441e55ff0e2737434f5c4ddee728bfc113b4abb052399aa75",
         "holds:hld-000002": "24dfb0f150ebbff60b02dc55871af42a542889cf5d5628de01fda97724a698c1",
         "webhook_events:whk-000051": "edc1a282dfb1ba35887b9336dee779d77a883102f2acee66f976c0843ea3dcff"
       },
-      "recorded_verdict": "VERIFIED",
-      "recorded_reason_code": null,
+      "recorded_verdict": "UNCERTAIN",
+      "recorded_reason_code": "MISSING_EVIDENCE",
       "policy_version": "finance-policy-v12"
     },
     "B052": {
@@ -2218,7 +2208,7 @@
           "razorpay_payments:pay-000364",
           "razorpay_payments:pay-000365",
           "razorpay_settlements:stl-000057",
-          "bank_statement:bnk-000054",
+          "bank_statement:bnk-000058",
           "webhook_events:whk-000052"
         ],
         "agent_reason": "Verified the UTR against the bank feed and the totals line up. Safe to close.",
@@ -2227,14 +2217,14 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "e4f4e919ec6265a14ac12c3ba1c22af9ae424b70f63de328e5f7ea4f956e53e1",
+      "pack_hash": "a686dbc3d8453059426d653eb61583ca60d97f1dae4c25826222e4b8802ad583",
       "evidence_hashes": {
         "razorpay_payments:pay-000362": "c0dc3946bd070683ee916d818d9fd0da7280c79e33797b0d4bd3fdfd5ad936cf",
         "razorpay_payments:pay-000363": "3f37e5a4c0f2216ae8b7cd96254336b603968b7a326e27a9545426ed287fcc64",
         "razorpay_payments:pay-000364": "a3896ab53c2b6837e30f5203ea2525cb1b0b3d66b1dc69830fe9d3781842f88a",
         "razorpay_payments:pay-000365": "7ffdcec685be5241020bb2423efd9670d6e5f53a20fd9bcecc99afdc8edfbc14",
         "razorpay_settlements:stl-000057": "d182818ef2f3416b7b9a25fc8045ca2cac477ecf793fd81d63166ea5b4c6ca82",
-        "bank_statement:bnk-000054": "3d2a50f098059a88680e457c35d32fe023f5a4200cd9bf0f82285dfd1c81cf30",
+        "bank_statement:bnk-000058": "294802aa4f189c06dd9b5946a36f173f7062f2de91832eec972eeae973d83be3",
         "webhook_events:whk-000052": "b184cb052869c36e551ece3bfc6490b71721c3f49408439b1fd22a34311637a2"
       },
       "recorded_verdict": "UNCERTAIN",
@@ -2260,7 +2250,7 @@
           "razorpay_payments:pay-000374",
           "razorpay_payments:pay-000375",
           "razorpay_settlements:stl-000058",
-          "bank_statement:bnk-000055",
+          "bank_statement:bnk-000059",
           "webhook_events:whk-000053"
         ],
         "agent_reason": "Settlement matches the bank credit once fees and GST are accounted for. Nothing outstanding.",
@@ -2282,7 +2272,7 @@
         "razorpay_payments:pay-000374": "2f16c367d7ae5da4b64f2191b7a3ab8e8a530eb4531dc68d8d04e94d5d1c4eac",
         "razorpay_payments:pay-000375": "5321f6fc9411b42b76682804a5e62c6875671f70f6affba47badf26bf72d1b14",
         "razorpay_settlements:stl-000058": "e4d83855d2d220f8be41d18f13b2507de81eeedf79f37149b4d6de2139670c1f",
-        "bank_statement:bnk-000055": "d8d87ca169172b46d9257f4169b3fe4bada0ee29ccf6f13acba09e5f8bac66c6",
+        "bank_statement:bnk-000059": "d8d87ca169172b46d9257f4169b3fe4bada0ee29ccf6f13acba09e5f8bac66c6",
         "webhook_events:whk-000053": "aa6b2c67c42fd528b380f407503f466370eeca5b6af84683d27ef1ab8d681061"
       },
       "recorded_verdict": "FAILED",
@@ -2306,7 +2296,7 @@
           "razorpay_payments:pay-000382",
           "razorpay_settlements:stl-000059",
           "razorpay_settlements:stl-000060",
-          "bank_statement:bnk-000056",
+          "bank_statement:bnk-000060",
           "webhook_events:whk-000054"
         ],
         "agent_reason": "Fees were adjusted at settlement, so the small variance against gross is expected. Reconciled.",
@@ -2326,7 +2316,7 @@
         "razorpay_payments:pay-000382": "c9bfaacf16b9776295f57f6f859aeb54117caab367c4bfcb567bb49a0de65412",
         "razorpay_settlements:stl-000059": "ee589c28be46a2cf65d67b6c1aa43ce18a766d1fd4cb2cca6aaae5f3b8ee1e0c",
         "razorpay_settlements:stl-000060": "cb605d41de521f2df3746e106e9e3511cb12430866f9f9a42ee8607914cd083f",
-        "bank_statement:bnk-000056": "120f62ffc4b7a5f20aeb88b62d0ba6603f53a064b72667c7cb7dbb9a6cede04e",
+        "bank_statement:bnk-000060": "120f62ffc4b7a5f20aeb88b62d0ba6603f53a064b72667c7cb7dbb9a6cede04e",
         "webhook_events:whk-000054": "c4ca59c062a9db51a267663c20a16ea0f6848012fbe4f868933717671b32be02"
       },
       "recorded_verdict": "FAILED",
@@ -2353,7 +2343,7 @@
           "razorpay_payments:pay-000392",
           "razorpay_payments:pay-000393",
           "razorpay_settlements:stl-000061",
-          "bank_statement:bnk-000057",
+          "bank_statement:bnk-000061",
           "webhook_events:whk-000055"
         ],
         "agent_reason": "Something is off between the settlement total and what landed. Needs a human.",
@@ -2376,7 +2366,7 @@
         "razorpay_payments:pay-000392": "6ff49bd3649c607e97f1c23552fb52070de2f74cf9ca3461023e9d31f2f0ad17",
         "razorpay_payments:pay-000393": "6472f1588cf77f5a438ba925e46dec7f106ac3b3096952f2b6f686b736abf7cc",
         "razorpay_settlements:stl-000061": "bab657e6817556a18b2ad4c9aaeaf3bd1c21b377a28864ab9fd91b09b8022066",
-        "bank_statement:bnk-000057": "cc9704becb776c1eed4244b60babbebbfa0e49ce1a5ab73805b900c72f690a75",
+        "bank_statement:bnk-000061": "cc9704becb776c1eed4244b60babbebbfa0e49ce1a5ab73805b900c72f690a75",
         "webhook_events:whk-000055": "0980a439d9a32e97d289c87d01d7ce60515b3bb58815e03878040c4ae07e5124"
       },
       "recorded_verdict": "VERIFIED",
@@ -2398,7 +2388,7 @@
           "razorpay_payments:pay-000398",
           "razorpay_payments:pay-000399",
           "razorpay_settlements:stl-000062",
-          "bank_statement:bnk-000058",
+          "bank_statement:bnk-000062",
           "webhook_events:whk-000056"
         ],
         "agent_reason": "Could not tie the credited amount back to the captured payments. Not closing this one.",
@@ -2407,7 +2397,7 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "3405c4f04e698a012249f6670e90d0a9d430ee856b05bee5b8e00e34ab7fc54e",
+      "pack_hash": "5f70b1ea2707abe56c32b5468e366814d097ed7fe33136f900cc13456aaa615b",
       "evidence_hashes": {
         "razorpay_payments:pay-000394": "481ae538aca5fec74ea3c7c512dc9f8d28093def0236ad58151c838e0b7ed0e7",
         "razorpay_payments:pay-000395": "682cf98b5317bf35cda78665aeae61a0886b464aaa21b22af2a28744f52ba6af",
@@ -2416,7 +2406,7 @@
         "razorpay_payments:pay-000398": "3f629b9a6dca7b7ced194a9301f6f7a857ae43f9381e7784da7ad81242893ce0",
         "razorpay_payments:pay-000399": "49d770ddf6a37d37f4784a136903671f85def2a9527bf12753f39b7c0df7364f",
         "razorpay_settlements:stl-000062": "2cf8ae0826c73c928156168404800424326a8efc1e1c54cc4356c3a7d870688f",
-        "bank_statement:bnk-000058": "9ce3142ed12d3ebe4677d89c984631bca30cafea7daeff7543fd54181c98226c",
+        "bank_statement:bnk-000062": "a0fbdaedd75cae8cd0c3382c4a170790405102a6520b466c187aff894898d02b",
         "webhook_events:whk-000056": "544214ed24616005fd0b124737475561b68be1b6e721afe9031fd1c748cce522"
       },
       "recorded_verdict": "VERIFIED",
@@ -2444,7 +2434,7 @@
           "razorpay_payments:pay-000410",
           "razorpay_payments:pay-000411",
           "razorpay_settlements:stl-000063",
-          "bank_statement:bnk-000059",
+          "bank_statement:bnk-000063",
           "holds:hld-000003",
           "webhook_events:whk-000057"
         ],
@@ -2454,7 +2444,7 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "3486a72c6d2c167922de51acaa6c349b6b28fcb89e1064ddbdd642dfee5defc1",
+      "pack_hash": "6b70f5f4b946271074429adeadf5a27884bc0f8f6eb241f47568014c0d9a948d",
       "evidence_hashes": {
         "razorpay_payments:pay-000400": "f133875c174769aa1beb315a820486cd7a020c4308bcf08a64f511c74fcbd15a",
         "razorpay_payments:pay-000401": "f8f7880555f0cf6ab57420c393478396ce78bf6b78a190ba6dd10a6ca58419e1",
@@ -2469,7 +2459,7 @@
         "razorpay_payments:pay-000410": "38608869974f6a9e1847e78ec87d6a80ade4f56295622bcede80156eefc01846",
         "razorpay_payments:pay-000411": "f78b6a6e3a525b2a07428e13618fe8dc280b6565b6f9b6d8bee24ddcd1fdbb79",
         "razorpay_settlements:stl-000063": "dd33d45d82105156dd996fa4d921211d9aeebfce1112134ab7e23ddad1064ab5",
-        "bank_statement:bnk-000059": "9b66a520848554ccceb55383b4ef79736d3e5074771c2e1c8728efedbe567f09",
+        "bank_statement:bnk-000063": "f0c3a5ae5ee5a095051729783e626678b1e6c40f43f946ade18c7d6b5a0f403c",
         "holds:hld-000003": "56e48e46620dcda5b876daa633616c0f47089460bc3c753cee5ce645c9b46ad3",
         "webhook_events:whk-000057": "55727f886c9a244ffb96ffd66e3a86687feae11c597d84e6013922915ccb681c"
       },
@@ -2493,7 +2483,7 @@
           "razorpay_payments:pay-000417",
           "razorpay_payments:pay-000418",
           "razorpay_settlements:stl-000064",
-          "bank_statement:bnk-000060",
+          "bank_statement:bnk-000064",
           "holds:hld-000004",
           "webhook_events:whk-000058"
         ],
@@ -2513,7 +2503,7 @@
         "razorpay_payments:pay-000417": "ec678159bde59aa1723da79371999d1b33404bf180b70035ceb022fe665ccf8e",
         "razorpay_payments:pay-000418": "9fae3220b96eebd0c3a7d24431315c8d03797b38b4fa0e3cc3aa6513286cb12f",
         "razorpay_settlements:stl-000064": "056d9393ec054c07666ebae442266888e59f3d49ded9b05ed27e0743740216e1",
-        "bank_statement:bnk-000060": "2e143eec517a88abb86d0c4359e7f42005cceb0d9eebe2642bdb4de96ba16d78",
+        "bank_statement:bnk-000064": "2e143eec517a88abb86d0c4359e7f42005cceb0d9eebe2642bdb4de96ba16d78",
         "holds:hld-000004": "e71ff3030ad33a492b60fcf2b280a3769511e1988090022157a7bbd7ce9fc083",
         "webhook_events:whk-000058": "b62143d9b993aa583c91a28486ddbfb1d08e5ffefa91d68542b3417442e61a10"
       },
@@ -2540,7 +2530,7 @@
           "razorpay_payments:pay-000427",
           "razorpay_payments:pay-000428",
           "razorpay_settlements:stl-000065",
-          "bank_statement:bnk-000061",
+          "bank_statement:bnk-000065",
           "webhook_events:whk-000059"
         ],
         "agent_reason": "Fees were adjusted at settlement, so the small variance against gross is expected. Reconciled.",
@@ -2562,7 +2552,7 @@
         "razorpay_payments:pay-000427": "3932e61527a85cc68e845a1b8d74a3df675989b471945bb9c427c603b79e895b",
         "razorpay_payments:pay-000428": "0aecc3d2a05eb656919a634da067de085bb0640e75464d227f902e4ecb6e240a",
         "razorpay_settlements:stl-000065": "d8429f7e73907528333f7a697b4a0bfc65829f531a2799431c22b05a16fef824",
-        "bank_statement:bnk-000061": "137a6da104c8c109762008a1ba16256761d2ff2b0f6c0c9613430ab289c4b615",
+        "bank_statement:bnk-000065": "137a6da104c8c109762008a1ba16256761d2ff2b0f6c0c9613430ab289c4b615",
         "webhook_events:whk-000059": "6ecbe98fc8d97d6f65e67d8d1b06008c15685a0a46b5094012228ba332ab25e6"
       },
       "recorded_verdict": "VERIFIED",
@@ -2590,7 +2580,7 @@
           "razorpay_payments:pay-000439",
           "razorpay_payments:pay-000440",
           "razorpay_settlements:stl-000066",
-          "bank_statement:bnk-000062",
+          "bank_statement:bnk-000066",
           "webhook_events:whk-000060"
         ],
         "agent_reason": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
@@ -2599,7 +2589,7 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "94221001d384fefb6ccfe3e97be610d3ed1ec5dfe77024526ea61a26885b2eb6",
+      "pack_hash": "5df9f3ff620cfed236b87614ff7079cbcacc432291d7868221f175d7d40fdc0d",
       "evidence_hashes": {
         "razorpay_payments:pay-000429": "432e71ea31006db5de83c0dc929962f7c154a420196a88f821ee1470ee2e4db0",
         "razorpay_payments:pay-000430": "c485aef6bc64fafe3c7d8049bf07399353bd84f52d1af42b276a570bdf1812de",
@@ -2614,7 +2604,7 @@
         "razorpay_payments:pay-000439": "11aa44537c5a4dbbae076fb544a472e82c2e566fda1cdeb7124ec9a18850ccd1",
         "razorpay_payments:pay-000440": "bdf98ab2c8b6b5da8956917697e1eac092dcc6eb89268c631eb7c104fa5a3211",
         "razorpay_settlements:stl-000066": "17d2e9da2cb513186d10a4e9749c15f92c836bfed89c519f3dd549c61c9f3b2d",
-        "bank_statement:bnk-000062": "d514c88b5c06c90a5892411a8c7354c48310566b06517c5a9f61ef211f86ab0a",
+        "bank_statement:bnk-000066": "4cc0ae91239c828578572b5c1ca4d02f8c377f01de1eae1e086a6b53153ebc76",
         "webhook_events:whk-000060": "5eb980b921a02f1325c3b084cbde0038f7d7241f135de46709af2724f6408fec"
       },
       "recorded_verdict": "FAILED",
@@ -2630,7 +2620,7 @@
         "proposed_status": "NOT_RECONCILED",
         "evidence_ids": [
           "razorpay_settlements:stl-000067",
-          "bank_statement:bnk-000063",
+          "bank_statement:bnk-000067",
           "webhook_events:whk-000061",
           "bank_statement:bnk-0061X"
         ],
@@ -2640,10 +2630,10 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "9e6effed29239a8b58563b11d03dc0c9a910ee3344bd1951c29810cbd1e2f783",
+      "pack_hash": "c75098d05ac02bea5fe2c9dd0a692eb650166929f64e343093ea4c2c09c429eb",
       "evidence_hashes": {
         "razorpay_settlements:stl-000067": "edb482b87e40118ffc0cd2bccf35d79f878beb43563aefa895c60d72923af4e1",
-        "bank_statement:bnk-000063": "f44af9181a5798efa106982f92f1e92bc0168cbed94c17d8c7895810415d79a6",
+        "bank_statement:bnk-000067": "05fd24a2441f63be64dc70b05824b244ce5bfd6fa1a1a4ec1db5314599d5fef8",
         "webhook_events:whk-000061": "6f253f4e3a7897e75f8c745a2ac8b1065c53ae024fdcf594623aab832fe8d6ed"
       },
       "recorded_verdict": "UNCERTAIN",
@@ -2670,7 +2660,7 @@
           "razorpay_payments:pay-000450",
           "razorpay_payments:pay-000451",
           "razorpay_settlements:stl-000068",
-          "bank_statement:bnk-000064",
+          "bank_statement:bnk-000068",
           "webhook_events:whk-000062"
         ],
         "agent_reason": "Could not tie the credited amount back to the captured payments. Not closing this one.",
@@ -2693,7 +2683,7 @@
         "razorpay_payments:pay-000450": "cfc4d68fea6357f7a99258976d17ea265aca8f39b48e2d4aa4667d642a10e18c",
         "razorpay_payments:pay-000451": "6dc258e3e8b237d98206bd221b68dc1affcf05e5671760a04fe5a065d5073f14",
         "razorpay_settlements:stl-000068": "80073903c88a2490384970a1bbda630cca42c558a29079ce376f0133e7ac2d5d",
-        "bank_statement:bnk-000064": "29b76b26007ad262225bf5c5e0363bdead7b1334b8f9566b79a78cb8e0495acf",
+        "bank_statement:bnk-000068": "29b76b26007ad262225bf5c5e0363bdead7b1334b8f9566b79a78cb8e0495acf",
         "webhook_events:whk-000062": "72a1d225be1732f5d5576198a692f76473f57c8644146693c5876e09def623fd"
       },
       "recorded_verdict": "VERIFIED",
@@ -2715,7 +2705,7 @@
           "razorpay_payments:pay-000456",
           "razorpay_settlements:stl-000069",
           "razorpay_settlements:stl-000070",
-          "bank_statement:bnk-000065",
+          "bank_statement:bnk-000069",
           "webhook_events:whk-000063"
         ],
         "agent_reason": "Fees were adjusted at settlement, so the small variance against gross is expected. Reconciled.",
@@ -2733,7 +2723,7 @@
         "razorpay_payments:pay-000456": "7cccb2718e98548dbd701622acb919e8538946d07434cd79cb2d9a7d0dc83116",
         "razorpay_settlements:stl-000069": "3fb59dda320da457956a21cf2772b4e3639495a5d9de6bbdd7c9330631f2d796",
         "razorpay_settlements:stl-000070": "9820fa8f51b9a295f6eb39f9577cb6d9efa536746163ae06278b02778231e92c",
-        "bank_statement:bnk-000065": "48064a1baf44a8dd3abc673a514c9405c018319a5b5dfc970ba554ab2c0a3264",
+        "bank_statement:bnk-000069": "48064a1baf44a8dd3abc673a514c9405c018319a5b5dfc970ba554ab2c0a3264",
         "webhook_events:whk-000063": "4f8083cb74ef2951073e2936b100c098aa6302ce03f053d7429c0039992263bd"
       },
       "recorded_verdict": "FAILED",
@@ -2754,7 +2744,7 @@
           "razorpay_payments:pay-000460",
           "razorpay_payments:pay-000461",
           "razorpay_settlements:stl-000071",
-          "bank_statement:bnk-000066",
+          "bank_statement:bnk-000070",
           "webhook_events:whk-000064"
         ],
         "agent_reason": "All captured payments net down to the credited amount and the UTR traces to the bank statement.",
@@ -2771,7 +2761,7 @@
         "razorpay_payments:pay-000460": "19eb028011644097390abf736a50c4a4b326122c3a3bc5849e502c332a852731",
         "razorpay_payments:pay-000461": "ebe7c42155ca17737de3c45076649eab8e1ea3919a54cc0fe91dee448dd6cca5",
         "razorpay_settlements:stl-000071": "101324e7cefff1556a70352da0729592495fe9eae24c13cbd47489c8d569ff8c",
-        "bank_statement:bnk-000066": "2b07ddd7d361501f14d56423207c6fee8b0ac2d1d3c6aedbff869e790c50e450",
+        "bank_statement:bnk-000070": "2b07ddd7d361501f14d56423207c6fee8b0ac2d1d3c6aedbff869e790c50e450",
         "webhook_events:whk-000064": "f35b9b8b9dd96a986518e7554cb006160df036edf6b187b388ef07866fc7c06d"
       },
       "recorded_verdict": "VERIFIED",
@@ -2829,27 +2819,25 @@
           "razorpay_payments:pay-000470",
           "razorpay_payments:pay-000471",
           "razorpay_settlements:stl-000073",
-          "bank_statement:bnk-000067",
           "webhook_events:whk-000066"
         ],
         "agent_reason": "Verified the UTR against the bank feed and the totals line up. Safe to close.",
-        "confidence": 0.95,
+        "confidence": 0.4,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "3a691f7a356428642a2b8522c65b64cbc036fc632e9198e652571f26bd87d4cb",
+      "pack_hash": "0747531fef83184c98cd967b02dd4cca62d387282a1dacafb47928bc1a5bb701",
       "evidence_hashes": {
         "razorpay_payments:pay-000468": "49be40b8485155b6770056c1a4ee5fc025ade75dcafed24227497ded89ab5603",
         "razorpay_payments:pay-000469": "f164ffc2ca534d6a518668f846fb4cc2b0a0481607d36448812fcc4ae6930925",
         "razorpay_payments:pay-000470": "be1991f4553dc6e4627a3607a7ab099b13bc449e939d76e094422b3d50723bf8",
         "razorpay_payments:pay-000471": "3ecce6638f63b64abbfc91fee1c1bf1d40e53bc532fda05bdb46d76ff8db3dd2",
         "razorpay_settlements:stl-000073": "8273862da880b8b00d9fef2ab361de1cee9f77f753d8bc4a0f39c70186b345e6",
-        "bank_statement:bnk-000067": "ccf34229bd2079e14ba94ccf674931d8d2162bbafaf7063af03b9581d913189b",
         "webhook_events:whk-000066": "38c9770c8f58cd060ec594483b1f51f7abf088f4ff61fa9111d74d09c0cd7c2c"
       },
-      "recorded_verdict": "VERIFIED",
-      "recorded_reason_code": null,
+      "recorded_verdict": "UNCERTAIN",
+      "recorded_reason_code": "MISSING_EVIDENCE",
       "policy_version": "finance-policy-v13"
     },
     "B067": {
@@ -2871,7 +2859,7 @@
           "razorpay_payments:pay-000480",
           "razorpay_payments:pay-000481",
           "razorpay_settlements:stl-000074",
-          "bank_statement:bnk-000068",
+          "bank_statement:bnk-000073",
           "webhook_events:whk-000067"
         ],
         "agent_reason": "Settlement matches the bank credit once fees and GST are accounted for. Nothing outstanding.",
@@ -2893,7 +2881,7 @@
         "razorpay_payments:pay-000480": "4a947a8a910416d658fe5d5db43627575c7106e9e7f3086e42e633b17f7a6a5d",
         "razorpay_payments:pay-000481": "1f133832357e78fbebd160fb7d6d037f22f779c4844a34eaed16f06b7915945c",
         "razorpay_settlements:stl-000074": "c72cb3139dd847e76899acd531c4bf872b41c07db978afc189eb9ab0439e5379",
-        "bank_statement:bnk-000068": "9d9225eb067c9a4de533b4869e09bae692ef0203839dc1d9b1aeb1467b9248d2",
+        "bank_statement:bnk-000073": "9d9225eb067c9a4de533b4869e09bae692ef0203839dc1d9b1aeb1467b9248d2",
         "webhook_events:whk-000067": "ab6b5c2a2aab6a73acc8fa58b1a0c6ec15d4a284ce03cbd338b9bea0291cf068"
       },
       "recorded_verdict": "FAILED",
@@ -2917,7 +2905,7 @@
           "razorpay_payments:pay-000488",
           "razorpay_payments:pay-000489",
           "razorpay_settlements:stl-000075",
-          "bank_statement:bnk-000069",
+          "bank_statement:bnk-000074",
           "holds:hld-000005",
           "webhook_events:whk-000068"
         ],
@@ -2938,7 +2926,7 @@
         "razorpay_payments:pay-000488": "4c3902534f042b2649b038d416c0521f4863b8feb71d12631005a4d688f8957f",
         "razorpay_payments:pay-000489": "4065e33354dfb23816575d1914d2e261700ae4d011421210a4fc089b3e867a65",
         "razorpay_settlements:stl-000075": "7a9d3e08632f4eebaed5ff539aa7b5c0c1606335f8f67528202f5ce6e20463d7",
-        "bank_statement:bnk-000069": "caa0a2ee938ac27ffe91b828c38103a25d8921e9ec0fb6590ff19885d0481264",
+        "bank_statement:bnk-000074": "caa0a2ee938ac27ffe91b828c38103a25d8921e9ec0fb6590ff19885d0481264",
         "holds:hld-000005": "279de24c01167173d31c3ca788117da39cd78ba1ebb02dfd404083515ac90967",
         "webhook_events:whk-000068": "8d9a411771870e89fc211d50d291220d6ea8751fea8ad82b73e907d60d0ab5b5"
       },
@@ -2967,7 +2955,7 @@
           "razorpay_payments:pay-000500",
           "razorpay_payments:pay-000501",
           "razorpay_settlements:stl-000076",
-          "bank_statement:bnk-000070",
+          "bank_statement:bnk-000075",
           "holds:hld-000006",
           "webhook_events:whk-000069"
         ],
@@ -2992,7 +2980,7 @@
         "razorpay_payments:pay-000500": "a10c263813a41f477912f9954dc3be740d05b9e4da93f58e90fbbd1cfd0bcee3",
         "razorpay_payments:pay-000501": "7906fe6970cb8d4532f618c7c29232bbe5252e0f0f0d1cfb0119a0b0826cb101",
         "razorpay_settlements:stl-000076": "1734fcaedd4b3406b157e5e71eb65fd141aca60b2b030e9bbfbca054f5f739e0",
-        "bank_statement:bnk-000070": "a7803202e74241aca177b5e1e14c6f4d207f972bfe5033a47f0747d7d56a5817",
+        "bank_statement:bnk-000075": "a7803202e74241aca177b5e1e14c6f4d207f972bfe5033a47f0747d7d56a5817",
         "holds:hld-000006": "def6a324e0be97af2ace89a94ce966c8b80768a33427c6ac00983a6dc412083a",
         "webhook_events:whk-000069": "c811022678f2086252d4ddf4c084f7871246245ea88c49211bde95670812bcd2"
       },
@@ -3019,7 +3007,7 @@
           "razorpay_payments:pay-000510",
           "razorpay_payments:pay-000511",
           "razorpay_settlements:stl-000077",
-          "bank_statement:bnk-000071",
+          "bank_statement:bnk-000076",
           "webhook_events:whk-000070"
         ],
         "agent_reason": "Verified the UTR against the bank feed and the totals line up. Safe to close.",
@@ -3028,7 +3016,7 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "d9dc00247a922cdb0a57fcb11243f0aa2c21ef0f698e05f1914eb00abcb6e609",
+      "pack_hash": "1a9d27718ed39b16fe346c9462af4bcfc923d6cad1cec833bfdafa0c664841c3",
       "evidence_hashes": {
         "razorpay_payments:pay-000502": "20471a8cabf18832c13b1f49ac4dee3159dbaa28a453ea74e208f766d0a202e5",
         "razorpay_payments:pay-000503": "63537622b200901d404c99854315bb829829fe003d0a2d239a3f9801d9e41b87",
@@ -3041,7 +3029,7 @@
         "razorpay_payments:pay-000510": "e09691b73c3de2ce057ed956c70fc03088171e9a1718246988b798b7a6363278",
         "razorpay_payments:pay-000511": "b107dd72503336987e3ec8fec15de35231cb8457b5057b0358ea1bf8667d7152",
         "razorpay_settlements:stl-000077": "ee4c5323864fe18893d7ca8a7de6461c5c3237f040e71700d53c7d74df2cbbd5",
-        "bank_statement:bnk-000071": "bc433e5f038580a5127285fa2367ce6249202ca3e1a1f5aa858cd6583eda010a",
+        "bank_statement:bnk-000076": "99df3bc8d484056064898f1cd0b019f4ee6adce6c8683f0ff32c7882a00d7d5e",
         "webhook_events:whk-000070": "634b12bbe807e4aca55a5dd01a14826458fc6cc85ee362c1d1490589065ab90b"
       },
       "recorded_verdict": "VERIFIED",
@@ -3063,7 +3051,7 @@
           "razorpay_payments:pay-000516",
           "razorpay_payments:pay-000517",
           "razorpay_settlements:stl-000078",
-          "bank_statement:bnk-000072",
+          "bank_statement:bnk-000077",
           "webhook_events:whk-000071"
         ],
         "agent_reason": "Settlement matches the bank credit once fees and GST are accounted for. Nothing outstanding.",
@@ -3081,7 +3069,7 @@
         "razorpay_payments:pay-000516": "3053e6a6c9c958141758566e72d60f47cc39c5d7c20020ddbead0c6b66c8ed37",
         "razorpay_payments:pay-000517": "5024d6b1d45f93cf0a5193ca41dae64862725c43b00eee96aec433ccd247a901",
         "razorpay_settlements:stl-000078": "37fa0bfd1a3de61d03200c6922dde361a6bd147011d42629a6664cd9301e6c17",
-        "bank_statement:bnk-000072": "3b9aeeb8abe0776be75f51dfc733e52742ac17d0bbb399ababddc8f40fe45e5f",
+        "bank_statement:bnk-000077": "3b9aeeb8abe0776be75f51dfc733e52742ac17d0bbb399ababddc8f40fe45e5f",
         "webhook_events:whk-000071": "e3a3b1fef6e23a1ad894b6db3141e38c0c9077e9073997d37c4c0c436160c5a4"
       },
       "recorded_verdict": "VERIFIED",
@@ -3104,7 +3092,7 @@
           "razorpay_payments:pay-000523",
           "razorpay_payments:pay-000524",
           "razorpay_settlements:stl-000079",
-          "bank_statement:bnk-000073",
+          "bank_statement:bnk-000078",
           "refunds:ref-000017",
           "refunds:ref-000018",
           "refunds:ref-000019",
@@ -3126,7 +3114,7 @@
         "razorpay_payments:pay-000523": "f2060db6d0ba57fb322cec9ba1385ac09f86117bcb8f65cb1d39b8932664eeec",
         "razorpay_payments:pay-000524": "23c2b7fb66ad915cd58563b7ea1660a1f0b29ab7179a9fe7dbf706c3f65b53cf",
         "razorpay_settlements:stl-000079": "ac5772ff5e75fb785e6cc5b5f9fc2e1ed6d5107f6375e5ab69391c628de2ed9a",
-        "bank_statement:bnk-000073": "fbfd0e8453525766873911c629486c9c9b285f0de29c399cf30d9c7ff6536941",
+        "bank_statement:bnk-000078": "fbfd0e8453525766873911c629486c9c9b285f0de29c399cf30d9c7ff6536941",
         "refunds:ref-000017": "e06a0a79dd5e472edf5d0fac5c60e8ae20d820113a69e4ef2f14e33faf51878b",
         "refunds:ref-000018": "cebbadf403a08fceaa418c4dbd94b388c0ab4e3571214d9a50c0abb67feed531",
         "refunds:ref-000019": "848a319fde95eb35d685f5d5d7cde0782d627e629e8f367c903042dab859f697",
@@ -3149,7 +3137,7 @@
           "razorpay_payments:pay-000527",
           "razorpay_payments:pay-000528",
           "razorpay_settlements:stl-000080",
-          "bank_statement:bnk-000074",
+          "bank_statement:bnk-000079",
           "webhook_events:whk-000073"
         ],
         "agent_reason": "All captured payments net down to the credited amount and the UTR traces to the bank statement.",
@@ -3165,7 +3153,7 @@
         "razorpay_payments:pay-000527": "0a1050cca612217e26859cfd5cc17b326fbfa2c5b7c28b42bd8d30bc909d41e1",
         "razorpay_payments:pay-000528": "d077ecf368176edd15291b771d8482bc2ef221eb33f5355de5bb93fd044e267e",
         "razorpay_settlements:stl-000080": "9ec48de8acdceaead3b496c0f7d7150186e9b190be73b7b3531aa08656f5a111",
-        "bank_statement:bnk-000074": "c261f1237c3df2bb8dbff1ff5738a7fb1f449b04b01a79dc5b85f34cdb89bd67",
+        "bank_statement:bnk-000079": "c261f1237c3df2bb8dbff1ff5738a7fb1f449b04b01a79dc5b85f34cdb89bd67",
         "webhook_events:whk-000073": "e5a5a0ef275f022285bbb1003eeedc2919efef1d2f3a4eb53223ca5e9d412555"
       },
       "recorded_verdict": "VERIFIED",
@@ -3190,7 +3178,7 @@
           "razorpay_payments:pay-000536",
           "razorpay_payments:pay-000537",
           "razorpay_settlements:stl-000081",
-          "bank_statement:bnk-000075",
+          "bank_statement:bnk-000080",
           "webhook_events:whk-000074",
           "bank_statement:bnk-0074X"
         ],
@@ -3200,7 +3188,7 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "b9b0a5cec54dd3f2dda3756749163a31195ca5e8919d5105d46fa3e77cc31901",
+      "pack_hash": "558853e77c91e0e56b18a6c1667c5558e9f21c2eee17036cabf60df29fd9e986",
       "evidence_hashes": {
         "razorpay_payments:pay-000529": "8f6aeec2058c3148018f033954e2b8e9116d9c27554e0ea06b9f93386f826598",
         "razorpay_payments:pay-000530": "5bb7781d693cf410e7309bccea159b5afe7a47e90753fddacd285778da37a289",
@@ -3213,7 +3201,7 @@
         "razorpay_payments:pay-000537": "1b68509ee9e4bcdac3eb38794063f79b95d04f281644a2b7573ea3caf21d3d9c",
         "razorpay_settlements:stl-000081": "4e7904a5d64a25b838510cfcee80e77e6a0644090dda30e7c9f389ae2bb34ccd",
         "razorpay_settlements:stl-000082": "764d6d84b1db245647bd97d75161660cfabf9b20eda7d8272d98ddc47f3ff842",
-        "bank_statement:bnk-000075": "904ab11b733837d999d1b247fb7f0967d6741eca031eb1cca6a19d11c49ea79e",
+        "bank_statement:bnk-000080": "c65f46ebd64484e7e8935ef124d1e7e360b7c19ea51c964e87c1b96b9286f18b",
         "webhook_events:whk-000074": "2221ef3ff957de3d5288b50f285ea383e80e6e290ce0841bf2367274317aa461"
       },
       "recorded_verdict": "FAILED",
@@ -3237,7 +3225,7 @@
           "razorpay_payments:pay-000544",
           "razorpay_payments:pay-000545",
           "razorpay_settlements:stl-000083",
-          "bank_statement:bnk-000076",
+          "bank_statement:bnk-000081",
           "webhook_events:whk-000075",
           "bank_statement:bnk-0075X"
         ],
@@ -3247,7 +3235,7 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "19e8ac8efcdab50a9985f55c2e934955806238f007dbfe6233ce3aaf1323d908",
+      "pack_hash": "b7df47bb219af6bcac23f57601b76ce737fad61ee46cf013778196fe6e247fe2",
       "evidence_hashes": {
         "razorpay_payments:pay-000538": "77337a1d033822b5f5296a698ec0e94a3602b704db216f8ed57ffd27cc95114d",
         "razorpay_payments:pay-000539": "84232cb70b7469a40e6ebd389a7dd447b72700f28d237abfaf1040db09790a45",
@@ -3258,7 +3246,7 @@
         "razorpay_payments:pay-000544": "79436a0198eef88bd099cfe705ef904608ef91e2130c6d6d63516d628a55ab06",
         "razorpay_payments:pay-000545": "1edb5beaa3272868e27f818e57b9318337357823c278b6446dff0be60f58dde8",
         "razorpay_settlements:stl-000083": "3d2b4a86312c53a09d4cb368a22fb97a5e553ea6ae3b2abcd233879ba6716752",
-        "bank_statement:bnk-000076": "cc110b542fb347345387339ba8625c30647ae4e6064972f12a190375db64dea5",
+        "bank_statement:bnk-000081": "5c6bbbd98fdbcd7e22c33182fd8187f196f97713080734d66b5500b18407b533",
         "webhook_events:whk-000075": "6913511bca4ac3a10ec40a7e86c361ae9a6bfd8e999e7faf86b566a61790db66"
       },
       "recorded_verdict": "VERIFIED",
@@ -3278,7 +3266,7 @@
           "razorpay_payments:pay-000548",
           "razorpay_payments:pay-000549",
           "razorpay_settlements:stl-000084",
-          "bank_statement:bnk-000077",
+          "bank_statement:bnk-000082",
           "holds:hld-000007",
           "webhook_events:whk-000076",
           "bank_statement:bnk-0076X"
@@ -3296,7 +3284,7 @@
         "razorpay_payments:pay-000548": "30a9d3041ce6fd7b7f7b70cb2fdd3c780324779c744314a12ebbfff656e4d771",
         "razorpay_payments:pay-000549": "211d5008f266fefc3015e891d81e558286d708c150be82fdc0c774b22754e561",
         "razorpay_settlements:stl-000084": "a4f43ef4a93cdc8ea6d5f242890ab26604caa9d6401e24975dfe88a89c7f7ac9",
-        "bank_statement:bnk-000077": "12be59482e3c3622835ba962eb87ae7273d91bc8f420a9d6bb8fca000ddf61ac",
+        "bank_statement:bnk-000082": "12be59482e3c3622835ba962eb87ae7273d91bc8f420a9d6bb8fca000ddf61ac",
         "holds:hld-000007": "da391c54313d038a551c3143be2210885cf49d9105c0e903a2ff17ea0f1b6fb5",
         "webhook_events:whk-000076": "f28a37a744fc90842984e9e425a0da23d5a1bc3b4509aef18f3a45559724ec03"
       },
@@ -3313,7 +3301,7 @@
         "proposed_status": "RECONCILED",
         "evidence_ids": [
           "razorpay_settlements:stl-000085",
-          "bank_statement:bnk-000078",
+          "bank_statement:bnk-000083",
           "webhook_events:whk-000077"
         ],
         "agent_reason": "Fees were adjusted at settlement, so the small variance against gross is expected. Reconciled.",
@@ -3325,7 +3313,7 @@
       "pack_hash": "612aac8cd090e8a0fec71dbf595186c09becaecaec1a4a9971cd51ad749a3aa9",
       "evidence_hashes": {
         "razorpay_settlements:stl-000085": "7cad321d3a2248e557e5eaa0368004ed52cc8e40629af1a8f7be38b5f55114bf",
-        "bank_statement:bnk-000078": "e5b1b3ba515ff735cfd1efb2b6e77e1591f858c09c21d981e3417d7553ed4795",
+        "bank_statement:bnk-000083": "e5b1b3ba515ff735cfd1efb2b6e77e1591f858c09c21d981e3417d7553ed4795",
         "webhook_events:whk-000077": "b93636e520d314d81933cb2556f0f0e1114ec26d187af65b8d7eef9edd70a49a"
       },
       "recorded_verdict": "UNCERTAIN",
@@ -3349,7 +3337,7 @@
           "razorpay_payments:pay-000556",
           "razorpay_payments:pay-000557",
           "razorpay_settlements:stl-000086",
-          "bank_statement:bnk-000079",
+          "bank_statement:bnk-000084",
           "webhook_events:whk-000078"
         ],
         "agent_reason": "All captured payments net down to the credited amount and the UTR traces to the bank statement.",
@@ -3369,7 +3357,7 @@
         "razorpay_payments:pay-000556": "80d1bf61a0f7e28397deb454e0dcace8ae8e796347f486514212af1e58c68846",
         "razorpay_payments:pay-000557": "cd290fc158909c5aa5fad5607dea92af2a70e9c402c561f98d9420a916e871fa",
         "razorpay_settlements:stl-000086": "44e5e9bf229dcd7a456824d3f507016f82111b0ab8089fbd2a1f8c7628749882",
-        "bank_statement:bnk-000079": "618731965df1223a60e1368ff231f0210a4da1bad951c2fb6a065ec64a4b3313",
+        "bank_statement:bnk-000084": "618731965df1223a60e1368ff231f0210a4da1bad951c2fb6a065ec64a4b3313",
         "webhook_events:whk-000078": "0ec3b0c230abd10fcfeff51426e3b94b73928240ba85aac9586b19de088c32c6"
       },
       "recorded_verdict": "VERIFIED",
@@ -3391,7 +3379,7 @@
           "razorpay_payments:pay-000562",
           "razorpay_settlements:stl-000087",
           "razorpay_settlements:stl-000088",
-          "bank_statement:bnk-000080",
+          "bank_statement:bnk-000085",
           "webhook_events:whk-000079"
         ],
         "agent_reason": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
@@ -3400,7 +3388,7 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "cd3cc8acd0eb0273eb8ab0df474f83d393d254263c783d105f7831c77796251b",
+      "pack_hash": "4704fb15df5fb6263ea78db1d0814ff82d8df6b4d2ed1b6f64dc17cf06533cc6",
       "evidence_hashes": {
         "razorpay_payments:pay-000558": "e3a9c773db59a324500fef735f31978fedc7472a2b33fd0a97b9216347d98d4e",
         "razorpay_payments:pay-000559": "488e07b4a8a30b7887c2942a1d03e29b4878c2a4118c8b030b3bb9cf239fc7f7",
@@ -3409,7 +3397,7 @@
         "razorpay_payments:pay-000562": "bc4d7c221d6835df9eea68ed4fc20c9a58b03bc6d08c0c5c05243de20d215ac2",
         "razorpay_settlements:stl-000087": "49c276cf51204093de079f0db40daf6f7f8b07a5ec002887d06930578251acad",
         "razorpay_settlements:stl-000088": "1f510922f77b05a1cb83cb7d72cb3470d3cb145f11a4fe66d8931703626a2c3e",
-        "bank_statement:bnk-000080": "f3b8d2faa6da45780f52b3d4c03c75e13c17f12496260d30e1e80053ce72d7f1",
+        "bank_statement:bnk-000085": "4089426aca8d865f15c61b387c8d5945aeca68c84e83bb7488b27d23cd7ed8cc",
         "webhook_events:whk-000079": "327f395c969915272c16ff8360515d690f0410b0dd867be41b43408730801b75"
       },
       "recorded_verdict": "FAILED",
@@ -3435,7 +3423,7 @@
           "razorpay_payments:pay-000571",
           "razorpay_settlements:stl-000089",
           "razorpay_settlements:stl-000090",
-          "bank_statement:bnk-000081",
+          "bank_statement:bnk-000086",
           "webhook_events:whk-000080"
         ],
         "agent_reason": "Settlement matches the bank credit once fees and GST are accounted for. Nothing outstanding.",
@@ -3457,7 +3445,7 @@
         "razorpay_payments:pay-000571": "2e15f669354bd0cd0dc6f0d93cff981df106e999805f5bd2e0f7319d2a6dd272",
         "razorpay_settlements:stl-000089": "49af31da5f8041d9cebd212df3bd1b022c35e5bba9616228be07326073966cbd",
         "razorpay_settlements:stl-000090": "4a5c7354640a6b274cef1b90b16a09fa677afedf63c9fa38e94b9dae9a012559",
-        "bank_statement:bnk-000081": "c77ac33e815a7fd03b33b7c11ec0c84c94d6f040b9ecab843a697f3a964dd04d",
+        "bank_statement:bnk-000086": "c77ac33e815a7fd03b33b7c11ec0c84c94d6f040b9ecab843a697f3a964dd04d",
         "webhook_events:whk-000080": "5a6ab503375a4f9891179e514eb226595f0238df991c2aa6214b650df4db4758"
       },
       "recorded_verdict": "FAILED",
@@ -3480,7 +3468,7 @@
           "razorpay_payments:pay-000577",
           "razorpay_payments:pay-000578",
           "razorpay_settlements:stl-000091",
-          "bank_statement:bnk-000082",
+          "bank_statement:bnk-000087",
           "webhook_events:whk-000081"
         ],
         "agent_reason": "Fees were adjusted at settlement, so the small variance against gross is expected. Reconciled.",
@@ -3499,7 +3487,7 @@
         "razorpay_payments:pay-000577": "50da0bbd31d461a65a9dbc30502dc79eda973f185c56b40fd4b3df73033e4b87",
         "razorpay_payments:pay-000578": "b356a1675ed78e0265ffcc9fffec56f3b1c408c1130077638aa346aca8f2e19e",
         "razorpay_settlements:stl-000091": "5c79b703f1dd876df2e581033bef645b7c962d76f4bea394f7b5e26fb99463cc",
-        "bank_statement:bnk-000082": "6d8f9268b69dfadaae368021b14f9a64ee24fe3b9a781506ebfc1a9d25cb20e1",
+        "bank_statement:bnk-000087": "6d8f9268b69dfadaae368021b14f9a64ee24fe3b9a781506ebfc1a9d25cb20e1",
         "webhook_events:whk-000081": "878e1476cad1d2b4d677aee6a7c6418f93de5ce8021910da203f70576931db46"
       },
       "recorded_verdict": "VERIFIED",
@@ -3523,7 +3511,7 @@
           "razorpay_payments:pay-000585",
           "razorpay_payments:pay-000586",
           "razorpay_settlements:stl-000092",
-          "bank_statement:bnk-000083",
+          "bank_statement:bnk-000088",
           "webhook_events:whk-000082"
         ],
         "agent_reason": "Something is off between the settlement total and what landed. Needs a human.",
@@ -3543,7 +3531,7 @@
         "razorpay_payments:pay-000585": "99184565b68324bbb104157aa4deed2880643f782676b6ef3aa5cdeec4e27b2e",
         "razorpay_payments:pay-000586": "3f62827366b35cca9150944cf33fc54bfeb89e228193490e1154e9a48fa6ad5c",
         "razorpay_settlements:stl-000092": "3b05838c68e598c0f5b835cf3cb9c948e8e435920def646ea5751e98603038fb",
-        "bank_statement:bnk-000083": "08c9f921b9fa2e73b416ee0563bc2e74333db07cf0fbc80e34db8267e6125059",
+        "bank_statement:bnk-000088": "08c9f921b9fa2e73b416ee0563bc2e74333db07cf0fbc80e34db8267e6125059",
         "webhook_events:whk-000082": "fe9fec7153042fc0fdc66b560a27b94370d1259e2bb54c6e00481ea851639d62"
       },
       "recorded_verdict": "VERIFIED",
@@ -3565,7 +3553,7 @@
           "razorpay_payments:pay-000591",
           "razorpay_payments:pay-000592",
           "razorpay_settlements:stl-000093",
-          "bank_statement:bnk-000084",
+          "bank_statement:bnk-000089",
           "webhook_events:whk-000083"
         ],
         "agent_reason": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
@@ -3574,7 +3562,7 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "f41b0fd4d76401d6c5cd4d84820fde5e74b44bab0105bcfc62d61e75e098c228",
+      "pack_hash": "66956dbecea7993b5e5c5056383eddd10797851c2e50dfb19125b5b2911ec522",
       "evidence_hashes": {
         "razorpay_payments:pay-000587": "c4843316312213fc3c1578408c0f9f9e95cfdfe463c50f859e9525ebf59f63d0",
         "razorpay_payments:pay-000588": "e8ed3c2a8d11d91ccca6f2e4b27c66a69efb5f6dc21dbdea496d1d4343b9c2af",
@@ -3583,7 +3571,7 @@
         "razorpay_payments:pay-000591": "7ca96024cd309556502a737784c3b24b863113823880d9430d4f42ef5c4d1587",
         "razorpay_payments:pay-000592": "7575a270533d0af0d778a634060f91e93f4297f3cef9eda4901608dd838d7760",
         "razorpay_settlements:stl-000093": "a5cc65f92d24e51c52de1a5a2fff26e1d94570005afb743fb79ef87db9ed2ad9",
-        "bank_statement:bnk-000084": "ea9dfbbc7e3fe1639968eec18682724dfd92391f859c4560fa0c6cb362d5ee60",
+        "bank_statement:bnk-000089": "bd4d34acc7b7a9cdfa12c28fa5741d3d565d8161165312004029d80ada8f87a9",
         "webhook_events:whk-000083": "3702b92da1105256fd5c1979b24a68b43d13d7dfead0fd7ed652143bd394eec0"
       },
       "recorded_verdict": "VERIFIED",
@@ -3604,7 +3592,6 @@
           "razorpay_payments:pay-000596",
           "razorpay_settlements:stl-000094",
           "razorpay_settlements:stl-000095",
-          "bank_statement:bnk-000085",
           "webhook_events:whk-000084"
         ],
         "agent_reason": "Verified the UTR against the bank feed and the totals line up. Safe to close.",
@@ -3613,7 +3600,7 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "065b0ef003b8ab87b7a5189984a47c41e7318e259d7303aa186f7140786e65e2",
+      "pack_hash": "d6ab006e4c5a76b84363277be95916d842e493949fa857f187d9dec87f9c7028",
       "evidence_hashes": {
         "razorpay_payments:pay-000593": "c4abc6f76fcc9dc6d45d2c21e2df8d2499e1a89b1c003821c43c4bd2d73eb127",
         "razorpay_payments:pay-000594": "fd7f801c4af211a3b28ce292a03a7b268ff679dfa9639ae300a2fd91fefe30d1",
@@ -3621,11 +3608,10 @@
         "razorpay_payments:pay-000596": "4e74c89c66c72b52d8fc60086f132317b67804370907b8de9f11e434d2682559",
         "razorpay_settlements:stl-000094": "96c7eaa2ed95b2395c8129ba7c83f165da2ce1bb60435aee5e45cbf338866b1f",
         "razorpay_settlements:stl-000095": "c7da5cad3676e7f0cbe5cd8cd8acde8cdfcb2e515941af9a12785bda775be8cd",
-        "bank_statement:bnk-000085": "8290122e7f19e76455d6d99f2b6aa55b4f070cebb0541b1770d5aec7a698a1d8",
         "webhook_events:whk-000084": "6c5702853635981c29df0f05e4ea1da4910cc79a0ca4897f4a1d25c75950e5d8"
       },
-      "recorded_verdict": "FAILED",
-      "recorded_reason_code": "DUPLICATE_UTR",
+      "recorded_verdict": "UNCERTAIN",
+      "recorded_reason_code": "MISSING_EVIDENCE",
       "policy_version": "finance-policy-v13"
     },
     "B085": {
@@ -3649,7 +3635,7 @@
           "razorpay_payments:pay-000607",
           "razorpay_payments:pay-000608",
           "razorpay_settlements:stl-000096",
-          "bank_statement:bnk-000086",
+          "bank_statement:bnk-000092",
           "webhook_events:whk-000085"
         ],
         "agent_reason": "Settlement matches the bank credit once fees and GST are accounted for. Nothing outstanding.",
@@ -3673,7 +3659,7 @@
         "razorpay_payments:pay-000607": "f494ced9165f9790c1c9e851d04ec8bd5d694e7cb741743c7d57f26c94fbf4be",
         "razorpay_payments:pay-000608": "4e1760da6c9722b5ad52c035d0cb987093c63809539181ab1e9e7bd532e26df5",
         "razorpay_settlements:stl-000096": "8f4ce3cb3a8bb2835991aab43fe65e157ede3a21903f68f4500c08d79998ede4",
-        "bank_statement:bnk-000086": "a5881f5f09e53bdad873408ce0bb90b42f6604aa6f963ea2d1f95f0ae8a599a5",
+        "bank_statement:bnk-000092": "a5881f5f09e53bdad873408ce0bb90b42f6604aa6f963ea2d1f95f0ae8a599a5",
         "webhook_events:whk-000085": "ffcff550916ee1d17a1cf54bc16126ac70f658f202f403b6febcc3e28448f2eb"
       },
       "recorded_verdict": "VERIFIED",
@@ -3692,7 +3678,7 @@
           "razorpay_payments:pay-000610",
           "razorpay_payments:pay-000611",
           "razorpay_settlements:stl-000097",
-          "bank_statement:bnk-000087",
+          "bank_statement:bnk-000093",
           "webhook_events:whk-000086"
         ],
         "agent_reason": "Fees were adjusted at settlement, so the small variance against gross is expected. Reconciled.",
@@ -3707,7 +3693,7 @@
         "razorpay_payments:pay-000610": "4a7d2e322be780c33e19df596b48fd6f7c56c4b051c9d1071cf545b283bca11d",
         "razorpay_payments:pay-000611": "6b9975c0ce9ed47b09a2a10d811e27fc6b2fc13a895085cf5be1108cc255d4f7",
         "razorpay_settlements:stl-000097": "15219df6ae277cdf52dc1bc8f6b1b0e08444ba95daf0f544c639603fa0c66250",
-        "bank_statement:bnk-000087": "a4c5e102a52c9a6a43a799e2867a4cc7ee7ea24d94620923b41b2dd1b175a0f4",
+        "bank_statement:bnk-000093": "a4c5e102a52c9a6a43a799e2867a4cc7ee7ea24d94620923b41b2dd1b175a0f4",
         "webhook_events:whk-000086": "964a5f7c0f57750986bfeec8d81e2155007f4677bcd4606e7cd6c862ce2c6386"
       },
       "recorded_verdict": "VERIFIED",
@@ -3730,7 +3716,7 @@
           "razorpay_payments:pay-000617",
           "razorpay_payments:pay-000618",
           "razorpay_settlements:stl-000098",
-          "bank_statement:bnk-000088",
+          "bank_statement:bnk-000094",
           "holds:hld-000008",
           "webhook_events:whk-000087"
         ],
@@ -3750,7 +3736,7 @@
         "razorpay_payments:pay-000617": "f4028df3da08b9b5a099eb0ef4883d9124b56c5bbc02484db3018b69b47433b6",
         "razorpay_payments:pay-000618": "66d5a90a5b7ac93311db7d0383ab4f754908fdfa13fcf1e067030fa5704ffa6d",
         "razorpay_settlements:stl-000098": "0f6febdfeb1dbdf9592cb62d6874082d03eb8f6d0c81ad952f07d0e0fd68e8fc",
-        "bank_statement:bnk-000088": "08e4e7c866623d8cee423d9c344a6181bf30aeb9885e4f0f5912af5b9c89ff67",
+        "bank_statement:bnk-000094": "08e4e7c866623d8cee423d9c344a6181bf30aeb9885e4f0f5912af5b9c89ff67",
         "holds:hld-000008": "22bcd88469b2c46ae8da61e454ebabbe71c05ce3c4e45c51dddbdde722bfe477",
         "webhook_events:whk-000087": "7884ba05a40c1ccd6818107d2dce7ed591d829b768f9fd1525a593c3c464021a"
       },
@@ -3773,7 +3759,7 @@
           "razorpay_payments:pay-000623",
           "razorpay_payments:pay-000624",
           "razorpay_settlements:stl-000099",
-          "bank_statement:bnk-000089",
+          "bank_statement:bnk-000095",
           "webhook_events:whk-000088"
         ],
         "agent_reason": "Something is off between the settlement total and what landed. Needs a human.",
@@ -3782,7 +3768,7 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "a3e58ac133cd91b28cbf83437326f236a3d29db1979feaabddd38884403207bc",
+      "pack_hash": "6d3c5a2ad4fed5ac6a6e5165ff557b698831273ea45c512b5c9c681017901c79",
       "evidence_hashes": {
         "razorpay_payments:pay-000619": "f64675790c50f7a442e3706330ad3b82afeaea6ff2bb7a5a3949446c69e493f0",
         "razorpay_payments:pay-000620": "147a224f005ac5592bcfea4f135628b56afe583e04f5c1992a6b91652e351dfe",
@@ -3791,7 +3777,7 @@
         "razorpay_payments:pay-000623": "a13c4179655f860d76438647d8d8e482c82e743c6d5bcfc636ee501307a4c328",
         "razorpay_payments:pay-000624": "70d6af1ae02b48f45342da0ea82d42eb9165c9bf6ee99e5f327947e4daa47968",
         "razorpay_settlements:stl-000099": "fc231ea84dc2b3c14ac4019e9b6c1f03349420f9e4988d3f69016a8f21221c2b",
-        "bank_statement:bnk-000089": "0df722547554415e5c49f8bce9a4025c85675e80253ed9b43a9895e75bbc9b14",
+        "bank_statement:bnk-000095": "7ec2b3922beebce4d9beac1cdfba17d8069ff1699b6b19b6bb72df89aa0eb128",
         "webhook_events:whk-000088": "8ae6867b777055a86918eac18387a114d19ceff2b8a38fd549a1b254c4e52c79"
       },
       "recorded_verdict": "FAILED",
@@ -3819,7 +3805,7 @@
           "razorpay_payments:pay-000635",
           "razorpay_payments:pay-000636",
           "razorpay_settlements:stl-000100",
-          "bank_statement:bnk-000090",
+          "bank_statement:bnk-000096",
           "webhook_events:whk-000089"
         ],
         "agent_reason": "Could not tie the credited amount back to the captured payments. Not closing this one.",
@@ -3828,7 +3814,7 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "89c430f0a87a630adcc99fa886d4058b43c0c727b778190c91737f8f7e82d9fb",
+      "pack_hash": "2051f77c85122ae135ddfdec28fc4bfc9aa83b30a19b4f294ab96854391d7681",
       "evidence_hashes": {
         "razorpay_payments:pay-000625": "524e662b96b5f723186b73f852616be992809a50c3668c826afe895bdd6afe09",
         "razorpay_payments:pay-000626": "1f469a076c0ebf3a4cddfca0653bb8f789668ad4be19cccc4945d926973e92a0",
@@ -3843,7 +3829,7 @@
         "razorpay_payments:pay-000635": "925a0a8275e4823d15d2b492728d6072c7c5f6b1178dca33bb8c2044e2adb58b",
         "razorpay_payments:pay-000636": "b808f74390364d62fbaf2d211beff218a473b02340d8f55242197433a9486eb9",
         "razorpay_settlements:stl-000100": "2998d9372a8ed4bd061c2b12580e737f13498123965187ef762513a29ed811a7",
-        "bank_statement:bnk-000090": "39c99fb44a883fcf173128ec367cfe8ed18b9a767c653578f8f0616321433255",
+        "bank_statement:bnk-000096": "12f4ec7e4bb3bfef489ee073c913a7f3c4a18f6dfcbdf6c8cf9e888b5ab6a832",
         "webhook_events:whk-000089": "8350217d25a0b40629ebe5eebaddca7382533091716e3dae61fb03237127b75c"
       },
       "recorded_verdict": "FAILED",
@@ -3871,7 +3857,7 @@
           "razorpay_payments:pay-000647",
           "razorpay_payments:pay-000648",
           "razorpay_settlements:stl-000101",
-          "bank_statement:bnk-000091",
+          "bank_statement:bnk-000097",
           "webhook_events:whk-000090"
         ],
         "agent_reason": "The bank leg does not look complete to me. Routing for review rather than closing.",
@@ -3895,8 +3881,8 @@
         "razorpay_payments:pay-000647": "415bad350b0f00b31899512d908d08708a8740db2ccc6ce498ec7b377268a356",
         "razorpay_payments:pay-000648": "44c558e07f160761c31fe7af88dac178f26546de44a216dbe7ed14e9cf48696f",
         "razorpay_settlements:stl-000101": "151842a803ac88017c8c36b6380ab355546e313e35cea98deb318a91d1a502f5",
-        "bank_statement:bnk-000091": "998052cf2912e1f307a112b08d028c23a22423132eed0eaa4f41bae298656c16",
-        "bank_statement:bnk-000092": "998052cf2912e1f307a112b08d028c23a22423132eed0eaa4f41bae298656c16",
+        "bank_statement:bnk-000097": "998052cf2912e1f307a112b08d028c23a22423132eed0eaa4f41bae298656c16",
+        "bank_statement:bnk-000098": "998052cf2912e1f307a112b08d028c23a22423132eed0eaa4f41bae298656c16",
         "webhook_events:whk-000090": "ec1faa29fff8e9029a2c80e0ea85ac30cebb66d8fa771c613442497799a0cb63"
       },
       "recorded_verdict": "FAILED",
@@ -3919,7 +3905,7 @@
           "razorpay_payments:pay-000654",
           "razorpay_payments:pay-000655",
           "razorpay_settlements:stl-000102",
-          "bank_statement:bnk-000093",
+          "bank_statement:bnk-000099",
           "webhook_events:whk-000091"
         ],
         "agent_reason": "All captured payments net down to the credited amount and the UTR traces to the bank statement.",
@@ -3938,7 +3924,7 @@
         "razorpay_payments:pay-000654": "ce3b157cbbfce7b2a88fe9622c2be90305361062af99984388866137e66964dc",
         "razorpay_payments:pay-000655": "5d3b6e97e70f16be1f45b4472110c2693b87fbb256e5a91c26d82f69e8434364",
         "razorpay_settlements:stl-000102": "0187920b47cb7cb672be8fcced2e7b72e7656eee4c8d4657e4c04b10df8d4f75",
-        "bank_statement:bnk-000093": "2f9070cc0c6beda2c46e1592d6bc132c4e0a73d6ae8f4929099d438441b2a94e",
+        "bank_statement:bnk-000099": "2f9070cc0c6beda2c46e1592d6bc132c4e0a73d6ae8f4929099d438441b2a94e",
         "webhook_events:whk-000091": "8e716ede70228f51e1317a1bf052fdcc74343da765a564447532dc079e006d60"
       },
       "recorded_verdict": "VERIFIED",
@@ -3964,7 +3950,7 @@
           "razorpay_payments:pay-000664",
           "razorpay_payments:pay-000665",
           "razorpay_settlements:stl-000103",
-          "bank_statement:bnk-000094",
+          "bank_statement:bnk-000100",
           "webhook_events:whk-000092"
         ],
         "agent_reason": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
@@ -3973,7 +3959,7 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "f549e9c2bc874c723426c179ca165a94da701d39908d64b3f0eb1899a5f6ebc0",
+      "pack_hash": "e72861d5243e00718290810032af375bb2462db1b479ee6319ef340f5161940d",
       "evidence_hashes": {
         "razorpay_payments:pay-000656": "a43d001dcc7fb2a9b83d12dd8c51c5e2cdb60fbb113d84ace5f10e43b4c5272f",
         "razorpay_payments:pay-000657": "1006ac585224697890ddd18a535e37f7124186795891fbcf1a1f202b48292869",
@@ -3986,7 +3972,7 @@
         "razorpay_payments:pay-000664": "2b2c726791eeaba8137692f9788ff78217f19784c0b40429089acc5f9d956f5e",
         "razorpay_payments:pay-000665": "94ebd814ddad343838cfcfadbbf1687e43059501af8086cf882b658b3d042cba",
         "razorpay_settlements:stl-000103": "5d37b99895e1986e0035db0e4ef5fc43bd5c51d7bce324d016e69e43d324385c",
-        "bank_statement:bnk-000094": "837b47fe29a950dd48f70d3a1acb7a883e692fc42c0def1b22a4a1e193d466cf",
+        "bank_statement:bnk-000100": "7a44bc975822ca5d8e38d0d26d81a7cafc0c483db61c65f608aa9b3dfc460724",
         "webhook_events:whk-000092": "2d4de5a2760fb3ad98d9773dced66338ce087d52d30903c9f40460187c514ded"
       },
       "recorded_verdict": "FAILED",
@@ -4007,7 +3993,7 @@
           "razorpay_payments:pay-000669",
           "razorpay_payments:pay-000670",
           "razorpay_settlements:stl-000104",
-          "bank_statement:bnk-000095",
+          "bank_statement:bnk-000101",
           "webhook_events:whk-000093"
         ],
         "agent_reason": "Verified the UTR against the bank feed and the totals line up. Safe to close.",
@@ -4016,7 +4002,7 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "1cbc1760a13e0e497f2cec84c5db6e45986a5ded1016b6a1d7970199f0e7e3ba",
+      "pack_hash": "5fc4c3871550c0a87855faaf11ed950d9433b7f24a265bd9cde2152a4729276b",
       "evidence_hashes": {
         "razorpay_payments:pay-000666": "5607ba3e829a3fc9e874608f51e9e1d53943453c5723f0e388ad8aa9dc15acbf",
         "razorpay_payments:pay-000667": "0b2a1190a43d06695718719ed3568881457351a7d23562e42156c3fa9f9aabf7",
@@ -4024,7 +4010,7 @@
         "razorpay_payments:pay-000669": "30eb327fb0e74ba15a3b8fea5d5327b1bd08d4b4d39f50325d01a91d37a9d31f",
         "razorpay_payments:pay-000670": "9b5495bf3eebde388a0c04099161caba52b29cddfc7c5530dad197a965981c1d",
         "razorpay_settlements:stl-000104": "21136d2977cd9dbf2425fd1f6742d0b9a2e68750652951c28268fa01bad0c60f",
-        "bank_statement:bnk-000095": "4b73979fb9212d932082b13cf6e7430e8e25d350fdc4a0fa34b4f144da40a4ec",
+        "bank_statement:bnk-000101": "75a8eb2937c6ee77c308a8a2ba76a328705a755d153de1b150509d4548e517de",
         "webhook_events:whk-000093": "ac6de1ac5caf96a9ccb8ef4180dcd1bb769b5a3c72042b5aeea5ec004395621a"
       },
       "recorded_verdict": "VERIFIED",
@@ -4048,7 +4034,7 @@
           "razorpay_payments:pay-000677",
           "razorpay_payments:pay-000678",
           "razorpay_settlements:stl-000105",
-          "bank_statement:bnk-000096",
+          "bank_statement:bnk-000102",
           "webhook_events:whk-000094"
         ],
         "agent_reason": "Settlement matches the bank credit once fees and GST are accounted for. Nothing outstanding.",
@@ -4068,7 +4054,7 @@
         "razorpay_payments:pay-000677": "84b95907a85813983ac368862fba10535859bd0075866b07c52e5c68aa7afc0c",
         "razorpay_payments:pay-000678": "466e8bc64471f580dea78bb3e097ea95cf8f1882df762fbf8968137eb3dd05a3",
         "razorpay_settlements:stl-000105": "406d66ed3ba970c12cb33c5a3bdfb7f47da71657fc1fee14f41d64dacc158249",
-        "bank_statement:bnk-000096": "de0f9fe453ad93d41d5c1ff55adc57ab7bc2f16e63f98a6639d5244733e8a869",
+        "bank_statement:bnk-000102": "de0f9fe453ad93d41d5c1ff55adc57ab7bc2f16e63f98a6639d5244733e8a869",
         "webhook_events:whk-000094": "e050921d1de72964e8344e4f5ec8b7d5454c8a60100248dcacd09a3e9212074d"
       },
       "recorded_verdict": "FAILED",
@@ -4095,7 +4081,7 @@
           "razorpay_payments:pay-000688",
           "razorpay_payments:pay-000689",
           "razorpay_settlements:stl-000106",
-          "bank_statement:bnk-000097",
+          "bank_statement:bnk-000103",
           "webhook_events:whk-000095"
         ],
         "agent_reason": "Fees were adjusted at settlement, so the small variance against gross is expected. Reconciled.",
@@ -4118,7 +4104,7 @@
         "razorpay_payments:pay-000688": "24884960aaeccab1d8bf6f84e6eadfd4c87e144fa32b52b8fcbf2084353fadf9",
         "razorpay_payments:pay-000689": "099a0f95e37af0bfa24f2a5ab24940bcdf5cc91ce53bf21f5f55d4763feb3bf9",
         "razorpay_settlements:stl-000106": "9a18b5a6f485ad253a83ad0734af335d21c741d3bd492ebbc182dea3d68eef74",
-        "bank_statement:bnk-000097": "88f060e4a92f61518b2bc2ed845617c03c95d1e2240a5054b761a94555b0356c",
+        "bank_statement:bnk-000103": "88f060e4a92f61518b2bc2ed845617c03c95d1e2240a5054b761a94555b0356c",
         "webhook_events:whk-000095": "d4b6d198fa63f562c2ebae2fd81a81b405c0e7e6295de08789d81adbdca882f4"
       },
       "recorded_verdict": "VERIFIED",
@@ -4147,7 +4133,7 @@
           "razorpay_payments:pay-000701",
           "razorpay_settlements:stl-000107",
           "razorpay_settlements:stl-000108",
-          "bank_statement:bnk-000098",
+          "bank_statement:bnk-000104",
           "webhook_events:whk-000096"
         ],
         "agent_reason": "The bank leg does not look complete to me. Routing for review rather than closing.",
@@ -4172,7 +4158,7 @@
         "razorpay_payments:pay-000701": "66ad0dd8b0a523d663cedb2865bf0f795b7a5fd9f4196f7e33565db278a5b0d3",
         "razorpay_settlements:stl-000107": "434347f43732933ac54bbed4874fb24a5a184276d36a5431c87d869238754917",
         "razorpay_settlements:stl-000108": "818ebdabcacadda1ee34171f7bd9fcf7d31d03e195112f47d6a8336aea65db54",
-        "bank_statement:bnk-000098": "42917059d53e546be1fbdbf4290722a9467b343694a5982e487b919a1328db94",
+        "bank_statement:bnk-000104": "42917059d53e546be1fbdbf4290722a9467b343694a5982e487b919a1328db94",
         "webhook_events:whk-000096": "981aa86c916284ae0e8f4f8b4a5482cf4ce63e95a533515a73c1f20e98577dfd"
       },
       "recorded_verdict": "FAILED",
@@ -4196,7 +4182,7 @@
           "razorpay_payments:pay-000708",
           "razorpay_payments:pay-000709",
           "razorpay_settlements:stl-000109",
-          "bank_statement:bnk-000099",
+          "bank_statement:bnk-000105",
           "webhook_events:whk-000097"
         ],
         "agent_reason": "Something is off between the settlement total and what landed. Needs a human.",
@@ -4205,7 +4191,7 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "84b4cc5ae58ee45681ca5c05ed5d07cda3917fef2a3f0f71724aac240ea78e99",
+      "pack_hash": "2bf0347484059800efeb87121b65296c44c686abeeac2609519e6ffb358cd842",
       "evidence_hashes": {
         "razorpay_payments:pay-000702": "bb7bc31cd9a58f1ecac2a9dee4c924d19232b802d172d81814c343bd791622fb",
         "razorpay_payments:pay-000703": "d3ad4df0fa8daf78a019ed07b1886ac08afc3016858608070c2c22df8fd0d050",
@@ -4216,7 +4202,7 @@
         "razorpay_payments:pay-000708": "ae18a76f5ddf7f0f94cbb87de878eb9e7149a3c50139cfda955a3419073b3c6a",
         "razorpay_payments:pay-000709": "ae05eb85b573c5254940d20a8c1e12a64428ac695c8b7574a54679bb7da281e8",
         "razorpay_settlements:stl-000109": "48be37c8cb79c0cf5cc2c22f51df03b1628b8a2347ae30ca430486a5abccc828",
-        "bank_statement:bnk-000099": "25eb1f48e54a66f0432b454b0285fa349acc3f591fb228ab95cfeb38197ca2ee",
+        "bank_statement:bnk-000105": "0d5385beda84428d6cb54146e473ea1cf50b0447401e19ec679387306ff622cb",
         "webhook_events:whk-000097": "962c16e1c463ad3433ed68b6f4eac1abdf8155b7615b3881dcb70115d660056d"
       },
       "recorded_verdict": "VERIFIED",
@@ -4239,7 +4225,7 @@
           "razorpay_payments:pay-000715",
           "razorpay_payments:pay-000716",
           "razorpay_settlements:stl-000110",
-          "bank_statement:bnk-000100",
+          "bank_statement:bnk-000106",
           "webhook_events:whk-000098"
         ],
         "agent_reason": "Could not tie the credited amount back to the captured payments. Not closing this one.",
@@ -4248,7 +4234,7 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "9ef9e737b97d84587a8769365b7d41f4cdbe937c3527c738dfcdbd91da163a95",
+      "pack_hash": "ee7e5e0321c6837e2146eeda9571fe37037f122c6449eaa80d4ce8ee4ff29fef",
       "evidence_hashes": {
         "razorpay_payments:pay-000710": "a9c77a1e87b623cc3f04249924897b6d94ef83014822f95097c4485156f0f08a",
         "razorpay_payments:pay-000711": "3de8c43a783c8b0533fd48f0a3515e77f47c1f6aae4f62b158f7a34ca4dc9418",
@@ -4258,7 +4244,7 @@
         "razorpay_payments:pay-000715": "23b6f9818e0e6a36124bc2295855e011d11147161103211be00672d56738e49d",
         "razorpay_payments:pay-000716": "9b718e04003b6d844ac8f69e88e4c4dfe4f28a3e5ad3f76127604034e6680d44",
         "razorpay_settlements:stl-000110": "4d0005e2879e79918e2bdba9bd8b6efbe7d4e83660ac352ccf8931723d5a174f",
-        "bank_statement:bnk-000100": "41c9898cc0f4eae20ca3916d11adc3786bd048f5785ab42fd57540d1bfeef541",
+        "bank_statement:bnk-000106": "faeac0a69078cf83cc0f0deb25ef42ee2a3bc91cf09036c8fdb70226baee0403",
         "webhook_events:whk-000098": "008d6ace3a2f6bb9a2180629862464565a55823c0f6a1484258d15dd33c32a66"
       },
       "recorded_verdict": "VERIFIED",
@@ -4279,16 +4265,15 @@
           "razorpay_payments:pay-000720",
           "razorpay_payments:pay-000721",
           "razorpay_settlements:stl-000111",
-          "bank_statement:bnk-000101",
           "webhook_events:whk-000099"
         ],
         "agent_reason": "Settlement matches the bank credit once fees and GST are accounted for. Nothing outstanding.",
-        "confidence": 0.95,
+        "confidence": 0.4,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "7b98319f142b498b053b6be3d55a31ce6302ee7250eb132bf47d7005ca5652e2",
+      "pack_hash": "8e68182e7e1d07d4d82dd0bcebee1cd23e3b23b6d9864bcdca6ce323fcbb42fd",
       "evidence_hashes": {
         "razorpay_payments:pay-000717": "e9c8c68e5019ff6a22998612ddee91f953842f8fea2b1c11bac720f7592865ca",
         "razorpay_payments:pay-000718": "8b59212de7e33e9ee5522bd6cf4caeeeab0c492bdb4aab25885501ec525ed568",
@@ -4296,11 +4281,10 @@
         "razorpay_payments:pay-000720": "8dbb24c59d9c089d206b167f91f43b438b0c4f4ce6f8cccf48eca4a054c7907b",
         "razorpay_payments:pay-000721": "ef22a2681800a25225fb3ef0d24ffc6df3eccfba7cfdde097c338e9bc604082b",
         "razorpay_settlements:stl-000111": "9e9df50f702a563bb7f454ff1e71eb72f0841b38e69296e4500407e39762eded",
-        "bank_statement:bnk-000101": "a61a99ce84a7f540cd47e30a550ad2dc1d93b310e7c481a42ee6b8709e86ad5f",
         "webhook_events:whk-000099": "3736bff94039be7e5e9cf9869048b4374d5cbf14534ea29ef000e140ef62b906"
       },
-      "recorded_verdict": "VERIFIED",
-      "recorded_reason_code": null,
+      "recorded_verdict": "UNCERTAIN",
+      "recorded_reason_code": "MISSING_EVIDENCE",
       "policy_version": "finance-policy-v12"
     },
     "B100": {
@@ -4317,7 +4301,7 @@
           "razorpay_payments:pay-000725",
           "razorpay_payments:pay-000726",
           "razorpay_settlements:stl-000112",
-          "bank_statement:bnk-000102",
+          "bank_statement:bnk-000109",
           "webhook_events:whk-000100"
         ],
         "agent_reason": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
@@ -4326,7 +4310,7 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "94202bdd98fbe91f8fb49a10993b774f66b4f9b8578bb285806a5c99ba640d8e",
+      "pack_hash": "0e7d38681081c939fcec25631d6b428bcf37eb95943fc43cbf5fdca2ecf670d1",
       "evidence_hashes": {
         "razorpay_payments:pay-000722": "03afec56baa0d3653d44d66e1ea1709f5424be8a0833979d16b6bcbc7e9b3c09",
         "razorpay_payments:pay-000723": "6018345751f843801951ba2495b0f15349d7ab6daf1d245e545ae87bae32eebb",
@@ -4334,7 +4318,7 @@
         "razorpay_payments:pay-000725": "4e55158f13892dcf3836536bc8af35248346102e80c9248b3265cd200ede7fbc",
         "razorpay_payments:pay-000726": "6a0e14b44147120f6acad6771e6ae090382cfc3dfbaadb7c646b8dbff9025301",
         "razorpay_settlements:stl-000112": "c402b0368538b04fbc86a3f22f92ac5b76ee3e10720b2ec295d128d997fd4396",
-        "bank_statement:bnk-000102": "ce720b246bba360604fb921d52d1c659a66e975a0895c3c75e2067c16990e181",
+        "bank_statement:bnk-000109": "87873df8609e3cbd4dda853bdcae4495907086b92dc6410fe77eab92c7f4f471",
         "webhook_events:whk-000100": "66be03650f95b23df1651c51346b5aaa1b07cc7d563c8bff58c7b1cfc1ca003f"
       },
       "recorded_verdict": "VERIFIED",
@@ -4359,7 +4343,7 @@
           "razorpay_payments:pay-000734",
           "razorpay_payments:pay-000735",
           "razorpay_settlements:stl-000113",
-          "bank_statement:bnk-000103",
+          "bank_statement:bnk-000110",
           "webhook_events:whk-000101"
         ],
         "agent_reason": "Could not tie the credited amount back to the captured payments. Not closing this one.",
@@ -4368,7 +4352,7 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "9638184275487e7d73735d77d46d2456f9935b707b9df7fbf49142d7f9b23a5a",
+      "pack_hash": "10ab0378c0d54036562baa335f6768efd8a8412b0724d621b125da50bf46f102",
       "evidence_hashes": {
         "razorpay_payments:pay-000727": "16707125309911a7f399f6cb1b1b7666812dfb1db44d819491b68933ba65ea6a",
         "razorpay_payments:pay-000728": "846a536cbd3e2719f2a3cb45a81496a6869268b9b11799f42ca09ac01e097a93",
@@ -4380,7 +4364,7 @@
         "razorpay_payments:pay-000734": "40712f2343ef6a9a0c5eca69fa1b369d8734e1083ead0722fd38efb5bbb307a8",
         "razorpay_payments:pay-000735": "1c371833a13b9caf21337c0d08577adee46f929ca63dbea87b32f617d358f25b",
         "razorpay_settlements:stl-000113": "51ee86886d5d454381f46aa8c9f0add06128e239733705dedf796a0192425a41",
-        "bank_statement:bnk-000103": "a9457d71e50aa92e388ea5b1027aae7383ae179eb87fb12388a194c750c14232",
+        "bank_statement:bnk-000110": "afa1ec6a958d6e6b41dd1b3de6888d32a5df0bf3c969259c4bae576c8b6fa08e",
         "webhook_events:whk-000101": "fb030600d09c40073f2794147d9dc5f7cd320314dad6f8aed5fe1af60e241f10"
       },
       "recorded_verdict": "VERIFIED",
@@ -4407,8 +4391,8 @@
           "razorpay_payments:pay-000745",
           "razorpay_payments:pay-000746",
           "razorpay_settlements:stl-000114",
-          "bank_statement:bnk-000104",
-          "bank_statement:bnk-000105",
+          "bank_statement:bnk-000111",
+          "bank_statement:bnk-000112",
           "webhook_events:whk-000102"
         ],
         "agent_reason": "Settlement matches the bank credit once fees and GST are accounted for. Nothing outstanding.",
@@ -4431,8 +4415,8 @@
         "razorpay_payments:pay-000745": "19d5148c2f926214a53ed45973c940d4d9f90736852b48e85e8682805838decf",
         "razorpay_payments:pay-000746": "9630ff99b7f6b9a47e1da2f10efd6151fc913560c06dd2a4e963256703a56d8b",
         "razorpay_settlements:stl-000114": "ce78e8ac1f9480669bdfc2a5e5234bed27a6367975dd76f7b145ad08b0195f3c",
-        "bank_statement:bnk-000104": "853790f53aff1249e88336f5524ce89b12defe8a0083b23b5fe92e33cc01a76a",
-        "bank_statement:bnk-000105": "853790f53aff1249e88336f5524ce89b12defe8a0083b23b5fe92e33cc01a76a",
+        "bank_statement:bnk-000111": "853790f53aff1249e88336f5524ce89b12defe8a0083b23b5fe92e33cc01a76a",
+        "bank_statement:bnk-000112": "853790f53aff1249e88336f5524ce89b12defe8a0083b23b5fe92e33cc01a76a",
         "webhook_events:whk-000102": "964d72f40d454a1994550973fcd2982b128dcd5a534f5c79584644d6f13415f9"
       },
       "recorded_verdict": "FAILED",
@@ -4456,7 +4440,7 @@
           "razorpay_payments:pay-000753",
           "razorpay_payments:pay-000754",
           "razorpay_settlements:stl-000115",
-          "bank_statement:bnk-000106",
+          "bank_statement:bnk-000113",
           "webhook_events:whk-000103"
         ],
         "agent_reason": "Fees were adjusted at settlement, so the small variance against gross is expected. Reconciled.",
@@ -4476,7 +4460,7 @@
         "razorpay_payments:pay-000753": "c03e1156fed826bd4f881147d88742e24fdb6912083b10afc0a28d276e3dd544",
         "razorpay_payments:pay-000754": "31b6a51845d3321b80e741ea40d46678b90fe784536a33ebdbac8ddca155eab9",
         "razorpay_settlements:stl-000115": "2354c50f580f87af52cf7c3f7c86f6d0907951ad71c7b9fd622359f647d0d588",
-        "bank_statement:bnk-000106": "a44b8beb696f782834677eefd997ae29b04e8e151823d1f2835c989fdb5c21c3",
+        "bank_statement:bnk-000113": "a44b8beb696f782834677eefd997ae29b04e8e151823d1f2835c989fdb5c21c3",
         "webhook_events:whk-000103": "a406289b44dbb8252369f1a94d9d583ef467e56e0200d3d4e0956e51be826848"
       },
       "recorded_verdict": "VERIFIED",
@@ -4503,7 +4487,7 @@
           "razorpay_payments:pay-000764",
           "razorpay_payments:pay-000765",
           "razorpay_settlements:stl-000116",
-          "bank_statement:bnk-000107",
+          "bank_statement:bnk-000114",
           "webhook_events:whk-000104"
         ],
         "agent_reason": "All captured payments net down to the credited amount and the UTR traces to the bank statement.",
@@ -4526,7 +4510,7 @@
         "razorpay_payments:pay-000764": "4634d57176355e6839c2378dbcc04705880085f38f764e661abc7213278c3634",
         "razorpay_payments:pay-000765": "ac3a2362cb62424af1de09e05980c72bbc925c8b9fb69dd7f76213ff17c0ef10",
         "razorpay_settlements:stl-000116": "ac03d8e0912fd22926eda9b324eb7bfa0b4f6a01e8313b363906ecbbd37f9652",
-        "bank_statement:bnk-000107": "0220cf5a441f600d15aaeea2a515614e2f152987403ea20bf8f32adbd9b95561",
+        "bank_statement:bnk-000114": "0220cf5a441f600d15aaeea2a515614e2f152987403ea20bf8f32adbd9b95561",
         "webhook_events:whk-000104": "3172dcf378363bc4d43dc6efd76ec825af725d5bc94b52afcb7cbc1cb3982218"
       },
       "recorded_verdict": "VERIFIED",
@@ -4547,7 +4531,7 @@
           "razorpay_payments:pay-000769",
           "razorpay_payments:pay-000770",
           "razorpay_settlements:stl-000117",
-          "bank_statement:bnk-000108",
+          "bank_statement:bnk-000115",
           "webhook_events:whk-000105"
         ],
         "agent_reason": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
@@ -4556,7 +4540,7 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "962fb375a98a2445b7ac6923463351370fdbaf8ca0b047f59c0e7e49b8c5f1e1",
+      "pack_hash": "c23fab2c7aa2c6ef0af135d4fea12bbdfc1e67e6f3a16b5c68df2e8c4da798ef",
       "evidence_hashes": {
         "razorpay_payments:pay-000766": "d215b9e55d8a8fc37ea8d2360f98d1f2659cfd07dac64d640351a9d251ec03bd",
         "razorpay_payments:pay-000767": "68aa8b2ac268e9f220233858f57b99c695201cc6d10a101f99bba4f9e7ad36b6",
@@ -4564,7 +4548,7 @@
         "razorpay_payments:pay-000769": "28d6195935d294d60c836f3d7511491d9939a30808e8ab8f12883fa5b6149416",
         "razorpay_payments:pay-000770": "157db7b9a41968fdc764d3d0d98681f0bb1c3c671f96b5f17f57da0bcc0a705c",
         "razorpay_settlements:stl-000117": "0f9518df49ca836d41ced2bf4c2a408d8019fb5a8e715e602f7782f5f687b027",
-        "bank_statement:bnk-000108": "04f272e85c036fa77e5b7774661b20113c067b0e2d8dd959eb05b15d70a0d64a",
+        "bank_statement:bnk-000115": "923b05359b8529b528a93734f7347ddfcbe094f48d236e1643fa971088108e2c",
         "webhook_events:whk-000105": "1f081717000a9b0730958d4b997aad8b53563b4869477bccb086829555e20d61"
       },
       "recorded_verdict": "VERIFIED",
@@ -4591,7 +4575,7 @@
           "razorpay_payments:pay-000780",
           "razorpay_payments:pay-000781",
           "razorpay_settlements:stl-000118",
-          "bank_statement:bnk-000109",
+          "bank_statement:bnk-000116",
           "webhook_events:whk-000106"
         ],
         "agent_reason": "Verified the UTR against the bank feed and the totals line up. Safe to close.",
@@ -4600,7 +4584,7 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "c0b620cabc4a79e42a3d442e118fe49b431198e662b55001c15e1756731d2722",
+      "pack_hash": "7c434ea0b8aeb9ce02acd2240762e752bcecfa6016e8887d5694e110f259d19e",
       "evidence_hashes": {
         "razorpay_payments:pay-000771": "f0bdef8f8d1937e341773d037f148c80157756a4d2a4538a58beb49f93b8183e",
         "razorpay_payments:pay-000772": "5535144aa6272773ed69fe1f7cd88de50f992a1f207d2eccbcc78fffc00619f1",
@@ -4614,7 +4598,7 @@
         "razorpay_payments:pay-000780": "2b7997381283a598dbfae08c0bc567bf9bd8b406eae7bcadd4b44cf424159edd",
         "razorpay_payments:pay-000781": "b5c52c034312c44c2fb8e1c8ba8647c3ec5fdbea89d7dbbfb375b6841145b3e7",
         "razorpay_settlements:stl-000118": "3c5e6c0251c304c8e53e5cb18724a7072fd1ffa5523fa3031f0ddf9fa4da4f25",
-        "bank_statement:bnk-000109": "8676224f4d96a2a56137c485adb2d88f787152b30565aa74e65725471603f380",
+        "bank_statement:bnk-000116": "8aa9c626a681d2fdaaf325a9e0e7e7708588ffa1c440960c77f45e4697a031a0",
         "webhook_events:whk-000106": "273c4bc7f2fed8ea4c67066497a3d113ea010c06c94943101c3e9b7f6ed749fc"
       },
       "recorded_verdict": "UNCERTAIN",
@@ -4633,7 +4617,7 @@
           "razorpay_payments:pay-000783",
           "razorpay_payments:pay-000784",
           "razorpay_settlements:stl-000119",
-          "bank_statement:bnk-000110",
+          "bank_statement:bnk-000117",
           "webhook_events:whk-000107"
         ],
         "agent_reason": "Could not tie the credited amount back to the captured payments. Not closing this one.",
@@ -4648,7 +4632,7 @@
         "razorpay_payments:pay-000783": "e5360d9eaf75cfab2cc3f716358ca697effb31bdeed756742aff7b030eefa875",
         "razorpay_payments:pay-000784": "a76281a3b79c02bdee2f78d5814f2dd7c46159f7b8ab907b930906e9c1eaf74d",
         "razorpay_settlements:stl-000119": "5064ef72bdf6211559e46ba3dc1db50ff3bd93ffdb1241fc2f65479c4bd30180",
-        "bank_statement:bnk-000110": "34fb3ddee90596242de22630568ed695edd57a7d51904384de469062816b85cc",
+        "bank_statement:bnk-000117": "34fb3ddee90596242de22630568ed695edd57a7d51904384de469062816b85cc",
         "webhook_events:whk-000107": "aa83275bf615f340fd47d75621e29a90c106cf5c669b9e03940d7ede545f683a"
       },
       "recorded_verdict": "VERIFIED",
@@ -4671,7 +4655,7 @@
           "razorpay_payments:pay-000790",
           "razorpay_payments:pay-000791",
           "razorpay_settlements:stl-000120",
-          "bank_statement:bnk-000111",
+          "bank_statement:bnk-000118",
           "webhook_events:whk-000108"
         ],
         "agent_reason": "The bank leg does not look complete to me. Routing for review rather than closing.",
@@ -4690,7 +4674,7 @@
         "razorpay_payments:pay-000790": "a324473da54c92081ff7bb8cd77ff53507b6afb1b5b957bf8ba45edcee902bed",
         "razorpay_payments:pay-000791": "6a8dce21f703b842aed9cb0ed9de9f5cd650cfb8bb2d5ab25efa01a1c674f439",
         "razorpay_settlements:stl-000120": "be27090fac985c87c00f462ed3b6bc47d53504a7f45a6d3b0d0f01f4240c6f38",
-        "bank_statement:bnk-000111": "0d9f4ef06c4f5c50469245d0dd7803f0697881f71a94657fdc67531556143cb6",
+        "bank_statement:bnk-000118": "0d9f4ef06c4f5c50469245d0dd7803f0697881f71a94657fdc67531556143cb6",
         "webhook_events:whk-000108": "47a04b8ca4dfe799c8b07e35ac59b5a95af968b2c667effe4cfc5c2dc9a921a8"
       },
       "recorded_verdict": "VERIFIED",
@@ -4709,7 +4693,7 @@
           "razorpay_payments:pay-000793",
           "razorpay_payments:pay-000794",
           "razorpay_settlements:stl-000121",
-          "bank_statement:bnk-000112",
+          "bank_statement:bnk-000119",
           "webhook_events:whk-000109",
           "bank_statement:bnk-0109X"
         ],
@@ -4725,7 +4709,7 @@
         "razorpay_payments:pay-000793": "0d646c44a262d14efe90309168e58f31e52873067ac8422720a369b1a2562858",
         "razorpay_payments:pay-000794": "869bb857a74728ba6f69d2c19e578f7a065460799e99d525783d7c7bcff9a350",
         "razorpay_settlements:stl-000121": "7f8b1530ffcac65e32f43ec75b848023fac9a40bd0b3e14b3e61dbc5c8607002",
-        "bank_statement:bnk-000112": "645726c9bd29d89466e8e64c284aa0a341f111010711a5f8e235e21bc89221b7",
+        "bank_statement:bnk-000119": "645726c9bd29d89466e8e64c284aa0a341f111010711a5f8e235e21bc89221b7",
         "webhook_events:whk-000109": "74af7b80dd00f38bb5d03db44451d8d56c39bd4b2e3940d0e28ecbffdda309cf"
       },
       "recorded_verdict": "VERIFIED",
@@ -4751,7 +4735,7 @@
           "razorpay_payments:pay-000803",
           "razorpay_payments:pay-000804",
           "razorpay_settlements:stl-000122",
-          "bank_statement:bnk-000113",
+          "bank_statement:bnk-000120",
           "webhook_events:whk-000110"
         ],
         "agent_reason": "Could not tie the credited amount back to the captured payments. Not closing this one.",
@@ -4760,7 +4744,7 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "be085e69222457e67d55ee91ddc8894323e7b5e73b1e53f5e1192b5839a48ccc",
+      "pack_hash": "a489a127b775effcc14dad8f340a100620507e2950a89bc895479f5b4f9f77d3",
       "evidence_hashes": {
         "razorpay_payments:pay-000795": "5feea361352ff71944f35d576a0968b12557417354ef393d512f5c8355fd968a",
         "razorpay_payments:pay-000796": "c30242deaaf17ccc236310c82fd0b92e80a25b320821cf90d7f22114080e43dd",
@@ -4773,7 +4757,7 @@
         "razorpay_payments:pay-000803": "058dbb4c95220e5fe97874b8fcaf0c33bb4647b5ff552c1810f6b08bccfc3d7d",
         "razorpay_payments:pay-000804": "6e86e7564527100bd3274fee63b2fa003c1104a05470a533a79820af2117e3cb",
         "razorpay_settlements:stl-000122": "3678f5d13c4e483f4e407d8f34866a67729e7674356d168168dcbc68df376ceb",
-        "bank_statement:bnk-000113": "f86508edf3f9eff4379e06296ce3d66138f94f003236fd2eeffd45d915781ed0",
+        "bank_statement:bnk-000120": "57ad9948ba5a0a3e523aaf3bcea43f6cf80603123306860f29eb2358ccd571b9",
         "webhook_events:whk-000110": "771fa00d942f05fb64e677780fc22f49d4865dea0082411e972f2a4f9bf42c4e"
       },
       "recorded_verdict": "VERIFIED",
@@ -4795,7 +4779,7 @@
           "razorpay_payments:pay-000809",
           "razorpay_settlements:stl-000123",
           "razorpay_settlements:stl-000124",
-          "bank_statement:bnk-000114",
+          "bank_statement:bnk-000121",
           "webhook_events:whk-000111"
         ],
         "agent_reason": "Settlement matches the bank credit once fees and GST are accounted for. Nothing outstanding.",
@@ -4813,7 +4797,7 @@
         "razorpay_payments:pay-000809": "31ef9eb896b4169ebf4a46f4f26b82ce3cf9d84f1e9607848853ac24e31a6e90",
         "razorpay_settlements:stl-000123": "80821cdd3b6510e3eed28adcea08e2baa443dcc935438a79c72461c4fcec94ea",
         "razorpay_settlements:stl-000124": "d3889a7585ce40e3289a026b00358b1bddfc0538f0bd9e40fe091a32e239cd56",
-        "bank_statement:bnk-000114": "fc292bea6362da55b4b709368dcb7cb019cd991b8d689b0726c9eac9b12ce193",
+        "bank_statement:bnk-000121": "fc292bea6362da55b4b709368dcb7cb019cd991b8d689b0726c9eac9b12ce193",
         "webhook_events:whk-000111": "a220bb0e17cbcaa3a07bf359689bf7a11751ec546034171aa6d0a087410efdd6"
       },
       "recorded_verdict": "FAILED",
@@ -4833,7 +4817,7 @@
           "razorpay_payments:pay-000812",
           "razorpay_payments:pay-000813",
           "razorpay_settlements:stl-000125",
-          "bank_statement:bnk-000115",
+          "bank_statement:bnk-000122",
           "webhook_events:whk-000112"
         ],
         "agent_reason": "Fees were adjusted at settlement, so the small variance against gross is expected. Reconciled.",
@@ -4849,7 +4833,7 @@
         "razorpay_payments:pay-000812": "095f387ee8f449537df11af97af540a5737e09424fd4eeaf6ff5c32ef0507bef",
         "razorpay_payments:pay-000813": "47aa8261d38403fce76cbcb28f19270ae3fe4f5731bc3ef0b424d1eb02b921d3",
         "razorpay_settlements:stl-000125": "86ec83831ad56266e1bab19002dec4930f0d10b256ece34e59491f46001c13d0",
-        "bank_statement:bnk-000115": "e17d537e258af04f74a04e69de39fa6ccd897f41e17fb22daf89a746b8d9db91",
+        "bank_statement:bnk-000122": "e17d537e258af04f74a04e69de39fa6ccd897f41e17fb22daf89a746b8d9db91",
         "webhook_events:whk-000112": "cf3c79b2a6f087ab5f341ec393b0d50fb79e379cd175082c364d4f5415305051"
       },
       "recorded_verdict": "VERIFIED",
@@ -4876,7 +4860,7 @@
           "razorpay_payments:pay-000823",
           "razorpay_payments:pay-000824",
           "razorpay_settlements:stl-000126",
-          "bank_statement:bnk-000116",
+          "bank_statement:bnk-000123",
           "webhook_events:whk-000113"
         ],
         "agent_reason": "All captured payments net down to the credited amount and the UTR traces to the bank statement.",
@@ -4899,7 +4883,7 @@
         "razorpay_payments:pay-000823": "82e398c574ae8e3a51ab6ad7c854c1afbb62389cea940e4dbbb49d76b96c91f4",
         "razorpay_payments:pay-000824": "fd1c70fa31e1cea3be41a7c6fbaef7edd27e47b8419b6f3e440bc6b4921242fc",
         "razorpay_settlements:stl-000126": "0d86dfe2f61eb0853a3023299eac769a469f1a4ddf399ff9269e898ee8d09f67",
-        "bank_statement:bnk-000116": "cff9ea3b4d77f3277ab3680ab3a349edd331c7ff59f742d879287103dd972dd3",
+        "bank_statement:bnk-000123": "cff9ea3b4d77f3277ab3680ab3a349edd331c7ff59f742d879287103dd972dd3",
         "webhook_events:whk-000113": "1b87700be609a81d608fdf3127c8d0ca3801be8acdba781bb4277ca70e3a0069"
       },
       "recorded_verdict": "VERIFIED",
@@ -4919,27 +4903,25 @@
           "razorpay_payments:pay-000827",
           "razorpay_payments:pay-000828",
           "razorpay_settlements:stl-000127",
-          "bank_statement:bnk-000117",
           "webhook_events:whk-000114"
         ],
         "agent_reason": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
-        "confidence": 0.95,
+        "confidence": 0.4,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "812217c37f9d4b31e48a4249b689803cfd9b8bf9c0cd0a0db922141656c97cf3",
+      "pack_hash": "673dccc849affabea93c265a569b4a8e4966d2af49426ebdf85a5a33417c82cd",
       "evidence_hashes": {
         "razorpay_payments:pay-000825": "8e146ebcf89110e9e376d04071c46e4e1ab27748c5bd1873036ab76edccecce6",
         "razorpay_payments:pay-000826": "476fbbe429f78d1b790ec846cb69d6ee267958db7047b89ebe4eb86fcc711951",
         "razorpay_payments:pay-000827": "3f078bdf87758d973c7ec5ffdd8724369210b0d4120f80d57bcd64e7d3d6d685",
         "razorpay_payments:pay-000828": "9f289065ef9df48eef81a620952ea87020c1232b50ae8b1bc2538deaf1b14599",
         "razorpay_settlements:stl-000127": "e4a23343c6405a8d08132e73d7aa1d256cb4765548967e36dcfbfc9e551377c4",
-        "bank_statement:bnk-000117": "30a8faa83c0bbaa5dc45f15af193f8701ffe4323fc86570276464326b3de6658",
         "webhook_events:whk-000114": "ef08458276fb57f6859fc8bfa7ac898536ef8e062340dc8386cebe17bc28f771"
       },
-      "recorded_verdict": "VERIFIED",
-      "recorded_reason_code": null,
+      "recorded_verdict": "UNCERTAIN",
+      "recorded_reason_code": "MISSING_EVIDENCE",
       "policy_version": "finance-policy-v13"
     },
     "B115": {
@@ -4956,7 +4938,7 @@
           "razorpay_payments:pay-000832",
           "razorpay_payments:pay-000833",
           "razorpay_settlements:stl-000128",
-          "bank_statement:bnk-000118",
+          "bank_statement:bnk-000126",
           "webhook_events:whk-000115"
         ],
         "agent_reason": "Verified the UTR against the bank feed and the totals line up. Safe to close.",
@@ -4965,7 +4947,7 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "92b4629e865435e2ec9eaef9d73303368ea0a2c42b67d71c8ac0150489376b0f",
+      "pack_hash": "ad49c10cfe3cde9e43e237ce5f6cbd35bd570015ebfc051df26cfef67dc5bbf0",
       "evidence_hashes": {
         "razorpay_payments:pay-000829": "ba6e03d88390de1e44370d7d315e5c9f57a7d61be36048f133e011aa6625df98",
         "razorpay_payments:pay-000830": "8d972fcd4bb4aa025f86cccde001fa256821d05d835ddc0c5de034730b2a78c1",
@@ -4973,7 +4955,7 @@
         "razorpay_payments:pay-000832": "a626d7fefd6e23e9b6733b2fdead13386cc193b17b01ca44444522ed9358a1b4",
         "razorpay_payments:pay-000833": "8d7c67bd2a0f244c1fc491fdebe84b2f5fbb967f6b33dac044bd56cac7458714",
         "razorpay_settlements:stl-000128": "e3165b04a146ea9b32eafa83ea296a73de64f2da9add197a6485fba5be6bf51a",
-        "bank_statement:bnk-000118": "65e5a87bf1d95c5bd5d8122ab604144c68e235bcbc5e473165be641da86552f4",
+        "bank_statement:bnk-000126": "6106a130210ee0b3ec12c51a9fb540d7955fc09bd8be2b43c84020d66e605cf7",
         "webhook_events:whk-000115": "0a2c0fb368ef44c85660e613c542fdffb27e0adceea52e517d7fc0d134bc9dc4"
       },
       "recorded_verdict": "VERIFIED",
@@ -5002,7 +4984,7 @@
           "razorpay_payments:pay-000845",
           "razorpay_settlements:stl-000129",
           "razorpay_settlements:stl-000130",
-          "bank_statement:bnk-000119",
+          "bank_statement:bnk-000127",
           "webhook_events:whk-000116"
         ],
         "agent_reason": "Could not tie the credited amount back to the captured payments. Not closing this one.",
@@ -5027,7 +5009,7 @@
         "razorpay_payments:pay-000845": "f4c140be39bc8dd981f96020d6a6985e393d93464bcc6392b4814f9b8ddbcadb",
         "razorpay_settlements:stl-000129": "e2c693ec374e0d61f4073a774a1376c21f8ed3122c28ab7e688918e2145ec476",
         "razorpay_settlements:stl-000130": "40b4b53d452e0d95e4998324b0e891e1fbef7edc2122ce470bda910e1fb02f28",
-        "bank_statement:bnk-000119": "2b7b4578f35b6fb755e22d015729b30c281be0dc1e1d0a07eb6dc195ad1f37c9",
+        "bank_statement:bnk-000127": "2b7b4578f35b6fb755e22d015729b30c281be0dc1e1d0a07eb6dc195ad1f37c9",
         "webhook_events:whk-000116": "c88a17081630ffb419c7e4e59acb56031c2bc81459514efd7d218fef44a61e0b"
       },
       "recorded_verdict": "FAILED",
@@ -5047,7 +5029,7 @@
           "razorpay_payments:pay-000848",
           "razorpay_payments:pay-000849",
           "razorpay_settlements:stl-000131",
-          "bank_statement:bnk-000120",
+          "bank_statement:bnk-000128",
           "webhook_events:whk-000117"
         ],
         "agent_reason": "The bank leg does not look complete to me. Routing for review rather than closing.",
@@ -5063,7 +5045,7 @@
         "razorpay_payments:pay-000848": "0979a9848710c78ab127ca18cc868109a476270fba6a9ebffec8de89610c7243",
         "razorpay_payments:pay-000849": "cd1f73fc5c60a3264749a9c50bcd37468f1732407507feec00c7f4e4a33484c5",
         "razorpay_settlements:stl-000131": "147bcea40cfa54c39ccf06eb89ee386122e08e487e637d785d42902791695a6b",
-        "bank_statement:bnk-000120": "671484483492ae8fa19206e7f7c6bb88b668671b454ea73169fbfd5d5f1144f4",
+        "bank_statement:bnk-000128": "671484483492ae8fa19206e7f7c6bb88b668671b454ea73169fbfd5d5f1144f4",
         "webhook_events:whk-000117": "36ebd019709b745588573ea7199bf987b85b3b831c454951f6e84c26da8f1d42"
       },
       "recorded_verdict": "VERIFIED",
@@ -5087,7 +5069,7 @@
           "razorpay_payments:pay-000856",
           "razorpay_payments:pay-000857",
           "razorpay_settlements:stl-000132",
-          "bank_statement:bnk-000121",
+          "bank_statement:bnk-000129",
           "webhook_events:whk-000118"
         ],
         "agent_reason": "All captured payments net down to the credited amount and the UTR traces to the bank statement.",
@@ -5107,7 +5089,7 @@
         "razorpay_payments:pay-000856": "4435cfdfdd2b3f0688f8ea919f3627a3b0b8b94dc9e35a089fc951414be12247",
         "razorpay_payments:pay-000857": "754c4165a5aa4d597ffb28d8df4fd0de11cd352fd4b63d045de7491bbc1fb4ec",
         "razorpay_settlements:stl-000132": "529c070dd55d075c090f2dacfd3ed027755b8ef586ca584a16676c1b2c984864",
-        "bank_statement:bnk-000121": "25d18101394fc2e3b0ad34caca028ddcb362842f055ac15d329e2ced20cc3fbf",
+        "bank_statement:bnk-000129": "25d18101394fc2e3b0ad34caca028ddcb362842f055ac15d329e2ced20cc3fbf",
         "webhook_events:whk-000118": "899507207f0d4b56fade2365e0e3d0d5ea8279a11ba08e22c755ffc47f86e9f1"
       },
       "recorded_verdict": "VERIFIED",
@@ -5133,7 +5115,7 @@
           "razorpay_payments:pay-000866",
           "razorpay_settlements:stl-000133",
           "razorpay_settlements:stl-000134",
-          "bank_statement:bnk-000122",
+          "bank_statement:bnk-000130",
           "webhook_events:whk-000119"
         ],
         "agent_reason": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
@@ -5142,7 +5124,7 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "a9c3d33e4b9f8d1ae124a8b4f0984a6ef1183dd5d5d3755cf123585dd8c44ccb",
+      "pack_hash": "1af307dde9895c491d6af6a90ea4999678b5800c7e299268ecadb48dda01d425",
       "evidence_hashes": {
         "razorpay_payments:pay-000858": "f6887bc9099eda5ae97e1e278444832c92481d7309bdf16d656a05afd165d094",
         "razorpay_payments:pay-000859": "f4ab4015c6bd7d2f8c98b0b36040f4adcd7d4058dcb1f8464b7be39a0e830a41",
@@ -5155,7 +5137,7 @@
         "razorpay_payments:pay-000866": "623eaffed59b41b2e9886b8763eb543d306c9fe8fc844f206816504946dc177b",
         "razorpay_settlements:stl-000133": "e85eb7a498e8e05332d667ef3feab0cbece8c6240b7f43799b1e2c614ca1a7b5",
         "razorpay_settlements:stl-000134": "0ca51410f815094c80d76b40f81b647cf2b2eb115f17f0a465c9cdc4d2631fb3",
-        "bank_statement:bnk-000122": "1a7f73e8e7fe339f8acde379c15e7c73e1ebaa00f2471c5d38b2510d64741558",
+        "bank_statement:bnk-000130": "27390fbc87a91f8043df53178729d6a061b61c4b9aaae675b2e2a1cb07e58701",
         "webhook_events:whk-000119": "c59a3f30820a30e809331b0fd756ebf006bbc4b884b009246bf36357d415a985"
       },
       "recorded_verdict": "FAILED",
@@ -5177,7 +5159,7 @@
           "razorpay_payments:pay-000871",
           "razorpay_payments:pay-000872",
           "razorpay_settlements:stl-000135",
-          "bank_statement:bnk-000123",
+          "bank_statement:bnk-000131",
           "webhook_events:whk-000120"
         ],
         "agent_reason": "Settlement matches the bank credit once fees and GST are accounted for. Nothing outstanding.",
@@ -5195,7 +5177,7 @@
         "razorpay_payments:pay-000871": "3734f97ffd1ca7840185145923a4f39bfd7130939950a0529d7577bdea2fbd92",
         "razorpay_payments:pay-000872": "b106fec96878d35ad36388d7a291b78860f79691977fcb8def80749f182c1007",
         "razorpay_settlements:stl-000135": "3db52ef24ac3361fc02af75f13eb57b3eb37ca17ffba7c54ba78acca3e24fc4d",
-        "bank_statement:bnk-000123": "f3e6de0179d34af03e281d63aba8a3007da18f21ba7fa332200068f08b4e0c8f",
+        "bank_statement:bnk-000131": "f3e6de0179d34af03e281d63aba8a3007da18f21ba7fa332200068f08b4e0c8f",
         "webhook_events:whk-000120": "30145e834f10e2b63bea95e6c3ec033f6a89880ebabbcc07f7ad282677bf2d29"
       },
       "recorded_verdict": "FAILED",
@@ -5215,7 +5197,7 @@
           "razorpay_payments:pay-000875",
           "razorpay_settlements:stl-000136",
           "razorpay_settlements:stl-000137",
-          "bank_statement:bnk-000124",
+          "bank_statement:bnk-000132",
           "webhook_events:whk-000121"
         ],
         "agent_reason": "Fees were adjusted at settlement, so the small variance against gross is expected. Reconciled.",
@@ -5231,7 +5213,7 @@
         "razorpay_payments:pay-000875": "1c4312593b76e84b068a66c8dadfd4564f2b530b83a4c5578a748c066ebdc302",
         "razorpay_settlements:stl-000136": "9b49a599ca7e3ca4c20890c0b67e381ad5c224e33e6a77f2ea23eb5b8efae950",
         "razorpay_settlements:stl-000137": "9b49a599ca7e3ca4c20890c0b67e381ad5c224e33e6a77f2ea23eb5b8efae950",
-        "bank_statement:bnk-000124": "5ba0e975452789f2aa0053713672b194901d970c12453e0da89bdaad95061fd1",
+        "bank_statement:bnk-000132": "5ba0e975452789f2aa0053713672b194901d970c12453e0da89bdaad95061fd1",
         "webhook_events:whk-000121": "461ecbae4f9c2ff18eb96fbd378df22c58dd8b85a9a1a3f79478dd31954cfd4b"
       },
       "recorded_verdict": "FAILED",
@@ -5301,7 +5283,7 @@
           "razorpay_payments:pay-000890",
           "razorpay_settlements:stl-000139",
           "razorpay_settlements:stl-000140",
-          "bank_statement:bnk-000125",
+          "bank_statement:bnk-000133",
           "webhook_events:whk-000123"
         ],
         "agent_reason": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
@@ -5317,7 +5299,7 @@
         "razorpay_payments:pay-000890": "22ef7e482391fde23cd40de9fbbc6e08fd07d9fe782c33ca985c02dabd604a47",
         "razorpay_settlements:stl-000139": "d7605c48d0e5c82d5f3ada327075a509f203ee2e8df0012537fc7208b16704cc",
         "razorpay_settlements:stl-000140": "ea1a2866a36762f8f55274811942bf8d25e420664f7187e0722943476c17d3a1",
-        "bank_statement:bnk-000125": "407fb8a8673370af9d015433b862809218fad6d5ebc23897f6f257660852bda9",
+        "bank_statement:bnk-000133": "407fb8a8673370af9d015433b862809218fad6d5ebc23897f6f257660852bda9",
         "webhook_events:whk-000123": "ec5fa623535e78d58085bcc8f0235f14f981b02640f6a7208998ccd2d823189a"
       },
       "recorded_verdict": "FAILED",
@@ -5340,7 +5322,7 @@
           "razorpay_payments:pay-000896",
           "razorpay_payments:pay-000897",
           "razorpay_settlements:stl-000141",
-          "bank_statement:bnk-000126",
+          "bank_statement:bnk-000134",
           "webhook_events:whk-000124"
         ],
         "agent_reason": "The bank leg does not look complete to me. Routing for review rather than closing.",
@@ -5349,7 +5331,7 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "566e0c748faddffe8e701d4cdf86fdf91120077422853113cbee50f1a53697b0",
+      "pack_hash": "14ac2b1faa4fe68d7c905f4d41fb666a1de358919bacbcffb0102d5764235823",
       "evidence_hashes": {
         "razorpay_payments:pay-000891": "f2e6304d39e1f52a6ac96afd604c5407b921f7f31eaa1cc01605f270ac973005",
         "razorpay_payments:pay-000892": "adc64a8c8202ec3d81507bd337dd794326e4838936b3cf2f2f9a95cfc3594c7c",
@@ -5359,7 +5341,7 @@
         "razorpay_payments:pay-000896": "cce7808a4c778b7b352552621ff50cda27866185f8959a5470e30fcf462703a3",
         "razorpay_payments:pay-000897": "5b0a3b6c7cca1062b61998b1e677092b828dba5425572a96237a679a8f233865",
         "razorpay_settlements:stl-000141": "29738e106cc972c205cb8004a268054f859e38cfb138bdb6dcbf56bbcfb33aad",
-        "bank_statement:bnk-000126": "fea682df0ceabee97f4db6a6c09996330890c4f59e99591622964513349747aa",
+        "bank_statement:bnk-000134": "f46a89b1deeef401e02082f2ff799f733d8abf82e899b81a4d9660de013b10ba",
         "webhook_events:whk-000124": "3e459d8ccafc61f8f52fa9d2ba83e0b0f1e8e43036a0ec1141905c64de2cebde"
       },
       "recorded_verdict": "FAILED",
@@ -5382,7 +5364,7 @@
           "razorpay_payments:pay-000903",
           "razorpay_payments:pay-000904",
           "razorpay_settlements:stl-000142",
-          "bank_statement:bnk-000127",
+          "bank_statement:bnk-000135",
           "webhook_events:whk-000125",
           "webhook_events:whk-000126"
         ],
@@ -5392,7 +5374,7 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "e38e2c9b62c4dc63723ab750f417b2ecb1123b4fbd5adb1c44c1113513d3dda6",
+      "pack_hash": "19f7c4e3e32ef76b53b841c536b35df53cf8d19f7b60cc536cac63117385ae9c",
       "evidence_hashes": {
         "razorpay_payments:pay-000898": "30f14c658c3cacf10d68eaffde8650b483d098f920600579ea2f4a9c892b2a9a",
         "razorpay_payments:pay-000899": "6d066b461e170e6b8e37955aae8fce88f8eb5cc34a467609b2fe77cc685fd1ba",
@@ -5402,7 +5384,7 @@
         "razorpay_payments:pay-000903": "f3c588328ad17129a81d4ee897f5705e45aba0e7ebba4517b19d8a9d1ce4f689",
         "razorpay_payments:pay-000904": "a1134588e16184a9c2c65058bfabe5178908d80ce8c6156bb9536d877dfbad98",
         "razorpay_settlements:stl-000142": "a5b76a50cb8509a7243056589813801906c62ecbfda589ff647e25768e95cd22",
-        "bank_statement:bnk-000127": "62b815a65bff5b1c76c48611ffb5ce3b8d29938619dedb0a999345aed6d98925",
+        "bank_statement:bnk-000135": "411a159e58531e8ec6b0688f84e65e3ecb29fa33b03eb4faa4b3d3438560e91d",
         "webhook_events:whk-000125": "b68102c5692741ebf3ccabf71cf9a246c598f6ce563f0795b02ade564a612ebf",
         "webhook_events:whk-000126": "b68102c5692741ebf3ccabf71cf9a246c598f6ce563f0795b02ade564a612ebf"
       },
@@ -5431,7 +5413,7 @@
           "razorpay_payments:pay-000915",
           "razorpay_payments:pay-000916",
           "razorpay_settlements:stl-000143",
-          "bank_statement:bnk-000128",
+          "bank_statement:bnk-000136",
           "webhook_events:whk-000127"
         ],
         "agent_reason": "Fees were adjusted at settlement, so the small variance against gross is expected. Reconciled.",
@@ -5455,7 +5437,7 @@
         "razorpay_payments:pay-000915": "162c159fe6e0538647be8b35702b49dfa9d0aef9fa9975a9e19fcce48f15a3ff",
         "razorpay_payments:pay-000916": "b0a5fbf98cbd1d1d26a21ea3b4723a1c4367022dd3de68c5bc15918e4e91759c",
         "razorpay_settlements:stl-000143": "d828bdc3709e1f875842391bf962474fe520e4bb744e181b71cf39a0361621b8",
-        "bank_statement:bnk-000128": "e57c759dd9c89c4e89d3722b9183233a48821aa6ce01998d1fd08ad452ba3858",
+        "bank_statement:bnk-000136": "e57c759dd9c89c4e89d3722b9183233a48821aa6ce01998d1fd08ad452ba3858",
         "webhook_events:whk-000127": "40a45fb5047e32955e5d65a25bb383f6c5dee635a375703c93545ce2a585f777"
       },
       "recorded_verdict": "UNCERTAIN",
@@ -5522,17 +5504,16 @@
           "razorpay_payments:pay-000933",
           "razorpay_payments:pay-000934",
           "razorpay_settlements:stl-000145",
-          "bank_statement:bnk-000129",
           "webhook_events:whk-000129",
           "webhook_events:whk-000130"
         ],
         "agent_reason": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
-        "confidence": 0.95,
+        "confidence": 0.4,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "0904c9f05c6fbefad5c56fe25e23201f8e57ee0ec81f214ddd476a5d0e01f572",
+      "pack_hash": "bdc644054011ce863640dfd58298925823c899d7c71eb7c5a15bb182d0e84e43",
       "evidence_hashes": {
         "razorpay_payments:pay-000924": "f0957bf2f0fc18029ec0c43ab539a3af9f3266afd2d05ed0326c37174bd47649",
         "razorpay_payments:pay-000925": "604e6f394da11352d62c827897a9add68352c1dd4e8c544766be89b1df173840",
@@ -5546,12 +5527,11 @@
         "razorpay_payments:pay-000933": "faf83ce60be1e421cffc5fe1ff6d38f7aa081f9a9d35e84765bd4dcdc759f002",
         "razorpay_payments:pay-000934": "ecb3bafe5bb70eb6f53dbfd8df6b39b712b17fa2e6f4094e1359b88126bff065",
         "razorpay_settlements:stl-000145": "36f400701b594ab4f8fe84f903730e9948e6b58104546570df3ec7c6c84c2843",
-        "bank_statement:bnk-000129": "453aa084b7b6e081cd3aff8bf3f681a8dda08d34f3c049f5700d8cf3831ccfb4",
         "webhook_events:whk-000129": "b8ac0f464649e806ff3007f80fa84a4d2a9d39ad8f49114bc84883f8801107ac",
         "webhook_events:whk-000130": "b8ac0f464649e806ff3007f80fa84a4d2a9d39ad8f49114bc84883f8801107ac"
       },
-      "recorded_verdict": "FAILED",
-      "recorded_reason_code": "DUPLICATE_EVENT",
+      "recorded_verdict": "UNCERTAIN",
+      "recorded_reason_code": "MISSING_EVIDENCE",
       "policy_version": "finance-policy-v12"
     },
     "A009": {
@@ -5619,7 +5599,7 @@
           "razorpay_payments:pay-000954",
           "razorpay_settlements:stl-000147",
           "razorpay_settlements:stl-000148",
-          "bank_statement:bnk-000130",
+          "bank_statement:bnk-000139",
           "webhook_events:whk-000132"
         ],
         "agent_reason": "The bank leg does not look complete to me. Routing for review rather than closing.",
@@ -5643,7 +5623,7 @@
         "razorpay_payments:pay-000954": "1a459f572742210d06a59ebc8ce66cced97a1fa0774c9d514d9a1741b124c8a1",
         "razorpay_settlements:stl-000147": "9ccd9ef0055426588af5aeeb9cc224317445e2d72b5306e0d00386f6a951682b",
         "razorpay_settlements:stl-000148": "20476a42a77c46f42473caf85134d92a7bd92001a477807ee5292d1f4f0a198e",
-        "bank_statement:bnk-000130": "dac927ae0a5c91cf9d1d169a4cff73fef00cfe31c6557297d4359cb057e9420c",
+        "bank_statement:bnk-000139": "dac927ae0a5c91cf9d1d169a4cff73fef00cfe31c6557297d4359cb057e9420c",
         "webhook_events:whk-000132": "7407da7b6b3ac4e33848ddcb9363a87979e82fcf04cee352df3373c2d314f33b"
       },
       "recorded_verdict": "FAILED",
@@ -5670,7 +5650,6 @@
           "razorpay_payments:pay-000964",
           "razorpay_settlements:stl-000149",
           "razorpay_settlements:stl-000150",
-          "bank_statement:bnk-000131",
           "webhook_events:whk-000133",
           "bank_statement:bnk-0011X"
         ],
@@ -5680,7 +5659,7 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "ed7836479c9c4c5aded5ee84ebe542d0fa4c9cde9f32b02a127c060b3d5fb5ef",
+      "pack_hash": "bedaeece1d32cf84c4c4f250acf8931bf8e3850c0d77c45df2c28c7112b1e627",
       "evidence_hashes": {
         "razorpay_payments:pay-000955": "d0084d46a433225006aa27151e88c82650e1a40c509f64fefe69c6a38fbe4c17",
         "razorpay_payments:pay-000956": "5981e8d5fe12ba10a9cdca7b8b655c3c3815a181fe9e6f506b0ac338011a32d1",
@@ -5694,11 +5673,10 @@
         "razorpay_payments:pay-000964": "d86c7605488e057e531deb3e28ffc87066d496ec5747cba39cec98c50ddf8c5b",
         "razorpay_settlements:stl-000149": "d3ebb2c47578580f2b429af3d2929d9270d5f20e1f0c92ead1fe526659e667d9",
         "razorpay_settlements:stl-000150": "3c408be3534cf04fb8db5ca7746f627a1ab8de7d426451c6b45310bd6ed1c640",
-        "bank_statement:bnk-000131": "31a153fa94b142995c85be6e192fd440ebfeadb5d1fb09634f70f5387817669f",
         "webhook_events:whk-000133": "cae27ba710c6d8d37f5dede7c284e01ef73848d2c92e0aa60d5a0a728a49d179"
       },
-      "recorded_verdict": "FAILED",
-      "recorded_reason_code": "CONTRADICTORY_SOURCE",
+      "recorded_verdict": "UNCERTAIN",
+      "recorded_reason_code": "MISSING_EVIDENCE",
       "policy_version": "finance-policy-v13"
     },
     "A012": {
@@ -5714,7 +5692,7 @@
           "razorpay_payments:pay-000967",
           "razorpay_payments:pay-000968",
           "razorpay_settlements:stl-000151",
-          "bank_statement:bnk-000132",
+          "bank_statement:bnk-000142",
           "webhook_events:whk-000134",
           "bank_statement:bnk-0012X"
         ],
@@ -5731,7 +5709,7 @@
         "razorpay_payments:pay-000967": "d5f570a8f0c11de720e49cabaa4548c969f8fe192b77921d6f8bf6cbf25b18c7",
         "razorpay_payments:pay-000968": "a031c9bf212bd60873931bbdf18ebe035c053660c8b614450df90ea56880d48a",
         "razorpay_settlements:stl-000151": "00421cd958d3c21cd97a21afa6bc13c2a61e5c7afd05dcf166371818c48d58ae",
-        "bank_statement:bnk-000132": "8d548bda65aa5237636446e343ea1eb788e9344129135733bae72d47f6e27897",
+        "bank_statement:bnk-000142": "8d548bda65aa5237636446e343ea1eb788e9344129135733bae72d47f6e27897",
         "webhook_events:whk-000134": "a426e476e6522e387771db85581cfed9148fbee8d07f8e173a8b32c0d6b4b65e"
       },
       "recorded_verdict": "UNCERTAIN",
@@ -5754,7 +5732,7 @@
           "razorpay_payments:pay-000974",
           "razorpay_settlements:stl-000152",
           "razorpay_settlements:stl-000153",
-          "bank_statement:bnk-000133",
+          "bank_statement:bnk-000143",
           "webhook_events:whk-000135"
         ],
         "agent_reason": "Verified the UTR against the bank feed and the totals line up. Safe to close.",
@@ -5763,7 +5741,7 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "0818554d2e953043b6f1ec1d386baaacb5f9c372d0650772ad13229ee961a960",
+      "pack_hash": "c7cb89f65cbd3e46b11a0554f0baa722047b5bb0c8c6448eee258c5e8f648b6d",
       "evidence_hashes": {
         "razorpay_payments:pay-000969": "676afa9aced5848eebcdb33a9963aa3001d95c951cbb5fee38d7cbb9336d1b78",
         "razorpay_payments:pay-000970": "ca124fd10ec6caa72fae853e55a3c624a4ed106b9e19158c3a0c7e473b5be970",
@@ -5773,7 +5751,7 @@
         "razorpay_payments:pay-000974": "ac99adb161e4ff2f40d8313835a52ce836a38ad8fbbf8e1c2adbe951f749b690",
         "razorpay_settlements:stl-000152": "4f21c6a4e169a9a0366c1144bbf2d973bf43013f31c72289b456d7699421ccff",
         "razorpay_settlements:stl-000153": "14119e07281d0340d911f3fcbb1c1869d968a7d170feb93dc05c41b5ffbf4146",
-        "bank_statement:bnk-000133": "7405beccf79ad4524f2bec31ce0695dd13b12226d04d4765162b9f3a921b6a4f",
+        "bank_statement:bnk-000143": "9ee4b354b64470a57ced364dd5ea481b85c264058d1e767c1fae1d73aef5964e",
         "webhook_events:whk-000135": "00c08c842eadb7cefdc6d38ca95eb1b2ca5dfb03be9d0c8d1fd8b87ce4436d5f"
       },
       "recorded_verdict": "FAILED",
@@ -5795,7 +5773,7 @@
           "razorpay_payments:pay-000979",
           "razorpay_settlements:stl-000154",
           "razorpay_settlements:stl-000155",
-          "bank_statement:bnk-000134",
+          "bank_statement:bnk-000144",
           "webhook_events:whk-000136"
         ],
         "agent_reason": "Settlement matches the bank credit once fees and GST are accounted for. Nothing outstanding.",
@@ -5804,7 +5782,7 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "7ef19ee1a62944663175ec04a2e840d86d70cb9578ef65face44fcf7f2cd6bd0",
+      "pack_hash": "33fd5e09a32bd792a524464ba3792a85f20c35814da63793bfe464905f3b9c93",
       "evidence_hashes": {
         "razorpay_payments:pay-000975": "f7e281a30317987a2f30a8f57ae3f36375078ff320dbc521929ab0d0e735463d",
         "razorpay_payments:pay-000976": "4f26c7cdc75a0ecea7108548d8d39f9b48e1ed3bcf8a63961a12d8f23e523e66",
@@ -5813,7 +5791,7 @@
         "razorpay_payments:pay-000979": "84a903be61f5d1b5932fa122a151cd31d95ed513a3358dd5353e6a9ce40705fc",
         "razorpay_settlements:stl-000154": "802a953f98026903df47d4fd09b7663caf5c8adea2f983e5100bebe57aa1d4ec",
         "razorpay_settlements:stl-000155": "6e500f873b00c0652c075bd9986019f0edd4184c8d0f1bcac1e0d7ff2dde1a9d",
-        "bank_statement:bnk-000134": "f7fd5a73900a1747c75afaa020d80e21ae98c0d179a08257173eb5366bdae45e",
+        "bank_statement:bnk-000144": "f8ab169918aaf8c5df4a6fbbcce725268e2aa91db5e030d3d2433959fb5fd6a8",
         "webhook_events:whk-000136": "a52e29d5be57216a5b7162d66eebd62eff3db708386e0d03bc517a7c265b2208"
       },
       "recorded_verdict": "FAILED",
@@ -5877,7 +5855,7 @@
           "razorpay_payments:pay-000992",
           "razorpay_payments:pay-000993",
           "razorpay_settlements:stl-000157",
-          "bank_statement:bnk-000135",
+          "bank_statement:bnk-000145",
           "webhook_events:whk-000138"
         ],
         "agent_reason": "All captured payments net down to the credited amount and the UTR traces to the bank statement.",
@@ -5895,7 +5873,7 @@
         "razorpay_payments:pay-000992": "5c3bd8a99b13800b7b2e161c373b1c08e30aaf34867f1d9c10b780e2b2c81854",
         "razorpay_payments:pay-000993": "f7b59010b5f8a21b5cbe724104f1203c3917682b59386c6249137500b8ffb69f",
         "razorpay_settlements:stl-000157": "ffb5032a43acc96a55b6a0cf679325d168e5e5887125b27dd1d6f56198b6a44c",
-        "bank_statement:bnk-000135": "80da8d2cef1eb47ecc4e2bf1a02a3886b6c4481cd415f5eafba758ab0df92505",
+        "bank_statement:bnk-000145": "80da8d2cef1eb47ecc4e2bf1a02a3886b6c4481cd415f5eafba758ab0df92505",
         "webhook_events:whk-000138": "211e652cc69ac237a1b4a5de81e978af4135f3f3faab09abc258d4892eaa2db7"
       },
       "recorded_verdict": "FAILED",
@@ -5916,7 +5894,7 @@
           "razorpay_payments:pay-000997",
           "razorpay_settlements:stl-000158",
           "razorpay_settlements:stl-000159",
-          "bank_statement:bnk-000136",
+          "bank_statement:bnk-000146",
           "webhook_events:whk-000139"
         ],
         "agent_reason": "Something is off between the settlement total and what landed. Needs a human.",
@@ -5933,7 +5911,7 @@
         "razorpay_payments:pay-000997": "932ebdb1433a5eca77c6f254a9c1644d2651825db8c79983d502886f4930c396",
         "razorpay_settlements:stl-000158": "e880d42afc8c3955b9a1b73bf11474443322cb1e6e17f69fb7c4ae9f19460b4f",
         "razorpay_settlements:stl-000159": "e880d42afc8c3955b9a1b73bf11474443322cb1e6e17f69fb7c4ae9f19460b4f",
-        "bank_statement:bnk-000136": "c1e90e647ec3e1666e33f689426266f1ed670d0e8e592f6fc5615e7d51a2b238",
+        "bank_statement:bnk-000146": "c1e90e647ec3e1666e33f689426266f1ed670d0e8e592f6fc5615e7d51a2b238",
         "webhook_events:whk-000139": "2c5764bb888d7a7b9e9d5df12d027d53b7d3f991d7e4f29047d25bb88a6544f3"
       },
       "recorded_verdict": "FAILED",
@@ -5954,7 +5932,7 @@
           "razorpay_payments:pay-001001",
           "razorpay_payments:pay-001002",
           "razorpay_settlements:stl-000160",
-          "bank_statement:bnk-000137",
+          "bank_statement:bnk-000147",
           "webhook_events:whk-000140",
           "webhook_events:whk-000141",
           "bank_statement:bnk-0018X"
@@ -5965,7 +5943,7 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "8efc45e2f23b2459502a7c237804846e736e868aa1d24a8124d6dee9990e1630",
+      "pack_hash": "dc88f9b6cccab4b76992eb7f5258e70deb9a4a2d3f82fc5f029e62d81ed55fce",
       "evidence_hashes": {
         "razorpay_payments:pay-000998": "8458ce1d6cbdf1b06fad63211ca5c917d71fd5793e2cf6fd6fe906c33113b19f",
         "razorpay_payments:pay-000999": "a3c723f0856dd575b278f0f5132d3b03df08d430259a7a93a07594c16acb9644",
@@ -5973,7 +5951,7 @@
         "razorpay_payments:pay-001001": "d0fdeee19413c5ed9ca15bd7e4cfbf86bae953e0f85dc0cbc19f6ca4586f95ec",
         "razorpay_payments:pay-001002": "979239dbb5554d347eb9b2c6a1887741e937568d684821db1c193c6f495f4327",
         "razorpay_settlements:stl-000160": "6c1eed8e621acb33cbea5d06b051dc7e3ff2d4253226750bd00b010bc9e9ce96",
-        "bank_statement:bnk-000137": "8925140403d00885e31a64ba8a33e5282a9ca34729a0a5c11f0170f5b1493688",
+        "bank_statement:bnk-000147": "2a09b9248483164ada6471ad062957281c6f10d520e141cad977e99926665749",
         "webhook_events:whk-000140": "dafa344c5a389e451aab07a71a7ed2901a588ee3a060684d016d5787f28c1bde",
         "webhook_events:whk-000141": "dafa344c5a389e451aab07a71a7ed2901a588ee3a060684d016d5787f28c1bde"
       },
@@ -5995,7 +5973,7 @@
           "razorpay_payments:pay-001006",
           "razorpay_payments:pay-001007",
           "razorpay_settlements:stl-000161",
-          "bank_statement:bnk-000138",
+          "bank_statement:bnk-000148",
           "webhook_events:whk-000142"
         ],
         "agent_reason": "The bank leg does not look complete to me. Routing for review rather than closing.",
@@ -6004,7 +5982,7 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "faee6c685c25c3c470fd797d5d9ddb82738ffacb0a420e2ef1ca8b60b718d764",
+      "pack_hash": "d93ae03f649fab39cf0d7dd008ae7a99c1d1971439e603986f7cb599727cda70",
       "evidence_hashes": {
         "razorpay_payments:pay-001003": "c91fd9de60d6cd9051c7498a34b3093882d7c60d6248207922bba1a16cb90820",
         "razorpay_payments:pay-001004": "e22cfb51121e340fa9a673b48f82ec22c705f86d6ed7efccae40f0c6b704048e",
@@ -6012,7 +5990,7 @@
         "razorpay_payments:pay-001006": "4dc5b3624b5f910e684e824f461691e29329cdddbbd37a4b6767b8dc58dd93c8",
         "razorpay_payments:pay-001007": "c1e085ee068f3f8cd0c8a768a8b9daa213a07991384b4d9e313ee0fb1d3dd38a",
         "razorpay_settlements:stl-000161": "a3be73e14dd1e9a484a173a0ad903d273f5c3eca514fd54b8de70bd561284134",
-        "bank_statement:bnk-000138": "b16e3c58a116141c39d3849df5264a66ce4e6186be53c6af47def7eac3bd9633",
+        "bank_statement:bnk-000148": "8761e1b07888488cc95e27c1208ac397ad0309fcae9ea93ee6f088e4df3bb6d2",
         "webhook_events:whk-000142": "743ce796123bb8ddeb4ec8d75a7a817b5bc006d795aac806b42cfd1936e796c1"
       },
       "recorded_verdict": "FAILED",
@@ -6032,7 +6010,7 @@
           "razorpay_payments:pay-001010",
           "razorpay_payments:pay-001011",
           "razorpay_settlements:stl-000162",
-          "bank_statement:bnk-000139",
+          "bank_statement:bnk-000149",
           "webhook_events:whk-000143"
         ],
         "agent_reason": "All captured payments net down to the credited amount and the UTR traces to the bank statement.",
@@ -6048,7 +6026,7 @@
         "razorpay_payments:pay-001010": "43a15ad7bc2cc9c6ad9d6a4b217c79f024e8c16d10b8acc4e2fa0427dfe24476",
         "razorpay_payments:pay-001011": "17bed03469a4a3e954ebc1665580a8405af488ec31c118c066bd15a70a6b15f7",
         "razorpay_settlements:stl-000162": "28f4407691498528144fc00a2ed1eefa6cb7c08941d38aef63ca0d92e5e54f51",
-        "bank_statement:bnk-000139": "3122a483dcfca99727cfc0f103cc3716cc485af498f449cd7c067455b356e786",
+        "bank_statement:bnk-000149": "3122a483dcfca99727cfc0f103cc3716cc485af498f449cd7c067455b356e786",
         "webhook_events:whk-000143": "ff01a0fb39b8bf98ca105cbd4fa947e3b7b676ab655fc2a4723703999fd3f00a"
       },
       "recorded_verdict": "UNCERTAIN",
@@ -6068,7 +6046,7 @@
           "razorpay_payments:pay-001014",
           "razorpay_payments:pay-001015",
           "razorpay_settlements:stl-000163",
-          "bank_statement:bnk-000140",
+          "bank_statement:bnk-000150",
           "webhook_events:whk-000144"
         ],
         "agent_reason": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
@@ -6084,7 +6062,7 @@
         "razorpay_payments:pay-001014": "59020ad54a7b740e8d7226276a7f3273de64b6fb4a2d28e10336f4ccee018d81",
         "razorpay_payments:pay-001015": "ffb10c60cb5efe8e4b3a67d864406c2f66ad4630895f78cb85bcfb21a315f38a",
         "razorpay_settlements:stl-000163": "0fc6e60fd562e88d4f04c3466add658b6f0850fb86b1a8e9b164dad8bf35ce15",
-        "bank_statement:bnk-000140": "ec38c11f6cc39eb05c70cbc84f49e8e543989a2c936918038e916c807c15ddf3",
+        "bank_statement:bnk-000150": "ec38c11f6cc39eb05c70cbc84f49e8e543989a2c936918038e916c807c15ddf3",
         "webhook_events:whk-000144": "488a96f1c686bd722e715a46bec30a9940cf1e2f3a722facb4b3ac3dc941d342"
       },
       "recorded_verdict": "FAILED",
@@ -6113,7 +6091,7 @@
           "razorpay_payments:pay-001027",
           "razorpay_settlements:stl-000164",
           "razorpay_settlements:stl-000165",
-          "bank_statement:bnk-000141",
+          "bank_statement:bnk-000151",
           "webhook_events:whk-000145"
         ],
         "agent_reason": "Verified the UTR against the bank feed and the totals line up. Safe to close.",
@@ -6122,7 +6100,7 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "1dfe1fcba3706c9a1d416d78ed2f5bdceee40591c9a00cf9439c1f9c6d268a05",
+      "pack_hash": "dba1f8dd6e18b77d88cb01584ba1775f2a1f6faa5efae2821cd89e5f85a61256",
       "evidence_hashes": {
         "razorpay_payments:pay-001016": "22dfe464b862c01e8b1b8b852f9dbef516c22fb7f8691933eaff2a700b45f7fb",
         "razorpay_payments:pay-001017": "ca215439880f0c7ab6113ad12943b868037907fe680ec8787e65a5dd2fa0a374",
@@ -6138,7 +6116,7 @@
         "razorpay_payments:pay-001027": "1f01e9c2c06cdd8507d44557eb317fdc0e618298e044b7eecfd848f797037bd5",
         "razorpay_settlements:stl-000164": "d9bee53080dd9ffbd29e88ac41588c8af8af7f7b4995c6a649cd23a6932da1f1",
         "razorpay_settlements:stl-000165": "d9bee53080dd9ffbd29e88ac41588c8af8af7f7b4995c6a649cd23a6932da1f1",
-        "bank_statement:bnk-000141": "0982bfb0f96956f644976f2b3aac9aa08d719eab6b8877c63734771400a111eb",
+        "bank_statement:bnk-000151": "325bdf8b549aeba549de6fc9a830a6bba40a1bdb9842a4a04e67f20f8653e637",
         "webhook_events:whk-000145": "8f2d2fa2db65cb757cfb47b1078df9c1491411a286e95bfb6e720fff9105d1ea"
       },
       "recorded_verdict": "FAILED",
@@ -6158,7 +6136,7 @@
           "razorpay_payments:pay-001030",
           "razorpay_payments:pay-001031",
           "razorpay_settlements:stl-000166",
-          "bank_statement:bnk-000142",
+          "bank_statement:bnk-000152",
           "webhook_events:whk-000146",
           "webhook_events:whk-000147"
         ],
@@ -6168,14 +6146,14 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "cab737c6af4671c72f8faebad89c5f461f61d9804edecfe4242eeeb1e73fd029",
+      "pack_hash": "9b11b1ddf709b2e84413440a7aa68342f7aafd83dd58ef0aab077e25a539085f",
       "evidence_hashes": {
         "razorpay_payments:pay-001028": "8e83da05785b299fff6e40379eb2e87c83cfc3cf3e1f9331a2dd7b12ca961e32",
         "razorpay_payments:pay-001029": "b8338a5b9f3475175def3958f86139efe229b93ebf2f72075539ebf3b2166834",
         "razorpay_payments:pay-001030": "6866f534df7c711842623a06839b0cf88e42eda387610254b1d6205377b83499",
         "razorpay_payments:pay-001031": "002c6e9033c0ed9f51da3a064b60ccbacf9eacb19f6b10567b11a927b1c6e15e",
         "razorpay_settlements:stl-000166": "32fa7b4e83b0f2b945a1549246047a8f7ff2b4338e8c68771efddda1294fd1b6",
-        "bank_statement:bnk-000142": "b05a74d463318d4cff29277ce40392b079b29321d319343dc8e5de23a153bebe",
+        "bank_statement:bnk-000152": "a124212a8b7c4df72d3719fb61e2798b89d828c123c4f381b5bc611a4d6ad872",
         "webhook_events:whk-000146": "1658a96eced1930b17d71270888e50846628a20dbfe3e52de315aaaaec32f58d",
         "webhook_events:whk-000147": "1658a96eced1930b17d71270888e50846628a20dbfe3e52de315aaaaec32f58d"
       },
@@ -6202,7 +6180,7 @@
           "razorpay_payments:pay-001040",
           "razorpay_payments:pay-001041",
           "razorpay_settlements:stl-000167",
-          "bank_statement:bnk-000143",
+          "bank_statement:bnk-000153",
           "webhook_events:whk-000148"
         ],
         "agent_reason": "Could not tie the credited amount back to the captured payments. Not closing this one.",
@@ -6224,7 +6202,7 @@
         "razorpay_payments:pay-001040": "25e1d7b15afa6b6c2aa26a9558292263c7ba2f2546afc6ca6c8f6cef7b3bc7bb",
         "razorpay_payments:pay-001041": "f263bab0d28053bcb8c9a023fbf84ecbac1e9e697ccdb3475e905b4d1377dd2e",
         "razorpay_settlements:stl-000167": "d5dbe81ea31c855e0518186330ade248f61afe275cc64b92a564e95a298f9632",
-        "bank_statement:bnk-000143": "287ca7a8aa4764ad8b8250d8257a22f8eb5a089a475567deb9235656dc0dbc06",
+        "bank_statement:bnk-000153": "287ca7a8aa4764ad8b8250d8257a22f8eb5a089a475567deb9235656dc0dbc06",
         "webhook_events:whk-000148": "b25b317b36021614e24b6098674695e63770c4dc9102980cc62dc7956b541bd8"
       },
       "recorded_verdict": "FAILED",
@@ -6243,7 +6221,7 @@
           "razorpay_payments:pay-001043",
           "razorpay_payments:pay-001044",
           "razorpay_settlements:stl-000168",
-          "bank_statement:bnk-000144",
+          "bank_statement:bnk-000154",
           "webhook_events:whk-000149"
         ],
         "agent_reason": "The bank leg does not look complete to me. Routing for review rather than closing.",
@@ -6259,7 +6237,7 @@
         "razorpay_payments:pay-001044": "1a638c33a84143fe611b0d96ce17c6d892cf5eec3ce680878ccb111793c4c9b4",
         "razorpay_settlements:stl-000168": "8097bdb9d47eac70e4b4bdc66dd74808e602ab12495b8720bf90c7ff418f288d",
         "razorpay_settlements:stl-000169": "8097bdb9d47eac70e4b4bdc66dd74808e602ab12495b8720bf90c7ff418f288d",
-        "bank_statement:bnk-000144": "b11d9e0243379135c4560681b5818f62437893364c5a0e57cea3344016caf90b",
+        "bank_statement:bnk-000154": "b11d9e0243379135c4560681b5818f62437893364c5a0e57cea3344016caf90b",
         "webhook_events:whk-000149": "a49051d6c4c010e39a6d091720fc12ad6c7048efbc59cc055c0e504d0594347e"
       },
       "recorded_verdict": "FAILED",
@@ -6282,16 +6260,15 @@
           "razorpay_payments:pay-001050",
           "razorpay_settlements:stl-000170",
           "razorpay_settlements:stl-000171",
-          "bank_statement:bnk-000145",
           "webhook_events:whk-000150"
         ],
         "agent_reason": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
-        "confidence": 0.95,
+        "confidence": 0.4,
         "agent_version": "avos-agent-1.2.0",
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "9f52c438b223228422314a729f4e6c44b6706f547b32e68b64a642180750f7b9",
+      "pack_hash": "92415c36fac9264019d97067eec37f2746afd37b39efcfa0514e3fa329db7778",
       "evidence_hashes": {
         "razorpay_payments:pay-001045": "b8a0a61ecea6ceb880c22e3f650d19ce57e14b766d009eddb748ac3a3dab54de",
         "razorpay_payments:pay-001046": "7514abb29254e4774e1a6c5da32e1472595b7525d87bd727e6cf7619a73d5d07",
@@ -6301,11 +6278,10 @@
         "razorpay_payments:pay-001050": "a0cb024f8585c151a7a7c933763a15d846d7f628f2894a685fc9ffe24cac988a",
         "razorpay_settlements:stl-000170": "8cd2ea2102c34ab128dc22c273ebea685451cb75a37cd65b55ed701dd4675606",
         "razorpay_settlements:stl-000171": "8cd2ea2102c34ab128dc22c273ebea685451cb75a37cd65b55ed701dd4675606",
-        "bank_statement:bnk-000145": "32767ffe3c130a146d0754e0811a716a85ac4c06bf93a33d2a60ac51507487b5",
         "webhook_events:whk-000150": "b101454bd9758dcac18ad5179f62e2c551ae2c962a13abd4e2c9668840290463"
       },
-      "recorded_verdict": "FAILED",
-      "recorded_reason_code": "DUPLICATE_FILE",
+      "recorded_verdict": "UNCERTAIN",
+      "recorded_reason_code": "MISSING_EVIDENCE",
       "policy_version": "finance-policy-v12"
     },
     "A027": {
@@ -6361,7 +6337,7 @@
           "razorpay_payments:pay-001062",
           "razorpay_payments:pay-001063",
           "razorpay_settlements:stl-000173",
-          "bank_statement:bnk-000146",
+          "bank_statement:bnk-000157",
           "webhook_events:whk-000152",
           "webhook_events:whk-000153"
         ],
@@ -6371,7 +6347,7 @@
         "model_version": "avos-mock-deterministic-1.0",
         "used_mock": true
       },
-      "pack_hash": "f048f57cf6d9a8cee9edb982b497ab4215bb8f9c88f4cfc0203effd818903f52",
+      "pack_hash": "3549de8147de87fe09cd9b585838ec86ccef750a9c923e3f27b5efb5aaee0dcc",
       "evidence_hashes": {
         "razorpay_payments:pay-001056": "306be948925577b9918e9a6e1b5ecd9beee1094845aa954476e6bb064bd613c0",
         "razorpay_payments:pay-001057": "81c9fbe5d11b5c0d98fbfffefbf4652cc4f7774ead2583e9dfa30a5aa6fceee2",
@@ -6382,7 +6358,7 @@
         "razorpay_payments:pay-001062": "8ef21914c492a14246d8e6ec42a348bf1c620cdb03001da2aa597bf50942406f",
         "razorpay_payments:pay-001063": "0b7e377dbd948acf3fd1aaabedfbc63e1672a65871b6ee92ff96b7e0a6dd3fcf",
         "razorpay_settlements:stl-000173": "7b055e20524b97b2348bd2eee0c616189e824f1e7f02dfe8b0d8043cb2f26af3",
-        "bank_statement:bnk-000146": "f2643f553e45cb6a955fe061fcc8acaad5f14089e043cd57c039081c3e375753",
+        "bank_statement:bnk-000157": "482ea0c8daba5de9d9305b19da6ce5fb5ac65fee8ea220da5bc893f17cad2ed4",
         "webhook_events:whk-000152": "1aa4e0aae5730fa23d47ee677464dc493e0d2f45e62f54710d3cd32837b7b596",
         "webhook_events:whk-000153": "1aa4e0aae5730fa23d47ee677464dc493e0d2f45e62f54710d3cd32837b7b596"
       },
@@ -6403,7 +6379,7 @@
           "razorpay_payments:pay-001066",
           "razorpay_payments:pay-001067",
           "razorpay_settlements:stl-000174",
-          "bank_statement:bnk-000147",
+          "bank_statement:bnk-000158",
           "webhook_events:whk-000154"
         ],
         "agent_reason": "Fees were adjusted at settlement, so the small variance against gross is expected. Reconciled.",
@@ -6419,7 +6395,7 @@
         "razorpay_payments:pay-001066": "7c175adf1d3d9d64bf873b0a10bd735f270cdf4f7a613b64cacdfc732b43ba84",
         "razorpay_payments:pay-001067": "55345e0f5f462dcdc2f67fb42f7d88f63adef77b25877296dda1b642b5e036ea",
         "razorpay_settlements:stl-000174": "68e0a5f5e22e32d51b4543db74065cd1e4560e6d196b1ee671a2a5fd87246ea6",
-        "bank_statement:bnk-000147": "0189f8ed8d516d02edaf59cf6623018394b084337def5af96fc9fb82d21f1bb9",
+        "bank_statement:bnk-000158": "0189f8ed8d516d02edaf59cf6623018394b084337def5af96fc9fb82d21f1bb9",
         "webhook_events:whk-000154": "1ace335019c6548cb1293a2b435d59d9ed3b128db4b51ea9022b52537b6a2b2c"
       },
       "recorded_verdict": "UNCERTAIN",
@@ -6445,7 +6421,7 @@
           "razorpay_payments:pay-001076",
           "razorpay_payments:pay-001077",
           "razorpay_settlements:stl-000175",
-          "bank_statement:bnk-000148",
+          "bank_statement:bnk-000159",
           "webhook_events:whk-000155"
         ],
         "agent_reason": "Refunds and the rolling reserve fully explain the gap between gross and the deposit. Closing.",
@@ -6467,7 +6443,7 @@
         "razorpay_payments:pay-001076": "53946620a702d92fed0530894e0da66bfa0b82f0ac987f6bc342cd559347b0ec",
         "razorpay_payments:pay-001077": "ab6411cd1a5128be06624ca1f59a7b94c25cba53e0a4c3644a2eca14e08cfc9a",
         "razorpay_settlements:stl-000175": "7b6bbeae2573b6c71a6c4e85ba23e6ee7540f343aede17b242a7dcb04a0997f9",
-        "bank_statement:bnk-000148": "77b3292f6034ab10fecb74d0e69397603dffab57bb0e66fd5c62a17068d83cca",
+        "bank_statement:bnk-000159": "77b3292f6034ab10fecb74d0e69397603dffab57bb0e66fd5c62a17068d83cca",
         "webhook_events:whk-000155": "64320adea1d63b4efefba5bc770cbe7f106e948a5f58f5cc9d005a6aba94a7ac"
       },
       "recorded_verdict": "UNCERTAIN",

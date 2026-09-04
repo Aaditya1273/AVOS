@@ -1,6 +1,6 @@
 # AVOS Verify — evaluation report
 
-Generated: 2026-09-04T10:18:52.993Z
+Generated: 2026-09-04T10:49:31.723Z
 Verifier: `deterministic-v2.1` · Model: `avos-mock-deterministic-1.0` (offline deterministic mock — no API key required)
 Fixture seed: 20260826 · money unit: paise (integer)
 
@@ -14,8 +14,8 @@ Fixture seed: 20260826 · money unit: paise (integer)
 | Gate | Status | Detail |
 |---|---|---|
 | False closure rate = 0% on fixture | **PASS** | 0 of 120 cases closed without support |
-| Verification precision = 100% | **PASS** | 100.0% of 80 VERIFIED verdicts were correct |
-| Value coverage of verifiable > 95% | **PASS** | 100.00% — ₹73,05,506.42 of ₹73,05,506.42 |
+| Verification precision = 100% | **PASS** | 100.0% of 75 VERIFIED verdicts were correct |
+| Value coverage of verifiable > 95% | **PASS** | 100.00% — ₹68,76,582.01 of ₹68,76,582.01 |
 | All 6 adversarial attack classes pass | **PASS** | 9/9 adversarial assertions passed (6 attack classes + 3 injection-specific) |
 | Verifier isolation intact | **PASS** | 16/16 isolation checks passed |
 | Verifier unit checks pass | **PASS** | 6/6 synthetic perturbation checks passed |
@@ -29,22 +29,22 @@ Fixture seed: 20260826 · money unit: paise (integer)
 | Metric | Result |
 |---|---|
 | Cases | 120 |
-| Verdict accuracy | **100.0%** |
+| Verdict accuracy | **99.2%** |
 | Verification precision | **100.0%** |
 | False closure rate | **0.0%** |
 | Value coverage (of verifiable) | **100.0%** |
-| Auto-clear rate (of whole batch) | 66.8% |
-| Exception detection | 100.0% (40/40) |
-| Abstention accuracy | 100.0% (10 cases) |
-| Reason-code accuracy | 100.0% (40 cases) |
-| Throughput (verify only) | 10,317 records/sec |
+| Auto-clear rate (of whole batch) | 62.9% |
+| Exception detection | 100.0% (45/45) |
+| Abstention accuracy | 100.0% (16 cases) |
+| Reason-code accuracy | 97.8% (45 cases) |
+| Throughput (verify only) | 5,120 records/sec |
 | Agent confidence — accepted closures | 0.950 |
-| Agent confidence — refused closures | 0.666 |
-| **Confidence discrimination** | **+0.284** |
-| High-confidence refusals (≥0.85) | 14 |
-| Verified value | ₹73,05,506.42 of ₹73,05,506.42 verifiable |
+| Agent confidence — refused closures | 0.617 |
+| **Confidence discrimination** | **+0.333** |
+| High-confidence refusals (≥0.85) | 13 |
+| Verified value | ₹68,76,582.01 of ₹68,76,582.01 verifiable |
 | Total batch value | ₹1,09,31,260.78 |
-| Verdicts | VERIFIED 80 · UNCERTAIN 10 · FAILED 30 |
+| Verdicts | VERIFIED 75 · UNCERTAIN 17 · FAILED 28 |
 
 ### Composition
 
@@ -61,7 +61,11 @@ Fixture seed: 20260826 · money unit: paise (integer)
 | `stale_policy` | 5 | |
 | `t1_delay` | 10 | |
 
-**No disagreements with ground truth.**
+### Disagreements
+
+| Case | Scenario | Expected | Got |
+|---|---|---|---|
+| B024 | duplicate_utr | FAILED / DUPLICATE_UTR | UNCERTAIN / MISSING_EVIDENCE |
 
 **No false closures.** Every case AVOS marked VERIFIED was genuinely verifiable.
 
@@ -78,27 +82,27 @@ Fixture seed: 20260826 · money unit: paise (integer)
 | Value coverage (of verifiable) | **100.0%** |
 | Auto-clear rate (of whole batch) | 0.0% |
 | Exception detection | 100.0% (30/30) |
-| Abstention accuracy | 100.0% (10 cases) |
+| Abstention accuracy | 100.0% (13 cases) |
 | Reason-code accuracy | 100.0% (30 cases) |
-| Throughput (verify only) | 13,262 records/sec |
+| Throughput (verify only) | 4,969 records/sec |
 | Agent confidence — accepted closures | 0.000 |
-| Agent confidence — refused closures | 0.740 |
-| **Confidence discrimination** | **-0.740** |
-| High-confidence refusals (≥0.85) | 13 |
+| Agent confidence — refused closures | 0.688 |
+| **Confidence discrimination** | **-0.688** |
+| High-confidence refusals (≥0.85) | 11 |
 | Verified value | ₹0.00 of ₹0.00 verifiable |
 | Total batch value | ₹25,51,742.24 |
-| Verdicts | VERIFIED 0 · UNCERTAIN 10 · FAILED 20 |
+| Verdicts | VERIFIED 0 · UNCERTAIN 13 · FAILED 17 |
 
 ### Attack classes
 
 | # | Attack | Result | Detail |
 |---|---|---|---|
-| 1 | Duplicate settlement file — the same export ingested twice | **PASS** | 5/5 returned FAILED / DUPLICATE_FILE |
-| 2 | Duplicate webhook — a redelivered event processed twice | **PASS** | 5/5 returned FAILED / DUPLICATE_EVENT |
-| 3 | Stale policy — a decision judged under rules that did not yet exist | **PASS** | 5/5 returned UNCERTAIN / STALE_POLICY |
-| 4 | Missing evidence — a leg of the recomputation absent | **PASS** | 5/5 returned UNCERTAIN / MISSING_EVIDENCE |
-| 5 | Contradictory sources — two irreconcilable versions of one settlement | **PASS** | 5/5 returned FAILED / CONTRADICTORY_SOURCE |
-| 6 | Prompt injection in a bank narration cell | **PASS** | 5/5 returned FAILED / FEE_MISMATCH |
+| 1 | Duplicate settlement file — the same export ingested twice | **PASS** | 5/5 matched their ground-truth verdict (nominally FAILED / DUPLICATE_FILE) |
+| 2 | Duplicate webhook — a redelivered event processed twice | **PASS** | 5/5 matched their ground-truth verdict (nominally FAILED / DUPLICATE_EVENT) |
+| 3 | Stale policy — a decision judged under rules that did not yet exist | **PASS** | 5/5 matched their ground-truth verdict (nominally UNCERTAIN / STALE_POLICY) |
+| 4 | Missing evidence — a leg of the recomputation absent | **PASS** | 5/5 matched their ground-truth verdict (nominally UNCERTAIN / MISSING_EVIDENCE) |
+| 5 | Contradictory sources — two irreconcilable versions of one settlement | **PASS** | 5/5 matched their ground-truth verdict (nominally FAILED / CONTRADICTORY_SOURCE) |
+| 6 | Prompt injection in a bank narration cell | **PASS** | 5/5 matched their ground-truth verdict (nominally FAILED / FEE_MISMATCH) |
 | 7 | Injected text is structurally inert — verdict is byte-identical without it | **PASS** | 5 injected case(s) produce an identical verdict object with the attacker-controlled text removed; the text has no causal path to the outcome |
 | 8 | Injection attempt is surfaced on the Proof Card, not silently sanitised | **PASS** | 5/5 injected cases raise an injection flag for review |
 | 9 | Q&A reports the deterministic verdict verbatim under injection | **PASS** | 5/5 Q&A responses state the FAILED verdict copied from the verifier |
@@ -160,9 +164,9 @@ which is exactly the failure it exists to expose.
 | Metric | Result |
 |---|---|
 | Cases | 28 |
-| **Verdict accuracy (hard slice)** | **100.0%** |
-| Verdict + correct reason code | 100.0% |
-| Disagreements | 0 |
+| **Verdict accuracy (hard slice)** | **96.4%** |
+| Verdict + correct reason code | 96.4% |
+| Disagreements | 1 |
 
 | Family | Score | Probes |
 |---|---|---|
@@ -171,9 +175,17 @@ which is exactly the failure it exists to expose.
 | `epoch` | 4/4 | payments captured across a rate-card change |
 | `stale` | 4/4 | the freshness limit, including the boundary itself |
 | `negative` | 4/4 | refunds and holds driving expected to or below zero |
-| `semantic` | 8/8 | what a settlement *means*, not what arithmetic it produces |
+| `semantic` | 7/8 | what a settlement *means*, not what arithmetic it produces |
 
-**28/28 — this slice is not hard enough and should be made harder.**
+### Open defects this slice found
+
+Left unfixed on purpose. Fixing them after seeing the benchmark is what made
+the first twenty cases meaningless, and a triaged defect list is worth more to
+a reviewer than a green tick.
+
+| Case | Expected | Got | What it means |
+|---|---|---|---|
+| H24 | VERIFIED | UNCERTAIN/MISSING_EVIDENCE |  |
 
 ---
 
@@ -194,7 +206,7 @@ silent bug becomes a wrong verdict rather than a crash, so it has its own gate.
 | Slash dates read MM/DD/YYYY uniformly | **PASS** | 03/04/2026 -> 4 Mar (declared convention); 31/12/2026 rejected rather than guessed |
 | Unrecognised date formats throw | **PASS** | 5 unrecognised formats throw rather than defaulting to epoch |
 | A date-only value date reads as end of day, not midnight | **PASS** | date-only -> 23:59:59Z, precision recorded, same-day comparison ties instead of ordering |
-| Every row of the real ledger parses exactly | **PASS** | 177 bank rows and 150 case rows parsed to exact paise and ISO-8601 |
+| Every row of the real ledger parses exactly | **PASS** | 188 bank rows and 150 case rows parsed to exact paise and ISO-8601 |
 | Case-index summaries are not treated as evidence | **PASS** | 118/120 summary rows are internally self-consistent and still carry no evidentiary weight |
 
 ---
@@ -236,9 +248,9 @@ much as the function.
 
 ## Notes on the numbers
 
-- **Throughput** is deterministic verification only: 10,317 records/sec over 120 cases
-  (12 ms). Agent proposal for all 150 cases took
-  35 ms on the offline mock. The two are reported
+- **Throughput** is deterministic verification only: 5,120 records/sec over 120 cases
+  (23 ms). Agent proposal for all 150 cases took
+  54 ms on the offline mock. The two are reported
   separately because only the first one decides anything.
 - **Value coverage** is reported against two denominators. `value coverage (of verifiable)`
   answers "of the money that genuinely reconciled, how much did we clear?" and is the gated

@@ -6,721 +6,841 @@
       "settlement_id": "S-10001",
       "scenario": "clean_match",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000001"
     },
     "B002": {
       "settlement_id": "S-10002",
       "scenario": "clean_match",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000002"
     },
     "B003": {
       "settlement_id": "S-10003",
       "scenario": "clean_match",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000003"
     },
     "B004": {
       "settlement_id": "S-10004",
       "scenario": "clean_match",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000004"
     },
     "B005": {
       "settlement_id": "S-10005",
       "scenario": "clean_match",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000005"
     },
     "B006": {
       "settlement_id": "S-10006",
       "scenario": "clean_match",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000006"
     },
     "B007": {
       "settlement_id": "S-10007",
       "scenario": "contradictory_source",
       "expected_status": "FAILED",
-      "expected_reason": "CONTRADICTORY_SOURCE"
+      "expected_reason": "CONTRADICTORY_SOURCE",
+      "true_bank_row": "bnk-000007"
     },
     "B008": {
       "settlement_id": "S-10008",
       "scenario": "refund",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000008"
     },
     "B009": {
       "settlement_id": "S-10009",
       "scenario": "refund",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000009"
     },
     "B010": {
       "settlement_id": "S-10010",
       "scenario": "refund",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000010"
     },
     "B011": {
       "settlement_id": "S-10011",
       "scenario": "t1_delay",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000011"
     },
     "B012": {
       "settlement_id": "S-10012",
       "scenario": "clean_match",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000012"
     },
     "B013": {
       "settlement_id": "S-10013",
       "scenario": "clean_match",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000013"
     },
     "B014": {
       "settlement_id": "S-10014",
       "scenario": "partial_settlement",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000014"
     },
     "B015": {
       "settlement_id": "S-10015",
       "scenario": "stale_policy",
       "expected_status": "UNCERTAIN",
-      "expected_reason": "STALE_POLICY"
+      "expected_reason": "MISSING_EVIDENCE",
+      "true_bank_row": "bnk-000015"
     },
     "B016": {
       "settlement_id": "S-10016",
       "scenario": "refund",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000017"
     },
     "B017": {
       "settlement_id": "S-10017",
       "scenario": "clean_match",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000018"
     },
     "B018": {
       "settlement_id": "S-10018",
       "scenario": "clean_match",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000019"
     },
     "B019": {
       "settlement_id": "S-10019",
       "scenario": "missing_evidence",
       "expected_status": "UNCERTAIN",
-      "expected_reason": "MISSING_EVIDENCE"
+      "expected_reason": "MISSING_EVIDENCE",
+      "true_bank_row": "bnk-000020"
     },
     "B020": {
       "settlement_id": "S-10020",
       "scenario": "duplicate_file",
       "expected_status": "FAILED",
-      "expected_reason": "DUPLICATE_FILE"
+      "expected_reason": "DUPLICATE_FILE",
+      "true_bank_row": "bnk-000021"
     },
     "B021": {
       "settlement_id": "S-10021",
       "scenario": "contradictory_source",
       "expected_status": "FAILED",
-      "expected_reason": "CONTRADICTORY_SOURCE"
+      "expected_reason": "CONTRADICTORY_SOURCE",
+      "true_bank_row": "bnk-000023"
     },
     "B022": {
       "settlement_id": "S-10022",
       "scenario": "duplicate_utr",
       "expected_status": "FAILED",
-      "expected_reason": "DUPLICATE_UTR"
+      "expected_reason": "DUPLICATE_UTR",
+      "true_bank_row": "bnk-000024"
     },
     "B023": {
       "settlement_id": "S-10023",
       "scenario": "clean_match",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000025"
     },
     "B024": {
       "settlement_id": "S-10024",
       "scenario": "duplicate_utr",
       "expected_status": "FAILED",
-      "expected_reason": "DUPLICATE_UTR"
+      "expected_reason": "DUPLICATE_UTR",
+      "true_bank_row": "bnk-000026"
     },
     "B025": {
       "settlement_id": "S-10025",
       "scenario": "fee_mismatch",
       "expected_status": "FAILED",
-      "expected_reason": "FEE_MISMATCH"
+      "expected_reason": "FEE_MISMATCH",
+      "true_bank_row": "bnk-000027"
     },
     "B026": {
       "settlement_id": "S-10026",
       "scenario": "stale_policy",
       "expected_status": "UNCERTAIN",
-      "expected_reason": "STALE_POLICY"
+      "expected_reason": "STALE_POLICY",
+      "true_bank_row": "bnk-000028"
     },
     "B027": {
       "settlement_id": "S-10027",
       "scenario": "clean_match",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000029"
     },
     "B028": {
       "settlement_id": "S-10028",
       "scenario": "clean_match",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000030"
     },
     "B029": {
       "settlement_id": "S-10029",
       "scenario": "clean_match",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000031"
     },
     "B030": {
       "settlement_id": "S-10030",
       "scenario": "clean_match",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000032"
     },
     "B031": {
       "settlement_id": "S-10031",
       "scenario": "fee_mismatch",
       "expected_status": "FAILED",
-      "expected_reason": "FEE_MISMATCH"
+      "expected_reason": "FEE_MISMATCH",
+      "true_bank_row": "bnk-000033"
     },
     "B032": {
       "settlement_id": "S-10032",
       "scenario": "clean_match",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000034"
     },
     "B033": {
       "settlement_id": "S-10033",
       "scenario": "stale_policy",
       "expected_status": "UNCERTAIN",
-      "expected_reason": "STALE_POLICY"
+      "expected_reason": "MISSING_EVIDENCE",
+      "true_bank_row": "bnk-000035"
     },
     "B034": {
       "settlement_id": "S-10034",
       "scenario": "clean_match",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000037"
     },
     "B035": {
       "settlement_id": "S-10035",
       "scenario": "duplicate_file",
       "expected_status": "FAILED",
-      "expected_reason": "DUPLICATE_FILE"
+      "expected_reason": "DUPLICATE_FILE",
+      "true_bank_row": "bnk-000038"
     },
     "B036": {
       "settlement_id": "S-10036",
       "scenario": "clean_match",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000040"
     },
     "B037": {
       "settlement_id": "S-10037",
       "scenario": "clean_match",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000041"
     },
     "B038": {
       "settlement_id": "S-10038",
       "scenario": "refund",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000042"
     },
     "B039": {
       "settlement_id": "S-10039",
       "scenario": "refund",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000043"
     },
     "B040": {
       "settlement_id": "S-10040",
       "scenario": "duplicate_utr",
       "expected_status": "FAILED",
-      "expected_reason": "DUPLICATE_UTR"
+      "expected_reason": "DUPLICATE_UTR",
+      "true_bank_row": "bnk-000044"
     },
     "B041": {
       "settlement_id": "S-10041",
       "scenario": "duplicate_file",
       "expected_status": "FAILED",
-      "expected_reason": "DUPLICATE_FILE"
+      "expected_reason": "DUPLICATE_FILE",
+      "true_bank_row": "bnk-000045"
     },
     "B042": {
       "settlement_id": "S-10042",
       "scenario": "clean_match",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000047"
     },
     "B043": {
       "settlement_id": "S-10043",
       "scenario": "clean_match",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000048"
     },
     "B044": {
       "settlement_id": "S-10044",
       "scenario": "clean_match",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000049"
     },
     "B045": {
       "settlement_id": "S-10045",
       "scenario": "missing_evidence",
       "expected_status": "UNCERTAIN",
-      "expected_reason": "MISSING_EVIDENCE"
+      "expected_reason": "MISSING_EVIDENCE",
+      "true_bank_row": ""
     },
     "B046": {
       "settlement_id": "S-10046",
       "scenario": "clean_match",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000050"
     },
     "B047": {
       "settlement_id": "S-10047",
       "scenario": "t1_delay",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000051"
     },
     "B048": {
       "settlement_id": "S-10048",
       "scenario": "clean_match",
-      "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_status": "UNCERTAIN",
+      "expected_reason": "MISSING_EVIDENCE",
+      "true_bank_row": "bnk-000052"
     },
     "B049": {
       "settlement_id": "S-10049",
       "scenario": "clean_match",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000054"
     },
     "B050": {
       "settlement_id": "S-10050",
       "scenario": "t1_delay",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000055"
     },
     "B051": {
       "settlement_id": "S-10051",
       "scenario": "partial_settlement",
-      "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_status": "UNCERTAIN",
+      "expected_reason": "MISSING_EVIDENCE",
+      "true_bank_row": "bnk-000056"
     },
     "B052": {
       "settlement_id": "S-10052",
       "scenario": "stale_policy",
       "expected_status": "UNCERTAIN",
-      "expected_reason": "STALE_POLICY"
+      "expected_reason": "STALE_POLICY",
+      "true_bank_row": "bnk-000058"
     },
     "B053": {
       "settlement_id": "S-10053",
       "scenario": "fee_mismatch",
       "expected_status": "FAILED",
-      "expected_reason": "FEE_MISMATCH"
+      "expected_reason": "FEE_MISMATCH",
+      "true_bank_row": "bnk-000059"
     },
     "B054": {
       "settlement_id": "S-10054",
       "scenario": "contradictory_source",
       "expected_status": "FAILED",
-      "expected_reason": "CONTRADICTORY_SOURCE"
+      "expected_reason": "CONTRADICTORY_SOURCE",
+      "true_bank_row": "bnk-000060"
     },
     "B055": {
       "settlement_id": "S-10055",
       "scenario": "clean_match",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000061"
     },
     "B056": {
       "settlement_id": "S-10056",
       "scenario": "clean_match",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000062"
     },
     "B057": {
       "settlement_id": "S-10057",
       "scenario": "partial_settlement",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000063"
     },
     "B058": {
       "settlement_id": "S-10058",
       "scenario": "partial_settlement",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000064"
     },
     "B059": {
       "settlement_id": "S-10059",
       "scenario": "clean_match",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000065"
     },
     "B060": {
       "settlement_id": "S-10060",
       "scenario": "fee_mismatch",
       "expected_status": "FAILED",
-      "expected_reason": "FEE_MISMATCH"
+      "expected_reason": "FEE_MISMATCH",
+      "true_bank_row": "bnk-000066"
     },
     "B061": {
       "settlement_id": "S-10061",
       "scenario": "missing_evidence",
       "expected_status": "UNCERTAIN",
-      "expected_reason": "MISSING_EVIDENCE"
+      "expected_reason": "MISSING_EVIDENCE",
+      "true_bank_row": "bnk-000067"
     },
     "B062": {
       "settlement_id": "S-10062",
       "scenario": "clean_match",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000068"
     },
     "B063": {
       "settlement_id": "S-10063",
       "scenario": "duplicate_utr",
       "expected_status": "FAILED",
-      "expected_reason": "DUPLICATE_UTR"
+      "expected_reason": "DUPLICATE_UTR",
+      "true_bank_row": "bnk-000069"
     },
     "B064": {
       "settlement_id": "S-10064",
       "scenario": "clean_match",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000070"
     },
     "B065": {
       "settlement_id": "S-10065",
       "scenario": "missing_evidence",
       "expected_status": "UNCERTAIN",
-      "expected_reason": "MISSING_EVIDENCE"
+      "expected_reason": "MISSING_EVIDENCE",
+      "true_bank_row": ""
     },
     "B066": {
       "settlement_id": "S-10066",
       "scenario": "clean_match",
-      "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_status": "UNCERTAIN",
+      "expected_reason": "MISSING_EVIDENCE",
+      "true_bank_row": "bnk-000071"
     },
     "B067": {
       "settlement_id": "S-10067",
       "scenario": "fee_mismatch",
       "expected_status": "FAILED",
-      "expected_reason": "FEE_MISMATCH"
+      "expected_reason": "FEE_MISMATCH",
+      "true_bank_row": "bnk-000073"
     },
     "B068": {
       "settlement_id": "S-10068",
       "scenario": "partial_settlement",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000074"
     },
     "B069": {
       "settlement_id": "S-10069",
       "scenario": "partial_settlement",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000075"
     },
     "B070": {
       "settlement_id": "S-10070",
       "scenario": "clean_match",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000076"
     },
     "B071": {
       "settlement_id": "S-10071",
       "scenario": "clean_match",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000077"
     },
     "B072": {
       "settlement_id": "S-10072",
       "scenario": "refund",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000078"
     },
     "B073": {
       "settlement_id": "S-10073",
       "scenario": "t1_delay",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000079"
     },
     "B074": {
       "settlement_id": "S-10074",
       "scenario": "contradictory_source",
       "expected_status": "FAILED",
-      "expected_reason": "CONTRADICTORY_SOURCE"
+      "expected_reason": "CONTRADICTORY_SOURCE",
+      "true_bank_row": "bnk-000080"
     },
     "B075": {
       "settlement_id": "S-10075",
       "scenario": "clean_match",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000081"
     },
     "B076": {
       "settlement_id": "S-10076",
       "scenario": "partial_settlement",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000082"
     },
     "B077": {
       "settlement_id": "S-10077",
       "scenario": "missing_evidence",
       "expected_status": "UNCERTAIN",
-      "expected_reason": "MISSING_EVIDENCE"
+      "expected_reason": "MISSING_EVIDENCE",
+      "true_bank_row": "bnk-000083"
     },
     "B078": {
       "settlement_id": "S-10078",
       "scenario": "clean_match",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000084"
     },
     "B079": {
       "settlement_id": "S-10079",
       "scenario": "duplicate_utr",
       "expected_status": "FAILED",
-      "expected_reason": "DUPLICATE_UTR"
+      "expected_reason": "DUPLICATE_UTR",
+      "true_bank_row": "bnk-000085"
     },
     "B080": {
       "settlement_id": "S-10080",
       "scenario": "duplicate_utr",
       "expected_status": "FAILED",
-      "expected_reason": "DUPLICATE_UTR"
+      "expected_reason": "DUPLICATE_UTR",
+      "true_bank_row": "bnk-000086"
     },
     "B081": {
       "settlement_id": "S-10081",
       "scenario": "clean_match",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000087"
     },
     "B082": {
       "settlement_id": "S-10082",
       "scenario": "t1_delay",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000088"
     },
     "B083": {
       "settlement_id": "S-10083",
       "scenario": "clean_match",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000089"
     },
     "B084": {
       "settlement_id": "S-10084",
       "scenario": "duplicate_utr",
-      "expected_status": "FAILED",
-      "expected_reason": "DUPLICATE_UTR"
+      "expected_status": "UNCERTAIN",
+      "expected_reason": "MISSING_EVIDENCE",
+      "true_bank_row": "bnk-000090"
     },
     "B085": {
       "settlement_id": "S-10085",
       "scenario": "clean_match",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000092"
     },
     "B086": {
       "settlement_id": "S-10086",
       "scenario": "t1_delay",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000093"
     },
     "B087": {
       "settlement_id": "S-10087",
       "scenario": "partial_settlement",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000094"
     },
     "B088": {
       "settlement_id": "S-10088",
       "scenario": "fee_mismatch",
       "expected_status": "FAILED",
-      "expected_reason": "FEE_MISMATCH"
+      "expected_reason": "FEE_MISMATCH",
+      "true_bank_row": "bnk-000095"
     },
     "B089": {
       "settlement_id": "S-10089",
       "scenario": "fee_mismatch",
       "expected_status": "FAILED",
-      "expected_reason": "FEE_MISMATCH"
+      "expected_reason": "FEE_MISMATCH",
+      "true_bank_row": "bnk-000096"
     },
     "B090": {
       "settlement_id": "S-10090",
       "scenario": "duplicate_file",
       "expected_status": "FAILED",
-      "expected_reason": "DUPLICATE_FILE"
+      "expected_reason": "DUPLICATE_FILE",
+      "true_bank_row": "bnk-000097"
     },
     "B091": {
       "settlement_id": "S-10091",
       "scenario": "t1_delay",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000099"
     },
     "B092": {
       "settlement_id": "S-10092",
       "scenario": "fee_mismatch",
       "expected_status": "FAILED",
-      "expected_reason": "FEE_MISMATCH"
+      "expected_reason": "FEE_MISMATCH",
+      "true_bank_row": "bnk-000100"
     },
     "B093": {
       "settlement_id": "S-10093",
       "scenario": "clean_match",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000101"
     },
     "B094": {
       "settlement_id": "S-10094",
       "scenario": "fee_mismatch",
       "expected_status": "FAILED",
-      "expected_reason": "FEE_MISMATCH"
+      "expected_reason": "FEE_MISMATCH",
+      "true_bank_row": "bnk-000102"
     },
     "B095": {
       "settlement_id": "S-10095",
       "scenario": "clean_match",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000103"
     },
     "B096": {
       "settlement_id": "S-10096",
       "scenario": "duplicate_utr",
       "expected_status": "FAILED",
-      "expected_reason": "DUPLICATE_UTR"
+      "expected_reason": "DUPLICATE_UTR",
+      "true_bank_row": "bnk-000104"
     },
     "B097": {
       "settlement_id": "S-10097",
       "scenario": "clean_match",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000105"
     },
     "B098": {
       "settlement_id": "S-10098",
       "scenario": "clean_match",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000106"
     },
     "B099": {
       "settlement_id": "S-10099",
       "scenario": "clean_match",
-      "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_status": "UNCERTAIN",
+      "expected_reason": "MISSING_EVIDENCE",
+      "true_bank_row": "bnk-000107"
     },
     "B100": {
       "settlement_id": "S-10100",
       "scenario": "clean_match",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000109"
     },
     "B101": {
       "settlement_id": "S-10101",
       "scenario": "clean_match",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000110"
     },
     "B102": {
       "settlement_id": "S-10102",
       "scenario": "duplicate_file",
       "expected_status": "FAILED",
-      "expected_reason": "DUPLICATE_FILE"
+      "expected_reason": "DUPLICATE_FILE",
+      "true_bank_row": "bnk-000111"
     },
     "B103": {
       "settlement_id": "S-10103",
       "scenario": "t1_delay",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000113"
     },
     "B104": {
       "settlement_id": "S-10104",
       "scenario": "clean_match",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000114"
     },
     "B105": {
       "settlement_id": "S-10105",
       "scenario": "clean_match",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000115"
     },
     "B106": {
       "settlement_id": "S-10106",
       "scenario": "stale_policy",
       "expected_status": "UNCERTAIN",
-      "expected_reason": "STALE_POLICY"
+      "expected_reason": "STALE_POLICY",
+      "true_bank_row": "bnk-000116"
     },
     "B107": {
       "settlement_id": "S-10107",
       "scenario": "clean_match",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000117"
     },
     "B108": {
       "settlement_id": "S-10108",
       "scenario": "clean_match",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000118"
     },
     "B109": {
       "settlement_id": "S-10109",
       "scenario": "clean_match",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000119"
     },
     "B110": {
       "settlement_id": "S-10110",
       "scenario": "clean_match",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000120"
     },
     "B111": {
       "settlement_id": "S-10111",
       "scenario": "duplicate_utr",
       "expected_status": "FAILED",
-      "expected_reason": "DUPLICATE_UTR"
+      "expected_reason": "DUPLICATE_UTR",
+      "true_bank_row": "bnk-000121"
     },
     "B112": {
       "settlement_id": "S-10112",
       "scenario": "clean_match",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000122"
     },
     "B113": {
       "settlement_id": "S-10113",
       "scenario": "clean_match",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000123"
     },
     "B114": {
       "settlement_id": "S-10114",
       "scenario": "t1_delay",
-      "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_status": "UNCERTAIN",
+      "expected_reason": "MISSING_EVIDENCE",
+      "true_bank_row": "bnk-000124"
     },
     "B115": {
       "settlement_id": "S-10115",
       "scenario": "clean_match",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000126"
     },
     "B116": {
       "settlement_id": "S-10116",
       "scenario": "contradictory_source",
       "expected_status": "FAILED",
-      "expected_reason": "CONTRADICTORY_SOURCE"
+      "expected_reason": "CONTRADICTORY_SOURCE",
+      "true_bank_row": "bnk-000127"
     },
     "B117": {
       "settlement_id": "S-10117",
       "scenario": "clean_match",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000128"
     },
     "B118": {
       "settlement_id": "S-10118",
       "scenario": "t1_delay",
       "expected_status": "VERIFIED",
-      "expected_reason": ""
+      "expected_reason": "",
+      "true_bank_row": "bnk-000129"
     },
     "B119": {
       "settlement_id": "S-10119",
       "scenario": "duplicate_utr",
       "expected_status": "FAILED",
-      "expected_reason": "DUPLICATE_UTR"
+      "expected_reason": "DUPLICATE_UTR",
+      "true_bank_row": "bnk-000130"
     },
     "B120": {
       "settlement_id": "S-10120",
       "scenario": "fee_mismatch",
       "expected_status": "FAILED",
-      "expected_reason": "FEE_MISMATCH"
+      "expected_reason": "FEE_MISMATCH",
+      "true_bank_row": "bnk-000131"
     }
   },
   "adversarial_30": {
@@ -728,181 +848,211 @@
       "settlement_id": "S-90001",
       "attack": "duplicate_settlement_file",
       "expected_status": "FAILED",
-      "expected_reason": "DUPLICATE_FILE"
+      "expected_reason": "DUPLICATE_FILE",
+      "true_bank_row": "bnk-000132"
     },
     "A002": {
       "settlement_id": "S-90002",
       "attack": "missing_evidence",
       "expected_status": "UNCERTAIN",
-      "expected_reason": "MISSING_EVIDENCE"
+      "expected_reason": "MISSING_EVIDENCE",
+      "true_bank_row": ""
     },
     "A003": {
       "settlement_id": "S-90003",
       "attack": "contradictory_sources",
       "expected_status": "FAILED",
-      "expected_reason": "CONTRADICTORY_SOURCE"
+      "expected_reason": "CONTRADICTORY_SOURCE",
+      "true_bank_row": "bnk-000133"
     },
     "A004": {
       "settlement_id": "S-90004",
       "attack": "prompt_injection",
       "expected_status": "FAILED",
-      "expected_reason": "FEE_MISMATCH"
+      "expected_reason": "FEE_MISMATCH",
+      "true_bank_row": "bnk-000134"
     },
     "A005": {
       "settlement_id": "S-90005",
       "attack": "duplicate_webhook",
       "expected_status": "FAILED",
-      "expected_reason": "DUPLICATE_EVENT"
+      "expected_reason": "DUPLICATE_EVENT",
+      "true_bank_row": "bnk-000135"
     },
     "A006": {
       "settlement_id": "S-90006",
       "attack": "stale_policy",
       "expected_status": "UNCERTAIN",
-      "expected_reason": "STALE_POLICY"
+      "expected_reason": "STALE_POLICY",
+      "true_bank_row": "bnk-000136"
     },
     "A007": {
       "settlement_id": "S-90007",
       "attack": "missing_evidence",
       "expected_status": "UNCERTAIN",
-      "expected_reason": "MISSING_EVIDENCE"
+      "expected_reason": "MISSING_EVIDENCE",
+      "true_bank_row": ""
     },
     "A008": {
       "settlement_id": "S-90008",
       "attack": "duplicate_webhook",
-      "expected_status": "FAILED",
-      "expected_reason": "DUPLICATE_EVENT"
+      "expected_status": "UNCERTAIN",
+      "expected_reason": "MISSING_EVIDENCE",
+      "true_bank_row": "bnk-000137"
     },
     "A009": {
       "settlement_id": "S-90009",
       "attack": "missing_evidence",
       "expected_status": "UNCERTAIN",
-      "expected_reason": "MISSING_EVIDENCE"
+      "expected_reason": "MISSING_EVIDENCE",
+      "true_bank_row": ""
     },
     "A010": {
       "settlement_id": "S-90010",
       "attack": "contradictory_sources",
       "expected_status": "FAILED",
-      "expected_reason": "CONTRADICTORY_SOURCE"
+      "expected_reason": "CONTRADICTORY_SOURCE",
+      "true_bank_row": "bnk-000139"
     },
     "A011": {
       "settlement_id": "S-90011",
       "attack": "contradictory_sources",
-      "expected_status": "FAILED",
-      "expected_reason": "CONTRADICTORY_SOURCE"
+      "expected_status": "UNCERTAIN",
+      "expected_reason": "MISSING_EVIDENCE",
+      "true_bank_row": "bnk-000140"
     },
     "A012": {
       "settlement_id": "S-90012",
       "attack": "stale_policy",
       "expected_status": "UNCERTAIN",
-      "expected_reason": "STALE_POLICY"
+      "expected_reason": "STALE_POLICY",
+      "true_bank_row": "bnk-000142"
     },
     "A013": {
       "settlement_id": "S-90013",
       "attack": "contradictory_sources",
       "expected_status": "FAILED",
-      "expected_reason": "CONTRADICTORY_SOURCE"
+      "expected_reason": "CONTRADICTORY_SOURCE",
+      "true_bank_row": "bnk-000143"
     },
     "A014": {
       "settlement_id": "S-90014",
       "attack": "contradictory_sources",
       "expected_status": "FAILED",
-      "expected_reason": "CONTRADICTORY_SOURCE"
+      "expected_reason": "CONTRADICTORY_SOURCE",
+      "true_bank_row": "bnk-000144"
     },
     "A015": {
       "settlement_id": "S-90015",
       "attack": "missing_evidence",
       "expected_status": "UNCERTAIN",
-      "expected_reason": "MISSING_EVIDENCE"
+      "expected_reason": "MISSING_EVIDENCE",
+      "true_bank_row": ""
     },
     "A016": {
       "settlement_id": "S-90016",
       "attack": "prompt_injection",
       "expected_status": "FAILED",
-      "expected_reason": "FEE_MISMATCH"
+      "expected_reason": "FEE_MISMATCH",
+      "true_bank_row": "bnk-000145"
     },
     "A017": {
       "settlement_id": "S-90017",
       "attack": "duplicate_settlement_file",
       "expected_status": "FAILED",
-      "expected_reason": "DUPLICATE_FILE"
+      "expected_reason": "DUPLICATE_FILE",
+      "true_bank_row": "bnk-000146"
     },
     "A018": {
       "settlement_id": "S-90018",
       "attack": "duplicate_webhook",
       "expected_status": "FAILED",
-      "expected_reason": "DUPLICATE_EVENT"
+      "expected_reason": "DUPLICATE_EVENT",
+      "true_bank_row": "bnk-000147"
     },
     "A019": {
       "settlement_id": "S-90019",
       "attack": "prompt_injection",
       "expected_status": "FAILED",
-      "expected_reason": "FEE_MISMATCH"
+      "expected_reason": "FEE_MISMATCH",
+      "true_bank_row": "bnk-000148"
     },
     "A020": {
       "settlement_id": "S-90020",
       "attack": "stale_policy",
       "expected_status": "UNCERTAIN",
-      "expected_reason": "STALE_POLICY"
+      "expected_reason": "STALE_POLICY",
+      "true_bank_row": "bnk-000149"
     },
     "A021": {
       "settlement_id": "S-90021",
       "attack": "prompt_injection",
       "expected_status": "FAILED",
-      "expected_reason": "FEE_MISMATCH"
+      "expected_reason": "FEE_MISMATCH",
+      "true_bank_row": "bnk-000150"
     },
     "A022": {
       "settlement_id": "S-90022",
       "attack": "duplicate_settlement_file",
       "expected_status": "FAILED",
-      "expected_reason": "DUPLICATE_FILE"
+      "expected_reason": "DUPLICATE_FILE",
+      "true_bank_row": "bnk-000151"
     },
     "A023": {
       "settlement_id": "S-90023",
       "attack": "duplicate_webhook",
       "expected_status": "FAILED",
-      "expected_reason": "DUPLICATE_EVENT"
+      "expected_reason": "DUPLICATE_EVENT",
+      "true_bank_row": "bnk-000152"
     },
     "A024": {
       "settlement_id": "S-90024",
       "attack": "prompt_injection",
       "expected_status": "FAILED",
-      "expected_reason": "FEE_MISMATCH"
+      "expected_reason": "FEE_MISMATCH",
+      "true_bank_row": "bnk-000153"
     },
     "A025": {
       "settlement_id": "S-90025",
       "attack": "duplicate_settlement_file",
       "expected_status": "FAILED",
-      "expected_reason": "DUPLICATE_FILE"
+      "expected_reason": "DUPLICATE_FILE",
+      "true_bank_row": "bnk-000154"
     },
     "A026": {
       "settlement_id": "S-90026",
       "attack": "duplicate_settlement_file",
-      "expected_status": "FAILED",
-      "expected_reason": "DUPLICATE_FILE"
+      "expected_status": "UNCERTAIN",
+      "expected_reason": "MISSING_EVIDENCE",
+      "true_bank_row": "bnk-000155"
     },
     "A027": {
       "settlement_id": "S-90027",
       "attack": "missing_evidence",
       "expected_status": "UNCERTAIN",
-      "expected_reason": "MISSING_EVIDENCE"
+      "expected_reason": "MISSING_EVIDENCE",
+      "true_bank_row": ""
     },
     "A028": {
       "settlement_id": "S-90028",
       "attack": "duplicate_webhook",
       "expected_status": "FAILED",
-      "expected_reason": "DUPLICATE_EVENT"
+      "expected_reason": "DUPLICATE_EVENT",
+      "true_bank_row": "bnk-000157"
     },
     "A029": {
       "settlement_id": "S-90029",
       "attack": "stale_policy",
       "expected_status": "UNCERTAIN",
-      "expected_reason": "STALE_POLICY"
+      "expected_reason": "STALE_POLICY",
+      "true_bank_row": "bnk-000158"
     },
     "A030": {
       "settlement_id": "S-90030",
       "attack": "stale_policy",
       "expected_status": "UNCERTAIN",
-      "expected_reason": "STALE_POLICY"
+      "expected_reason": "STALE_POLICY",
+      "true_bank_row": "bnk-000159"
     }
   }
 }

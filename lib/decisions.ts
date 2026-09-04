@@ -31,6 +31,7 @@ import { buildEvidencePack, evidenceHashMap, AGENT_VERSION } from '@/lib/evidenc
 import { verifyClaim, VERIFIER_VERSION } from '@/lib/verifier/deterministic'
 import { MODEL_VERSION } from '@/lib/ai/provider'
 import { loadCases, type Suite } from '@/lib/data/ledger'
+import { closeRecord } from '@/lib/closure'
 import type {
   AgentProposal,
   Decision,
@@ -152,15 +153,31 @@ export function materializeDecision(
     opts.asOf ?? pack.decision_time,
   )
 
-  return {
+  const decision: Decision = {
     case_id: c.case_id,
     suite,
     proposal,
     pack,
     result,
     batch_value_paise: c.batch_value_paise,
+    // Placeholder; replaced immediately below. Closure needs the assembled
+    // decision, and the decision's type requires a closure — one of the two has
+    // to be filled in second.
+    closure: {
+      status: 'FAILED',
+      closed_at: null,
+      value_paise: c.batch_value_paise,
+      summary: '',
+      required_evidence: [],
+      priority: 0,
+    },
   }
+  decision.closure = closeRecord(decision, BATCH_CLOSED_AT)
+  return decision
 }
+
+/** One instant per batch so a closure timestamp is reproducible across runs. */
+const BATCH_CLOSED_AT = '2026-09-04T00:00:00Z'
 
 export function materializeSuite(suite: Suite): Decision[] {
   const log = loadDecisionLog()

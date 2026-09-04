@@ -25,8 +25,10 @@
 
 import { hashContent, hashPack } from '@/lib/evidence/hash'
 import { NULL_POLICY, resolvePolicy } from '@/lib/policy/snapshots'
+import { matchSettlement } from '@/lib/matching/engine'
 import { loadLedger } from '@/lib/data/ledger'
 import type {
+  PackMatch,
   EvidenceItem,
   EvidenceKind,
   EvidencePack,
@@ -222,32 +224,103 @@ export function buildEvidencePack(
     })
   }
 
-  // --- bank credits, retrieved by UTR ---------------------------------------
-  for (const utr of utrs) {
-    for (const b of ledger.bankByUtr.get(utr) ?? []) {
-      drafts.push({
-        source: 'bank_statement',
-        kind: 'bank_credit',
+  // --- bank credits, DERIVED BY MATCHING -------------------------------------
+  //
+  // This used to be an equality lookup on the UTR, which meant the pairing was
+  // handed to us and only the arithmetic was ever checked. That is verification
+  // of somebody else's reconciliation, not reconciliation.
+  //
+  // Now the engine scores every credit inside the settlement's window on
+  // reference, amount and date, and only the credits it actually selects enter
+  // the pack. When it cannot choose — two identical credits, no reference to
+  // separate them — it says AMBIGUOUS and contributes no bank evidence at all,
+  // so the verifier abstains rather than closing against a coin flip.
+  const primary = own[0]
+  let match: PackMatch | null = null
+  if (primary) {
+    const policyForMatch = resolvePolicy(c.decision_time) ?? NULL_POLICY
+    const result = matchSettlement(
+      {
+        settlement_id: primary.settlement_id,
+        utr: primary.utr,
+        declared_net_paise: primary.net_amount_paise,
+        settled_at: primary.settled_at,
+      },
+      ledger.bankAll.map((b) => ({
         row_id: b.row_id,
-        timestamp: b.value_date,
-        ingested_at: b.ingested_at,
-        amount_paise: b.credit_paise,
-        // Hashed over NORMALISED values, not the raw export string. A bank that
-        // reformats `1,46,816.21` as `₹1,46,816.21` has not changed the fact,
-        // and a reproducibility check that fired on that would cry wolf until
-        // someone switched it off. Value changes are caught; formatting is not.
-        content: {
-          utr: b.utr,
-          credit_paise: b.credit_paise,
-          value_date: b.value_date,
-          memo: b.memo,
-        },
-        keys: { utr: b.utr },
-        timestamp_precision: b.value_date_precision,
-        // Attacker-controlled. Off the verdict path by construction.
-        display: { memo: b.memo },
-      })
+        utr: b.utr,
+        credit_paise: b.credit_paise,
+        value_date: b.value_date,
+      })),
+      policyForMatch,
+    )
+    match = {
+      status: result.status,
+      matched_row_ids: result.matched_row_ids,
+      confidence: result.confidence,
+      reasons: result.reasons,
+      matcher_version: result.matcher_version,
+      candidates: result.candidates.slice(0, 5).map((x) => ({
+        row_id: x.row_id,
+        score: x.score,
+        amount_delta_paise: x.amount_delta_paise,
+        date_delta_days: x.date_delta_days,
+      })),
     }
+  }
+
+  // Only a decided match contributes bank evidence. An AMBIGUOUS result names
+  // its tied rows for the operator but deliberately supplies none, because
+  // picking one would launder a guess into a fact.
+  const selected = new Set(match?.status === 'MATCHED' ? match.matched_row_ids : [])
+
+  // A byte-identical re-ingest of the matched credit is the SAME credit, and it
+  // belongs in the pack even though the matcher only needed one of them.
+  //
+  // Without this the matcher launders the exact failure the duplicate check
+  // exists to catch: a settlements file ingested twice produces two identical
+  // credits, the engine picks one, and DUPLICATE_FILE never fires. The pairing
+  // step must not be able to make evidence disappear.
+  //
+  // Note this is identity, not similarity — same reference, same amount, same
+  // value date. The ambiguous twins differ by a day and are deliberately NOT
+  // pulled in; they stay an unresolved match rather than becoming a duplicate.
+  const selectedRows = ledger.bankAll.filter((b) => selected.has(b.row_id))
+  for (const b of ledger.bankAll) {
+    if (selected.has(b.row_id)) continue
+    const isSameCredit = selectedRows.some(
+      (sel) =>
+        sel.utr === b.utr &&
+        sel.credit_paise === b.credit_paise &&
+        sel.value_date === b.value_date,
+    )
+    if (isSameCredit) selected.add(b.row_id)
+  }
+
+  for (const b of ledger.bankAll) {
+    if (!selected.has(b.row_id)) continue
+    drafts.push({
+      source: 'bank_statement',
+      kind: 'bank_credit',
+      row_id: b.row_id,
+      timestamp: b.value_date,
+      ingested_at: b.ingested_at,
+      amount_paise: b.credit_paise,
+      // Hashed over NORMALISED values, not the raw export string. A bank that
+      // reformats `1,46,816.21` as `₹1,46,816.21` has not changed the fact,
+      // and a reproducibility check that fired on that would cry wolf until
+      // someone switched it off. Value changes are caught; formatting is not.
+      content: {
+        utr: b.utr,
+        credit_paise: b.credit_paise,
+        value_date: b.value_date,
+        memo: b.memo,
+      },
+      keys: { utr: b.utr },
+      timestamp_precision: b.value_date_precision,
+      // Attacker-controlled. Off the verdict path by construction.
+      display: { memo: b.memo },
+    })
   }
 
   // --- webhook events --------------------------------------------------------
@@ -320,6 +393,7 @@ export function buildEvidencePack(
   const decisionPolicy = resolvePolicy(c.decision_time) ?? NULL_POLICY
 
   return {
+    match,
     decision_id: `dec_${c.case_id}_${c.settlement_id}`,
     settlement_id: c.settlement_id,
     merchant_id: c.merchant_id,

@@ -105,11 +105,25 @@ export async function runAdversarialTests(): Promise<AdversarialTest[]> {
   // -------------------------------------------------------------------------
   // The six attack classes
   // -------------------------------------------------------------------------
+  const truth = loadGroundTruth('adversarial_30')
   for (const exp of ATTACKS) {
     const cases = byAttack.get(exp.attack) ?? []
-    const wrong = cases.filter(
-      (d) => d.result.verdict !== exp.verdict || d.result.reason_code !== exp.reason,
-    )
+    // Compare each case against ITS OWN ground-truth entry rather than one
+    // hardcoded expectation per class.
+    //
+    // The hardcoded table drifted the moment the fixture grew a second
+    // dimension: a duplicate-file case whose bank credit is also ambiguous is
+    // correctly UNCERTAIN, not FAILED/DUPLICATE_FILE, because you cannot assert
+    // a duplicate on money you have not identified. Two places holding the same
+    // expectation means one of them is wrong and nobody knows which.
+    const wrong = cases.filter((d) => {
+      const g = truth.get(d.case_id)
+      if (!g) return true
+      return (
+        d.result.verdict !== g.expected_verdict ||
+        (d.result.reason_code ?? '') !== g.expected_reason
+      )
+    })
     tests.push({
       id: `attack_${exp.attack}`,
       name: exp.name,
@@ -119,7 +133,7 @@ export async function runAdversarialTests(): Promise<AdversarialTest[]> {
         cases.length === 0
           ? 'no cases found for this attack class'
           : wrong.length === 0
-            ? `${cases.length}/${cases.length} returned ${exp.verdict} / ${exp.reason}`
+            ? `${cases.length}/${cases.length} matched their ground-truth verdict (nominally ${exp.verdict} / ${exp.reason})`
             : `${wrong.length}/${cases.length} deviated: ` +
               wrong
                 .map((d) => `${d.case_id} got ${d.result.verdict}/${d.result.reason_code}`)
