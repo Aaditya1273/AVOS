@@ -112,6 +112,44 @@ export function modelAvailability(): { available: boolean; model: string | null;
   return { available: true, model: MODEL_ID, detail: `Model ${MODEL_ID} via ${BASE_URL ?? 'api.openai.com'}.` }
 }
 
+/**
+ * Ask the provider whether the configured model exists, read-only and free
+ * (`GET /models/{id}` is metadata; no tokens). "Available" on the product path
+ * means this succeeded, the same way "connected" means a Razorpay GET
+ * succeeded — a key and a model name are configuration, not availability.
+ * Skipped when a test transport is installed, since there is no provider.
+ */
+export async function probeModel(): Promise<{ ok: boolean; detail: string; models?: string[] }> {
+  const cfg = modelAvailability()
+  if (!cfg.available) return { ok: false, detail: cfg.detail }
+  if (transportOverride) return { ok: true, detail: `${MODEL_ID} via test transport.` }
+  const base = BASE_URL ?? 'https://api.openai.com/v1'
+  try {
+    // Not URL-encoded: ids like `openai/gpt-oss-120b` are addressed with the
+    // slash literal, and Groq returns 404 for the encoded form.
+    const res = await fetch(`${base}/models/${MODEL_ID}`, {
+      headers: { authorization: `Bearer ${API_KEY}` },
+      cache: 'no-store',
+    })
+    if (res.ok) return { ok: true, detail: `${MODEL_ID} via ${base} — provider acknowledged the model.` }
+    // Courtesy on a rejected id: what this key can reach, so the fix is a copy.
+    let models: string[] | undefined
+    if (res.status === 404) {
+      const list = await fetch(`${base}/models`, { headers: { authorization: `Bearer ${API_KEY}` }, cache: 'no-store' })
+        .then((r) => (r.ok ? (r.json() as Promise<{ data?: { id: string }[] }>) : null))
+        .catch(() => null)
+      models = list?.data?.map((m) => m.id).sort()
+    }
+    return {
+      ok: false,
+      detail: `Provider ${base} returned HTTP ${res.status} for model '${MODEL_ID}'${res.status === 401 ? ' — key rejected' : res.status === 404 ? ' — model id not found' : ''}.`,
+      models,
+    }
+  } catch (e) {
+    return { ok: false, detail: `Provider ${base} unreachable: ${(e as Error).message}` }
+  }
+}
+
 async function callModel<T>(call: StrictCall<T>): Promise<T> {
   if (transportOverride) return transportOverride(call)
   const openai = createOpenAI({ apiKey: API_KEY, baseURL: BASE_URL })

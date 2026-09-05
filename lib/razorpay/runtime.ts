@@ -26,7 +26,7 @@ import { resolvePolicy } from '@/lib/policy/snapshots'
 import { proposeClaimStrict } from '@/lib/ai/agent'
 import { narrateExceptionStrict } from '@/lib/ai/classify'
 import { detectInjection } from '@/lib/ai/qa'
-import { ModelUnavailableError, modelAvailability } from '@/lib/ai/provider'
+import { ModelUnavailableError, probeModel, MODEL_ID } from '@/lib/ai/provider'
 import {
   fetchRazorpaySnapshot,
   type RazorpayApiCall,
@@ -107,6 +107,8 @@ export interface AgentAvailability {
   state: 'available' | 'unavailable'
   model: string | null
   detail: string
+  /** On a rejected model id: what the same key can reach. */
+  reachable_models?: string[]
 }
 
 /**
@@ -149,19 +151,23 @@ export async function decideCases(
 ): Promise<{ cases: RazorpayCaseResult[]; agent: AgentAvailability }> {
   const propose = deps.propose ?? proposeClaimStrict
   const narrate = deps.narrate ?? narrateExceptionStrict
+  let modelGoneAtStart = false
 
   // Configuration first, so an empty sync reports the agent as it is rather
   // than as "available" because nothing happened to fail. A caller-supplied
   // proposer (tests) is judged by whether its proposals succeed below.
-  const configured = modelAvailability()
-  let agent: AgentAvailability = deps.propose
-    ? { state: 'available', model: null, detail: 'Proposer supplied by caller.' }
-    : {
-        state: configured.available ? 'available' : 'unavailable',
-        model: configured.model,
-        detail: configured.detail,
-      }
-  let modelGone = false
+  // "Available" is earned by the provider acknowledging the model, not by a
+  // key existing — the agent's equivalent of "connected".
+  const probe = deps.propose ? { ok: true, detail: 'Proposer supplied by caller.' } : await probeModel()
+  const configured = { available: probe.ok, model: probe.ok && !deps.propose ? MODEL_ID : null }
+  let agent: AgentAvailability = {
+    state: probe.ok ? 'available' : 'unavailable',
+    model: configured.model,
+    detail: probe.detail,
+    ...('models' in probe && probe.models ? { reachable_models: probe.models } : {}),
+  }
+  if (!probe.ok && !deps.propose) modelGoneAtStart = true
+  let modelGone = modelGoneAtStart
   let proposed = 0
   let modelSeen: string | null = null
   const out: RazorpayCaseResult[] = []
