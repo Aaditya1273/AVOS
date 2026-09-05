@@ -46,7 +46,22 @@ async function main(): Promise<void> {
     console.log('='.repeat(76) + '\n')
     process.exit(0)
   } catch (e) {
-    console.log(`  FAILED  ${(e as Error).message.slice(0, 300)}`)
+    const msg = (e as Error).message
+    console.log(`  FAILED  ${msg.slice(0, 300)}`)
+    // Providers rotate model ids. When one is rejected, list what the same key
+    // can actually reach so the fix is a copy-paste, not a search.
+    const base = process.env.AVOS_LLM_BASE_URL?.replace(/\/+$/, '')
+    const key = process.env.AVOS_LLM_API_KEY ?? process.env.OPENAI_API_KEY
+    if (base && key && /does not exist|not found|no access/i.test(msg)) {
+      try {
+        const res = await fetch(`${base}/models`, { headers: { authorization: `Bearer ${key}` } })
+        const body = (await res.json()) as { data?: { id: string }[] }
+        const ids = (body.data ?? []).map((m) => m.id).sort()
+        if (ids.length) console.log(`  Models this key can reach (${ids.length}):\n    ${ids.join('\n    ')}`)
+      } catch {
+        /* listing is a courtesy; the failure above is the result */
+      }
+    }
     console.log('='.repeat(76) + '\n')
     process.exit(1)
   }

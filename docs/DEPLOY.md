@@ -52,7 +52,7 @@ either already correct by default or better set in the project UI.
 | `OPENAI_API_KEY` | *(empty)* | Required for the agent on the product path (no stand-in is used there). Optional for the evaluation, which keeps its scripted proposer so its numbers reproduce without a key. **Never changes a verdict** — the verdict path contains no model. |
 | `AVOS_LLM_API_KEY` | *(empty)* | Same role as `OPENAI_API_KEY`, for any OpenAI-compatible provider (Groq, Gemini). Takes precedence if both are set. |
 | `AVOS_LLM_BASE_URL` | *(OpenAI)* | Groq: `https://api.groq.com/openai/v1` · Gemini: `https://generativelanguage.googleapis.com/v1beta/openai` |
-| `AVOS_LLM_MODEL` | `gpt-4o-mini` | Which model those surfaces use. Groq: `llama-3.3-70b-versatile` · Gemini: `gemini-2.0-flash`. |
+| `AVOS_LLM_MODEL` | `gpt-4o-mini` | Which model those surfaces use. Groq: `openai/gpt-oss-120b` (Groq rotates ids — `npm run test:agent:live` lists the current ones on a rejected id) · Gemini: `gemini-2.0-flash`. |
 | `AVOS_USE_MOCK` | `0` | Set to `1` to force the mock even when a key is present. Useful for reproducing the committed numbers exactly. |
 | `AVOS_RUN_STAMP` | *(now)* | Pins the timestamp in `evals/report.md`. Local eval harness only; irrelevant to a deployment. |
 | `RAZORPAY_KEY_ID` | *(empty)* | **The product path.** The console's Razorpay tab calls `/api/razorpay/sync`, which makes read-only GET requests with these. Without them the tab shows *Not configured* and makes no request. |
