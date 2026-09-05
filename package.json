@@ -19,6 +19,7 @@
     "test:razorpay": "tsx evals/razorpay-adapter.test.ts",
     "test:razorpay:runtime": "tsx evals/razorpay-runtime.test.ts",
     "test:razorpay:live": "tsx scripts/razorpay_live.ts",
+    "test:agent:live": "tsx scripts/agent_live.ts",
     "eval:live": "bash scripts/run_live.sh",
     "test:api": "vitest run",
     "docs:diagram": "node scripts/architecture-diagram.mjs",
