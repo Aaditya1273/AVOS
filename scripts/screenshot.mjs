@@ -43,8 +43,10 @@ await page.waitForTimeout(600)
 await page.screenshot({ path: 'docs/replay-demo.png' })
 console.log('docs/replay-demo.png')
 
-// 3. The Razorpay tab, whichever state the server's credentials put it in.
-await page.goto(BASE + '/console', { waitUntil: 'networkidle' })
+// 3. The Razorpay tab — from the deployment by default, because that is the
+// environment whose credentials and model are the ones a judge will see.
+const RZP = process.env.AVOS_RZP_SHOT_URL ?? 'https://avos-razorpay.vercel.app'
+await page.goto(RZP + '/console', { waitUntil: 'networkidle' })
 await page.getByText(/Connected|Not configured|Authentication failed|Unavailable|Sync failed/).first().waitFor({ timeout: 60000 })
 await page.waitForTimeout(800)
 await page.screenshot({ path: 'docs/razorpay-tab.png' })
