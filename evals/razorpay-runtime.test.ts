@@ -189,7 +189,9 @@ export async function runRuntimeChecks(): Promise<RuntimeCheck[]> {
         'lib/connectors/razorpay.ts',
         'lib/razorpay/runtime.ts',
         'app/api/razorpay/sync/route.ts',
-        'components/razorpay-console.tsx',
+        'components/console/shell.tsx',
+        'components/console/model.ts',
+        'components/console/views.tsx',
       ]
       const forbidden = [
         /\bloadLedger\b/, /\bloadCases\b/, /\bloadDecisionLog\b/, /\bmaterializeDecision\b/, /\bmaterializeSuite\b/,
@@ -279,9 +281,13 @@ export async function runRuntimeChecks(): Promise<RuntimeCheck[]> {
 
   checks.push(
     await check('RT08', 'credentials cannot reach the browser', () => {
-      const client = stripComments(readFileSync(path.join(ROOT, 'components/razorpay-console.tsx'), 'utf8'))
-      if (/process\.env/.test(client)) throw new Error('client component reads process.env')
-      if (!/^import type .*lib\/razorpay\/runtime'/m.test(client)) throw new Error('runtime import in the client is not type-only')
+      for (const f of ['components/console/shell.tsx', 'components/console/views.tsx', 'components/console/model.ts']) {
+        const client = stripComments(readFileSync(path.join(ROOT, f), 'utf8'))
+        if (/process\.env/.test(client)) throw new Error(`${f} reads process.env`)
+        if (/lib\/razorpay\/runtime'/.test(client) && !/^import type .*lib\/razorpay\/runtime'/m.test(client)) {
+          throw new Error(`${f}: runtime import is not type-only`)
+        }
+      }
       const staticDir = path.join(ROOT, '.next', 'static')
       if (!existsSync(staticDir)) return 'client source clean (no process.env; type-only runtime import); .next/static absent so bundle not scanned'
       const hits: string[] = []

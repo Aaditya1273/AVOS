@@ -1,478 +1,54 @@
 /**
  * The AVOS console.
  *
- * Two sources, two tabs, never mixed.
+ * A server component that gathers what the shell needs and hands it over as
+ * plain data. Two sources feed the shell and are never mixed:
  *
- * **Razorpay** is the product. The tab is a client component that calls
- * `/api/razorpay/sync`, which reads Razorpay's API server-side and runs the
- * whole pipeline — normalise, ledger, agent, verifier, closure — on what came
- * back. Nothing on that tab is read from this repository's data files.
+ *  - Razorpay, read live by the client through `/api/razorpay/sync` — the
+ *    product path. Nothing on this page is pre-rendered as Razorpay data.
+ *  - The evaluation dataset: 150 committed, seeded, labelled synthetic
+ *    settlements, rebuilt from the CSV ledger and re-verified on every request
+ *    here, then mapped into the operator's vocabulary by `fromDecision`. They
+ *    are labelled as evaluation data wherever they appear.
  *
- * **AVOS Evaluation** is the proof that the verifier works. It runs the same
- * pipeline over 150 committed, seeded, labelled synthetic settlements with
- * ground truth, and reports accuracy against that truth. It is labelled as
- * such everywhere it appears. It is not Razorpay data and is never shown as
- * Razorpay data.
- *
- * The evaluation panels below are server-rendered: they rebuild every pack
- * from the CSV ledger and re-run the verifier on each request, so what a
- * reviewer sees was recomputed from source just now. Accuracy figures come
- * from `evals/raw/metrics.json`, written by `npm run eval`, because computing
- * accuracy needs ground-truth labels and labels must never be loadable from the
- * code that serves verdicts — `evals/isolation.ts` fails the build if that
- * boundary is crossed.
+ * Accuracy figures come from `evals/raw/metrics.json`, written by
+ * `npm run eval`; they are never recomputed here, because that needs labels
+ * and labels must not be loadable from the code that serves verdicts.
  */
 
-import { SiteNav } from '@/components/site-nav'
-import { ConsoleShell, type ConsoleTab } from '@/components/console-shell'
-import { RazorpayConsole } from '@/components/razorpay-console'
-import { Badge, Card, Mono, Separator } from '@/components/ui/primitives'
-import { Metric, MetricGroup } from '@/components/ui/metrics'
-import { IconCheck, IconCross } from '@/components/ui/icon'
-import { Console, type CaseRow } from '@/components/console'
+import { ConsoleShell } from '@/components/console/shell'
+import { fromDecision } from '@/components/console/model'
 import { materializeSuite, findCaseBySettlement } from '@/lib/decisions'
 import { policyChangePoints } from '@/lib/replay'
 import { POLICY_SNAPSHOTS } from '@/lib/policy/snapshots'
-import { detectInjection } from '@/lib/ai/qa'
 import { loadManifest } from '@/lib/data/ledger'
 import { loadEvalReport } from '@/lib/eval-report'
 import { VERIFIER_VERSION } from '@/lib/verifier/deterministic'
-import { formatCompact, formatPaise, formatPct } from '@/lib/money'
-import { tallyVerdicts } from '@/lib/metrics'
-import type { Decision } from '@/lib/types'
 
 export const dynamic = 'force-dynamic'
 
 const HERO_SETTLEMENT = 'S-10092'
 
-function toRow(d: Decision): CaseRow | null {
-  // The evaluation console lists evaluation suites only. A 'razorpay' decision
-  // never reaches this page's server render; the guard keeps the type honest.
-  if (d.suite === 'razorpay') return null
-  return {
-    case_id: d.case_id,
-    settlement_id: d.result.settlement_id,
-    merchant_id: d.pack.merchant_id,
-    suite: d.suite,
-    verdict: d.result.verdict,
-    reason_code: d.result.reason_code,
-    value_paise: d.batch_value_paise,
-    difference_paise: d.result.difference_paise,
-    policy_version: d.result.policy_version,
-    decision_time: d.pack.decision_time,
-    agent_claim: d.proposal.claim.proposed_status,
-    confidence: d.proposal.confidence,
-    injection: detectInjection(d.pack).found,
-  }
-}
-
 export default function ConsolePage() {
-  const batch = materializeSuite('batch_120')
-  const adversarial = materializeSuite('adversarial_30')
-  const rows = [...batch, ...adversarial].map(toRow).filter((r): r is CaseRow => r !== null)
-
+  const evaluation = [...materializeSuite('batch_120'), ...materializeSuite('adversarial_30')].map(fromDecision)
   const manifest = loadManifest()
   const report = loadEvalReport()
-  const policyPoints = policyChangePoints()
-  const tally = tallyVerdicts(batch)
-
   const hero = findCaseBySettlement(HERO_SETTLEMENT)
-  const heroCaseId = hero?.c.case_id ?? batch[0]?.case_id ?? ''
-
-  const m = report?.batch_120
-  const gatesPassed = report?.gates.every((g) => g.passed) ?? false
-  const isolationPassed = report?.isolation.filter((i) => i.passed).length ?? 0
-  const attacksPassed = report?.adversarial_tests.filter((t) => t.passed).length ?? 0
-
-  const evaluationBanner = (
-    <Card className="border-[hsl(var(--primary)/0.35)] bg-[hsl(var(--primary)/0.04)] p-4 shadow-panel">
-      <div className="flex flex-wrap items-baseline justify-between gap-2">
-        <div className="text-body font-semibold">AVOS Evaluation Dataset</div>
-        <Badge variant="outline">synthetic · seeded · labelled</Badge>
-      </div>
-      <p className="mt-1 max-w-4xl text-compact leading-relaxed text-muted-foreground">
-        {rows.length} settlements generated by <Mono>scripts/generate_data.py</Mono> (seed{' '}
-        <Mono>{manifest.seed}</Mono>) with ground-truth labels, so the verifier&rsquo;s accuracy can be
-        measured. Agent claims here were recorded during the evaluation run by a scripted proposer, and
-        are shown as that record. <span className="font-medium text-foreground">This is not Razorpay data.</span>{' '}
-        The Razorpay tab reads the live API and shares no data with this tab.
-      </p>
-    </Card>
-  )
-
-  const tabs: ConsoleTab[] = [
-    {
-      id: 'razorpay',
-      label: 'Razorpay',
-      content: <RazorpayConsole policyPoints={policyPoints} />,
-    },
-
-    {
-      id: 'evaluation',
-      label: 'AVOS Evaluation',
-      hint: String(rows.length),
-      content: (
-        <div className="flex flex-col gap-5">
-          {evaluationBanner}
-
-          {m ? (
-            <Card className="shadow-panel">
-              <dl className="grid gap-x-8 gap-y-6 p-5 md:grid-cols-2 xl:grid-cols-3">
-                <MetricGroup label="Control — what the verifier did on the evaluation set">
-                  <Metric label="Closed" value={m.closure.closed} hint={`of ${m.n} presented`} tone="verified" />
-                  <Metric label="Refused" value={m.closure.refused} hint="held for review" tone="uncertain" />
-                  <Metric label="Exceptions" value={m.closure.failed} hint="routed to an owner" tone="failed" />
-                </MetricGroup>
-                <MetricGroup label="Assurance — against ground truth">
-                  <Metric label="Match rate" value={formatPct(m.match_rate)} hint={`${m.ambiguous_count} ambiguous`} />
-                  <Metric
-                    label="Match precision"
-                    value={formatPct(m.match_precision)}
-                    hint="paired correctly"
-                    tone={m.match_precision === 1 ? 'verified' : 'failed'}
-                  />
-                  <Metric
-                    label="False closure"
-                    value={formatPct(m.false_closure_rate)}
-                    hint={`0 of ${m.n} on this dataset`}
-                    tone={m.false_closure_rate === 0 ? 'verified' : 'failed'}
-                  />
-                </MetricGroup>
-                <MetricGroup label="Impact — on the evaluation set">
-                  <Metric
-                    label="Value withheld"
-                    value={formatCompact(m.closure.withheld_value_paise)}
-                    hint="from incorrect closure"
-                    tone="uncertain"
-                  />
-                  <Metric
-                    label="Value posted"
-                    value={formatCompact(m.closure.closed_value_paise)}
-                    hint={`${m.closure.closed} settlements`}
-                    tone="verified"
-                  />
-                  <Metric
-                    label="Throughput"
-                    value={`${(m.throughput_records_per_sec / 1000).toFixed(1)}k/s`}
-                    hint="deterministic verify"
-                  />
-                </MetricGroup>
-              </dl>
-            </Card>
-          ) : (
-            <Card className="p-5 text-body text-muted-foreground">
-              No evaluation on record. Run <Mono>npm run eval</Mono> to populate metrics.
-            </Card>
-          )}
-
-          <div className="flex flex-wrap items-center gap-3">
-            <span className="text-micro font-semibold uppercase tracking-label text-muted-foreground">
-              Evaluation batch of {batch.length}
-            </span>
-            <Badge variant="failed">{tally.FAILED} refused</Badge>
-            <Badge variant="uncertain">{tally.UNCERTAIN} abstained</Badge>
-            <Badge variant="verified">{tally.VERIFIED} cleared</Badge>
-            <span className="text-mini text-muted-foreground">
-              Recomputed from the committed CSVs on every request; verdicts are never read back from
-              the decision log.
-            </span>
-          </div>
-          <Console rows={rows} policyPoints={policyPoints} initialCaseId={heroCaseId} />
-
-          {report ? (
-            <>
-              <div className="grid gap-4 md:grid-cols-3">
-                <StatCard
-                  label="Acceptance gates"
-                  value={`${report.gates.filter((g) => g.passed).length}/${report.gates.length}`}
-                  ok={gatesPassed}
-                  hint="fail the build, not a dashboard"
-                />
-                <StatCard
-                  label="Isolation checks"
-                  value={`${isolationPassed}/${report.isolation.length}`}
-                  ok={isolationPassed === report.isolation.length}
-                  hint="verifier imports nothing at runtime"
-                />
-                <StatCard
-                  label="Adversarial suite"
-                  value={`${attacksPassed}/${report.adversarial_tests.length}`}
-                  ok={attacksPassed === report.adversarial_tests.length}
-                  hint="attacks the verifier must survive"
-                />
-              </div>
-
-              <Card className="overflow-hidden shadow-panel">
-                <div className="border-b border-border px-5 py-3 text-micro font-semibold uppercase tracking-label text-muted-foreground">
-                  Acceptance gates
-                </div>
-                <ul className="divide-y divide-border">
-                  {report.gates.map((g) => (
-                    <li key={g.name} className="flex items-start gap-3 px-5 py-3">
-                      <StatusDot ok={g.passed} />
-                      <div className="min-w-0">
-                        <div className="text-compact font-medium">{g.name}</div>
-                        <div className="text-mini leading-relaxed text-muted-foreground">{g.detail}</div>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              </Card>
-
-              <div className="grid gap-4 lg:grid-cols-2">
-                <Card className="overflow-hidden shadow-panel">
-                  <div className="border-b border-border px-5 py-3 text-micro font-semibold uppercase tracking-label text-muted-foreground">
-                    Adversarial suite
-                  </div>
-                  <ul className="max-h-[420px] divide-y divide-border overflow-y-auto scrollbar-thin">
-                    {report.adversarial_tests.map((t) => (
-                      <li key={t.id} className="flex items-start gap-3 px-5 py-2.5">
-                        <StatusDot ok={t.passed} />
-                        <div className="min-w-0">
-                          <div className="text-compact font-medium">{t.name}</div>
-                          <div className="text-mini leading-relaxed text-muted-foreground">{t.detail}</div>
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                </Card>
-                <Card className="overflow-hidden shadow-panel">
-                  <div className="border-b border-border px-5 py-3 text-micro font-semibold uppercase tracking-label text-muted-foreground">
-                    Verifier isolation
-                  </div>
-                  <ul className="max-h-[420px] divide-y divide-border overflow-y-auto scrollbar-thin">
-                    {report.isolation.map((i) => (
-                      <li key={i.id} className="flex items-start gap-3 px-5 py-2.5">
-                        <StatusDot ok={i.passed} />
-                        <div className="min-w-0">
-                          <div className="font-mono text-mini">{i.id}</div>
-                          <div className="text-mini leading-relaxed text-muted-foreground">{i.detail}</div>
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                </Card>
-              </div>
-
-              <Card className="p-5 shadow-panel">
-                <h2 className="mb-2 text-micro font-semibold uppercase tracking-label text-muted-foreground">
-                  What these numbers do and do not claim
-                </h2>
-                <ul className="flex flex-col gap-2 text-compact leading-relaxed text-muted-foreground">
-                  <li>
-                    <span className="font-medium text-foreground">They describe the evaluation dataset only.</span>{' '}
-                    Nothing here is a measurement of Razorpay data. The Razorpay tab shows what the live
-                    API returned and reports its own counts.
-                  </li>
-                  <li>
-                    <span className="font-medium text-foreground">0% false closure</span> holds on this labelled
-                    dataset because AVOS abstains rather than guesses. It is not offered as a global guarantee.
-                  </li>
-                  <li>
-                    <span className="font-medium text-foreground">Confidence is not correctness.</span> The
-                    scripted proposer scores {m ? m.mean_confidence_accepted.toFixed(3) : '—'} on closures AVOS
-                    accepted and {m ? m.mean_confidence_refused.toFixed(3) : '—'} on the ones it refused;{' '}
-                    {m ? m.high_confidence_refusals : '—'} refused closures still scored ≥0.85.
-                  </li>
-                </ul>
-                <p className="mt-3 text-mini text-muted-foreground">
-                  Generated <span className="tnum">{report.generated_at}</span> · verifier{' '}
-                  <Mono>{report.verifier_version}</Mono>
-                </p>
-              </Card>
-            </>
-          ) : null}
-        </div>
-      ),
-    },
-
-    {
-      id: 'policy',
-      label: 'Policy',
-      hint: String(POLICY_SNAPSHOTS.length),
-      content: (
-        <div className="flex flex-col gap-5">
-          <Card className="p-5 shadow-panel">
-            <h2 className="text-body font-semibold">Policy is a function of a timestamp</h2>
-            <p className="mt-1.5 max-w-3xl text-compact leading-relaxed text-muted-foreground">
-              A settlement decided in July must be judged under July&rsquo;s rules, not today&rsquo;s. AVOS resolves
-              the policy in force at each decision time and stamps the version onto the verdict. A Razorpay
-              settlement synced now is judged under the epoch in force now; an evaluation case is judged
-              under the epoch in force at its recorded decision time, and can be replayed under another.
-            </p>
-          </Card>
-          <Card className="overflow-hidden shadow-panel">
-            <div className="border-b border-border px-5 py-3 text-micro font-semibold uppercase tracking-label text-muted-foreground">
-              Policy epochs on record
-            </div>
-            <div className="overflow-x-auto">
-              <table className="w-full min-w-[720px] text-compact">
-                <thead>
-                  <tr className="border-b border-border text-left text-micro uppercase tracking-label text-muted-foreground">
-                    <th className="px-5 py-2.5 font-semibold">Version</th>
-                    <th className="px-5 py-2.5 font-semibold">Effective from</th>
-                    <th className="px-5 py-2.5 text-right font-semibold">Fee tolerance</th>
-                    <th className="px-5 py-2.5 text-right font-semibold">Rate card</th>
-                    <th className="px-5 py-2.5 text-right font-semibold">GST</th>
-                    <th className="px-5 py-2.5 text-right font-semibold">Max lag</th>
-                    <th className="px-5 py-2.5 text-right font-semibold">Freshness</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-border">
-                  {POLICY_SNAPSHOTS.map((p) => (
-                    <tr key={p.version}>
-                      <td className="px-5 py-2.5"><Mono>{p.version}</Mono></td>
-                      <td className="tnum px-5 py-2.5 text-muted-foreground">{p.effective_at}</td>
-                      <td className="tnum px-5 py-2.5 text-right">{formatPaise(p.fee_tolerance_paise)}</td>
-                      <td className="tnum px-5 py-2.5 text-right">{p.fee_rate_bps} bps</td>
-                      <td className="tnum px-5 py-2.5 text-right">{p.gst_rate_bps} bps</td>
-                      <td className="tnum px-5 py-2.5 text-right">{p.max_settlement_lag_days} d</td>
-                      <td className="tnum px-5 py-2.5 text-right">{p.evidence_freshness_max_hours} h</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </Card>
-        </div>
-      ),
-    },
-
-    {
-      id: 'architecture',
-      label: 'Architecture',
-      content: (
-        <div className="flex flex-col gap-5">
-          <Card className="p-5 shadow-panel">
-            <h2 className="text-body font-semibold">The runtime path — what the Razorpay tab executes</h2>
-            <p className="mt-1.5 max-w-3xl text-compact leading-relaxed text-muted-foreground">
-              Every arrow below is a function call that runs when Sync is pressed. There is no fixture on
-              this path and no fallback to one: if Razorpay returns nothing, the ledger is empty and the
-              screen says so.
-            </p>
-            <pre className="mt-3 overflow-x-auto rounded-md border border-border bg-muted/50 p-3 font-mono text-mini leading-relaxed">
-{`Razorpay Test API  ──GET──▶  lib/connectors/razorpay.ts   fetchRazorpaySnapshot()
-                                     │  normalizeRazorpay()   epoch→ISO · integer paise · notes dropped
-                                     ▼
-                              AVOS Ledger                     the same type the evaluation CSVs produce
-                                     │  casesFromLedger()
-                                     ▼
-                              lib/evidence/pack.ts            buildEvidencePack()   hash · rate card · quarantine
-                                     │
-                          ┌──────────┴──────────┐
-                          ▼                     │
-                   AI agent (live model)        │  proposeClaimStrict()   no stand-in
-                   StructuredClaim              │
-                          │                     ▼
-                          └────▶ lib/verifier/deterministic.ts   verifyClaim()   ${VERIFIER_VERSION}
-                                                │
-                                                ▼
-                              VERIFIED / UNCERTAIN / FAILED  ──▶  lib/closure.ts  ──▶  CLOSED / REVIEW / EXCEPTION
-                                                │
-                                                ▼
-                              /api/razorpay/sync  ──JSON──▶  components/razorpay-console.tsx`}
-            </pre>
-          </Card>
-
-          <div className="grid gap-4 lg:grid-cols-2">
-            <Card className="p-5 shadow-panel">
-              <h2 className="text-body font-semibold">The boundary</h2>
-              <p className="mt-1.5 text-compact leading-relaxed text-muted-foreground">
-                An agent emits a structured claim of exactly three fields. Its prose and its confidence travel on a
-                different object, and there is no field on the verifier&rsquo;s input they could occupy — so passing
-                one is a compile error, not a convention. <Mono>{VERIFIER_VERSION}</Mono> has zero runtime imports:
-                no clock, no network, no filesystem, no randomness, no environment, no model.
-              </p>
-              <pre className="mt-3 overflow-x-auto rounded-md border border-border bg-muted/50 p-3 font-mono text-mini leading-relaxed">
-{`StructuredClaim { settlement_id, proposed_status, evidence_ids[] }   crosses
-agent_reason · confidence · notes                                    severed`}
-              </pre>
-            </Card>
-
-            <Card className="p-5 shadow-panel">
-              <h2 className="text-body font-semibold">The evaluation path — separate by construction</h2>
-              <p className="mt-1.5 text-compact leading-relaxed text-muted-foreground">
-                The AVOS Evaluation tab runs the identical ledger → pack → verifier → closure stages over{' '}
-                {rows.length} committed synthetic settlements with ground truth. It shares the stages and
-                shares no data. The two ledgers converge on one type; nothing after the join can tell them
-                apart, which is the point — and nothing before the join lets one stand in for the other.
-              </p>
-              <pre className="mt-3 overflow-x-auto rounded-md border border-border bg-muted/50 p-3 font-mono text-mini leading-relaxed">
-{`data/*.csv  (seed ${manifest.seed})  ──▶  Ledger  ──▶  pack  ──▶  verify  ──▶  close
-                                        + ground_truth.json  ──▶  accuracy metrics`}
-              </pre>
-              <Separator className="my-3" />
-              <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-mini text-muted-foreground">
-                <span>
-                  Evaluation ledger: <Mono>{manifest.evidence_rows.razorpay_payments}</Mono> payments ·{' '}
-                  <Mono>{manifest.evidence_rows.razorpay_settlements}</Mono> settlements ·{' '}
-                  <Mono>{manifest.evidence_rows.bank_statement}</Mono> bank rows
-                </span>
-                <span>
-                  Batch value: <Mono>{formatPaise(manifest.batch_120.total_value_paise)}</Mono>
-                </span>
-              </div>
-            </Card>
-          </div>
-
-          <Card className="p-5 shadow-panel">
-            <h2 className="text-body font-semibold">What Razorpay cannot provide</h2>
-            <p className="mt-1.5 max-w-3xl text-compact leading-relaxed text-muted-foreground">
-              Razorpay has no endpoint that returns your bank&rsquo;s statement; that is your bank&rsquo;s data.
-              A Razorpay-only ledger therefore carries no bank rows, and the verifier will report the absence
-              of bank evidence rather than manufacture a match. The evaluation dataset includes a synthetic
-              bank statement precisely so that bank-side checks can be proven; the Razorpay path exercises
-              every other check and says plainly which one it cannot.
-            </p>
-          </Card>
-        </div>
-      ),
-    },
-  ]
 
   return (
-    <>
-      <SiteNav active="console" />
-      <main className="mx-auto max-w-[1600px] px-4 py-6 sm:px-6 lg:px-8">
-        <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
-          <div>
-            <h1 className="text-xl font-bold tracking-tight">AVOS</h1>
-            <p className="mt-0.5 text-compact text-muted-foreground">
-              AI Finance Controller · Razorpay Settlement Assurance
-            </p>
-          </div>
-          <div className="flex flex-wrap items-center gap-2">
-            <Badge variant="outline">verifier · {VERIFIER_VERSION}</Badge>
-            <Badge variant="outline">read-only</Badge>
-          </div>
-        </div>
-
-        <ConsoleShell tabs={tabs} initial="razorpay" />
-      </main>
-    </>
-  )
-}
-
-function StatusDot({ ok }: { ok: boolean }) {
-  return ok ? (
-    <IconCheck className="mt-0.5 h-4 w-4 shrink-0 text-[hsl(var(--verdict-verified))]" />
-  ) : (
-    <IconCross className="mt-0.5 h-4 w-4 shrink-0 text-[hsl(var(--verdict-failed))]" />
-  )
-}
-
-function StatCard({ label, value, ok, hint }: { label: string; value: string; ok: boolean; hint: string }) {
-  return (
-    <Card className="p-4 shadow-panel">
-      <div className="text-micro font-semibold uppercase tracking-label text-muted-foreground">{label}</div>
-      <div
-        className={`tnum mt-1 text-2xl font-bold ${
-          ok ? 'text-[hsl(var(--verdict-verified))]' : 'text-[hsl(var(--verdict-failed))]'
-        }`}
-      >
-        {value}
-      </div>
-      <div className="mt-0.5 text-mini text-muted-foreground">{hint}</div>
-    </Card>
+    <ConsoleShell
+      evaluation={evaluation}
+      policies={POLICY_SNAPSHOTS}
+      policyPoints={policyChangePoints()}
+      report={report}
+      verifierVersion={VERIFIER_VERSION}
+      manifest={{
+        seed: manifest.seed,
+        payments: manifest.evidence_rows.razorpay_payments,
+        settlements: manifest.evidence_rows.razorpay_settlements,
+        bank: manifest.evidence_rows.bank_statement,
+      }}
+      initialSelected={hero?.c.case_id ?? null}
+    />
   )
 }
