@@ -70,6 +70,13 @@ function base(kind: EvidenceItem['kind'], amount: number): EvidenceItem {
     hash: nextHash(),
     hash_matches_recorded: true,
     keys: {},
+    provenance: {
+      origin: 'avos_evaluation',
+      label: 'AVOS Evaluation Dataset',
+      endpoint: 'evals/verifier.ts',
+      entity_id: 'synthetic',
+      fetched_at: '2026-08-26T00:00:00Z',
+    },
     display: {},
   }
 }

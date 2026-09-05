@@ -15,7 +15,8 @@ import type { CheckResult, Decision, Pillar } from '@/lib/types'
 
 export interface DecisionPayload {
   decision: Decision
-  narration: ExceptionNarration
+  /** Null when no model was available to write one. Never a stand-in sentence. */
+  narration: ExceptionNarration | null
   injection: { found: boolean; rows: string[] }
 }
 
@@ -57,14 +58,24 @@ export function ProofCard({
   payload,
   policyPoints,
   className,
+  capabilities,
 }: {
   payload: DecisionPayload
   policyPoints: PolicyPoint[]
   className?: string
+  /**
+   * Replay and Ask look a case up by id in the committed evaluation suites. A
+   * decision built from a live Razorpay sync has no such record, so those tabs
+   * are withheld rather than shown and allowed to 404.
+   */
+  capabilities?: { replay?: boolean; ask?: boolean }
 }) {
   const { decision, narration, injection } = payload
   const { result, pack, proposal } = decision
   const [tab, setTab] = useState<string>('proof')
+  const caps = { replay: true, ask: true, ...capabilities }
+  const tabs = TABS.filter(([id]) => (id === 'replay' ? caps.replay : id === 'ask' ? caps.ask : true))
+  const sourceLabel = pack.evidence[0]?.provenance.label ?? null
 
   const agentSaysReconciled = proposal.claim.proposed_status === 'RECONCILED'
   const avosDisagrees = agentSaysReconciled && result.verdict !== 'VERIFIED'
@@ -88,8 +99,12 @@ export function ProofCard({
         </div>
         <div className="flex flex-wrap items-center gap-1.5">
           <Badge variant="outline">{decision.case_id}</Badge>
-          <Badge variant="outline">
-            {decision.suite === 'batch_120' ? 'batch 120' : 'adversarial 30'}
+          <Badge variant={decision.suite === 'razorpay' ? 'verified' : 'outline'}>
+            {decision.suite === 'razorpay'
+              ? (sourceLabel ?? 'Razorpay API')
+              : decision.suite === 'batch_120'
+                ? 'evaluation · batch 120'
+                : 'evaluation · adversarial 30'}
           </Badge>
           {injection.found ? (
             <Badge variant="uncertain" className="gap-1">
@@ -106,8 +121,8 @@ export function ProofCard({
             <span className="text-micro font-semibold uppercase tracking-label text-muted-foreground">
               Agent claim
             </span>
-            <Badge variant="outline">
-              {proposal.used_mock ? 'deterministic agent' : 'live model'}
+            <Badge variant={proposal.used_mock ? 'outline' : 'verified'}>
+              {proposal.used_mock ? 'recorded · evaluation run' : `live model · ${proposal.model_version}`}
             </Badge>
           </div>
 
@@ -235,7 +250,7 @@ export function ProofCard({
             </div>
           ) : null}
 
-          {result.reason_code ? (
+          {result.reason_code && narration ? (
             <div className="mt-auto rounded-md border border-border bg-muted/25 p-3">
               <div className="mb-1 flex flex-wrap items-center gap-1.5">
                 <span className="text-micro font-semibold uppercase tracking-label text-muted-foreground">
@@ -246,6 +261,11 @@ export function ProofCard({
               </div>
               <p className="text-compact leading-relaxed text-foreground/90">{narration.summary}</p>
               <p className="mt-1 text-mini text-muted-foreground">→ {narration.next_action}</p>
+            </div>
+          ) : result.reason_code ? (
+            <div className="mt-auto rounded-md border border-dashed border-border p-3 text-mini text-muted-foreground">
+              Exception note unavailable — no model is configured to write one. The verdict above does
+              not depend on it.
             </div>
           ) : null}
         </div>
@@ -356,7 +376,7 @@ export function ProofCard({
       {/* --- tabs -------------------------------------------------------------- */}
       <Tabs.Root value={tab} onValueChange={setTab}>
         <Tabs.List className="flex border-b border-border bg-muted/20">
-          {TABS.map(([value, label]) => (
+          {tabs.map(([value, label]) => (
             <Tabs.Trigger
               key={value}
               value={value}

@@ -41,7 +41,7 @@ than a code review comment.
 ![The Proof Card — agent claim struck through, beside the refusal](docs/proof-card-failed.png)
 
 ```bash
-npm install && npm run eval     # 178 records, 8 gates, no API key, ~20 seconds
+npm install && npm run eval     # evaluation: 178 synthetic records, 8 gates, no API key, ~20 seconds
 ```
 
 ---
@@ -706,117 +706,123 @@ deployment that goes green and then 404s on its own evidence.
 
 ---
 
-## Razorpay ingestion
+## Razorpay: the product path
 
-AVOS can ingest Razorpay recon-shaped, read-only data through an optional
-server-side adapter. The benchmark itself is deterministic and credential-free,
-so every evaluator receives identical results.
-
-Those are two separate systems on purpose, and the second is the one the numbers
-come from.
-
-### The convergence point
+The console's default tab reads the Razorpay API and runs the whole pipeline on
+what comes back. It is the runtime; the evaluation is separate and is labelled
+as such.
 
 ```
-committed CSVs  ──┐
-                  ├──▶  Ledger  ──▶  buildEvidencePack  ──▶  verifyClaim  ──▶  verdict
-Razorpay API    ──┘
+Razorpay Test API ──GET──▶ fetchRazorpaySnapshot()    lib/connectors/razorpay.ts
+                                   │ normalizeRazorpay()     epoch→ISO · integer paise · notes dropped
+                                   ▼
+                            AVOS Ledger                 the same type the evaluation CSVs produce
+                                   │ casesFromLedger()      lib/razorpay/runtime.ts
+                                   ▼
+                            buildEvidencePack()         hash · rate card · quarantine · provenance
+                                   │
+                    ┌──────────────┴───────────┐
+                    ▼                          │
+             proposeClaimStrict()              │   a live model, or "AI agent unavailable"
+             StructuredClaim                   │
+                    │                          ▼
+                    └────▶ verifyClaim()   lib/verifier/deterministic.ts   no model inside
+                                           │
+                                           ▼
+                            VERIFIED / UNCERTAIN / FAILED ──▶ closeRecord() ──▶ CLOSED / REVIEW / EXCEPTION
+                                           │
+                                           ▼
+                            POST /api/razorpay/sync ──JSON──▶ components/razorpay-console.tsx
 ```
 
-The adapter's output type is `Ledger` — the same structure `lib/data/ledger.ts`
-builds from the CSVs — and not `EvidenceItem`. That distinction is the whole
-point. `buildEvidencePack` is where content hashing, per-payment rate-card
-stamping, UTR retrieval, duplicate detection and free-text quarantine happen. An
-adapter that emitted `EvidenceItem` directly would be re-implementing exactly the
-parts of AVOS most worth trusting, and "the verifier can't tell the sources
-apart" would be true only because the adapter had done the verifier's
-preparation itself.
+Every arrow is a function call that executes when Sync is pressed (and once on
+opening the tab). `evals/razorpay-runtime.test.ts` walks it offline with a
+fixture-shaped response and a stubbed model transport;
+`app/api/__tests__/razorpay-sync.test.ts` drives the actual route with `fetch`
+stubbed at the network; `scripts/razorpay_live.ts` runs it for real against
+`api.razorpay.com` and is deliberately not a gate.
 
-Joining at `Ledger` means the two paths converge *before* any AVOS logic runs.
-Every stage after the join is literally the same code on the same types, with no
-branch anywhere on where the data came from. `evals/razorpay-adapter.test.ts`
-(RZ14) builds a real pack from an API-derived ledger and checks the hashes and
-rate cards came out stamped.
+### Four requests, all GET
 
-### Field mapping
+| Endpoint | Used for |
+| --- | --- |
+| `GET /v1/settlements` | settlement entities → `SettlementRow` |
+| `GET /v1/settlements/recon/combined` | current and previous month → `PaymentRow`, `RefundRow`, `HoldRow` |
+| `GET /v1/payments` | shown as *unsettled* until Razorpay settles them |
+| `GET /v1/refunds` | same |
 
-The schemas were already close, because both are modelling the same money.
+There is no POST, PUT, PATCH or DELETE in the connector and no parameter that
+could introduce one; the HTTP method is a literal. RZ17 and RT09 grep the source
+for write verbs and fail on any. Every request is recorded — endpoint, status,
+count, milliseconds — and the log is rendered in the console under *Razorpay
+API activity*. The Authorization header is built inside the request function
+and is not part of that log.
 
-| Razorpay recon field | AVOS field | Note |
-| --- | --- | --- |
-| `amount` | `amount_paise` | Razorpay is paise-native — no scaling, and a float is refused rather than rounded |
-| `fee` / `tax` | `fee_paise` / `tax_paise` | same split |
-| `settlement_id` | `settlement_id` | identical |
-| `payment_id` | `payment_id` | required on refunds, or "is this refund too large" is unanswerable |
-| `settlement_utr` | `utr` | the bank-side join key |
-| `on_hold` | `HoldRow` | a held payment becomes both a payment row and a hold row |
-| `created_at` (epoch **seconds**) | ISO-8601 | the one real mismatch |
-| `notes` | *dropped* | see below |
-| — | `bank_statement` | **no Razorpay equivalent exists** |
+### No fallback, by construction
 
-### Three decisions worth arguing with
+If Razorpay returns nothing, the ledger is empty and the console shows
+**0 settlements**. If credentials are missing the console shows **Not
+configured**; if they are rejected, **Authentication failed**; if the API is
+unreachable, **Unavailable**. None of those states loads a CSV. This is not a
+setting — the product-path modules do not import the CSV loaders or the
+decision log, and RT04 asserts that against the source; RT05 asserts that a
+`CONNECTED` sync with zero rows produces zero cases while 120 evaluation cases
+sit unused on disk.
 
-**`notes` are dropped entirely.** They are merchant-supplied key/value text — the
-one field in the payload an outside party controls. AVOS's existing rule is that
-the only free text entering the ledger is `BankRow.memo`, which `pack.ts`
-quarantines into `EvidenceItem.display`, which `evals/isolation.ts` forbids the
-verifier from naming. There is no equivalent channel on a payment row, and adding
-one would widen the attacker-controlled surface to carry data nothing reads. RZ09
-puts an injection string in `notes` and asserts it appears nowhere in the
-serialised ledger; RZ15 asserts the same through a fully built evidence pack.
+"Connected" is derived from the activity log — every request 2xx and at least
+one made — and from nothing else. Credentials existing is not a connection. RT07
+covers each state.
 
-**Epoch conversion happens in exactly one function.** Not because spreading it
-would be untidy, but because a millisecond value passed where seconds are
-expected does not throw — it silently yields a date roughly fifty thousand years
-out, sails through any check written as "is it a number", and surfaces as a
-freshness figure nobody reads twice. `epochSecondsToIso` refuses anything above
-2100 for that reason. RZ07 covers the boundaries plus seven malformed inputs.
+### No stand-in agent, by construction
 
-**A Razorpay-only ledger produces no bank rows, and says so.** Razorpay has no
-API that returns your bank's statement, because that is your bank's data. AVOS
-exists to compare the processor's account of a settlement against an independent
-one, so this path can support internal-consistency checks and structurally cannot
-support bank-side matching. RZ18 asserts `bankAll` is empty and that no
-`bank_credit` evidence is manufactured — a match rate computed with nothing on
-the other side would be a number that means nothing.
+The product path calls `proposeClaimStrict`, which has no `mock`. With no
+`OPENAI_API_KEY` it throws `ModelUnavailableError`; the runtime catches that,
+reports **AI agent unavailable**, still builds and shows the evidence pack, and
+withholds the verdict — because the verifier verifies a claim, and there is no
+claim. Nothing scripted is substituted. RT11 runs the default proposer with no
+key and asserts exactly this; RT12 injects a stub *transport* (not a stub
+agent) and asserts the real prompt reached it and `used_mock` is false.
 
-### What it will and won't do
+The evaluation still uses the scripted proposer, so that `npm run eval` produces
+identical numbers on a machine with no key. The two proposers share the prompt,
+the schema and the boundary; they differ only in what happens when the model is
+absent.
 
-Read-only. There is no POST, PUT, PATCH or DELETE path in the connector and no
-parameter that could introduce one; the HTTP method is a literal. RZ17 asserts
-this mechanically against the source, so a refund endpoint added later fails the
-suite rather than a code review.
+### Provenance on every row
 
-```bash
-npm run test:razorpay        # 18 checks, offline, no credentials, in CI
-npm run test:razorpay:live   # optional; SKIPPED and exit 0 without credentials
-```
+Each `EvidenceItem` carries `provenance: { origin, label, endpoint, entity_id,
+fetched_at }`. Razorpay rows say `Razorpay Test API` and a `/v1/…` path;
+evaluation rows say `AVOS Evaluation Dataset` and a `data/…csv` path. The
+default is the evaluation label, so an adapter that forgot to stamp its rows
+would produce evidence mislabelled in the direction a reviewer notices, not the
+direction they miss. Provenance is excluded from the content hash — RT06 checks
+that the same facts fetched at two times hash identically — and is not read by
+the verifier.
 
-The live script is deliberately not a gate and not wired into any page or route.
-A benchmark that can fail because a third party is having a bad afternoon is not
-a benchmark.
+### What a test key can and cannot show
 
-### On test keys
+Razorpay test mode processes simulated transactions and does not run a
+settlement cycle. On an `rzp_test_` key, `/v1/settlements` and the recon report
+are typically empty; payments made in test mode appear under *Unsettled* and
+cannot be verified until Razorpay settles them. The console says so on screen.
+It does not fill the gap with the evaluation set.
 
-Razorpay test mode processes simulated transactions and does not run a settlement
-cycle, so `/settlements` and the recon report are commonly **empty** on an
-`rzp_test_` key. That is expected rather than a broken adapter, and it is the
-reason the committed fixtures are the primary source: a sandbox cannot produce a
-duplicate UTR, an over-refund or a fee mismatch, so it cannot produce a failable
-benchmark.
+Razorpay also has no endpoint that returns your bank's statement. A Razorpay-only
+ledger carries no bank rows, and the verifier reports the absence of bank
+evidence rather than manufacturing a match. RZ18 asserts no `bank_credit`
+evidence is ever invented.
 
 ### Credentials
 
-`RAZORPAY_KEY_ID` and `RAZORPAY_KEY_SECRET`, server-side only.
-`lib/connectors/razorpay.ts` throws at import if it is ever pulled into a browser
-bundle, and the built client bundle is checked to contain neither the variable
-names nor the API host. `razorpayStatus()` returns only the non-secret
+`RAZORPAY_KEY_ID` and `RAZORPAY_KEY_SECRET`, server-side. `lib/connectors/
+razorpay.ts` throws at import if it is ever evaluated in a browser; the client
+component has no `process.env` and imports the runtime as a type only; the
+built client bundle is scanned for the variable names, the `rzp_` prefixes and
+the API host (RT08). The sync response carries only the nine-character
 `rzp_test_` / `rzp_live_` prefix, never the key id in full and never the secret.
 
-The console always renders the committed fixtures, so its provenance badge reads
-**source · AVOS fixture** even when credentials are configured. The badge
-describes the data; the connector line beside it describes the configuration.
-Conflating those is how a demo ends up claiming a provenance it does not have.
+`OPENAI_API_KEY` enables the live agent on the product path. Without it the
+console is honest about the gap rather than filling it.
 
 ---
 

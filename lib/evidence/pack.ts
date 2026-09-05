@@ -30,6 +30,7 @@ import { loadLedger, type Ledger } from '@/lib/data/ledger'
 import type {
   PackMatch,
   EvidenceItem,
+  EvidenceProvenance,
   EvidenceKind,
   EvidencePack,
   EvidenceSource,
@@ -89,6 +90,7 @@ function hoursBetween(later: string, earlier: string): number {
 
 interface Draft {
   source: EvidenceSource
+  provenance?: EvidenceProvenance
   kind: EvidenceKind
   row_id: string
   timestamp: string
@@ -104,6 +106,23 @@ interface Draft {
   fee_rate_bps?: number
   gst_rate_bps?: number
   timestamp_precision?: 'datetime' | 'date'
+}
+
+/**
+ * Rows from the committed CSVs carry no provenance of their own, so they are
+ * labelled here as what they are. This is the default precisely so that a row
+ * can never reach the UI unlabelled: an adapter that forgets to stamp its rows
+ * produces evidence marked "AVOS Evaluation Dataset", which is wrong in a way
+ * a reviewer will notice, rather than "Razorpay" in a way they will not.
+ */
+function evaluationProvenance(source: EvidenceSource, rowId: string, ingestedAt: string): EvidenceProvenance {
+  return {
+    origin: 'avos_evaluation',
+    label: 'AVOS Evaluation Dataset',
+    endpoint: `data/${source}.csv`,
+    entity_id: rowId,
+    fetched_at: ingestedAt,
+  }
 }
 
 export function buildEvidencePack(
@@ -122,6 +141,7 @@ export function buildEvidencePack(
     seenSettlementRows.add(s.row_id)
     drafts.push({
       source: 'razorpay_settlements',
+      provenance: s.provenance,
       kind: 'settlement',
       row_id: s.row_id,
       timestamp: s.settled_at,
@@ -175,6 +195,7 @@ export function buildEvidencePack(
       fee_rate_bps: rateCard?.fee_rate_bps,
       gst_rate_bps: rateCard?.gst_rate_bps,
       source: 'razorpay_payments',
+      provenance: p.provenance,
       kind: 'payment',
       row_id: p.row_id,
       timestamp: p.captured_at,
@@ -199,6 +220,7 @@ export function buildEvidencePack(
   for (const r of ledger.refundsBySettlement.get(c.settlement_id) ?? []) {
     drafts.push({
       source: 'refunds',
+      provenance: r.provenance,
       kind: 'refund',
       row_id: r.row_id,
       timestamp: r.processed_at,
@@ -220,6 +242,7 @@ export function buildEvidencePack(
   for (const h of ledger.holdsBySettlement.get(c.settlement_id) ?? []) {
     drafts.push({
       source: 'holds',
+      provenance: h.provenance,
       kind: 'hold',
       row_id: h.row_id,
       timestamp: h.placed_at,
@@ -315,6 +338,7 @@ export function buildEvidencePack(
     if (!selected.has(b.row_id)) continue
     drafts.push({
       source: 'bank_statement',
+      provenance: b.provenance,
       kind: 'bank_credit',
       row_id: b.row_id,
       timestamp: b.value_date,
@@ -341,6 +365,7 @@ export function buildEvidencePack(
   for (const w of ledger.webhooksBySettlement.get(c.settlement_id) ?? []) {
     drafts.push({
       source: 'webhook_events',
+      provenance: w.provenance,
       kind: 'webhook_event',
       row_id: w.row_id,
       timestamp: w.received_at,
@@ -388,6 +413,7 @@ export function buildEvidencePack(
       // Absent a decision log there is nothing to contradict, so the row stands.
       hash_matches_recorded: recorded ? recorded[evidence_id] === hash : true,
       keys: d.keys,
+      provenance: d.provenance ?? evaluationProvenance(d.source, d.row_id, d.ingested_at),
       fee_paise: d.fee_paise,
       tax_paise: d.tax_paise,
       status: d.status,

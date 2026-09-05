@@ -22,16 +22,15 @@
  *                      ├─▶ Ledger ─▶ buildEvidencePack ─▶ verifyClaim ─▶ verdict
  *     Razorpay API ────┘
  *
- * Every stage after the join is literally the same code on the same types. That
- * is the whole of the source-independence claim, and it is checked mechanically
- * in `evals/razorpay-adapter.test.ts`.
+ * Every stage after the join is literally the same code on the same types.
  *
  * ---------------------------------------------------------------------------
  * WHAT THIS FILE MUST NEVER DO
  *
  * It does not decide anything. No verdict, no closure, no policy, no matching,
  * no model call. It maps wire fields to typed fields and rejects what it cannot
- * map. The verifier stays downstream, and stays importless.
+ * map. It never reads a CSV and never falls back to one: if Razorpay returns
+ * nothing, the ledger it returns is empty, and that emptiness is the answer.
  * ---------------------------------------------------------------------------
  */
 
@@ -44,6 +43,7 @@ import type {
   SettlementRow,
   WebhookRow,
 } from '@/lib/data/ledger'
+import type { EvidenceOrigin, EvidenceProvenance } from '@/lib/types'
 
 // Credentials are read at module scope. If this file is ever pulled into a
 // client bundle, that is a secret-exposure bug and not something to paper over
@@ -107,17 +107,42 @@ export interface RazorpaySettlement {
   created_at: number
 }
 
-export interface RazorpayReconResponse {
+/** The payment entity, from GET /v1/payments. Carries no settlement id. */
+export interface RazorpayPayment {
+  id: string
   entity: string
-  count: number
-  items: RazorpayReconItem[]
+  amount: number
+  currency: string
+  status: string
+  captured: boolean
+  method?: string | null
+  fee?: number | null
+  tax?: number | null
+  created_at: number
+  order_id?: string | null
+  notes?: Record<string, string> | null
 }
 
-export interface RazorpaySettlementsResponse {
+/** The refund entity, from GET /v1/refunds. */
+export interface RazorpayRefund {
+  id: string
+  entity: string
+  amount: number
+  currency: string
+  payment_id: string
+  status: string
+  created_at: number
+  notes?: Record<string, string> | null
+}
+
+export interface RazorpayCollection<T> {
   entity: string
   count: number
-  items: RazorpaySettlement[]
+  items: T[]
 }
+
+export type RazorpayReconResponse = RazorpayCollection<RazorpayReconItem>
+export type RazorpaySettlementsResponse = RazorpayCollection<RazorpaySettlement>
 
 // ---------------------------------------------------------------------------
 // Rejections
@@ -151,6 +176,8 @@ export interface NormalizeOptions {
    */
   ingestedAt: string
   merchantId: string
+  /** Which Razorpay environment the rows came from. Stamped onto provenance. */
+  origin?: Exclude<EvidenceOrigin, 'avos_evaluation'>
 }
 
 // ---------------------------------------------------------------------------
@@ -237,10 +264,38 @@ function dropNotes(_notes: Record<string, string> | null | undefined): void {
 }
 
 // ---------------------------------------------------------------------------
+// Provenance
+// ---------------------------------------------------------------------------
+
+export const ENDPOINTS = {
+  settlements: '/v1/settlements',
+  recon: '/v1/settlements/recon/combined',
+  payments: '/v1/payments',
+  refunds: '/v1/refunds',
+} as const
+
+export function originLabel(origin: EvidenceOrigin): string {
+  return origin === 'razorpay_live_api'
+    ? 'Razorpay Live API'
+    : origin === 'razorpay_test_api'
+      ? 'Razorpay Test API'
+      : 'AVOS Evaluation Dataset'
+}
+
+function stamp(
+  origin: Exclude<EvidenceOrigin, 'avos_evaluation'>,
+  endpoint: string,
+  entityId: string,
+  fetchedAt: string,
+): EvidenceProvenance {
+  return { origin, label: originLabel(origin), endpoint, entity_id: entityId, fetched_at: fetchedAt }
+}
+
+// ---------------------------------------------------------------------------
 // Normalisation
 // ---------------------------------------------------------------------------
 
-function emptyLedger(): Ledger {
+export function emptyLedger(): Ledger {
   return {
     paymentsBySettlement: new Map<string, PaymentRow[]>(),
     settlementsById: new Map<string, SettlementRow[]>(),
@@ -250,7 +305,14 @@ function emptyLedger(): Ledger {
     refundsBySettlement: new Map<string, RefundRow[]>(),
     holdsBySettlement: new Map<string, HoldRow[]>(),
     webhooksBySettlement: new Map<string, WebhookRow[]>(),
-    counts: {},
+    counts: {
+      razorpay_payments: 0,
+      razorpay_settlements: 0,
+      refunds: 0,
+      holds: 0,
+      bank_statement: 0,
+      webhook_events: 0,
+    },
   }
 }
 
@@ -276,6 +338,7 @@ export function normalizeRazorpay(
   settlements: RazorpaySettlementsResponse,
   opts: NormalizeOptions,
 ): NormalizeResult {
+  const origin = opts.origin ?? 'razorpay_test_api'
   const ledger = emptyLedger()
   const rejected: RazorpayRejection[] = []
   const counts = { payments: 0, refunds: 0, holds: 0, settlements: 0 }
@@ -298,6 +361,7 @@ export function normalizeRazorpay(
         settled_at: epochSecondsToIso(s.created_at, `settlement.${id}.created_at`),
         status: typeof s.status === 'string' ? s.status : '',
         ingested_at: opts.ingestedAt,
+        provenance: stamp(origin, ENDPOINTS.settlements, id, opts.ingestedAt),
       }
       push(ledger.settlementsById, row.settlement_id, row)
       if (row.utr) push(ledger.settlementsByUtr, row.utr, row)
@@ -315,6 +379,7 @@ export function normalizeRazorpay(
       const settlementId = requireString(it.settlement_id, `${id}.settlement_id`)
       const occurredAt = epochSecondsToIso(it.created_at, `${id}.created_at`)
       const amount = paiseField(it.amount, `${id}.amount`)
+      const provenance = stamp(origin, ENDPOINTS.recon, id, opts.ingestedAt)
 
       if (it.type === 'payment') {
         const row: PaymentRow = {
@@ -326,6 +391,7 @@ export function normalizeRazorpay(
           tax_paise: paiseField(it.tax, `${id}.tax`),
           captured_at: occurredAt,
           ingested_at: opts.ingestedAt,
+          provenance,
         }
         push(ledger.paymentsBySettlement, settlementId, row)
         counts.payments++
@@ -340,6 +406,7 @@ export function normalizeRazorpay(
           amount_paise: amount,
           processed_at: occurredAt,
           ingested_at: opts.ingestedAt,
+          provenance,
         }
         push(ledger.refundsBySettlement, settlementId, row)
         counts.refunds++
@@ -361,6 +428,7 @@ export function normalizeRazorpay(
           reason: typeof it.description === 'string' ? it.description : 'on_hold',
           placed_at: occurredAt,
           ingested_at: opts.ingestedAt,
+          provenance,
         }
         push(ledger.holdsBySettlement, settlementId, hold)
         counts.holds++
@@ -383,21 +451,22 @@ export function normalizeRazorpay(
 }
 
 // ---------------------------------------------------------------------------
-// Live fetch — read-only
+// Credentials and connection state
 // ---------------------------------------------------------------------------
 
-const API_BASE = 'https://api.razorpay.com/v1'
+export type RazorpayMode = 'test' | 'live'
 
 export interface RazorpayStatus {
   configured: boolean
   /** Key id only, never the secret, and only the public prefix of that. */
   keyIdPrefix: string | null
-  mode: 'test' | 'live' | null
+  mode: RazorpayMode | null
 }
 
 /**
- * Whether credentials are present. Absence is a configuration state, not an
- * error: the committed fixtures are the primary source and always available.
+ * Whether credentials are present. This is a statement about configuration and
+ * nothing more — it does not mean a request has ever succeeded, and no UI may
+ * render it as "connected". `classifyConnection` is the only source of that.
  */
 export function razorpayStatus(): RazorpayStatus {
   const id = process.env.RAZORPAY_KEY_ID ?? ''
@@ -420,6 +489,86 @@ function authHeader(): string {
 }
 
 /**
+ * One outbound request, as recorded for the activity log.
+ *
+ * Everything here is safe to ship to a browser. There is no header field: the
+ * Authorization header is built inside `get()` and never leaves it.
+ */
+export interface RazorpayApiCall {
+  endpoint: string
+  method: 'GET'
+  /** HTTP status, or null when the request never reached a server. */
+  status: number | null
+  ok: boolean
+  /** The `count` the collection reported, or null on failure. */
+  count: number | null
+  elapsed_ms: number
+  error: string | null
+  at: string
+  /** 1, or 2 for the single retry after a network-level failure. */
+  attempt: 1 | 2
+}
+
+export type ConnectionState = 'CONNECTED' | 'AUTHENTICATION_FAILED' | 'NOT_CONFIGURED' | 'UNAVAILABLE'
+
+export interface RazorpayConnection {
+  state: ConnectionState
+  detail: string
+  mode: RazorpayMode | null
+  key_id_prefix: string | null
+  /** Set only when at least one request was actually made. */
+  checked_at: string | null
+}
+
+/**
+ * CONNECTED means every request made returned 2xx and at least one was made.
+ * It is derived from the activity log and from nothing else. Credentials
+ * being present is not a connection; a request that succeeded is.
+ */
+export function classifyConnection(configured: boolean, activity: RazorpayApiCall[]): ConnectionState {
+  if (!configured) return 'NOT_CONFIGURED'
+  if (activity.length === 0) return 'UNAVAILABLE'
+  if (activity.some((a) => a.status === 401 || a.status === 403)) return 'AUTHENTICATION_FAILED'
+  // A read is judged by its final attempt. A first attempt that never reached
+  // a server and was followed by a successful retry of the same endpoint is a
+  // recovered read; the failed attempt stays in the log for anyone to see.
+  const unrecovered = activity.filter((a, i) => {
+    if (a.ok) return false
+    const next = activity[i + 1]
+    const recovered =
+      a.status === null && a.attempt === 1 && next !== undefined && next.endpoint === a.endpoint && next.attempt === 2 && next.ok
+    return !recovered
+  })
+  return unrecovered.length === 0 ? 'CONNECTED' : 'UNAVAILABLE'
+}
+
+function describeConnection(state: ConnectionState, activity: RazorpayApiCall[]): string {
+  switch (state) {
+    case 'NOT_CONFIGURED':
+      return 'RAZORPAY_KEY_ID and RAZORPAY_KEY_SECRET are not set on the server. No request was made.'
+    case 'AUTHENTICATION_FAILED': {
+      const a = activity.find((x) => x.status === 401 || x.status === 403)
+      return `Razorpay rejected the credentials (${a?.status} on ${a?.endpoint}).`
+    }
+    case 'UNAVAILABLE': {
+      const a = activity.find((x) => !x.ok)
+      return a
+        ? `${a.endpoint} failed: ${a.error ?? `HTTP ${a.status}`}.`
+        : 'No request was completed.'
+    }
+    case 'CONNECTED':
+      return `${activity.length} read-only request(s) succeeded.`
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Live fetch — read-only
+// ---------------------------------------------------------------------------
+
+const API_BASE = 'https://api.razorpay.com'
+
+
+/**
  * GET only.
  *
  * There is no POST/PUT/DELETE path anywhere in this module, and no parameter
@@ -427,54 +576,259 @@ function authHeader(): string {
  * has no business capturing a payment, issuing a refund or moving a settlement,
  * and a reconciliation tool that *can* do those things is a much harder thing to
  * be given production credentials for.
+ *
+ * Never throws. A network failure, a 401 and a 5xx are all recorded as a call
+ * with `ok: false` so the activity log is complete and the caller can classify
+ * the connection from it. Response bodies on failure are truncated and never
+ * include the request headers.
  */
-async function get<T>(path: string, params: Record<string, string>): Promise<T> {
+async function attempt<T>(path: string, params: Record<string, string>, n: 1 | 2): Promise<{ body: T | null; call: RazorpayApiCall }> {
   const url = new URL(`${API_BASE}${path}`)
   for (const [k, v] of Object.entries(params)) url.searchParams.set(k, v)
+  const started = performance.now()
+  const at = new Date().toISOString()
+  const base = { endpoint: path, method: 'GET' as const, at, attempt: n }
 
-  const res = await fetch(url, {
-    method: 'GET',
-    headers: { authorization: authHeader(), accept: 'application/json' },
-    cache: 'no-store',
-  })
-
-  if (!res.ok) {
-    const body = await res.text().catch(() => '')
-    // The Authorization header is never echoed. Razorpay error bodies do not
-    // contain credentials, but they are truncated anyway: an error path is a
-    // common way for a secret to reach a log by accident.
-    throw new Error(`Razorpay ${path} -> ${res.status} ${res.statusText}: ${body.slice(0, 300)}`)
+  try {
+    const res = await fetch(url, {
+      method: 'GET',
+      headers: { authorization: authHeader(), accept: 'application/json' },
+      cache: 'no-store',
+    })
+    const elapsed_ms = Math.round(performance.now() - started)
+    if (!res.ok) {
+      const text = await res.text().catch(() => '')
+      return {
+        body: null,
+        call: {
+          ...base,
+          status: res.status,
+          ok: false,
+          count: null,
+          elapsed_ms,
+          error: `${res.status} ${res.statusText}${text ? `: ${text.slice(0, 200)}` : ''}`,
+        },
+      }
+    }
+    const body = (await res.json()) as T & { count?: unknown }
+    const count = typeof body?.count === 'number' ? body.count : null
+    return { body, call: { ...base, status: res.status, ok: true, count, elapsed_ms, error: null } }
+  } catch (e) {
+    const err = e as Error & { cause?: { message?: string; code?: string } }
+    const cause = err.cause?.message ?? err.cause?.code ?? ''
+    return {
+      body: null,
+      call: {
+        ...base,
+        status: null,
+        ok: false,
+        count: null,
+        elapsed_ms: Math.round(performance.now() - started),
+        error: `${err.message}${cause ? ` — ${cause}` : ''}`,
+      },
+    }
   }
-  return (await res.json()) as T
-}
-
-export interface FetchOptions {
-  year: number
-  /** 1-12. */
-  month: number
-  merchantId?: string
-  ingestedAt?: string
-  count?: number
 }
 
 /**
- * Fetch one month of recon data and the settlements it refers to, and normalise.
- *
- * Deliberately not wired into the page or the benchmark. It is reachable from
- * `npm run test:razorpay` and from nothing else, so no request path and no gate
- * can acquire a network dependency by accident.
+ * One logical read: an attempt, and a single retry if — and only if — the
+ * first attempt never reached a server (`status: null`). A 401 or a 503 is an
+ * answer and is not retried; a connect timeout is not an answer. Both attempts
+ * are appended to the activity log, so a retry is visible rather than hidden.
  */
-export async function fetchRazorpayLedger(opts: FetchOptions): Promise<NormalizeResult> {
-  const count = String(opts.count ?? 100)
-  const recon = await get<RazorpayReconResponse>('/settlements/recon/combined', {
-    year: String(opts.year),
-    month: String(opts.month),
-    count,
-  })
-  const settlements = await get<RazorpaySettlementsResponse>('/settlements', { count })
+async function get<T>(path: string, params: Record<string, string>, activity: RazorpayApiCall[]): Promise<T | null> {
+  const first = await attempt<T>(path, params, 1)
+  activity.push(first.call)
+  if (first.call.ok || first.call.status !== null) return first.body
+  const second = await attempt<T>(path, params, 2)
+  activity.push(second.call)
+  return second.body
+}
 
-  return normalizeRazorpay(recon, settlements, {
-    ingestedAt: opts.ingestedAt ?? new Date().toISOString(),
-    merchantId: opts.merchantId ?? 'RZP_LIVE_MERCHANT',
-  })
+/** A payment as it is safe to show: no notes, no free text, epoch normalised. */
+export interface SafePayment {
+  id: string
+  amount_paise: number
+  currency: string
+  status: string
+  captured: boolean
+  method: string | null
+  fee_paise: number | null
+  tax_paise: number | null
+  created_at: string
+  order_id: string | null
+}
+
+export interface SafeRefund {
+  id: string
+  payment_id: string
+  amount_paise: number
+  currency: string
+  status: string
+  created_at: string
+}
+
+function safePayment(p: RazorpayPayment): SafePayment | null {
+  try {
+    dropNotes(p.notes)
+    return {
+      id: requireString(p.id, 'payment.id'),
+      amount_paise: paiseField(p.amount, `payment.${p.id}.amount`),
+      currency: typeof p.currency === 'string' ? p.currency : '',
+      status: typeof p.status === 'string' ? p.status : '',
+      captured: p.captured === true,
+      method: typeof p.method === 'string' ? p.method : null,
+      fee_paise: typeof p.fee === 'number' ? paiseField(p.fee, `payment.${p.id}.fee`) : null,
+      tax_paise: typeof p.tax === 'number' ? paiseField(p.tax, `payment.${p.id}.tax`) : null,
+      created_at: epochSecondsToIso(p.created_at, `payment.${p.id}.created_at`),
+      order_id: typeof p.order_id === 'string' ? p.order_id : null,
+    }
+  } catch {
+    return null
+  }
+}
+
+function safeRefund(r: RazorpayRefund): SafeRefund | null {
+  try {
+    dropNotes(r.notes)
+    return {
+      id: requireString(r.id, 'refund.id'),
+      payment_id: requireString(r.payment_id, `refund.${r.id}.payment_id`),
+      amount_paise: paiseField(r.amount, `refund.${r.id}.amount`),
+      currency: typeof r.currency === 'string' ? r.currency : '',
+      status: typeof r.status === 'string' ? r.status : '',
+      created_at: epochSecondsToIso(r.created_at, `refund.${r.id}.created_at`),
+    }
+  } catch {
+    return null
+  }
+}
+
+export interface SnapshotOptions {
+  /** Which recon months to read. Defaults to the current and previous month. */
+  months?: { year: number; month: number }[]
+  count?: number
+  ingestedAt?: string
+  merchantId?: string
+}
+
+/**
+ * Everything one sync reads from Razorpay, plus the record of reading it.
+ *
+ * `ledger` is the AVOS ledger the evidence builder consumes. `unsettled` is the
+ * safe projection of payments and refunds that Razorpay has not yet put into a
+ * settlement: they are real, they are shown, and they cannot be verified yet
+ * because there is no settlement to verify them against.
+ */
+export interface RazorpaySnapshot {
+  fetched_at: string
+  mode: RazorpayMode | null
+  connection: RazorpayConnection
+  activity: RazorpayApiCall[]
+  counts: { settlements: number; recon_rows: number; payments: number; refunds: number }
+  ledger: Ledger
+  ledger_counts: NormalizeResult['counts']
+  rejected: RazorpayRejection[]
+  unsettled: { payments: SafePayment[]; refunds: SafeRefund[] }
+}
+
+function defaultMonths(now: Date): { year: number; month: number }[] {
+  const cur = { year: now.getUTCFullYear(), month: now.getUTCMonth() + 1 }
+  const prevDate = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() - 1, 1))
+  const prev = { year: prevDate.getUTCFullYear(), month: prevDate.getUTCMonth() + 1 }
+  return [cur, prev]
+}
+
+/**
+ * Read one sync's worth of data. Four resources, all GET, every call logged.
+ *
+ * With no credentials this returns immediately with `NOT_CONFIGURED` and an
+ * empty ledger. It does not, under any condition, read a CSV: there is no
+ * import of the file-backed loaders in this module, and `evals/razorpay-runtime
+ * .test.ts` asserts that mechanically.
+ */
+export async function fetchRazorpaySnapshot(opts: SnapshotOptions = {}): Promise<RazorpaySnapshot> {
+  const fetched_at = opts.ingestedAt ?? new Date().toISOString()
+  const status = razorpayStatus()
+  const merchantId = opts.merchantId ?? `RZP-${(status.mode ?? 'none').toUpperCase()}`
+  const empty = normalizeRazorpay(
+    { entity: 'collection', count: 0, items: [] },
+    { entity: 'collection', count: 0, items: [] },
+    { ingestedAt: fetched_at, merchantId },
+  )
+
+  if (!status.configured) {
+    return {
+      fetched_at,
+      mode: null,
+      connection: {
+        state: 'NOT_CONFIGURED',
+        detail: describeConnection('NOT_CONFIGURED', []),
+        mode: null,
+        key_id_prefix: null,
+        checked_at: null,
+      },
+      activity: [],
+      counts: { settlements: 0, recon_rows: 0, payments: 0, refunds: 0 },
+      ledger: empty.ledger,
+      ledger_counts: empty.counts,
+      rejected: [],
+      unsettled: { payments: [], refunds: [] },
+    }
+  }
+
+  const count = String(opts.count ?? 100)
+  const months = opts.months ?? defaultMonths(new Date(fetched_at))
+  const activity: RazorpayApiCall[] = []
+
+  const settlements = await get<RazorpaySettlementsResponse>(ENDPOINTS.settlements, { count }, activity)
+
+  const reconItems: RazorpayReconItem[] = []
+  for (const m of months) {
+    const r = await get<RazorpayReconResponse>(
+      ENDPOINTS.recon,
+      { year: String(m.year), month: String(m.month), count },
+      activity,
+    )
+    if (r?.items) reconItems.push(...r.items)
+  }
+
+  const payments = await get<RazorpayCollection<RazorpayPayment>>(ENDPOINTS.payments, { count }, activity)
+  const refunds = await get<RazorpayCollection<RazorpayRefund>>(ENDPOINTS.refunds, { count }, activity)
+
+  const state = classifyConnection(true, activity)
+  const origin: Exclude<EvidenceOrigin, 'avos_evaluation'> =
+    status.mode === 'live' ? 'razorpay_live_api' : 'razorpay_test_api'
+
+  const normalized = normalizeRazorpay(
+    { entity: 'collection', count: reconItems.length, items: reconItems },
+    settlements ?? { entity: 'collection', count: 0, items: [] },
+    { ingestedAt: fetched_at, merchantId, origin },
+  )
+
+  const safePayments = (payments?.items ?? []).map(safePayment).filter((p): p is SafePayment => p !== null)
+  const safeRefunds = (refunds?.items ?? []).map(safeRefund).filter((r): r is SafeRefund => r !== null)
+
+  return {
+    fetched_at,
+    mode: status.mode,
+    connection: {
+      state,
+      detail: describeConnection(state, activity),
+      mode: status.mode,
+      key_id_prefix: status.keyIdPrefix,
+      checked_at: fetched_at,
+    },
+    activity,
+    counts: {
+      settlements: settlements?.items?.length ?? 0,
+      recon_rows: reconItems.length,
+      payments: safePayments.length,
+      refunds: safeRefunds.length,
+    },
+    ledger: normalized.ledger,
+    ledger_counts: normalized.counts,
+    rejected: normalized.rejected,
+    unsettled: { payments: safePayments, refunds: safeRefunds },
+  }
 }
