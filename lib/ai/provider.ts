@@ -38,7 +38,11 @@ import { createOpenAI } from '@ai-sdk/openai'
 import { generateObject } from 'ai'
 import type { z } from 'zod'
 
-const API_KEY = process.env.OPENAI_API_KEY ?? ''
+// Any OpenAI-compatible endpoint. Groq and Gemini both expose one, so the key
+// name is deliberately neutral; the OpenAI name still works for anyone who has
+// it. A trailing slash on the base URL would produce `//chat/completions`.
+const API_KEY = process.env.AVOS_LLM_API_KEY ?? process.env.OPENAI_API_KEY ?? ''
+const BASE_URL = (process.env.AVOS_LLM_BASE_URL ?? '').replace(/\/+$/, '') || undefined
 const FORCED_MOCK = process.env.AVOS_USE_MOCK === '1'
 
 export const MODEL_ID = process.env.AVOS_LLM_MODEL ?? 'gpt-4o-mini'
@@ -104,13 +108,13 @@ export function __setTransportForTests(t: StructuredTransport | null): void {
  */
 export function modelAvailability(): { available: boolean; model: string | null; detail: string } {
   if (FORCED_MOCK) return { available: false, model: null, detail: 'AVOS_USE_MOCK=1 forces the evaluation stand-in, which the product path refuses.' }
-  if (API_KEY === '' && !transportOverride) return { available: false, model: null, detail: 'OPENAI_API_KEY is not configured.' }
-  return { available: true, model: MODEL_ID, detail: `Model ${MODEL_ID} is configured.` }
+  if (API_KEY === '' && !transportOverride) return { available: false, model: null, detail: 'No model key configured (AVOS_LLM_API_KEY or OPENAI_API_KEY).' }
+  return { available: true, model: MODEL_ID, detail: `Model ${MODEL_ID} via ${BASE_URL ?? 'api.openai.com'}.` }
 }
 
 async function callModel<T>(call: StrictCall<T>): Promise<T> {
   if (transportOverride) return transportOverride(call)
-  const openai = createOpenAI({ apiKey: API_KEY })
+  const openai = createOpenAI({ apiKey: API_KEY, baseURL: BASE_URL })
   const { object } = await generateObject({
     model: openai(MODEL_ID),
     schema: call.schema,
@@ -135,7 +139,7 @@ export async function generateStructuredStrict<T>(call: StrictCall<T>): Promise<
     throw new ModelUnavailableError('AVOS_USE_MOCK=1 forces the evaluation stand-in, which the product path refuses')
   }
   if (API_KEY === '' && !transportOverride) {
-    throw new ModelUnavailableError('OPENAI_API_KEY is not configured')
+    throw new ModelUnavailableError('no model key configured (AVOS_LLM_API_KEY or OPENAI_API_KEY)')
   }
   const value = await callModel(call)
   return { value, used_mock: false, model_version: MODEL_ID }
