@@ -57,6 +57,13 @@ jobs:
       - name: API boundary tests
         run: npm run test:api
 
+      # Offline: the fixture is committed and no credential is configured on CI.
+      # The live path (npm run test:razorpay:live) is deliberately NOT a gate —
+      # a benchmark that can fail because a third party is down is not a
+      # benchmark.
+      - name: Razorpay adapter (offline, no credentials)
+        run: npm run test:razorpay
+
       # Runs everything again end to end and fails on any acceptance gate.
       - name: Evaluation harness (8 gates)
         run: npm run eval

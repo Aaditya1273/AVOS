@@ -21,6 +21,13 @@ import { USING_MOCK } from '@/lib/ai/provider'
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 
+// Vercel's Hobby default is a 10s function ceiling. With no key the mock
+// answers instantly, but a real model call on a cold function can exceed it,
+// and a 504 here would look like the verifier failed when it never ran.
+// The verdict is computed deterministically either way — this only buys the
+// narration time to come back.
+export const maxDuration = 30
+
 const MAX_QUESTION_LENGTH = 500
 
 export async function POST(request: Request) {

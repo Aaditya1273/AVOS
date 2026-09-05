@@ -3,38 +3,65 @@
 @tailwind utilities;
 
 /*
- * A finance console, not a marketing page.
+ * A finance console.
  *
- * Dark by default because this is a tool people keep open next to a ledger, and
- * verdict colour is the only saturated colour on the page — if everything is
- * emphasised, a FAILED row stops standing out, which is the one thing this UI
- * exists to make impossible to miss.
+ * Light, because every product people actually reconcile money in is light —
+ * Stripe, Mercury, Brex, and Razorpay's own dashboard. Dark dashboards read as
+ * developer tooling or crypto, and this is neither: it is a control surface an
+ * operations team keeps open beside a ledger for eight hours.
+ *
+ * The palette runs on ONE accent. Blue is structural — navigation, links, the
+ * primary action — and carries no meaning about money. Red, amber and green
+ * appear only on a verdict or a figure derived from one. If everything is
+ * coloured, a FAILED row stops standing out, and making that impossible to miss
+ * is the entire reason this interface exists.
  */
 
 @layer base {
   :root {
-    --background: 222 24% 7%;
-    --foreground: 210 20% 92%;
-    --card: 222 22% 10%;
-    --card-foreground: 210 20% 92%;
-    --primary: 199 89% 55%;
-    --primary-foreground: 222 24% 7%;
-    --secondary: 222 18% 16%;
-    --secondary-foreground: 210 20% 92%;
-    --muted: 222 18% 14%;
-    --muted-foreground: 215 14% 58%;
-    --accent: 222 18% 18%;
-    --accent-foreground: 210 20% 92%;
-    --destructive: 350 78% 58%;
-    --destructive-foreground: 210 20% 98%;
-    --border: 220 16% 20%;
-    --input: 220 16% 20%;
-    --ring: 199 89% 55%;
+    /* Ground and panels. Elevation on a light surface is carried by a hairline
+     * plus a shadow that behaves like real diffuse light — very soft, very
+     * cheap, never more than one step. */
+    --background: 214 38% 97%;
+    --foreground: 218 54% 14%;
+    --card: 0 0% 100%;
+    --card-foreground: 218 54% 14%;
+
+    /* The single structural accent. */
+    --primary: 221 88% 56%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 214 32% 95%;
+    --secondary-foreground: 218 54% 14%;
+    --muted: 214 33% 96%;
+    --muted-foreground: 217 18% 44%;
+    --accent: 214 32% 92%;
+    --accent-foreground: 218 54% 14%;
+    --destructive: 352 70% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214 28% 90%;
+    --input: 214 28% 90%;
+    --ring: 221 88% 56%;
     --radius: 0.5rem;
 
-    --verdict-verified: 152 62% 45%;
-    --verdict-uncertain: 38 92% 55%;
-    --verdict-failed: 350 82% 60%;
+    /* Verdict colours, darkened for contrast against white. The dark-mode
+     * values were mid-tone because they sat on near-black; the same hues at the
+     * same lightness on white fail contrast and read as decoration. */
+    --verdict-verified: 162 84% 26%;
+    --verdict-uncertain: 30 90% 34%;
+    --verdict-failed: 352 72% 44%;
+
+    --surface: 0 0% 100%;
+    --surface-raised: 0 0% 100%;
+    --surface-sunken: 214 38% 97%;
+    --hairline: 214 28% 90%;
+    --focus: 221 88% 56%;
+
+    /* One shadow, used at one strength. A dashboard where every panel has its
+     * own elevation reads as floating debris. */
+    --shadow-panel: 0 1px 2px 0 hsl(218 54% 14% / 0.04), 0 1px 3px 0 hsl(218 54% 14% / 0.06);
+    --shadow-raised: 0 4px 12px -2px hsl(218 54% 14% / 0.08), 0 2px 4px -2px hsl(218 54% 14% / 0.05);
   }
 
   * {
@@ -50,13 +77,34 @@
   .tnum {
     font-variant-numeric: tabular-nums;
   }
+
+  /* One focus treatment, everywhere, keyboard-only. A ring that also fires on
+   * mouse click trains people to ignore it, which defeats the point. */
+  :focus-visible {
+    outline: 2px solid hsl(var(--focus));
+    outline-offset: 2px;
+    border-radius: 3px;
+  }
+
+  /* Respect the OS setting. Motion here is decoration on top of state that is
+   * already legible without it, so removing it costs nothing. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
 }
 
 @layer utilities {
   .grid-lines {
     background-image:
-      linear-gradient(hsl(var(--border) / 0.35) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(var(--border) / 0.35) 1px, transparent 1px);
+      linear-gradient(hsl(var(--border) / 0.45) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--border) / 0.45) 1px, transparent 1px);
     background-size: 44px 44px;
   }
 
@@ -70,5 +118,32 @@
   }
   .scrollbar-thin::-webkit-scrollbar-track {
     background: transparent;
+  }
+
+  .surface {
+    background-color: hsl(var(--surface));
+  }
+  .surface-raised {
+    background-color: hsl(var(--surface-raised));
+  }
+  .surface-sunken {
+    background-color: hsl(var(--surface-sunken));
+  }
+
+  .shadow-panel {
+    box-shadow: var(--shadow-panel);
+  }
+  .shadow-raised {
+    box-shadow: var(--shadow-raised);
+  }
+
+  /* Horizontal scroll without a visible bar, for pill rows that must not clip. */
+  .scroll-x-clean {
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .scroll-x-clean::-webkit-scrollbar {
+    display: none;
   }
 }

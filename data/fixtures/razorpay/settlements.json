@@ -1,0 +1,17 @@
+{
+  "_provenance": "RAZORPAY-SHAPED FIXTURE \u2014 matches GET /v1/settlements. Not real data.",
+  "entity": "collection",
+  "count": 1,
+  "items": [
+    {
+      "id": "setl_AVOSdemo00001",
+      "entity": "settlement",
+      "amount": 363165,
+      "status": "processed",
+      "fees": 10030,
+      "tax": 1805,
+      "utr": "2608260099876543",
+      "created_at": 1787380200
+    }
+  ]
+}

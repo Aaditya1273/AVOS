@@ -109,7 +109,7 @@ export function QaPanel({ caseId }: { caseId: string }) {
 
           <div className="px-1">
             <div className="mb-0.5 text-micro uppercase tracking-label text-muted-foreground">
-              Written by the model {answer.using_mock ? '(offline mock)' : ''}
+              Written by the model {answer.using_mock ? '(deterministic stand-in)' : ''}
             </div>
             <p className="text-body leading-relaxed text-foreground/90">{answer.answer}</p>
           </div>

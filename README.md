@@ -36,6 +36,8 @@ than a code review comment.
 | 90.8% | 100% | 0% | ₹40.55L | 4,982/sec |
 | 109 matched · 9 ambiguous · 2 unmatched | nothing paired to the wrong money | on a labelled fixture | held back from incorrect closure | deterministic verify |
 
+![AVOS landing — the agent proposed closure, the verifier refused](docs/landing.png)
+
 ![The Proof Card — agent claim struck through, beside the refusal](docs/proof-card-failed.png)
 
 ```bash
@@ -696,6 +698,125 @@ Playwright after the final rebuild — [`proof-card-failed.png`](docs/proof-card
 
 **Demo script**: [`docs/DEMO_SCRIPT.md`](docs/DEMO_SCRIPT.md) — 5 minutes, every
 figure reproducible from a cold clone.
+
+**Deploying**: [`docs/DEPLOY.md`](docs/DEPLOY.md) — Vercel needs no keys and no
+configuration; the one thing that had to be fixed is documented there, because a
+runtime-built file path is invisible to the serverless bundler and produces a
+deployment that goes green and then 404s on its own evidence.
+
+---
+
+## Razorpay ingestion
+
+AVOS can ingest Razorpay recon-shaped, read-only data through an optional
+server-side adapter. The benchmark itself is deterministic and credential-free,
+so every evaluator receives identical results.
+
+Those are two separate systems on purpose, and the second is the one the numbers
+come from.
+
+### The convergence point
+
+```
+committed CSVs  ──┐
+                  ├──▶  Ledger  ──▶  buildEvidencePack  ──▶  verifyClaim  ──▶  verdict
+Razorpay API    ──┘
+```
+
+The adapter's output type is `Ledger` — the same structure `lib/data/ledger.ts`
+builds from the CSVs — and not `EvidenceItem`. That distinction is the whole
+point. `buildEvidencePack` is where content hashing, per-payment rate-card
+stamping, UTR retrieval, duplicate detection and free-text quarantine happen. An
+adapter that emitted `EvidenceItem` directly would be re-implementing exactly the
+parts of AVOS most worth trusting, and "the verifier can't tell the sources
+apart" would be true only because the adapter had done the verifier's
+preparation itself.
+
+Joining at `Ledger` means the two paths converge *before* any AVOS logic runs.
+Every stage after the join is literally the same code on the same types, with no
+branch anywhere on where the data came from. `evals/razorpay-adapter.test.ts`
+(RZ14) builds a real pack from an API-derived ledger and checks the hashes and
+rate cards came out stamped.
+
+### Field mapping
+
+The schemas were already close, because both are modelling the same money.
+
+| Razorpay recon field | AVOS field | Note |
+| --- | --- | --- |
+| `amount` | `amount_paise` | Razorpay is paise-native — no scaling, and a float is refused rather than rounded |
+| `fee` / `tax` | `fee_paise` / `tax_paise` | same split |
+| `settlement_id` | `settlement_id` | identical |
+| `payment_id` | `payment_id` | required on refunds, or "is this refund too large" is unanswerable |
+| `settlement_utr` | `utr` | the bank-side join key |
+| `on_hold` | `HoldRow` | a held payment becomes both a payment row and a hold row |
+| `created_at` (epoch **seconds**) | ISO-8601 | the one real mismatch |
+| `notes` | *dropped* | see below |
+| — | `bank_statement` | **no Razorpay equivalent exists** |
+
+### Three decisions worth arguing with
+
+**`notes` are dropped entirely.** They are merchant-supplied key/value text — the
+one field in the payload an outside party controls. AVOS's existing rule is that
+the only free text entering the ledger is `BankRow.memo`, which `pack.ts`
+quarantines into `EvidenceItem.display`, which `evals/isolation.ts` forbids the
+verifier from naming. There is no equivalent channel on a payment row, and adding
+one would widen the attacker-controlled surface to carry data nothing reads. RZ09
+puts an injection string in `notes` and asserts it appears nowhere in the
+serialised ledger; RZ15 asserts the same through a fully built evidence pack.
+
+**Epoch conversion happens in exactly one function.** Not because spreading it
+would be untidy, but because a millisecond value passed where seconds are
+expected does not throw — it silently yields a date roughly fifty thousand years
+out, sails through any check written as "is it a number", and surfaces as a
+freshness figure nobody reads twice. `epochSecondsToIso` refuses anything above
+2100 for that reason. RZ07 covers the boundaries plus seven malformed inputs.
+
+**A Razorpay-only ledger produces no bank rows, and says so.** Razorpay has no
+API that returns your bank's statement, because that is your bank's data. AVOS
+exists to compare the processor's account of a settlement against an independent
+one, so this path can support internal-consistency checks and structurally cannot
+support bank-side matching. RZ18 asserts `bankAll` is empty and that no
+`bank_credit` evidence is manufactured — a match rate computed with nothing on
+the other side would be a number that means nothing.
+
+### What it will and won't do
+
+Read-only. There is no POST, PUT, PATCH or DELETE path in the connector and no
+parameter that could introduce one; the HTTP method is a literal. RZ17 asserts
+this mechanically against the source, so a refund endpoint added later fails the
+suite rather than a code review.
+
+```bash
+npm run test:razorpay        # 18 checks, offline, no credentials, in CI
+npm run test:razorpay:live   # optional; SKIPPED and exit 0 without credentials
+```
+
+The live script is deliberately not a gate and not wired into any page or route.
+A benchmark that can fail because a third party is having a bad afternoon is not
+a benchmark.
+
+### On test keys
+
+Razorpay test mode processes simulated transactions and does not run a settlement
+cycle, so `/settlements` and the recon report are commonly **empty** on an
+`rzp_test_` key. That is expected rather than a broken adapter, and it is the
+reason the committed fixtures are the primary source: a sandbox cannot produce a
+duplicate UTR, an over-refund or a fee mismatch, so it cannot produce a failable
+benchmark.
+
+### Credentials
+
+`RAZORPAY_KEY_ID` and `RAZORPAY_KEY_SECRET`, server-side only.
+`lib/connectors/razorpay.ts` throws at import if it is ever pulled into a browser
+bundle, and the built client bundle is checked to contain neither the variable
+names nor the API host. `razorpayStatus()` returns only the non-secret
+`rzp_test_` / `rzp_live_` prefix, never the key id in full and never the secret.
+
+The console always renders the committed fixtures, so its provenance badge reads
+**source · AVOS fixture** even when credentials are configured. The badge
+describes the data; the connector line beside it describes the configuration.
+Conflating those is how a demo ends up claiming a provenance it does not have.
 
 ---
 
