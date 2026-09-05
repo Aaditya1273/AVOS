@@ -333,11 +333,11 @@ export async function runRuntimeChecks(): Promise<RuntimeCheck[]> {
 
   checks.push(
     await check('RT11', 'with no model, the product path reports unavailable and substitutes nothing', async () => {
-      const savedKey = process.env.OPENAI_API_KEY
-      const savedMock = process.env.AVOS_USE_MOCK
+      const saved = { ...process.env }
       try {
-        delete process.env.OPENAI_API_KEY
-        delete process.env.AVOS_USE_MOCK
+        // A developer with .env.local exported would otherwise hit a real
+        // provider here. Every model variable is cleared, then restored.
+        for (const k of ['OPENAI_API_KEY', 'AVOS_LLM_API_KEY', 'AVOS_LLM_BASE_URL', 'AVOS_USE_MOCK']) delete process.env[k]
         __setTransportForTests(null)
         const { recon, settlements } = loadFixtures()
         // Default proposer: proposeClaimStrict, no override.
@@ -357,10 +357,10 @@ export async function runRuntimeChecks(): Promise<RuntimeCheck[]> {
         if (!threw) throw new Error('proposeClaimStrict did not throw ModelUnavailableError')
         return `agent=unavailable, evidence built (${payload.cases[0].pack.evidence.length} rows), no proposal, no verdict, no closure — nothing scripted`
       } finally {
-        if (savedKey === undefined) delete process.env.OPENAI_API_KEY
-        else process.env.OPENAI_API_KEY = savedKey
-        if (savedMock === undefined) delete process.env.AVOS_USE_MOCK
-        else process.env.AVOS_USE_MOCK = savedMock
+        for (const k of ['OPENAI_API_KEY', 'AVOS_LLM_API_KEY', 'AVOS_LLM_BASE_URL', 'AVOS_USE_MOCK']) {
+          if (saved[k] === undefined) delete process.env[k]
+          else process.env[k] = saved[k]
+        }
       }
     }),
   )
@@ -392,7 +392,9 @@ export async function runRuntimeChecks(): Promise<RuntimeCheck[]> {
         // And the same strict function refuses to touch the stand-in even with the override off.
         __setTransportForTests(null)
         const saved = process.env.OPENAI_API_KEY
+        const savedAvos = process.env.AVOS_LLM_API_KEY
         delete process.env.OPENAI_API_KEY
+        delete process.env.AVOS_LLM_API_KEY
         try {
           await generateStructuredStrict({ system: '', prompt: '', schema: { parse: (v: unknown) => v } as never })
           throw new Error('strict path returned without a model')
@@ -400,6 +402,7 @@ export async function runRuntimeChecks(): Promise<RuntimeCheck[]> {
           if (!(e instanceof ModelUnavailableError)) throw e
         } finally {
           if (saved !== undefined) process.env.OPENAI_API_KEY = saved
+          if (savedAvos !== undefined) process.env.AVOS_LLM_API_KEY = savedAvos
         }
         return `1 transport call carried the real prompt; proposal.used_mock=false; verdict ${c.result.verdict}. This proves wiring, not OpenAI.`
       } finally {
