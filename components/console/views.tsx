@@ -4,6 +4,7 @@ import { useMemo, useState } from 'react'
 import { Mono } from '@/components/ui/primitives'
 import { IconArrowRight, IconCheck, IconCross, IconHold, IconReplay } from '@/components/ui/icon'
 import { RowDetail } from '@/components/row-detail'
+import { OverviewHero } from './overview-hero'
 import { ReplayView } from '@/components/replay-view'
 import { QaPanel } from '@/components/qa-panel'
 import { formatDelta, formatPaise, formatPct } from '@/lib/money'
@@ -227,32 +228,42 @@ export function OverviewView({
   onSwitchSource: (s: SourceKind) => void
   onGo: (view: 'exceptions' | 'settlements' | 'evaluation') => void
 }) {
-  const k = kpis(records)
   const attention = sortRecords(records.filter((r) => r.status !== 'VERIFIED'), 'severity').slice(0, 6)
-  const falseClosures = source === 'evaluation' && report ? report.batch_120.false_closure_cases.length : null
   const empty = source === 'razorpay' && razorpay.payload?.connection.state === 'CONNECTED' && records.length === 0
 
   return (
     <div>
-      <PageHeader title="Financial control center" sub={`${SOURCE_LABEL[source]}${source === 'evaluation' ? ' · synthetic, labelled' : ''}`} />
+      <OverviewHero source={source} records={records} payload={razorpay.payload} phase={razorpay.phase} error={razorpay.error} onSync={onSync} />
 
-      <SourceStatus payload={razorpay.payload} phase={razorpay.phase} error={razorpay.error} onSync={onSync} />
-
-      <dl className="mt-6 grid gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
-        <Kpi label="Value verified" value={moneyShort(k.verifiedValue)} hint={`${k.verified} safe to close`} tone="verified" />
-        <Kpi label="Value held" value={moneyShort(k.heldValue)} hint={`${k.exceptions + k.reviews + k.pending} not closed`} tone={k.heldValue > 0 ? 'uncertain' : undefined} />
-        <Kpi label="Exceptions" value={String(k.exceptions)} hint={`${k.reviews} need review`} tone={k.exceptions > 0 ? 'failed' : undefined} />
-        <Kpi label="False closures" value={falseClosures === null ? '—' : String(falseClosures)} hint={falseClosures === null ? 'measurable on labelled data' : `of ${report?.batch_120.n ?? k.total} labelled`} tone={falseClosures === 0 ? 'verified' : undefined} />
-      </dl>
+      {razorpay.payload && razorpay.payload.activity.length > 0 ? (
+        <details className="group mt-3 px-1">
+          <summary className="cursor-pointer list-none text-[13px] font-medium text-primary [&::-webkit-details-marker]:hidden">
+            API activity this sync · {razorpay.payload.activity.length} read-only requests
+          </summary>
+          <ul className="mt-2 divide-y divide-border rounded-md border border-border bg-card">
+            {razorpay.payload.activity.map((a, i) => (
+              <li key={i} className="flex items-center gap-3 px-3 py-1.5 text-[13px]">
+                <Mono>{a.method}</Mono>
+                <Mono>{a.endpoint}</Mono>
+                <span className={cn('ml-auto tnum font-semibold', a.ok ? 'text-[hsl(var(--verdict-verified))]' : 'text-[hsl(var(--verdict-failed))]')}>
+                  {a.status === null ? 'no response' : `${a.status}${a.ok ? ' OK' : ''}`}
+                </span>
+                {a.count !== null ? <span className="tnum text-muted-foreground">count {a.count}</span> : null}
+              </li>
+            ))}
+          </ul>
+        </details>
+      ) : null}
 
       {empty ? (
-        <div className="mt-6 rounded-lg border border-dashed border-border p-6 text-center">
-          <div className="text-[18px] font-semibold">No settlement data yet</div>
-          <p className="mx-auto mt-1 max-w-xl text-[14px] text-muted-foreground">
-            Razorpay Test API is connected, but this account currently has no settlement records. Test-mode payments are simulated and
-            nothing settles. Nothing has been substituted.
-          </p>
-          <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
+        <div className="mt-6 flex flex-wrap items-center justify-between gap-4 rounded-lg border border-border bg-card px-5 py-4">
+          <div>
+            <div className="text-[16px] font-semibold">No settlement data yet</div>
+            <p className="mt-0.5 max-w-2xl text-[13px] text-muted-foreground">
+              Razorpay Test API is connected, but this account has no settlement records. Test-mode payments are simulated and nothing settles. Nothing has been substituted.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-2">
             <Button onClick={onSync} disabled={razorpay.phase === 'syncing'}>
               <IconReplay className="h-4 w-4" /> Sync Razorpay
             </Button>
@@ -289,25 +300,6 @@ export function OverviewView({
           </button>
         </p>
       ) : null}
-    </div>
-  )
-}
-
-function Kpi({ label, value, hint, tone }: { label: string; value: string; hint: string; tone?: 'verified' | 'uncertain' | 'failed' }) {
-  return (
-    <div className="bg-card px-5 py-4">
-      <dt className="text-[12px] font-semibold uppercase tracking-label text-muted-foreground">{label}</dt>
-      <dd
-        className={cn(
-          'tnum mt-1 text-[32px] font-bold leading-none tracking-tight',
-          tone === 'verified' && 'text-[hsl(var(--verdict-verified))]',
-          tone === 'uncertain' && 'text-[hsl(var(--verdict-uncertain))]',
-          tone === 'failed' && 'text-[hsl(var(--verdict-failed))]',
-        )}
-      >
-        {value}
-      </dd>
-      <dd className="mt-1 text-[13px] text-muted-foreground">{hint}</dd>
     </div>
   )
 }
