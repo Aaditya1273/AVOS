@@ -275,6 +275,7 @@ export interface RazorpaySyncPayload {
   ledger_counts: RazorpaySnapshot['ledger_counts']
   rejected: RazorpayRejection[]
   unsettled: { payments: SafePayment[]; refunds: SafeRefund[] }
+  truncated: boolean
   agent: AgentAvailability
   verifier_version: string
   cases: RazorpayCaseResult[]
@@ -305,6 +306,7 @@ export async function syncFromSnapshot(
     ledger_counts: snapshot.ledger_counts,
     rejected: snapshot.rejected,
     unsettled: snapshot.unsettled,
+    truncated: snapshot.truncated,
     agent: decided.agent,
     verifier_version: VERIFIER_VERSION,
     cases: decided.cases,

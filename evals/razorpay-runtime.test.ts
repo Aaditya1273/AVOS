@@ -88,6 +88,7 @@ function snapshotFrom(
     ledger_counts: n.counts,
     rejected: n.rejected,
     unsettled: { payments: [], refunds: [] },
+    truncated: false,
   }
 }
 

@@ -217,7 +217,9 @@ function CountsCard({ payload }: { payload: RazorpaySyncPayload }) {
           Returned by Razorpay
         </span>
         <span className="text-mini text-muted-foreground">
-          counts are the lengths of the API responses above, not computed by AVOS
+          {payload.truncated
+            ? 'a collection hit the page ceiling — these counts are a floor'
+            : 'counts are the lengths of the paged API responses, not computed by AVOS'}
         </span>
       </div>
       <dl className="grid gap-px bg-border sm:grid-cols-4">
@@ -335,9 +337,9 @@ function CasesSection({
           {payload.mode === 'test' && payload.connection.state === 'CONNECTED' ? (
             <>
               {' '}
-              Test mode does not run a settlement cycle: payments made with a test key appear under{' '}
-              <span className="text-foreground">Unsettled</span> below and cannot be verified until Razorpay
-              settles them.
+              Test-mode payments are simulated and no money moves, so there is nothing for the T+2 bank
+              settlement cycle to settle; payments made with a test key appear under{' '}
+              <span className="text-foreground">Unsettled</span> below until a settlement exists for them.
             </>
           ) : null}
         </p>

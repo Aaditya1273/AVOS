@@ -123,6 +123,31 @@ describe('POST /api/razorpay/sync', () => {
     expect(p.cases).toHaveLength(0)
   })
 
+  it('pages a collection with count+skip and logs every page', async () => {
+    // 100 payments on the first page, 3 on the second: two GETs, count 103.
+    const page = (skip: number) => {
+      const n = skip === 0 ? 100 : 3
+      return collection(
+        Array.from({ length: n }, (_, i) => ({
+          id: `pay_PG${skip + i}`, entity: 'payment', amount: 1000, currency: 'INR', status: 'captured',
+          captured: true, method: 'upi', fee: 20, tax: 4, created_at: 1756800000 + i,
+        })),
+      )
+    }
+    stubRazorpay((url) => {
+      if (url.pathname === '/v1/payments') return jsonResponse(page(Number(url.searchParams.get('skip') ?? 0)))
+      return jsonResponse(collection())
+    })
+    const p = (await (await POST()).json()) as RazorpaySyncPayload
+    expect(p.counts.payments).toBe(103)
+    const paymentCalls = p.activity.filter((a) => a.endpoint === '/v1/payments')
+    expect(paymentCalls).toHaveLength(2)
+    expect(paymentCalls.map((a) => a.count)).toEqual([100, 3])
+    expect(seenRequests.filter((r) => r.url === '/v1/payments')).toHaveLength(2)
+    expect(p.truncated).toBe(false)
+    expect(p.unsettled.payments).toHaveLength(103)
+  })
+
   it('carries real settlement rows through to evidence with Razorpay provenance', async () => {
     const setl = { id: 'setl_RT0001', entity: 'settlement', amount: 100000, status: 'processed', fees: 2000, tax: 360, utr: 'UTRRT0001', created_at: 1756900000 }
     const pay = {

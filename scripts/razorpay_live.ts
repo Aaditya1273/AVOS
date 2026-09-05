@@ -49,6 +49,7 @@ async function main(): Promise<void> {
   console.log(`  payments     ${p.counts.payments}`)
   console.log(`  refunds      ${p.counts.refunds}`)
   console.log(`  rejected     ${p.rejected.length}`)
+  if (p.truncated) console.log('  NOTE         a collection hit the page ceiling; counts above are a floor')
   console.log(`  bank rows    0  (always — Razorpay has no bank-statement endpoint)`)
   console.log('')
   console.log(`  AI agent     ${p.agent.state.toUpperCase()} — ${p.agent.detail}`)
@@ -58,10 +59,10 @@ async function main(): Promise<void> {
   if (p.cases.length === 0) {
     console.log(`  Outcome      ${p.outcome} — 0 settlement cases. Nothing was substituted.`)
     if (p.mode === 'test') {
-      console.log('               Test mode runs no settlement cycle, so this is the usual state')
-      console.log('               of a test account. Payments made in test mode appear under')
-      console.log(`               "unsettled" (${p.unsettled.payments.length} here) and cannot be`)
-      console.log('               verified until Razorpay settles them.')
+      console.log('               Test-mode payments are simulated and no money moves, so there is')
+      console.log('               nothing for the T+2 settlement cycle to settle. Payments made in')
+      console.log(`               test mode appear under "unsettled" (${p.unsettled.payments.length} here)`)
+      console.log('               until a settlement exists for them.')
     }
   } else {
     console.log(`  Outcome      ${p.outcome} — ${p.cases.length} settlement case(s):`)

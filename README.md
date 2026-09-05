@@ -801,11 +801,19 @@ the verifier.
 
 ### What a test key can and cannot show
 
-Razorpay test mode processes simulated transactions and does not run a
-settlement cycle. On an `rzp_test_` key, `/v1/settlements` and the recon report
-are typically empty; payments made in test mode appear under *Unsettled* and
-cannot be verified until Razorpay settles them. The console says so on screen.
-It does not fill the gap with the evaluation set.
+Razorpay's docs describe test mode as simulated transactions in which no money
+moves, and settlement as a T+2 working-day bank cycle that issues a UTR. There
+is nothing for that cycle to settle in test mode, and on the `rzp_test_` key
+used here `/v1/settlements`, the recon report, `/v1/payments` and `/v1/refunds`
+all return `count: 0`. Payments made with a test key appear under *Unsettled*
+until a settlement exists for them. The console says so on screen. It does not
+fill the gap with the evaluation set.
+
+Every list endpoint is paged with `count` + `skip` as the reference prescribes
+(`count` ≤ 100 for settlements, payments and refunds; ≤ 1000 for the recon
+report). Each page is its own row in the activity log. A collection that hits
+the page ceiling is reported as truncated and its count shown as a floor,
+rather than silently cut at one page.
 
 Razorpay also has no endpoint that returns your bank's statement. A Razorpay-only
 ledger carries no bank rows, and the verifier reports the absence of bank

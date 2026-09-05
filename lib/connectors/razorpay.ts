@@ -645,6 +645,41 @@ async function get<T>(path: string, params: Record<string, string>, activity: Ra
   return second.body
 }
 
+/**
+ * Page through a collection with `count` + `skip`, as the docs prescribe for
+ * every list endpoint (count ≤ 100; recon ≤ 1000). A page that comes back
+ * shorter than `count` is the last page. Each page is its own activity row.
+ *
+ * `maxPages` is a ceiling, not a target: on a large account it stops a sync
+ * from exceeding the route's time budget, and the truncation is reported by
+ * the caller rather than hidden.
+ */
+async function getAll<T>(
+  path: string,
+  params: Record<string, string>,
+  pageSize: number,
+  maxPages: number,
+  activity: RazorpayApiCall[],
+): Promise<{ items: T[]; truncated: boolean; failed: boolean }> {
+  const items: T[] = []
+  for (let page = 0; page < maxPages; page++) {
+    const body = await get<RazorpayCollection<T>>(
+      path,
+      { ...params, count: String(pageSize), skip: String(page * pageSize) },
+      activity,
+    )
+    if (body === null) return { items, truncated: false, failed: true }
+    const got = body.items ?? []
+    items.push(...got)
+    if (got.length < pageSize) return { items, truncated: false, failed: false }
+  }
+  return { items, truncated: true, failed: false }
+}
+
+/** Page sizes and ceilings, from the API reference. */
+const PAGE = { list: 100, recon: 1000 } as const
+const MAX_PAGES = { list: 10, recon: 5 } as const
+
 /** A payment as it is safe to show: no notes, no free text, epoch normalised. */
 export interface SafePayment {
   id: string
@@ -730,6 +765,8 @@ export interface RazorpaySnapshot {
   ledger_counts: NormalizeResult['counts']
   rejected: RazorpayRejection[]
   unsettled: { payments: SafePayment[]; refunds: SafeRefund[] }
+  /** True when a collection hit the page ceiling; the counts above are then a floor. */
+  truncated: boolean
 }
 
 function defaultMonths(now: Date): { year: number; month: number }[] {
@@ -774,27 +811,33 @@ export async function fetchRazorpaySnapshot(opts: SnapshotOptions = {}): Promise
       ledger_counts: empty.counts,
       rejected: [],
       unsettled: { payments: [], refunds: [] },
+      truncated: false,
     }
   }
 
-  const count = String(opts.count ?? 100)
   const months = opts.months ?? defaultMonths(new Date(fetched_at))
   const activity: RazorpayApiCall[] = []
+  const listSize = Math.min(opts.count ?? PAGE.list, PAGE.list)
 
-  const settlements = await get<RazorpaySettlementsResponse>(ENDPOINTS.settlements, { count }, activity)
+  const settlements = await getAll<RazorpaySettlement>(ENDPOINTS.settlements, {}, listSize, MAX_PAGES.list, activity)
 
   const reconItems: RazorpayReconItem[] = []
+  let reconTruncated = false
   for (const m of months) {
-    const r = await get<RazorpayReconResponse>(
+    const r = await getAll<RazorpayReconItem>(
       ENDPOINTS.recon,
-      { year: String(m.year), month: String(m.month), count },
+      { year: String(m.year), month: String(m.month) },
+      PAGE.recon,
+      MAX_PAGES.recon,
       activity,
     )
-    if (r?.items) reconItems.push(...r.items)
+    reconItems.push(...r.items)
+    reconTruncated ||= r.truncated
   }
 
-  const payments = await get<RazorpayCollection<RazorpayPayment>>(ENDPOINTS.payments, { count }, activity)
-  const refunds = await get<RazorpayCollection<RazorpayRefund>>(ENDPOINTS.refunds, { count }, activity)
+  const payments = await getAll<RazorpayPayment>(ENDPOINTS.payments, {}, listSize, MAX_PAGES.list, activity)
+  const refunds = await getAll<RazorpayRefund>(ENDPOINTS.refunds, {}, listSize, MAX_PAGES.list, activity)
+  const truncated = settlements.truncated || reconTruncated || payments.truncated || refunds.truncated
 
   const state = classifyConnection(true, activity)
   const origin: Exclude<EvidenceOrigin, 'avos_evaluation'> =
@@ -802,12 +845,12 @@ export async function fetchRazorpaySnapshot(opts: SnapshotOptions = {}): Promise
 
   const normalized = normalizeRazorpay(
     { entity: 'collection', count: reconItems.length, items: reconItems },
-    settlements ?? { entity: 'collection', count: 0, items: [] },
+    { entity: 'collection', count: settlements.items.length, items: settlements.items },
     { ingestedAt: fetched_at, merchantId, origin },
   )
 
-  const safePayments = (payments?.items ?? []).map(safePayment).filter((p): p is SafePayment => p !== null)
-  const safeRefunds = (refunds?.items ?? []).map(safeRefund).filter((r): r is SafeRefund => r !== null)
+  const safePayments = payments.items.map(safePayment).filter((p): p is SafePayment => p !== null)
+  const safeRefunds = refunds.items.map(safeRefund).filter((r): r is SafeRefund => r !== null)
 
   return {
     fetched_at,
@@ -821,7 +864,7 @@ export async function fetchRazorpaySnapshot(opts: SnapshotOptions = {}): Promise
     },
     activity,
     counts: {
-      settlements: settlements?.items?.length ?? 0,
+      settlements: settlements.items.length,
       recon_rows: reconItems.length,
       payments: safePayments.length,
       refunds: safeRefunds.length,
@@ -830,5 +873,6 @@ export async function fetchRazorpaySnapshot(opts: SnapshotOptions = {}): Promise
     ledger_counts: normalized.counts,
     rejected: normalized.rejected,
     unsettled: { payments: safePayments, refunds: safeRefunds },
+    truncated,
   }
 }
