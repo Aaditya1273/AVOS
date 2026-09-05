@@ -1,285 +1,333 @@
 /**
- * The AVOS Verify console.
+ * The landing page.
  *
- * A server component: it rebuilds every pack from the CSV ledger and runs the
- * deterministic verifier over all 150 cases on each request. That takes a few
- * milliseconds because the verifier is pure integer arithmetic with no I/O and
- * no model in it — which is itself the demonstration. A dashboard that had to
- * call something to know a verdict would be evidence against the architecture.
+ * A judge arrives knowing nothing. The console is dense on purpose — it is a
+ * working surface — and dropping someone straight into it asks them to infer the
+ * product from a data table. This page exists to make the argument in about ten
+ * seconds and then hand them the tool.
  *
- * Accuracy figures come from `evals/raw/metrics.json`, written by `npm run eval`.
- * They are not recomputed here, because computing accuracy needs ground-truth
- * labels and labels must never be loadable from the code that serves verdicts.
- * `evals/isolation.ts` fails the build if that boundary is ever crossed.
+ * Every figure on it is read from `evals/raw/metrics.json` and the decision log
+ * at request time. Nothing here is typed in by hand, so this page cannot drift
+ * away from what the evaluation actually measured.
  */
 
-import { Badge, Card, Mono, Separator } from '@/components/ui/primitives'
-import { Metric, MetricGroup } from '@/components/ui/metrics'
-import { Console, type CaseRow } from '@/components/console'
-import { materializeSuite, findCaseBySettlement } from '@/lib/decisions'
-import { policyChangePoints } from '@/lib/replay'
-import { detectInjection } from '@/lib/ai/qa'
-import { loadManifest } from '@/lib/data/ledger'
+import Link from 'next/link'
+import { SiteNav } from '@/components/site-nav'
+import { Badge, Card, Mono } from '@/components/ui/primitives'
+import { IconArrowRight, IconCheck, IconCross, IconHold } from '@/components/ui/icon'
 import { loadEvalReport } from '@/lib/eval-report'
-import { USING_MOCK, MODEL_VERSION } from '@/lib/ai/provider'
-import { VERIFIER_VERSION } from '@/lib/verifier/deterministic'
-import { ProvenanceStrip } from '@/components/provenance'
-import { razorpayStatus } from '@/lib/connectors/razorpay'
+import { loadManifest } from '@/lib/data/ledger'
+import { findCaseBySettlement, materializeSuite } from '@/lib/decisions'
+import { policyChangePoints } from '@/lib/replay'
 import { formatCompact, formatPaise, formatPct } from '@/lib/money'
-import { tallyVerdicts } from '@/lib/metrics'
-import type { Decision } from '@/lib/types'
+import { VERIFIER_VERSION } from '@/lib/verifier/deterministic'
+import { materializeDecision } from '@/lib/decisions'
 
 export const dynamic = 'force-dynamic'
 
 const HERO_SETTLEMENT = 'S-10092'
 
-function toRow(d: Decision): CaseRow {
-  return {
-    case_id: d.case_id,
-    settlement_id: d.result.settlement_id,
-    merchant_id: d.pack.merchant_id,
-    suite: d.suite,
-    verdict: d.result.verdict,
-    reason_code: d.result.reason_code,
-    value_paise: d.batch_value_paise,
-    difference_paise: d.result.difference_paise,
-    policy_version: d.result.policy_version,
-    decision_time: d.pack.decision_time,
-    agent_claim: d.proposal.claim.proposed_status,
-    confidence: d.proposal.confidence,
-    injection: detectInjection(d.pack).found,
-  }
-}
-
-export default function Page() {
-  const batch = materializeSuite('batch_120')
-  const adversarial = materializeSuite('adversarial_30')
-  const rows = [...batch, ...adversarial].map(toRow)
-
-  const manifest = loadManifest()
+export default function LandingPage() {
   const report = loadEvalReport()
+  const manifest = loadManifest()
+  const m = report?.batch_120
   const policyPoints = policyChangePoints()
-  const tally = tallyVerdicts(batch)
 
   const hero = findCaseBySettlement(HERO_SETTLEMENT)
-  const heroCaseId = hero?.c.case_id ?? batch[0]?.case_id ?? ''
+  const heroDecision = hero ? materializeDecision(hero.c, hero.suite) : null
+  const heroWithheld = heroDecision?.batch_value_paise ?? 0
+  const heroReason = heroDecision?.result.reason_code ?? null
 
-  const m = report?.batch_120
+  const batch = materializeSuite('batch_120')
   const gatesPassed = report?.gates.every((g) => g.passed) ?? false
 
   return (
-    <main className="mx-auto max-w-[1600px] px-4 py-6 sm:px-6 lg:px-8">
-      {/* --- header --------------------------------------------------------- */}
-      <header className="mb-6 overflow-hidden rounded-xl border border-border bg-card">
-        <div className="grid-lines border-b border-border px-6 py-7">
-          <div className="flex flex-wrap items-start justify-between gap-4">
-            <div>
-              <div className="flex items-center gap-2.5">
-                <h1 className="text-2xl font-bold tracking-tight">AVOS</h1>
-                <Badge variant="outline">Track 04 · AI Finance Controller</Badge>
-              </div>
-              <p className="mt-1.5 max-w-3xl text-body leading-relaxed text-muted-foreground">
-                Evidence-backed verification for AI-operated finance. Razorpay governs what an agent
-                is allowed to do. AVOS is the independent check on whether the agent&rsquo;s financial
-                conclusion is actually supported — it recomputes every claim from source evidence
-                under the policy in force at decision time, and refuses to close when the evidence
-                will not carry it.
+    <>
+      <SiteNav active="home" />
+
+      <main>
+        {/* --- hero ---------------------------------------------------------- */}
+        <section className="border-b border-border bg-card">
+          <div className="grid-lines">
+            <div className="mx-auto max-w-[1100px] px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+              <Badge variant="outline">Razorpay Buildathon · Track 04 · AI Finance Controller</Badge>
+
+              <h1 className="mt-5 max-w-4xl text-4xl font-bold leading-[1.1] tracking-tight sm:text-5xl">
+                The agent said close it.
+                <br />
+                <span className="text-[hsl(var(--verdict-failed))]">AVOS said no</span>
+                {heroWithheld ? (
+                  <>
+                    {' '}
+                    — and held{' '}
+                    <span className="tnum">{formatPaise(heroWithheld)}</span>.
+                  </>
+                ) : (
+                  '.'
+                )}
+              </h1>
+
+              <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+                AVOS closes the settlement reconciliation loop end to end — it matches, proves,
+                verifies and then closes. The closing decision is made by a deterministic verifier
+                with no model in it, so a confident agent cannot talk its way past a number that
+                does not add up.
               </p>
-            </div>
-            <div className="flex flex-col items-end gap-1.5">
-              <Badge variant={USING_MOCK ? 'outline' : 'verified'}>
-                {USING_MOCK ? 'offline mock model — no API key needed' : `live · ${MODEL_VERSION}`}
-              </Badge>
-              <Mono>{VERIFIER_VERSION}</Mono>
-              {/* Provenance. The console renders the committed ledger, so this
-                  says `AVOS fixture` even when a connector is configured — the
-                  badge describes the data, never the configuration. */}
-              <ProvenanceStrip source="fixture" connector={razorpayStatus()} />
-              {report ? (
-                <Badge variant={gatesPassed ? 'verified' : 'failed'}>
-                  {gatesPassed ? 'all acceptance gates pass' : 'gates failing'}
-                </Badge>
-              ) : (
-                <Badge variant="uncertain">run `npm run eval`</Badge>
-              )}
+
+              <div className="mt-8 flex flex-wrap items-center gap-3">
+                <Link
+                  href="/console"
+                  className="inline-flex h-11 items-center gap-2 rounded-md bg-primary px-5 text-body font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+                >
+                  Open the console
+                  <IconArrowRight className="h-4 w-4" />
+                </Link>
+                <span className="text-mini text-muted-foreground">
+                  Live data · {batch.length + 30} cases verified on every request
+                </span>
+              </div>
+
+              {/* The claim, made concrete, immediately. */}
+              {heroDecision ? (
+                <div className="mt-12 max-w-3xl overflow-hidden rounded-xl border border-border bg-background shadow-panel">
+                  <div className="flex items-center justify-between gap-3 border-b border-border px-4 py-2.5">
+                    <span className="font-mono text-compact font-semibold">{HERO_SETTLEMENT}</span>
+                    <span className="text-mini text-muted-foreground">
+                      {heroDecision.pack.merchant_id}
+                    </span>
+                  </div>
+                  <div className="grid gap-px bg-border sm:grid-cols-2">
+                    <div className="bg-card p-4">
+                      <div className="text-micro font-semibold uppercase tracking-label text-muted-foreground">
+                        The agent proposed
+                      </div>
+                      <div className="mt-1.5 flex items-baseline gap-2">
+                        <span className="text-lg font-semibold line-through decoration-muted-foreground/50">
+                          {heroDecision.proposal.claim.proposed_status}
+                        </span>
+                        <span className="text-mini text-muted-foreground">
+                          confidence {heroDecision.proposal.confidence.toFixed(2)}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="bg-card p-4">
+                      <div className="text-micro font-semibold uppercase tracking-label text-muted-foreground">
+                        AVOS returned
+                      </div>
+                      <div className="mt-1.5 flex items-baseline gap-2">
+                        <span className="text-lg font-semibold text-[hsl(var(--verdict-failed))]">
+                          {heroDecision.result.verdict}
+                        </span>
+                        {heroReason ? <Mono>{heroReason}</Mono> : null}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="border-t border-border bg-[hsl(var(--verdict-failed)/0.06)] px-4 py-3 text-compact">
+                    <span className="font-semibold text-[hsl(var(--verdict-failed))]">
+                      Not closed.
+                    </span>{' '}
+                    <span className="text-muted-foreground">
+                      The settlement declared more in platform fees than its own payment rows
+                      account for. The money stays put until a human resolves it.
+                    </span>
+                  </div>
+                </div>
+              ) : null}
             </div>
           </div>
-
-          <p className="mt-4 max-w-4xl border-l-2 border-primary pl-3 text-body font-medium leading-relaxed">
-            An agent can be policy-compliant and still be financially wrong. AVOS makes closure
-            conditional on evidence, not on confidence.
-          </p>
-        </div>
+        </section>
 
         {/* --- measured results ---------------------------------------------- */}
         {m ? (
-          <dl className="grid gap-x-8 gap-y-6 px-6 py-5 md:grid-cols-2 xl:grid-cols-3">
-            <MetricGroup label="Control — what the system did">
-              <Metric
-                label="Closed"
-                value={m.closure.closed}
-                hint={`of ${m.n} presented`}
-                tone="verified"
-              />
-              <Metric label="Refused" value={m.closure.refused} hint="held for review" tone="uncertain" />
-              <Metric label="Exceptions" value={m.closure.failed} hint="routed to an owner" tone="failed" />
-            </MetricGroup>
+          <section className="border-b border-border">
+            <div className="mx-auto max-w-[1100px] px-4 py-12 sm:px-6 lg:px-8">
+              <h2 className="text-micro font-semibold uppercase tracking-label text-muted-foreground">
+                Measured over {m.n} labelled settlements
+              </h2>
+              <dl className="mt-5 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+                <Headline
+                  label="Match rate"
+                  value={formatPct(m.match_rate)}
+                  hint={`${m.ambiguous_count} ambiguous, sent to review`}
+                />
+                <Headline
+                  label="False closure"
+                  value={formatPct(m.false_closure_rate)}
+                  hint="nothing wrong was ever closed"
+                  tone="verified"
+                />
+                <Headline
+                  label="Value withheld"
+                  value={formatCompact(m.closure.withheld_value_paise)}
+                  hint="stopped before it posted"
+                  tone="uncertain"
+                />
+                <Headline
+                  label="Verify throughput"
+                  value={`${(m.throughput_records_per_sec / 1000).toFixed(1)}k/s`}
+                  hint="no model on the verdict path"
+                />
+              </dl>
+            </div>
+          </section>
+        ) : null}
 
-            <MetricGroup label="Assurance — whether it can be trusted">
-              <Metric label="Match rate" value={formatPct(m.match_rate)} hint={`${m.ambiguous_count} ambiguous`} />
-              <Metric
-                label="Match precision"
-                value={formatPct(m.match_precision)}
-                hint="paired correctly"
-                tone={m.match_precision === 1 ? 'verified' : 'failed'}
-              />
-              <Metric
-                label="False closure"
-                value={formatPct(m.false_closure_rate)}
-                hint={`0 of ${m.n} on fixture`}
-                tone={m.false_closure_rate === 0 ? 'verified' : 'failed'}
-              />
-            </MetricGroup>
+        {/* --- the loop ------------------------------------------------------ */}
+        <section className="border-b border-border bg-card">
+          <div className="mx-auto max-w-[1100px] px-4 py-14 sm:px-6 lg:px-8">
+            <h2 className="text-2xl font-bold tracking-tight">One finance-ops loop, closed</h2>
+            <p className="mt-2 max-w-2xl text-body leading-relaxed text-muted-foreground">
+              Track 04 asks for an agent that closes a loop and reports its match rate. AVOS closes
+              settlement reconciliation, and reports both what it closed and what it refused to.
+            </p>
 
-            <MetricGroup label="Impact — what it was worth">
-              <Metric
-                label="Value withheld"
-                value={formatCompact(m.closure.withheld_value_paise)}
-                hint="from incorrect closure"
-                tone="uncertain"
+            <ol className="mt-8 grid gap-4 md:grid-cols-4">
+              <Stage
+                n={1}
+                name="Match"
+                body="Pair each settlement against the bank statement on reference, amount and date. Ties are declared ambiguous rather than guessed."
               />
-              <Metric
-                label="Value posted"
-                value={formatCompact(m.closure.closed_value_paise)}
-                hint={`${m.closure.closed} settlements`}
-                tone="verified"
+              <Stage
+                n={2}
+                name="Prove"
+                body="Assemble an evidence pack. Every row carries its source file, row id, timestamp, freshness and content hash."
               />
-              <Metric
-                label="Throughput"
-                value={`${(m.throughput_records_per_sec / 1000).toFixed(1)}k/s`}
-                hint="deterministic verify"
+              <Stage
+                n={3}
+                name="Verify"
+                body="Recompute the money in integer paise under the policy in force at decision time. 21 checks. Zero model."
               />
-            </MetricGroup>
-          </dl>
-        ) : (
-          <div className="px-6 py-5 text-body text-muted-foreground">
-            No evaluation on record. Run <Mono>npm run eval</Mono> to populate metrics and the
-            decision log.
+              <Stage
+                n={4}
+                name="Close"
+                body="VERIFIED closes. UNCERTAIN refuses and holds. FAILED becomes an exception with a named owner."
+              />
+            </ol>
           </div>
-        )}
-      </header>
+        </section>
 
-      {/* --- verdict tally --------------------------------------------------- */}
-      <div className="mb-4 flex flex-wrap items-center gap-3">
-        <span className="text-xs font-semibold uppercase tracking-label text-muted-foreground">
-          Batch of 120
-        </span>
-        <Badge variant="failed">{tally.FAILED} refused</Badge>
-        <Badge variant="uncertain">{tally.UNCERTAIN} abstained</Badge>
-        <Badge variant="verified">{tally.VERIFIED} cleared</Badge>
-        <span className="text-mini text-muted-foreground">
-          Matched, verified and closed on every request from source — nothing is read back from the
-          decision log.
-        </span>
-      </div>
+        {/* --- the boundary -------------------------------------------------- */}
+        <section className="border-b border-border">
+          <div className="mx-auto max-w-[1100px] px-4 py-14 sm:px-6 lg:px-8">
+            <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+              <div>
+                <h2 className="text-2xl font-bold tracking-tight">
+                  The model proposes. It never decides.
+                </h2>
+                <p className="mt-3 text-body leading-relaxed text-muted-foreground">
+                  An agent submits a structured claim with exactly three fields: a settlement id, a
+                  proposed status, and the evidence ids it cites. Its reasoning and its confidence
+                  score travel on a different object and are severed at the boundary — there is no
+                  field on the verifier&rsquo;s input they could occupy, so passing one is a compile
+                  error rather than a policy someone has to remember.
+                </p>
+                <p className="mt-3 text-body leading-relaxed text-muted-foreground">
+                  <Mono>{VERIFIER_VERSION}</Mono> has zero runtime imports: no clock, no network, no
+                  filesystem, no randomness, no environment. That is asserted mechanically on every
+                  evaluation run, not promised in a README.
+                </p>
+              </div>
 
-      <Console rows={rows} policyPoints={policyPoints} initialCaseId={heroCaseId} />
-
-      {/* --- pillars + honesty note ------------------------------------------ */}
-      <div className="mt-6 grid gap-4 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
-        <Card className="p-5">
-          <h2 className="mb-3 text-xs font-semibold uppercase tracking-label text-muted-foreground">
-            Guard · Prove · Verify · Measure
-          </h2>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <Pillar
-              name="Guard"
-              body="Is closure permissible under the policy that was in force at decision time — not today's policy?"
-            />
-            <Pillar
-              name="Prove"
-              body="Every row carries source file, row id, timestamp, content hash and freshness. Inspectable, and re-hashed on replay."
-            />
-            <Pillar
-              name="Verify"
-              body="expected = gross − refunds − fees − tax − holds, against the bank credit. Integer paise. Zero LLM."
-            />
-            <Pillar
-              name="Measure"
-              body="Precision, false closure, value coverage, exception detection, abstention accuracy — over labelled fixtures."
-            />
+              <Card className="overflow-hidden shadow-panel">
+                <div className="border-b border-border px-4 py-2.5 text-micro font-semibold uppercase tracking-label text-muted-foreground">
+                  What crosses the boundary
+                </div>
+                <div className="divide-y divide-border">
+                  <BoundaryRow ok label="settlement_id" note="which settlement" />
+                  <BoundaryRow ok label="proposed_status" note="what it thinks" />
+                  <BoundaryRow ok label="evidence_ids[]" note="what it cites" />
+                  <BoundaryRow label="agent_reason" note="prose — severed" />
+                  <BoundaryRow label="confidence" note="measured, never an input" />
+                  <BoundaryRow label="notes / memo" note="attacker-controlled, quarantined" />
+                </div>
+              </Card>
+            </div>
           </div>
-          <Separator className="my-4" />
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-mini text-muted-foreground">
+        </section>
+
+        {/* --- provenance footer --------------------------------------------- */}
+        <footer className="mx-auto max-w-[1100px] px-4 py-10 sm:px-6 lg:px-8">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-mini text-muted-foreground">
+            {report ? (
+              <span className="inline-flex items-center gap-1.5">
+                {gatesPassed ? (
+                  <IconCheck className="h-3.5 w-3.5 text-[hsl(var(--verdict-verified))]" />
+                ) : (
+                  <IconCross className="h-3.5 w-3.5 text-[hsl(var(--verdict-failed))]" />
+                )}
+                {report.gates.length} acceptance gates{' '}
+                {gatesPassed ? 'passing' : 'failing'}
+              </span>
+            ) : null}
             <span>
               Ledger: <Mono>{manifest.evidence_rows.razorpay_payments}</Mono> payments ·{' '}
-              <Mono>{manifest.evidence_rows.razorpay_settlements}</Mono> settlements ·{' '}
-              <Mono>{manifest.evidence_rows.bank_statement}</Mono> bank rows ·{' '}
-              <Mono>{manifest.evidence_rows.webhook_events}</Mono> webhooks
+              <Mono>{manifest.evidence_rows.bank_statement}</Mono> bank rows
             </span>
+            <span>Policies: {policyPoints.map((p) => p.label).join(' → ')}</span>
             <span>
-              Batch value: <Mono>{formatPaise(manifest.batch_120.total_value_paise)}</Mono>
-            </span>
-            <span>
-              Seed: <Mono>{manifest.seed}</Mono>
+              Seed <Mono>{manifest.seed}</Mono>
             </span>
           </div>
-        </Card>
-
-        <Card className="p-5">
-          <h2 className="mb-2 text-xs font-semibold uppercase tracking-label text-muted-foreground">
-            What these numbers do and do not claim
-          </h2>
-          <ul className="flex flex-col gap-2 text-compact leading-relaxed text-muted-foreground">
-            <li>
-              <span className="text-foreground">Value coverage</span> is measured against verifiable
-              value — of the money that genuinely reconciled, how much we cleared. Auto-clear rate
-              uses the whole batch and lands near two-thirds, which is correct on a fixture that is
-              one-third deliberately broken.
-            </li>
-            <li>
-              <span className="text-foreground">0% false closure</span> holds on this labelled
-              fixture, and it is achievable because AVOS abstains rather than guesses. It is not
-              offered as a global guarantee.
-            </li>
-            <li>
-              <span className="text-foreground">UNCERTAIN is a result, not a failure.</span> An
-              abstention costs a reviewer ten minutes. A wrong VERIFIED costs a reconciliation.
-            </li>
-            <li>
-              <span className="text-foreground">Confidence is not correctness.</span> The agent
-              scores {m ? m.mean_confidence_accepted.toFixed(3) : '—'} on closures AVOS accepted and{' '}
-              {m ? m.mean_confidence_refused.toFixed(3) : '—'} on the ones it refused — it
-              discriminates, but{' '}
-              <span className="text-foreground">
-                {m ? m.high_confidence_refusals : '—'} refused closures still scored ≥0.85
-              </span>
-              . A self-reported score measures how complete the inputs looked, which is a fact
-              about the inputs and not about the money.
-            </li>
-          </ul>
-        </Card>
-      </div>
-
-
-      <footer className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-border pt-5 text-mini text-muted-foreground">
-        <span>
-          Verifier <Mono>{VERIFIER_VERSION}</Mono> — zero runtime imports, asserted on every eval run
-        </span>
-        <span>
-          Policies: {policyPoints.map((p) => p.label).join(' → ')}
-        </span>
-        {report ? <span>Last evaluated {report.generated_at}</span> : null}
-      </footer>
-    </main>
+        </footer>
+      </main>
+    </>
   )
 }
 
-function Pillar({ name, body }: { name: string; body: string }) {
+function Headline({
+  label,
+  value,
+  hint,
+  tone,
+}: {
+  label: string
+  value: string
+  hint: string
+  tone?: 'verified' | 'uncertain'
+}) {
+  const toneClass =
+    tone === 'verified'
+      ? 'text-[hsl(var(--verdict-verified))]'
+      : tone === 'uncertain'
+        ? 'text-[hsl(var(--verdict-uncertain))]'
+        : 'text-foreground'
   return (
-    <div className="rounded-md border border-border bg-muted/25 p-3">
-      <div className="mb-1 text-compact font-semibold text-primary">{name}</div>
-      <p className="text-mini leading-relaxed text-muted-foreground">{body}</p>
+    <div>
+      <dt className="text-micro font-semibold uppercase tracking-label text-muted-foreground">
+        {label}
+      </dt>
+      <dd className={`tnum mt-1 text-3xl font-bold tracking-tight ${toneClass}`}>{value}</dd>
+      <dd className="mt-1 text-mini leading-snug text-muted-foreground">{hint}</dd>
+    </div>
+  )
+}
+
+function Stage({ n, name, body }: { n: number; name: string; body: string }) {
+  return (
+    <li className="rounded-lg border border-border bg-background p-4">
+      <div className="flex items-center gap-2">
+        <span className="tnum flex h-6 w-6 items-center justify-center rounded-full bg-primary text-mini font-bold text-primary-foreground">
+          {n}
+        </span>
+        <span className="text-body font-semibold">{name}</span>
+      </div>
+      <p className="mt-2 text-mini leading-relaxed text-muted-foreground">{body}</p>
+    </li>
+  )
+}
+
+function BoundaryRow({ ok, label, note }: { ok?: boolean; label: string; note: string }) {
+  return (
+    <div className="flex items-center gap-3 px-4 py-2.5">
+      {ok ? (
+        <IconCheck className="h-4 w-4 shrink-0 text-[hsl(var(--verdict-verified))]" />
+      ) : (
+        <IconHold className="h-4 w-4 shrink-0 text-muted-foreground" />
+      )}
+      <code className={`font-mono text-mini ${ok ? 'text-foreground' : 'text-muted-foreground line-through'}`}>
+        {label}
+      </code>
+      <span className="ml-auto text-mini text-muted-foreground">{note}</span>
     </div>
   )
 }

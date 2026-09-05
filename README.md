@@ -36,6 +36,8 @@ than a code review comment.
 | 90.8% | 100% | 0% | ₹40.55L | 4,982/sec |
 | 109 matched · 9 ambiguous · 2 unmatched | nothing paired to the wrong money | on a labelled fixture | held back from incorrect closure | deterministic verify |
 
+![AVOS landing — the agent proposed closure, the verifier refused](docs/landing.png)
+
 ![The Proof Card — agent claim struck through, beside the refusal](docs/proof-card-failed.png)
 
 ```bash

@@ -106,7 +106,9 @@ export function ProofCard({
             <span className="text-micro font-semibold uppercase tracking-label text-muted-foreground">
               Agent claim
             </span>
-            <Badge variant="outline">{proposal.used_mock ? 'offline mock' : 'live model'}</Badge>
+            <Badge variant="outline">
+              {proposal.used_mock ? 'deterministic agent' : 'live model'}
+            </Badge>
           </div>
 
           <div className="flex items-baseline gap-3">

@@ -124,7 +124,7 @@ Once the URL is live, four checks in about a minute:
 URL=https://your-deployment.vercel.app
 
 # 1. The console renders, server-side, with the evaluation in it.
-curl -s $URL | grep -c VERIFIED          # expect a non-zero count
+curl -s $URL/console | grep -c VERIFIED  # expect a non-zero count
 
 # 2. A decision resolves from the traced fixtures.
 curl -s "$URL/api/decision?case_id=B001" | head -c 200
@@ -143,7 +143,8 @@ curl -s -X POST "$URL/api/agent" \
 If step 2 returns a 404 or 500 while step 1 works, the file tracing regressed —
 check that `outputFileTracingIncludes` is still nested under `experimental`.
 
-In the browser, the load-bearing thing to confirm is that the landing view shows
+In the browser, `/` is the landing page and `/console` is the working surface.
+The load-bearing thing to confirm is that the console's Reconciliation tab shows
 the **FAILED / EXCEPTION — NOT CLOSED** proof card without scrolling. That is the
 whole pitch: the agent proposed a closure, the verifier refused it, and the money
 stayed put.
