@@ -30,6 +30,7 @@ import {
   type CsvRow,
 } from '@/lib/csv'
 import { isDateOnly, type TimestampPrecision } from '@/lib/evidence/normalize'
+import type { EvidenceProvenance } from '@/lib/types'
 import type { GroundTruth, SettlementCase, Verdict, ProposedStatus } from '@/lib/types'
 
 const DATA_DIR = path.join(process.cwd(), 'data')
@@ -51,6 +52,8 @@ export interface PaymentRow {
   tax_paise: number
   captured_at: string
   ingested_at: string
+  /** Set by a live adapter. Absent on CSV rows, which the pack labels as evaluation data. */
+  provenance?: EvidenceProvenance
 }
 
 export interface SettlementRow {
@@ -65,6 +68,8 @@ export interface SettlementRow {
   settled_at: string
   status: string
   ingested_at: string
+  /** Set by a live adapter. Absent on CSV rows, which the pack labels as evaluation data. */
+  provenance?: EvidenceProvenance
 }
 
 export interface BankRow {
@@ -79,6 +84,8 @@ export interface BankRow {
   /** Free text. The only attacker-controlled surface in the ledger. */
   memo: string
   ingested_at: string
+  /** Set by a live adapter. Absent on CSV rows, which the pack labels as evaluation data. */
+  provenance?: EvidenceProvenance
 }
 
 export interface RefundRow {
@@ -90,6 +97,8 @@ export interface RefundRow {
   amount_paise: number
   processed_at: string
   ingested_at: string
+  /** Set by a live adapter. Absent on CSV rows, which the pack labels as evaluation data. */
+  provenance?: EvidenceProvenance
 }
 
 export interface HoldRow {
@@ -100,6 +109,8 @@ export interface HoldRow {
   reason: string
   placed_at: string
   ingested_at: string
+  /** Set by a live adapter. Absent on CSV rows, which the pack labels as evaluation data. */
+  provenance?: EvidenceProvenance
 }
 
 export interface WebhookRow {
@@ -111,6 +122,8 @@ export interface WebhookRow {
   amount_paise: number
   received_at: string
   ingested_at: string
+  /** Set by a live adapter. Absent on CSV rows, which the pack labels as evaluation data. */
+  provenance?: EvidenceProvenance
 }
 
 export interface Ledger {

@@ -16,7 +16,7 @@
  */
 
 import { z } from 'zod'
-import { generateStructured } from '@/lib/ai/provider'
+import { generateStructured, generateStructuredStrict, ModelUnavailableError } from '@/lib/ai/provider'
 import type { ReasonCode, VerificationResult } from '@/lib/types'
 
 const NarrationSchema = z.object({
@@ -171,4 +171,39 @@ export async function narrateException(
   })
 
   return value
+}
+
+/**
+ * Product-path narration. Returns null rather than a stand-in sentence when no
+ * model is configured: an operator note that a model did not write must not
+ * appear where a model's note would. The caller renders "narration unavailable".
+ */
+export async function narrateExceptionStrict(
+  result: VerificationResult,
+): Promise<ExceptionNarration | null> {
+  if (!result.reason_code) return CLEAN_NARRATION
+  const failing = result.checks.filter((c) => c.status === 'fail')
+
+  const prompt = [
+    `verdict: ${result.verdict}`,
+    `reason_code: ${result.reason_code}`,
+    `settlement_id: ${result.settlement_id}`,
+    `policy: ${result.policy_version} (fee tolerance ${result.tolerance_paise} paise)`,
+    result.expected_paise !== null ? `expected_paise: ${result.expected_paise}` : '',
+    result.observed_paise !== null ? `observed_paise: ${result.observed_paise}` : '',
+    result.difference_paise !== null ? `difference_paise: ${result.difference_paise}` : '',
+    result.fee_delta_paise !== null ? `fee_delta_paise: ${result.fee_delta_paise}` : '',
+    '',
+    'failing checks:',
+    ...failing.map((c) => `  - ${c.id}: ${c.detail}`),
+  ]
+    .filter(Boolean)
+    .join('\n')
+  try {
+    const { value } = await generateStructuredStrict({ system: SYSTEM, prompt, schema: NarrationSchema })
+    return value
+  } catch (e) {
+    if (e instanceof ModelUnavailableError) return null
+    throw e
+  }
 }

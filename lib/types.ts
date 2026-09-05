@@ -103,6 +103,32 @@ export interface EvidenceKeys {
   event_id?: string
 }
 
+/**
+ * Where a row actually came from.
+ *
+ * Not "which CSV column" — that is `source`. This is the answer to "did this
+ * bytes come from Razorpay's API or from a file in this repository", stamped at
+ * ingest and carried, unhashed, to the UI. It is excluded from the content hash
+ * on purpose: two identical facts fetched at different times must still
+ * collide, or re-fetching would look like tampering.
+ *
+ * The verifier never reads it. Provenance is about trust in the pipe, and the
+ * verifier's whole design is that it does not need to trust the pipe.
+ */
+export type EvidenceOrigin = 'razorpay_test_api' | 'razorpay_live_api' | 'avos_evaluation'
+
+export interface EvidenceProvenance {
+  origin: EvidenceOrigin
+  /** Human label: "Razorpay Test API" or "AVOS Evaluation Dataset". */
+  label: string
+  /** API path the row was read from, or the committed file it was parsed from. */
+  endpoint: string
+  /** Razorpay entity id, or the CSV row id. */
+  entity_id: string
+  /** When AVOS received it. */
+  fetched_at: string
+}
+
 export interface EvidenceItem {
   evidence_id: string
   source: EvidenceSource
@@ -122,6 +148,7 @@ export interface EvidenceItem {
   /** False when the live row no longer hashes to what the decision log recorded. */
   hash_matches_recorded: boolean
   keys: EvidenceKeys
+  provenance: EvidenceProvenance
   fee_paise?: Paise
   tax_paise?: Paise
   status?: string
@@ -402,7 +429,7 @@ export interface Closure {
 /** One fully-assembled decision: claim, evidence, verdict. What a Proof Card renders. */
 export interface Decision {
   case_id: string
-  suite: 'batch_120' | 'adversarial_30' | 'hard_slice_20'
+  suite: 'batch_120' | 'adversarial_30' | 'hard_slice_20' | 'razorpay'
   proposal: AgentProposal
   pack: EvidencePack
   result: VerificationResult

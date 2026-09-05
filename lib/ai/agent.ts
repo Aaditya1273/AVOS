@@ -25,7 +25,13 @@
  */
 
 import { z } from 'zod'
-import { asUntrustedData, generateStructured, MODEL_VERSION, USING_MOCK } from '@/lib/ai/provider'
+import {
+  asUntrustedData,
+  generateStructured,
+  generateStructuredStrict,
+  MODEL_VERSION,
+  USING_MOCK,
+} from '@/lib/ai/provider'
 import { AGENT_VERSION } from '@/lib/evidence/pack'
 import type { AgentProposal, EvidencePack, ProposedStatus } from '@/lib/types'
 
@@ -256,6 +262,33 @@ export async function proposeClaim(pack: EvidencePack): Promise<AgentProposal> {
     agent_version: AGENT_VERSION,
     model_version,
     used_mock,
+  }
+}
+
+/**
+ * The product-path proposer. Identical prompt, schema and boundary to
+ * `proposeClaim`; the only difference is that there is no `mock` and therefore
+ * nothing to fall back to. Throws `ModelUnavailableError` when no model is
+ * configured. `used_mock` is false here structurally, not by convention: this
+ * function has no stand-in it could set it true with.
+ */
+export async function proposeClaimStrict(pack: EvidencePack): Promise<AgentProposal> {
+  const { value, model_version } = await generateStructuredStrict({
+    system: SYSTEM,
+    prompt: renderPack(pack),
+    schema: ClaimSchema,
+  })
+  return {
+    claim: {
+      settlement_id: pack.settlement_id,
+      proposed_status: value.proposed_status,
+      evidence_ids: value.evidence_ids,
+    },
+    agent_reason: value.agent_reason,
+    confidence: Math.min(1, Math.max(0, value.confidence)),
+    agent_version: AGENT_VERSION,
+    model_version,
+    used_mock: false,
   }
 }
 

@@ -1,9 +1,10 @@
 # Deploying AVOS to Vercel
 
-**You need no keys, no database, and no environment variables.** Import the repo,
-press Deploy, and the console comes up with the full 150-case evaluation already
-in it. Everything below is either an optional upgrade or an explanation of why a
-step you might expect is missing.
+**The deployment builds and runs with no keys.** What you see without them is
+honest and mostly empty: the Razorpay tab reads **Not configured** and the AI
+agent reads **unavailable**; the AVOS Evaluation tab is fully populated because
+it runs on committed data. To make the product path do its job, set the three
+variables below. Nothing is substituted for a missing one.
 
 ---
 
@@ -48,19 +49,18 @@ either already correct by default or better set in the project UI.
 
 | Variable | Default | Effect |
 | --- | --- | --- |
-| `OPENAI_API_KEY` | *(empty)* | Switches the three AI surfaces from the offline mock to a live model. **Does not change any verdict** — the verdict path contains no model. |
+| `OPENAI_API_KEY` | *(empty)* | Required for the agent on the product path (no stand-in is used there). Optional for the evaluation, which keeps its scripted proposer so its numbers reproduce without a key. **Never changes a verdict** — the verdict path contains no model. |
 | `AVOS_LLM_MODEL` | `gpt-4o-mini` | Which model those surfaces use. |
 | `AVOS_USE_MOCK` | `0` | Set to `1` to force the mock even when a key is present. Useful for reproducing the committed numbers exactly. |
 | `AVOS_RUN_STAMP` | *(now)* | Pins the timestamp in `evals/report.md`. Local eval harness only; irrelevant to a deployment. |
-| `RAZORPAY_KEY_ID` | *(empty)* | Enables `npm run test:razorpay:live` only. Read-only, server-side, never read by the build, the benchmark or any page. |
-| `RAZORPAY_KEY_SECRET` | *(empty)* | As above. Never reaches the client bundle — verified against the built output, not assumed. |
+| `RAZORPAY_KEY_ID` | *(empty)* | **The product path.** The console's Razorpay tab calls `/api/razorpay/sync`, which makes read-only GET requests with these. Without them the tab shows *Not configured* and makes no request. |
+| `RAZORPAY_KEY_SECRET` | *(empty)* | As above. Server-side only; never reaches the client bundle — verified against the built output by RT08. |
 
-Setting the Razorpay pair changes nothing about the deployed console: it renders
-the committed fixtures either way, and its provenance badge continues to read
-**source · AVOS fixture**. The connector line beside it will change from
-`not configured` to `configured · test`, which describes your configuration, not
-the data. There is no reason to set these on Vercel at all — the live path is a
-local script.
+Set the Razorpay pair on Vercel to make the Razorpay tab live. "Connected" on
+that tab means every request in the sync returned 2xx; it is never inferred from
+the variables being present. Set `OPENAI_API_KEY` to have a model propose claims
+on what Razorpay returns; without it the tab shows the evidence and reports *AI
+agent unavailable* rather than substituting a scripted proposer.
 
 ### Do not set this one
 

@@ -96,6 +96,30 @@ export function RowDetail({
             </dl>
           </section>
 
+          <section>
+            <SectionLabel>Provenance</SectionLabel>
+            <dl className="divide-y divide-border/60 rounded-md border border-border">
+              {(
+                [
+                  ['Origin', item.provenance.label],
+                  ['Read from', <Mono key="ep">{item.provenance.endpoint}</Mono>],
+                  ['Entity', <Mono key="ent">{item.provenance.entity_id}</Mono>],
+                  ['Fetched', fmtTime(item.provenance.fetched_at)],
+                ] as [string, React.ReactNode][]
+              ).map(([k, v]) => (
+                <div key={k} className="flex items-baseline justify-between gap-4 px-3 py-2">
+                  <dt className="text-mini text-muted-foreground">{k}</dt>
+                  <dd className="text-right text-compact">{v}</dd>
+                </div>
+              ))}
+            </dl>
+            <p className="mt-1.5 text-mini leading-relaxed text-muted-foreground">
+              Where the bytes came from. Not part of the content hash, so re-fetching the same fact
+              does not read as tampering — and not read by the verifier, which does not need to trust
+              the pipe.
+            </p>
+          </section>
+
           {keyEntries.length > 0 ? (
             <section>
               <SectionLabel>Join keys</SectionLabel>

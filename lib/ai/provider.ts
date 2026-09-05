@@ -69,6 +69,79 @@ export interface StructuredResult<T> {
 }
 
 /**
+ * Thrown by the strict path when there is no model to call. Callers on the
+ * product path catch this and show "AI agent unavailable"; nothing catches it
+ * and substitutes a stand-in, because that substitution is the thing the strict
+ * path exists to make impossible.
+ */
+export class ModelUnavailableError extends Error {
+  constructor(detail: string) {
+    super(`AI agent unavailable: ${detail}`)
+    this.name = 'ModelUnavailableError'
+  }
+}
+
+/** A call with no stand-in. If the model is not there, the answer is an error. */
+export type StrictCall<T> = Omit<StructuredCall<T>, 'mock'>
+
+/**
+ * The one seam a test may use to stand in for the network. It replaces the HTTP
+ * transport, not the agent: the prompt, schema and boundary are all still
+ * exercised. Never set by application code. `evals/razorpay-runtime.test.ts`
+ * uses it to prove the strict path calls the model and not the scripted
+ * proposer.
+ */
+export type StructuredTransport = <T>(call: StrictCall<T>) => Promise<T>
+let transportOverride: StructuredTransport | null = null
+export function __setTransportForTests(t: StructuredTransport | null): void {
+  transportOverride = t
+}
+
+/**
+ * Whether the strict path could call a model right now. Asked by the product
+ * runtime before it has any settlement to propose on, so an empty sync still
+ * reports the agent honestly instead of "available" by default.
+ */
+export function modelAvailability(): { available: boolean; model: string | null; detail: string } {
+  if (FORCED_MOCK) return { available: false, model: null, detail: 'AVOS_USE_MOCK=1 forces the evaluation stand-in, which the product path refuses.' }
+  if (API_KEY === '' && !transportOverride) return { available: false, model: null, detail: 'OPENAI_API_KEY is not configured.' }
+  return { available: true, model: MODEL_ID, detail: `Model ${MODEL_ID} is configured.` }
+}
+
+async function callModel<T>(call: StrictCall<T>): Promise<T> {
+  if (transportOverride) return transportOverride(call)
+  const openai = createOpenAI({ apiKey: API_KEY })
+  const { object } = await generateObject({
+    model: openai(MODEL_ID),
+    schema: call.schema,
+    system: call.system,
+    prompt: call.prompt,
+    temperature: 0,
+  })
+  return object as T
+}
+
+/**
+ * The product path. No key means an error, and a failed call means an error.
+ *
+ * This exists beside `generateStructured` rather than replacing it because the
+ * two serve different truths. The evaluation must run on a machine with no key
+ * and produce identical numbers — that needs the stand-in. The live product
+ * must never show a scripted claim as though a model produced it — that needs
+ * the absence of one. Same schema, same prompt, opposite failure policy.
+ */
+export async function generateStructuredStrict<T>(call: StrictCall<T>): Promise<StructuredResult<T>> {
+  if (FORCED_MOCK) {
+    throw new ModelUnavailableError('AVOS_USE_MOCK=1 forces the evaluation stand-in, which the product path refuses')
+  }
+  if (API_KEY === '' && !transportOverride) {
+    throw new ModelUnavailableError('OPENAI_API_KEY is not configured')
+  }
+  const value = await callModel(call)
+  return { value, used_mock: false, model_version: MODEL_ID }
+}
+
+/**
  * Generate a schema-validated object, or fall back to the mock.
  *
  * Note the failure policy: if the model errors, times out, or returns something
@@ -82,15 +155,8 @@ export async function generateStructured<T>(call: StructuredCall<T>): Promise<St
   }
 
   try {
-    const openai = createOpenAI({ apiKey: API_KEY })
-    const { object } = await generateObject({
-      model: openai(MODEL_ID),
-      schema: call.schema,
-      system: call.system,
-      prompt: call.prompt,
-      temperature: 0,
-    })
-    return { value: object as T, used_mock: false, model_version: MODEL_ID }
+    const value = await callModel(call)
+    return { value, used_mock: false, model_version: MODEL_ID }
   } catch (err) {
     console.warn(
       `[avos] model call failed (${(err as Error).message}); falling back to deterministic mock`,

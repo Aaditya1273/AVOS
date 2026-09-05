@@ -1,99 +1,79 @@
 /**
- * Optional live connectivity check.
+ * The real-network integration check.
  *
  * Deliberately NOT part of `npm run eval`. The benchmark must stay reproducible
- * on a machine with no credentials and no network, so nothing that can touch the
- * internet is allowed inside a gate. This script exists so the live path can be
- * exercised on purpose, by someone who has decided to.
+ * on a machine with no credentials and no network, so nothing that can touch
+ * the internet is allowed inside a gate. This script exists so the product path
+ * can be exercised on purpose, end to end, by someone who has decided to.
  *
- * With no credentials it prints SKIPPED and exits 0. That is the expected state
- * for a reviewer, for CI, and for the deployed demo — absence of a key is a
- * configuration, not a failure.
+ * It runs exactly what the console runs — `syncRazorpay()` — and prints the
+ * activity log, the connection state, the counts, and how far each settlement
+ * got through the pipeline. It reads. It never writes.
  *
- * It reads. It never writes. See the GET-only proof in the adapter test (RZ17).
+ * Exit codes: 0 when the connection is CONNECTED (even with zero records) or
+ * NOT_CONFIGURED (skipped); 1 when credentials are present but the API could
+ * not be reached or rejected them. Never printed: the key id beyond its
+ * `rzp_test_` prefix, the secret, or any header.
  */
 
-import { fetchRazorpayLedger, razorpayStatus } from '@/lib/connectors/razorpay'
+import { syncRazorpay } from '@/lib/razorpay/runtime'
+
+const line = '='.repeat(76)
 
 async function main(): Promise<void> {
-  const status = razorpayStatus()
+  console.log('\nRAZORPAY LIVE — PRODUCT PATH\n' + line)
+  const p = await syncRazorpay()
 
-  console.log('\nRAZORPAY LIVE CONNECTIVITY\n' + '='.repeat(76))
-
-  if (!status.configured) {
+  if (p.connection.state === 'NOT_CONFIGURED') {
     console.log('  SKIPPED — Razorpay credentials not configured')
     console.log('            set RAZORPAY_KEY_ID and RAZORPAY_KEY_SECRET to run this.')
-    console.log('            This is not a failure: the benchmark and the demo do not use them.')
-    console.log('='.repeat(76) + '\n')
+    console.log('            This is not a failure: the evaluation does not use them.')
+    console.log(line + '\n')
     process.exit(0)
   }
 
-  // Only the non-secret prefix is ever printed, here or anywhere else.
-  console.log(`  Key      ${status.keyIdPrefix}…  (mode: ${status.mode})`)
-
-  if (status.mode === 'test') {
-    console.log('')
-    console.log('  NOTE  Test mode processes simulated transactions and does not run a')
-    console.log('        settlement cycle, so /settlements and the recon report are')
-    console.log('        commonly empty on test keys. An empty result below is the')
-    console.log('        expected outcome, not a broken adapter.')
+  console.log(`  Key         ${p.connection.key_id_prefix}…  (mode: ${p.mode})`)
+  console.log(`  Connection  ${p.connection.state} — ${p.connection.detail}`)
+  console.log(`  Fetched at  ${p.fetched_at}`)
+  console.log('')
+  console.log('  API activity (all GET):')
+  for (const a of p.activity) {
+    const status = a.status === null ? 'no response' : `HTTP ${a.status}`
+    const count = a.count === null ? '' : `  count=${a.count}`
+    console.log(`    ${a.method} ${a.endpoint.padEnd(34)} ${status.padEnd(12)}${count}  ${a.elapsed_ms}ms`)
+    if (a.error) console.log(`      error: ${a.error}`)
   }
+  console.log('')
+  console.log(`  settlements  ${p.counts.settlements}`)
+  console.log(`  recon rows   ${p.counts.recon_rows}`)
+  console.log(`  payments     ${p.counts.payments}`)
+  console.log(`  refunds      ${p.counts.refunds}`)
+  console.log(`  rejected     ${p.rejected.length}`)
+  if (p.truncated) console.log('  NOTE         a collection hit the page ceiling; counts above are a floor')
+  console.log(`  bank rows    0  (always — Razorpay has no bank-statement endpoint)`)
+  console.log('')
+  console.log(`  AI agent     ${p.agent.state.toUpperCase()} — ${p.agent.detail}`)
+  console.log(`  Verifier     ${p.verifier_version}`)
+  console.log('')
 
-  const now = new Date()
-  // Last full month: the current one is still accruing.
-  const prev = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() - 1, 1))
-  const year = prev.getUTCFullYear()
-  const month = prev.getUTCMonth() + 1
-
-  console.log(`\n  Fetching recon for ${year}-${String(month).padStart(2, '0')} (read-only)…`)
-
-  try {
-    const { ledger, rejected, counts } = await fetchRazorpayLedger({
-      year,
-      month,
-      // Pinned so a re-run diffs on data rather than on the clock.
-      ingestedAt: new Date().toISOString(),
-    })
-
-    console.log('')
-    console.log(`  settlements  ${counts.settlements}`)
-    console.log(`  payments     ${counts.payments}`)
-    console.log(`  refunds      ${counts.refunds}`)
-    console.log(`  holds        ${counts.holds}`)
-    console.log(`  rejected     ${rejected.length}`)
-    console.log(`  bank rows    ${ledger.bankAll.length}  (always 0 — Razorpay has no statement API)`)
-
-    if (rejected.length > 0) {
-      console.log('\n  Quarantined rows (first 10):')
-      for (const r of rejected.slice(0, 10)) console.log(`    ${r.entity_id}  ${r.reason}`)
+  if (p.cases.length === 0) {
+    console.log(`  Outcome      ${p.outcome} — 0 settlement cases. Nothing was substituted.`)
+    if (p.mode === 'test') {
+      console.log('               Test-mode payments are simulated and no money moves, so there is')
+      console.log('               nothing for the T+2 settlement cycle to settle. Payments made in')
+      console.log(`               test mode appear under "unsettled" (${p.unsettled.payments.length} here)`)
+      console.log('               until a settlement exists for them.')
     }
-
-    const total = counts.settlements + counts.payments + counts.refunds
-    if (total === 0) {
-      console.log('\n  No rows returned. On a test key this is expected (see NOTE above).')
-    } else {
-      console.log(`\n  Normalised ${total} live rows into the AVOS ledger shape.`)
-      console.log('  The committed benchmark is unaffected: it never reads this path.')
+  } else {
+    console.log(`  Outcome      ${p.outcome} — ${p.cases.length} settlement case(s):`)
+    for (const c of p.cases) {
+      const verdict = c.result ? `${c.result.verdict}${c.result.reason_code ? ' ' + c.result.reason_code : ''}` : 'no verdict (no agent claim)'
+      const closure = c.closure ? c.closure.status : '—'
+      console.log(`    ${c.settlement_id.padEnd(22)} evidence=${c.pack.evidence.length}  ${verdict.padEnd(32)} ${closure}`)
     }
-
-    console.log('='.repeat(76) + '\n')
-    process.exit(0)
-  } catch (e) {
-    // A network or credential failure here is a real failure of THIS script, and
-    // of nothing else. No gate, no build and no deployed page depends on it.
-    console.log('')
-    // `fetch failed` on its own is useless: it is undici's blanket wrapper for
-    // DNS, TLS, proxy and connection-reset failures alike. The cause is what
-    // tells you which.
-    const err = e as Error & { cause?: { message?: string; code?: string } }
-    const cause = err.cause?.message ?? err.cause?.code ?? ''
-    console.log(`  FAILED  ${err.message}${cause ? ` — ${cause}` : ''}`)
-    console.log('')
-    console.log('  This does not affect `npm run eval`, `npm run build` or the demo,')
-    console.log('  none of which use Razorpay credentials.')
-    console.log('='.repeat(76) + '\n')
-    process.exit(1)
   }
+  console.log(line + '\n')
+  process.exit(p.connection.state === 'CONNECTED' ? 0 : 1)
 }
 
 void main()

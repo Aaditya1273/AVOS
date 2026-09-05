@@ -64,19 +64,24 @@ function NavLink({
 }
 
 /**
- * A mark, not a logo: a ledger column with one row struck out. It is the
- * product in one glyph — most things pass, one is stopped.
+ * The AVOS mark.
+ *
+ * A plain <img> rather than next/image on purpose. The asset is a fixed 224x256
+ * PNG shown at 28px — there is nothing for an optimiser to do, and routing it
+ * through /_next/image would light up the image-optimisation surface that
+ * docs/DEPLOY.md currently records as unused, which is the surface most of the
+ * open Next 14 advisories target. One static file is not worth that trade.
  */
 function Logo() {
   return (
-    <span
+    // eslint-disable-next-line @next/next/no-img-element -- see above
+    <img
+      src="/logo-mark.png"
+      alt=""
       aria-hidden
-      className="flex h-7 w-7 items-center justify-center rounded-md bg-primary text-primary-foreground"
-    >
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round">
-        <path d="M3 4.5h10M3 8h10M3 11.5h6" />
-        <path d="M10.5 13.5L14 10" />
-      </svg>
-    </span>
+      width={224}
+      height={256}
+      className="h-7 w-auto"
+    />
   )
 }

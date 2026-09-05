@@ -64,6 +64,11 @@ jobs:
       - name: Razorpay adapter (offline, no credentials)
         run: npm run test:razorpay
 
+      # The product path, offline: fixture-shaped input, stubbed model transport.
+      # Proves wiring and the absence of fallbacks; does not touch the network.
+      - name: Razorpay product path (offline)
+        run: npm run test:razorpay:runtime
+
       # Runs everything again end to end and fails on any acceptance gate.
       - name: Evaluation harness (8 gates)
         run: npm run eval
