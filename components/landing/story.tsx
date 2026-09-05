@@ -95,17 +95,24 @@ export function Story({ facts }: { facts: StoryFacts }) {
   const root = useRef<HTMLElement>(null)
   const pin = useRef<HTMLDivElement>(null)
   const stageBox = useRef<HTMLDivElement>(null)
-  const stage = useRef<StageApi | null>(null)
+  // Two stage APIs. The SVG one exists from first paint; the WebGL one arrives
+  // when its chunk has loaded. The story always talks to whichever is live, so
+  // it starts immediately on a slow connection and upgrades in place.
+  const svgApi = useRef<StageApi | null>(null)
+  const threeApi = useRef<StageApi | null>(null)
   const layers = useRef<HTMLDivElement>(null)
+  const lastProgress = useRef(0)
   const [stageReady, setStageReady] = useState(false)
 
   const use3d = prefs.ready && prefs.motion && prefs.wide && prefs.webgl
   const animate = prefs.ready && prefs.motion
+  const live = use3d && stageReady
+  const stage = useRef<() => StageApi | null>(() => null)
+  stage.current = () => (live ? threeApi.current : svgApi.current)
 
   // --- the timeline ----------------------------------------------------------
   useEffect(() => {
     if (!animate || !root.current || !pin.current) return
-    if (use3d && !stageReady) return
     gsap.registerPlugin(ScrollTrigger)
 
     const q = gsap.utils.selector(root.current)
@@ -123,7 +130,7 @@ export function Story({ facts }: { facts: StoryFacts }) {
       // Layers follow the object; node labels follow their nodes. One DOM
       // write per element per update, no reads — anchors come from the stage.
       const place = () => {
-        const s = stage.current
+        const s = stage.current()
         if (!s) return
         const o = s.anchor('object')
         if (o) gsap.set(layers.current, { x: o.x, y: o.y })
@@ -150,11 +157,13 @@ export function Story({ facts }: { facts: StoryFacts }) {
           // otherwise, and this pin is created last (it waits for the stage).
           refreshPriority: 1,
           onUpdate: (self) => {
-            stage.current?.setProgress(self.progress)
+            lastProgress.current = self.progress
+            stage.current()?.setProgress(self.progress)
             place()
           },
           onRefresh: (self) => {
-            stage.current?.setProgress(self.progress)
+            lastProgress.current = self.progress
+            stage.current()?.setProgress(self.progress)
             place()
           },
         },
@@ -246,12 +255,20 @@ export function Story({ facts }: { facts: StoryFacts }) {
       window.removeEventListener('load', onLoad)
       ctx.revert()
     }
-  }, [animate, use3d, stageReady, prefs.wide])
+  }, [animate, prefs.wide])
+
+  // When the WebGL stage arrives mid-story, it takes over at the current
+  // progress; the layers are re-anchored on the next scroll update.
+  useEffect(() => {
+    if (!live) return
+    threeApi.current?.setProgress(lastProgress.current)
+    ScrollTrigger.refresh()
+  }, [live])
 
   // Static rendering: reduced motion, or before capabilities are known.
   useEffect(() => {
     if (animate) return
-    stage.current?.setProgress(1)
+    svgApi.current?.setProgress(1)
   }, [animate, prefs.ready])
 
   const staticMode = prefs.ready && !prefs.motion
@@ -343,10 +360,19 @@ export function Story({ facts }: { facts: StoryFacts }) {
     </div>,
   ]
 
-  const stageEl = use3d ? (
-    <ThreeStage amount={facts.amount} apiRef={stage} onReady={() => setStageReady(true)} />
-  ) : (
-    <SvgStage amount={facts.amount} apiRef={stage} />
+  // Both stages mount when WebGL is wanted; the SVG shows until the WebGL
+  // stage reports ready, then hides. Only the SVG mounts otherwise.
+  const stageEl = (
+    <>
+      <div className={cn('absolute inset-0 transition-opacity duration-300', live && 'pointer-events-none opacity-0')} aria-hidden={live}>
+        <SvgStage amount={facts.amount} apiRef={svgApi} />
+      </div>
+      {use3d ? (
+        <div className={cn('absolute inset-0 transition-opacity duration-300', !live && 'opacity-0')}>
+          <ThreeStage amount={facts.amount} apiRef={threeApi} onReady={() => setStageReady(true)} />
+        </div>
+      ) : null}
+    </>
   )
 
   // ---------------------------------------------------------------- static
@@ -385,20 +411,23 @@ export function Story({ facts }: { facts: StoryFacts }) {
             <div className="absolute inset-0">{stageEl}</div>
             <div data-layer="veil" aria-hidden className="pointer-events-none absolute inset-0 bg-card" />
 
-            {use3d
-              ? NODES.map((n, i) => (
+            {/* WebGL node labels. Always mounted so the timeline owns them from
+                creation; shown only once the WebGL stage is live. */}
+            {use3d ? (
+              <div className={cn('contents', !live && 'hidden')} aria-hidden>
+                {NODES.map((n, i) => (
                   <div
                     key={n}
                     data-node-label
-                    aria-hidden
                     className="pointer-events-none absolute left-0 top-0 -translate-x-1/2 whitespace-nowrap text-micro font-semibold uppercase tracking-label text-muted-foreground"
                     style={{ willChange: 'transform' }}
                   >
                     {n}
                     {i === 5 ? <span className="ml-3 opacity-60">→ close</span> : null}
                   </div>
-                ))
-              : null}
+                ))}
+              </div>
+            ) : null}
 
             <div ref={layers} className="pointer-events-none absolute left-0 top-0 hidden lg:block" style={{ willChange: 'transform' }}>
               {/* AI layer, attached above the object. */}
