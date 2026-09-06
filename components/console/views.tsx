@@ -116,6 +116,58 @@ export function Button({
 
 export type SyncPhase = 'idle' | 'syncing' | 'done'
 
+/** A payment the API returned that no settlement has claimed yet. */
+type SafePayment = RazorpaySyncPayload['unsettled']['payments'][number]
+
+/**
+ * The connection, as a word.
+ *
+ * "Connected" describes the connection and nothing else. A read that succeeds
+ * and returns no settlements is still a successful read — the previous label
+ * appended "· empty" whenever `settlements === 0`, so a sync that fetched two
+ * real payments over five 200s announced itself as empty. That is not a
+ * cosmetic problem: it is the UI contradicting its own evidence.
+ *
+ * Whether there is anything to *review* is a separate question, answered
+ * separately, further down the page.
+ */
+function connectionView(
+  payload: RazorpaySyncPayload | null,
+  phase: SyncPhase,
+  error: string | null,
+): { label: string; dot: string; live: boolean } {
+  if (phase === 'syncing') return { label: 'Syncing', dot: 'bg-muted-foreground/50 animate-pulse', live: false }
+  const state = payload?.connection.state ?? (error ? 'ERROR' : 'IDLE')
+  switch (state) {
+    case 'CONNECTED':
+      return { label: 'Connected', dot: 'bg-[hsl(var(--verdict-verified))]', live: true }
+    case 'NOT_CONFIGURED':
+      return { label: 'Not configured', dot: 'border border-muted-foreground bg-transparent', live: false }
+    case 'AUTHENTICATION_FAILED':
+      return { label: 'Authentication failed', dot: 'bg-[hsl(var(--verdict-failed))]', live: false }
+    case 'UNAVAILABLE':
+      return { label: 'Unavailable', dot: 'bg-[hsl(var(--verdict-failed))]', live: false }
+    case 'ERROR':
+      return { label: 'Sync failed', dot: 'bg-[hsl(var(--verdict-failed))]', live: false }
+    default:
+      return { label: 'Not checked', dot: 'bg-muted-foreground/50', live: false }
+  }
+}
+
+/** "5 read-only requests succeeded" — counted off the activity log, not assumed. */
+function requestSummary(payload: RazorpaySyncPayload | null): string | null {
+  if (!payload || payload.activity.length === 0) return null
+  const ok = payload.activity.filter((a) => a.ok).length
+  const n = payload.activity.length
+  return ok === n ? `${n} read-only request${n === 1 ? '' : 's'} succeeded` : `${ok} of ${n} read-only requests succeeded`
+}
+
+/**
+ * The source panel: what AVOS is reading, on whose authority, and when.
+ *
+ * Every value is read off the sync payload. There is no branch that renders a
+ * status the runtime did not report.
+ */
 export function SourceStatus({
   payload,
   phase,
@@ -129,77 +181,322 @@ export function SourceStatus({
   onSync: () => void
   compact?: boolean
 }) {
-  const c = payload?.connection
-  const state = phase === 'syncing' ? 'SYNCING' : (c?.state ?? (error ? 'ERROR' : 'IDLE'))
-  const empty = c?.state === 'CONNECTED' && payload && payload.counts.settlements === 0
-  const label =
-    state === 'SYNCING'
-      ? 'Syncing'
-      : state === 'CONNECTED'
-        ? empty
-          ? 'Connected · empty'
-          : 'Connected'
-        : state === 'NOT_CONFIGURED'
-          ? 'Not configured'
-          : state === 'AUTHENTICATION_FAILED'
-            ? 'Authentication failed'
-            : state === 'UNAVAILABLE'
-              ? 'Unavailable'
-              : state === 'ERROR'
-                ? 'Sync failed'
-                : 'Not checked'
-  const dot =
-    state === 'CONNECTED' ? 'bg-[hsl(var(--verdict-verified))]' : state === 'SYNCING' || state === 'IDLE' ? 'bg-muted-foreground/50' : state === 'NOT_CONFIGURED' ? 'border border-muted-foreground bg-transparent' : 'bg-[hsl(var(--verdict-failed))]'
+  const c = connectionView(payload, phase, error)
+  const requests = requestSummary(payload)
+  const detail = phase === 'syncing' ? 'Reading settlements, reconciliation, payments and refunds.' : (payload?.connection.detail ?? error ?? 'No sync has run yet.')
+
+  if (compact) {
+    return (
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 rounded-lg border border-border bg-card px-4 py-2.5">
+        <span className={cn('h-2 w-2 shrink-0 rounded-full', c.dot)} aria-hidden />
+        <span className="text-[14px] font-semibold">{c.label}</span>
+        <span className="text-[13px] text-muted-foreground">
+          Razorpay {payload?.mode === 'live' ? 'Live' : 'Test'} API · Read-only
+        </span>
+        {payload ? <span className="tnum text-[13px] text-muted-foreground">· {countLine(payload)}</span> : null}
+        <Button onClick={onSync} disabled={phase === 'syncing'} variant="secondary" className="ml-auto h-8">
+          <IconReplay className={cn('h-4 w-4', phase === 'syncing' && 'animate-spin')} />
+          {phase === 'syncing' ? 'Syncing' : 'Sync'}
+        </Button>
+      </div>
+    )
+  }
 
   return (
-    <div className={cn('rounded-lg border border-border bg-card', compact ? 'p-4' : 'p-5')}>
-      <div className="flex flex-wrap items-start justify-between gap-4">
+    <div className="rounded-lg border border-border bg-card">
+      <div className="flex flex-wrap items-start justify-between gap-4 px-5 py-4">
         <div className="min-w-0">
-          <div className="text-[12px] font-semibold uppercase tracking-label text-muted-foreground">
-            Razorpay {payload?.mode === 'live' ? 'Live' : 'Test'} API
+          <div className="flex items-center gap-2.5">
+            <span className={cn('h-2.5 w-2.5 shrink-0 rounded-full', c.dot)} aria-hidden />
+            <span className="text-[22px] font-bold tracking-tight">{c.label}</span>
           </div>
-          <div className="mt-1.5 flex items-center gap-2.5">
-            <span className={cn('h-2.5 w-2.5 rounded-full', dot, state === 'SYNCING' && 'animate-pulse')} aria-hidden />
-            <span className="text-[18px] font-semibold tracking-tight">{label}</span>
-            <span className="text-[13px] text-muted-foreground">· Read-only</span>
-          </div>
-          <p className="mt-1 text-[13px] text-muted-foreground">
-            {phase === 'syncing'
-              ? 'Reading settlements, reconciliation, payments and refunds; building evidence; verifying.'
-              : (c?.detail ?? error ?? 'No sync has run yet.')}
-          </p>
-          {payload ? (
-            <p className="mt-1 text-[12px] text-muted-foreground">
-              Last sync {fmtTime(payload.fetched_at)} · {payload.counts.settlements} settlements · {payload.counts.recon_rows} recon rows ·{' '}
-              {payload.counts.payments} payments · {payload.counts.refunds} refunds
-              {payload.truncated ? ' · counts are a floor (page ceiling reached)' : ''}
-            </p>
-          ) : null}
+          <p className="mt-1 text-[14px] font-medium text-foreground/80">{requests ?? detail}</p>
+          {/* The detail only earns a line when it says something the request
+              count does not — i.e. when something went wrong. */}
+          {requests && !c.live ? <p className="mt-0.5 text-[13px] text-muted-foreground">{detail}</p> : null}
         </div>
         <Button onClick={onSync} disabled={phase === 'syncing'} variant="secondary">
           <IconReplay className={cn('h-4 w-4', phase === 'syncing' && 'animate-spin')} />
-          {phase === 'syncing' ? 'Syncing' : 'Sync Razorpay'}
+          {phase === 'syncing' ? 'Syncing Razorpay…' : 'Sync Razorpay'}
         </Button>
       </div>
-      {!compact && payload && payload.activity.length > 0 ? (
-        <details className="group mt-4">
-          <summary className="cursor-pointer list-none text-[13px] font-medium text-primary [&::-webkit-details-marker]:hidden">
-            API activity this sync · {payload.activity.length} requests
-          </summary>
-          <ul className="mt-2 divide-y divide-border rounded-md border border-border">
-            {payload.activity.map((a, i) => (
-              <li key={i} className="flex items-center gap-3 px-3 py-1.5 text-[13px]">
-                <Mono>{a.method}</Mono>
-                <Mono>{a.endpoint}</Mono>
-                <span className={cn('ml-auto tnum font-semibold', a.ok ? 'text-[hsl(var(--verdict-verified))]' : 'text-[hsl(var(--verdict-failed))]')}>
-                  {a.status === null ? 'no response' : `${a.status}${a.ok ? ' OK' : ''}`}
-                </span>
-                {a.count !== null ? <span className="tnum text-muted-foreground">count {a.count}</span> : null}
-              </li>
-            ))}
-          </ul>
-        </details>
+
+      <dl className="grid gap-px border-t border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
+        <SourceFact k="Source" v={`Razorpay ${payload?.mode === 'live' ? 'Live' : 'Test'} API`} sub={payload?.connection.key_id_prefix ? `key ${payload.connection.key_id_prefix}…` : undefined} />
+        <SourceFact k="Status" v={c.label} sub={payload?.connection.checked_at ? `checked ${fmtTime(payload.connection.checked_at)}` : undefined} />
+        <SourceFact k="Access" v={payload?.access === 'read-only' || !payload ? 'Read-only' : payload.access} sub="GET requests only" />
+        <SourceFact
+          k="Last sync"
+          v={phase === 'syncing' ? 'Syncing…' : payload ? fmtTime(payload.fetched_at) : '—'}
+          sub={payload ? `${payload.counts.payments} payment${payload.counts.payments === 1 ? '' : 's'} received` : undefined}
+        />
+      </dl>
+    </div>
+  )
+}
+
+function SourceFact({ k, v, sub }: { k: string; v: string; sub?: string }) {
+  return (
+    <div className="bg-card px-5 py-3">
+      <dt className="text-[11px] font-semibold uppercase tracking-label text-muted-foreground">{k}</dt>
+      <dd className="mt-1 text-[14px] font-semibold">{v}</dd>
+      {sub ? <dd className="mt-0.5 text-[12px] text-muted-foreground">{sub}</dd> : null}
+    </div>
+  )
+}
+
+/** Exact terminology, always. A payment is never counted as a settlement. */
+function countLine(p: RazorpaySyncPayload): string {
+  return `${p.counts.settlements} settlements · ${p.counts.recon_rows} recon rows · ${p.counts.payments} payments · ${p.counts.refunds} refunds`
+}
+
+/**
+ * What came back, by entity, in the API's own vocabulary.
+ *
+ * Four separate numbers rather than one total, because the whole point is that
+ * they are not interchangeable: two payments and zero settlements is a
+ * meaningful, honest state, and any tile that blurred them into "2 records"
+ * would be inviting exactly the misreading this panel exists to prevent.
+ */
+export function ReceivedTiles({ payload }: { payload: RazorpaySyncPayload }) {
+  const tiles: [string, number, string][] = [
+    ['Payments', payload.counts.payments, 'GET /v1/payments'],
+    ['Settlements', payload.counts.settlements, 'GET /v1/settlements'],
+    ['Recon rows', payload.counts.recon_rows, 'GET /v1/settlements/recon/combined'],
+    ['Refunds', payload.counts.refunds, 'GET /v1/refunds'],
+  ]
+  return (
+    <div>
+      <h2 className="text-[12px] font-semibold uppercase tracking-label text-muted-foreground">What AVOS received</h2>
+      <dl className="mt-2 grid gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
+        {tiles.map(([label, n, endpoint]) => (
+          <div key={label} className="bg-card px-5 py-4">
+            <dd className={cn('tnum text-[32px] font-bold leading-none tracking-tight', n > 0 ? 'text-foreground' : 'text-muted-foreground')}>{n}</dd>
+            <dt className="mt-1.5 text-[14px] font-medium">{label}</dt>
+            <dd className="mt-1 truncate text-[12px] text-muted-foreground">
+              <Mono>{endpoint}</Mono>
+            </dd>
+          </div>
+        ))}
+      </dl>
+      {payload.truncated ? (
+        <p className="mt-2 text-[12px] text-muted-foreground">A collection hit the page ceiling — these counts are a floor.</p>
       ) : null}
+    </div>
+  )
+}
+
+/**
+ * The records themselves.
+ *
+ * Razorpay's payments endpoint carries no settlement id, so these rows cannot
+ * be reconciled and are not pretended to be. They are shown because they are
+ * the plainest available proof that the connection returns real data: every id
+ * here can be pasted into the merchant's own dashboard.
+ */
+export function RazorpayPayments({ payload }: { payload: RazorpaySyncPayload }) {
+  const rows = payload.unsettled.payments
+  if (rows.length === 0) return null
+  return (
+    <div>
+      <SectionTitle right={<span className="tnum text-[13px] text-muted-foreground">{rows.length} fetched</span>}>Razorpay payments</SectionTitle>
+      <ul className="divide-y divide-border overflow-hidden rounded-lg border border-border bg-card">
+        {rows.map((p) => (
+          <li key={p.id}>
+            <PaymentRow p={p} />
+          </li>
+        ))}
+      </ul>
+      <p className="mt-2 text-[12px] text-muted-foreground">
+        Source <span className="font-medium text-foreground">Razorpay {payload.mode === 'live' ? 'Live' : 'Test'} API</span> · fetched {fmtTime(payload.fetched_at)} ·{' '}
+        <Mono>GET /v1/payments</Mono>. These carry no settlement id, so nothing here has been reconciled or closed.
+      </p>
+    </div>
+  )
+}
+
+function PaymentRow({ p }: { p: SafePayment }) {
+  return (
+    <div className="grid items-center gap-x-4 gap-y-1 px-4 py-3 sm:grid-cols-[minmax(0,1fr)_auto]">
+      <div className="min-w-0">
+        <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+          <span className="tnum text-[20px] font-bold tracking-tight">{formatPaise(p.amount_paise)}</span>
+          <span className="text-[13px] font-medium capitalize text-muted-foreground">
+            {p.status}
+            {p.method ? ` · ${p.method}` : ''}
+          </span>
+        </div>
+        <div className="mt-0.5 truncate text-[12px] text-muted-foreground">
+          <Mono>{p.id}</Mono> · {fmtTime(p.created_at)}
+        </div>
+      </div>
+      <div className="text-[12px] text-muted-foreground sm:text-right">
+        {p.fee_paise != null ? (
+          <span className="tnum">
+            fee {formatPaise(p.fee_paise)}
+            {p.tax_paise != null ? ` · tax ${formatPaise(p.tax_paise)}` : ''}
+          </span>
+        ) : null}
+        <span className="block">{p.currency}</span>
+      </div>
+    </div>
+  )
+}
+
+/**
+ * The API activity log, one click away.
+ *
+ * This is the single most load-bearing element on the page for a sceptical
+ * reader: it is the list of requests that actually left the process, with the
+ * status the API actually returned. `classifyConnection` derives "Connected"
+ * from exactly this list, so what is shown here *is* what the badge is made of.
+ */
+export function ApiActivity({ payload }: { payload: RazorpaySyncPayload }) {
+  if (payload.activity.length === 0) return null
+  return (
+    <details className="group overflow-hidden rounded-lg border border-border bg-card">
+      <summary className="flex cursor-pointer list-none items-center gap-3 px-5 py-3 text-[14px] font-medium [&::-webkit-details-marker]:hidden">
+        API activity · {payload.activity.length} requests
+        <span className="ml-auto text-[12px] text-muted-foreground group-open:hidden">every request this sync made</span>
+      </summary>
+      <ul className="divide-y divide-border border-t border-border">
+        {payload.activity.map((a, i) => (
+          <li key={i} className="flex flex-wrap items-center gap-x-3 gap-y-1.5 px-5 py-2.5 text-[13px]">
+            <span className="flex min-w-0 items-center gap-2">
+              <Mono>{a.method}</Mono>
+              <Mono className="truncate">{a.endpoint}</Mono>
+            </span>
+            <span className="ml-auto flex items-center gap-3">
+              <span className={cn('tnum font-semibold', a.ok ? 'text-[hsl(var(--verdict-verified))]' : 'text-[hsl(var(--verdict-failed))]')}>
+                {a.status === null ? 'no response' : `${a.status}${a.ok ? ' OK' : ''}`}
+              </span>
+              <span className="tnum text-muted-foreground">{a.count !== null ? `count ${a.count}` : '—'}</span>
+              <span className="tnum text-muted-foreground">
+                {a.elapsed_ms}ms
+                {a.attempt === 2 ? ' · retry' : ''}
+              </span>
+            </span>
+            {a.error ? <span className="basis-full text-[12px] text-[hsl(var(--verdict-failed))]">{a.error}</span> : null}
+          </li>
+        ))}
+      </ul>
+    </details>
+  )
+}
+
+/**
+ * The runtime path, with each stage showing the state the runtime reported.
+ *
+ * A filled mark means the stage has data or is live; a hollow one means it has
+ * nothing yet. Both carry words, because a reader who cannot distinguish the
+ * two colours must still be able to read the state.
+ */
+export function SystemPath({ payload }: { payload: RazorpaySyncPayload }) {
+  const conn = connectionView(payload, 'done', null)
+  const stages: { name: string; on: boolean; state: string; detail: string }[] = [
+    {
+      name: 'Razorpay',
+      on: conn.live,
+      state: conn.label,
+      detail: requestSummary(payload) ?? payload.connection.detail,
+    },
+    {
+      name: 'AVOS Ledger',
+      on: payload.ledger_counts.settlements > 0,
+      state: payload.ledger_counts.settlements > 0 ? 'Populated' : 'Ready · no rows',
+      detail: `${payload.ledger_counts.settlements} settlement rows normalised${payload.counts.payments > 0 ? ' · payments carry no settlement id' : ''}`,
+    },
+    {
+      name: 'Evidence',
+      on: payload.cases.length > 0,
+      state: payload.cases.length > 0 ? `${payload.cases.length} packs` : 'Ready · no packs',
+      detail: 'One hashed pack per settlement',
+    },
+    {
+      name: 'AI agent',
+      on: payload.agent.state === 'available',
+      state: payload.agent.state === 'available' ? 'Available' : 'Unavailable',
+      detail: payload.agent.model ?? payload.agent.detail,
+    },
+    {
+      name: 'Verifier',
+      on: true,
+      state: 'Ready',
+      detail: `${payload.verifier_version} · runs on every sync`,
+    },
+    {
+      name: 'Decision',
+      on: payload.cases.length > 0,
+      state: payload.cases.length > 0 ? `${payload.cases.length} decided` : 'None to make',
+      detail: 'Close, hold or raise an exception',
+    },
+  ]
+  return (
+    <div>
+      <h2 className="text-[12px] font-semibold uppercase tracking-label text-muted-foreground">System path</h2>
+      <ol className="mt-2 grid gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+        {stages.map((s) => (
+          <li key={s.name} className="bg-card px-4 py-3">
+            <div className="flex items-center gap-2">
+              <span className={cn('h-2 w-2 shrink-0 rounded-full', s.on ? 'bg-[hsl(var(--verdict-verified))]' : 'border border-muted-foreground bg-transparent')} aria-hidden />
+              <span className="text-[13px] font-semibold">{s.name}</span>
+            </div>
+            <div className={cn('mt-1 text-[13px] font-medium', s.on ? 'text-foreground' : 'text-muted-foreground')}>{s.state}</div>
+            <div className="mt-0.5 text-[12px] leading-snug text-muted-foreground">{s.detail}</div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  )
+}
+
+/**
+ * Nothing to review — said precisely, and without a page of whitespace.
+ *
+ * It names what *did* arrive, so the absence of settlements reads as a fact
+ * about the account rather than a failure of the connection.
+ */
+export function NoSettlements({
+  payload,
+  phase,
+  error,
+  onSync,
+  onSwitchSource,
+}: {
+  payload: RazorpaySyncPayload | null
+  phase: SyncPhase
+  error: string | null
+  onSync: () => void
+  onSwitchSource: (s: SourceKind) => void
+}) {
+  const connected = payload?.connection.state === 'CONNECTED'
+  return (
+    <div className="rounded-lg border border-border bg-card p-5">
+      {/* A failed read is not evidence that there are no settlements — only a
+          successful one can say that. The heading follows the connection. */}
+      <h2 className="text-[18px] font-semibold tracking-tight">{connected ? 'No settlements to review' : 'Razorpay could not be read'}</h2>
+      <p className="mt-1 max-w-2xl text-[14px] text-muted-foreground">
+        {connected ? (
+          <>
+            Razorpay {payload?.mode === 'live' ? 'Live' : 'Test'} API is connected and AVOS received{' '}
+            <span className="tnum font-medium text-foreground">{countLine(payload)}</span>. This account has no settlement records, so there is nothing to
+            verify or close. <span className="font-medium text-foreground">Nothing was substituted.</span>
+          </>
+        ) : (
+          (payload?.connection.detail ?? error ?? 'Waiting for the first sync.')
+        )}
+      </p>
+      <div className="mt-4 flex flex-wrap items-center gap-2">
+        <Button onClick={onSync} disabled={phase === 'syncing'}>
+          <IconReplay className={cn('h-4 w-4', phase === 'syncing' && 'animate-spin')} /> {phase === 'syncing' ? 'Syncing Razorpay…' : 'Sync Razorpay'}
+        </Button>
+        <Button variant="secondary" onClick={() => onSwitchSource('evaluation')}>
+          Open AVOS Evaluation <IconArrowRight className="h-4 w-4" />
+        </Button>
+      </div>
+      <p className="mt-3 text-[12px] text-muted-foreground">
+        AVOS Evaluation is a controlled synthetic benchmark — seeded and labelled — not Razorpay transaction data.
+      </p>
     </div>
   )
 }
@@ -208,16 +505,7 @@ export function SourceStatus({
 /* Overview                                                                  */
 /* ------------------------------------------------------------------------ */
 
-export function OverviewView({
-  source,
-  records,
-  razorpay,
-  report,
-  onSync,
-  onOpen,
-  onSwitchSource,
-  onGo,
-}: {
+export function OverviewView(props: {
   source: SourceKind
   records: SettlementRecord[]
   razorpay: { payload: RazorpaySyncPayload | null; phase: SyncPhase; error: string | null }
@@ -227,44 +515,124 @@ export function OverviewView({
   onSwitchSource: (s: SourceKind) => void
   onGo: (view: 'exceptions' | 'settlements' | 'evaluation') => void
 }) {
+  return props.source === 'razorpay' ? <RazorpayOverview {...props} /> : <EvaluationOverview {...props} />
+}
+
+/**
+ * The Razorpay overview.
+ *
+ * With settlements, this is a money-first console and the hero is the money.
+ * Without them, the hero is the *source*: what AVOS is connected to, what it
+ * asked for, and what came back. There is no third mode where a number is
+ * invented to fill the space.
+ */
+function RazorpayOverview({
+  records,
+  razorpay,
+  onSync,
+  onOpen,
+  onSwitchSource,
+  onGo,
+}: {
+  records: SettlementRecord[]
+  razorpay: { payload: RazorpaySyncPayload | null; phase: SyncPhase; error: string | null }
+  onSync: () => void
+  onOpen: (rec: SettlementRecord) => void
+  onSwitchSource: (s: SourceKind) => void
+  onGo: (view: 'exceptions' | 'settlements' | 'evaluation') => void
+}) {
+  const { payload, phase, error } = razorpay
   const k = kpis(records)
   const attention = sortRecords(records.filter((r) => r.status !== 'VERIFIED'), 'severity').slice(0, 6)
-  const falseClosures = source === 'evaluation' && report ? report.batch_120.false_closure_cases.length : null
-  const empty = source === 'razorpay' && razorpay.payload?.connection.state === 'CONNECTED' && records.length === 0
 
   return (
-    <div>
-      <PageHeader title="Financial control center" sub={`${SOURCE_LABEL[source]}${source === 'evaluation' ? ' · synthetic, labelled' : ''}`} />
+    <div className="space-y-6">
+      <PageHeader title="Financial control center" sub={`${SOURCE_LABEL.razorpay} · read-only`} />
 
-      <SourceStatus payload={razorpay.payload} phase={razorpay.phase} error={razorpay.error} onSync={onSync} />
+      <SourceStatus payload={payload} phase={phase} error={error} onSync={onSync} />
 
-      <dl className="mt-6 grid gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
+      {records.length > 0 ? (
+        <>
+          <dl className="grid gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
+            <Kpi label="Value verified" value={moneyShort(k.verifiedValue)} hint={`${k.verified} safe to close`} tone="verified" />
+            <Kpi label="Value held" value={moneyShort(k.heldValue)} hint={`${k.exceptions + k.reviews + k.pending} not closed`} tone={k.heldValue > 0 ? 'uncertain' : undefined} />
+            <Kpi label="Exceptions" value={String(k.exceptions)} hint={`${k.reviews} need review`} tone={k.exceptions > 0 ? 'failed' : undefined} />
+            <Kpi label="Settlements" value={String(k.total)} hint="read this sync" />
+          </dl>
+
+          {attention.length > 0 ? (
+            <div>
+              <SectionTitle right={<Button variant="ghost" onClick={() => onGo('exceptions')}>All exceptions <IconArrowRight className="h-4 w-4" /></Button>}>
+                Needs attention
+              </SectionTitle>
+              <ul className="divide-y divide-border rounded-lg border border-border bg-card">
+                {attention.map((r) => (
+                  <li key={r.key}>
+                    <AttentionRow rec={r} onOpen={() => onOpen(r)} />
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : (
+            <p className="text-[14px] text-muted-foreground">Nothing needs attention. Every settlement verified.</p>
+          )}
+        </>
+      ) : null}
+
+      {payload ? (
+        <>
+          <ReceivedTiles payload={payload} />
+          <RazorpayPayments payload={payload} />
+          {records.length === 0 ? <NoSettlements payload={payload} phase={phase} error={error} onSync={onSync} onSwitchSource={onSwitchSource} /> : null}
+          <ApiActivity payload={payload} />
+          <SystemPath payload={payload} />
+        </>
+      ) : phase === 'syncing' ? null : (
+        // No payload and not syncing: the first read failed, or none has run.
+        // While a sync is in flight there is nothing to report yet, and saying
+        // "no settlements" before the API has answered would be a guess.
+        <NoSettlements payload={payload} phase={phase} error={error} onSync={onSync} onSwitchSource={onSwitchSource} />
+      )}
+    </div>
+  )
+}
+
+/** The evaluation overview: unchanged in substance, explicit about its identity. */
+function EvaluationOverview({
+  records,
+  report,
+  onOpen,
+  onSwitchSource,
+  onGo,
+}: {
+  records: SettlementRecord[]
+  report: EvalReport | null
+  onOpen: (rec: SettlementRecord) => void
+  onSwitchSource: (s: SourceKind) => void
+  onGo: (view: 'exceptions' | 'settlements' | 'evaluation') => void
+}) {
+  const k = kpis(records)
+  const attention = sortRecords(records.filter((r) => r.status !== 'VERIFIED'), 'severity').slice(0, 6)
+  const falseClosures = report ? report.batch_120.false_closure_cases.length : null
+
+  return (
+    <div className="space-y-6">
+      <PageHeader title="AVOS Evaluation" sub="Synthetic · seeded · labelled. Not Razorpay transaction data." />
+
+      <dl className="grid gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
         <Kpi label="Value verified" value={moneyShort(k.verifiedValue)} hint={`${k.verified} safe to close`} tone="verified" />
         <Kpi label="Value held" value={moneyShort(k.heldValue)} hint={`${k.exceptions + k.reviews + k.pending} not closed`} tone={k.heldValue > 0 ? 'uncertain' : undefined} />
         <Kpi label="Exceptions" value={String(k.exceptions)} hint={`${k.reviews} need review`} tone={k.exceptions > 0 ? 'failed' : undefined} />
-        <Kpi label="False closures" value={falseClosures === null ? '—' : String(falseClosures)} hint={falseClosures === null ? 'measurable on labelled data' : `of ${report?.batch_120.n ?? k.total} labelled`} tone={falseClosures === 0 ? 'verified' : undefined} />
+        <Kpi
+          label="False closures"
+          value={falseClosures === null ? '—' : String(falseClosures)}
+          hint={falseClosures === null ? 'run npm run eval' : `of ${report?.batch_120.n ?? k.total} labelled`}
+          tone={falseClosures === 0 ? 'verified' : undefined}
+        />
       </dl>
 
-      {empty ? (
-        <div className="mt-6 rounded-lg border border-dashed border-border p-6 text-center">
-          <div className="text-[18px] font-semibold">No settlement data yet</div>
-          <p className="mx-auto mt-1 max-w-xl text-[14px] text-muted-foreground">
-            Razorpay Test API is connected, but this account currently has no settlement records. Test-mode payments are simulated and
-            nothing settles. Nothing has been substituted.
-          </p>
-          <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
-            <Button onClick={onSync} disabled={razorpay.phase === 'syncing'}>
-              <IconReplay className="h-4 w-4" /> Sync Razorpay
-            </Button>
-            <Button variant="secondary" onClick={() => onSwitchSource('evaluation')}>
-              Open AVOS Evaluation dataset <IconArrowRight className="h-4 w-4" />
-            </Button>
-          </div>
-        </div>
-      ) : null}
-
       {attention.length > 0 ? (
-        <div className="mt-8">
+        <div>
           <SectionTitle right={<Button variant="ghost" onClick={() => onGo('exceptions')}>All exceptions <IconArrowRight className="h-4 w-4" /></Button>}>
             Needs attention
           </SectionTitle>
@@ -276,19 +644,15 @@ export function OverviewView({
             ))}
           </ul>
         </div>
-      ) : records.length > 0 ? (
-        <p className="mt-8 text-[14px] text-muted-foreground">Nothing needs attention. Every settlement verified.</p>
       ) : null}
 
-      {source === 'evaluation' ? (
-        <p className="mt-6 text-[12px] text-muted-foreground">
-          These figures describe the AVOS Evaluation Dataset — 120 synthetic, labelled settlements used to prove the verifier. They are not Razorpay
-          transactions.{' '}
-          <button type="button" className="text-primary underline-offset-2 hover:underline" onClick={() => onSwitchSource('razorpay')}>
-            Switch to Razorpay
-          </button>
-        </p>
-      ) : null}
+      <p className="text-[12px] text-muted-foreground">
+        These figures describe the AVOS Evaluation Dataset — synthetic, seeded, labelled settlements used to prove the verifier. They are not Razorpay
+        transactions.{' '}
+        <button type="button" className="text-primary underline-offset-2 hover:underline" onClick={() => onSwitchSource('razorpay')}>
+          Switch to Razorpay
+        </button>
+      </p>
     </div>
   )
 }
