@@ -297,9 +297,21 @@ export function ReceivedTiles({ payload }: { payload: RazorpaySyncPayload }) {
 export function RazorpayPayments({ payload }: { payload: RazorpaySyncPayload }) {
   const rows = payload.unsettled.payments
   if (rows.length === 0) return null
+  const captured = rows.filter((p) => p.captured).length
+  const failed = rows.filter((p) => p.status === 'failed').length
   return (
     <div>
-      <SectionTitle right={<span className="tnum text-[13px] text-muted-foreground">{rows.length} fetched</span>}>Razorpay payments</SectionTitle>
+      <SectionTitle
+        right={
+          <span className="tnum text-[13px] text-muted-foreground">
+            {rows.length} fetched
+            {captured ? <> · {captured} captured</> : null}
+            {failed ? <> · {failed} failed</> : null}
+          </span>
+        }
+      >
+        Razorpay payments
+      </SectionTitle>
       <ul className="divide-y divide-border overflow-hidden rounded-lg border border-border bg-card">
         {rows.map((p) => (
           <li key={p.id}>
@@ -315,14 +327,39 @@ export function RazorpayPayments({ payload }: { payload: RazorpaySyncPayload }) 
   )
 }
 
+/**
+ * Razorpay's payment status is a financial state, not a label, so it gets the
+ * verdict palette: captured money is green, a failed attempt is red, and a
+ * payment still in flight stays neutral because nothing has been decided.
+ *
+ * A failed payment moved no money, so its amount is set in muted type — the
+ * figure is what was attempted, not what arrived, and rendering it as boldly
+ * as a captured amount would overstate the account's balance at a glance.
+ * The status word carries the same information on its own, for anyone who
+ * cannot separate the two colours.
+ */
+function statusTone(status: string): { text: string; amount: string } {
+  switch (status) {
+    case 'captured':
+      return { text: 'text-[hsl(var(--verdict-verified))]', amount: 'text-foreground' }
+    case 'failed':
+      return { text: 'text-[hsl(var(--verdict-failed))]', amount: 'text-muted-foreground' }
+    case 'refunded':
+      return { text: 'text-[hsl(var(--verdict-uncertain))]', amount: 'text-foreground' }
+    default:
+      return { text: 'text-muted-foreground', amount: 'text-foreground' }
+  }
+}
+
 function PaymentRow({ p }: { p: SafePayment }) {
+  const tone = statusTone(p.status)
   return (
     <div className="grid items-center gap-x-4 gap-y-1 px-4 py-3 sm:grid-cols-[minmax(0,1fr)_auto]">
       <div className="min-w-0">
         <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-          <span className="tnum text-[20px] font-bold tracking-tight">{formatPaise(p.amount_paise)}</span>
-          <span className="text-[13px] font-medium capitalize text-muted-foreground">
-            {p.status}
+          <span className={cn('tnum text-[20px] font-bold tracking-tight', tone.amount)}>{formatPaise(p.amount_paise)}</span>
+          <span className="text-[13px] font-medium text-muted-foreground">
+            <span className={cn('font-semibold capitalize', tone.text)}>{p.status}</span>
             {p.method ? ` · ${p.method}` : ''}
           </span>
         </div>
