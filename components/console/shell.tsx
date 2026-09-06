@@ -2,7 +2,6 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import Link from 'next/link'
-import { IconArrowRight } from '@/components/ui/icon'
 import { Sheet } from '@/components/ui/sheet'
 import { cn } from '@/lib/utils'
 import type { RazorpaySyncPayload } from '@/lib/razorpay/runtime'
@@ -14,6 +13,7 @@ import {
   ControlsView,
   EvaluationView,
   EvidenceView,
+  NoSettlements,
   OverviewView,
   SettlementDetail,
   SettlementList,
@@ -300,19 +300,7 @@ export function ConsoleShell(props: ShellProps) {
                 {source === 'razorpay' ? <SourceStatus compact payload={payload} phase={phase} error={syncError} onSync={sync} /> : null}
               </div>
               {source === 'razorpay' && records.length === 0 && phase !== 'syncing' ? (
-                <div className="rounded-lg border border-dashed border-border p-8 text-center">
-                  <div className="text-[18px] font-semibold">No settlement data yet</div>
-                  <p className="mx-auto mt-1 max-w-xl text-[14px] text-muted-foreground">
-                    {payload?.connection.state === 'CONNECTED'
-                      ? 'Razorpay Test API is connected, but this account has no settlement records. Nothing is substituted.'
-                      : (payload?.connection.detail ?? syncError ?? 'Waiting for the first sync.')}
-                  </p>
-                  <div className="mt-4 flex justify-center gap-2">
-                    <button type="button" onClick={() => switchSource('evaluation')} className="inline-flex h-9 items-center gap-2 rounded-md border border-border bg-card px-3.5 text-[14px] font-medium hover:bg-accent">
-                      Open AVOS Evaluation dataset <IconArrowRight className="h-4 w-4" />
-                    </button>
-                  </div>
-                </div>
+                <NoSettlements payload={payload} phase={phase} error={syncError} onSync={sync} onSwitchSource={switchSource} />
               ) : (
                 listAndDetail(view === 'exceptions')
               )}
